@@ -236,10 +236,10 @@
   <div class="nav-inner">
     <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
     <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/">World Cup</a>
-      <a href="/fantasy" class="active" aria-current="page">Fantasy</a>
-      <a href="#" data-cs="Betting Intelligence">Betting</a>
+      <a class="nav-link" href="/predictions">Picks</a>
+      <a class="nav-link" href="/standings">Standings</a>
+      <a class="nav-link active" href="/fantasy" aria-current="page">Fantasy</a>
+      <a class="nav-link" href="/picks-record">Record</a>
     </div>
     <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
   </div>
@@ -560,6 +560,17 @@ document.querySelectorAll('[data-aff]').forEach(function(el){
   }
 });
 
+/* ---------- Flag code helper ---------- */
+function getFlagCode(team) {
+  var codes = {
+    'FRA':'fr','ARG':'ar','NOR':'no','BRA':'br','ESP':'es','ENG':'gb-eng',
+    'GER':'de','NED':'nl','SRB':'rs','URU':'uy','MAR':'ma','JPN':'jp',
+    'COL':'co','ECU':'ec','SEN':'sn','POR':'pt','BEL':'be','CRO':'hr',
+    'AUS':'au','SVK':'sk','USA':'us','BOL':'bo'
+  };
+  return codes[team] || 'un';
+}
+
 /* ---------- Fantasy Lineup Builder ---------- */
 const PLAYERS = [
   {id:1,name:"Kylian Mbappé",team:"FRA",flag:"🇫🇷",pos:"FWD",pts:45,own:"32%",price:12},
@@ -784,6 +795,7 @@ function renderPitch() {
         html += '<div class="p-slot filled" data-remove="' + pl.id + '" tabindex="0" aria-label="' + pl.name + ', ' + pl.pos + ', ' + pl.pts + ' points — remove">' +
                   '<button class="p-slot-remove" type="button" data-remove="' + pl.id + '" aria-label="Remove ' + pl.name + '">×</button>' +
                   '<div class="p-slot-flag">' + pl.flag + '</div>' +
+                  '<img src="https://flagcdn.com/w40/' + getFlagCode(pl.team) + '.png" alt="' + pl.team + '" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-bottom:2px;" loading="lazy">' +
                   '<div class="p-slot-name">' + shortName(pl.name) + '</div>' +
                   '<div class="p-slot-pts">' + pl.pts + ' pts</div>' +
                 '</div>';
@@ -825,7 +837,7 @@ function renderPanel() {
               '<span class="pr-flag">' + pl.flag + '</span>' +
               '<span class="pr-pos pos-' + pl.pos + '">' + pl.pos + '</span>' +
               '<span class="pr-info">' +
-                '<span class="pr-name">' + pl.name + '</span>' +
+                '<span class="pr-name"><img src="https://flagcdn.com/w40/' + getFlagCode(pl.team) + '.png" alt="' + pl.team + '" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:4px;" loading="lazy">' + pl.name + '</span>' +
                 '<span class="pr-meta">' + pl.team + ' · ' + pl.own + ' owned</span>' +
               '</span>' +
               '<span class="pr-stats">' +

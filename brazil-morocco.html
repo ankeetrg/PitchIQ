@@ -67,8 +67,11 @@
     .breadcrumb a:hover { color: var(--grn); }
     .breadcrumb span { margin: 0 6px; }
 
+    /* FLAG IMAGES */
+    .team-flag-img { width: 56px; height: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.35); display: block; margin: 0 auto 8px; }
+
     /* MATCH HEADER */
-    .match-header { background: var(--nav); padding: 32px 0 28px; margin-bottom: 28px; }
+    .match-header { background: var(--nav); background-image: linear-gradient(rgba(7,29,54,0.88), rgba(7,29,54,0.95)), url('https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&q=80&fit=crop'); background-size: cover; background-position: center top; padding: 32px 0 28px; margin-bottom: 28px; }
     .mh-badge { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grn); margin-bottom: 16px; }
     .mh-teams { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 20px; }
     .mh-team { text-align: center; flex: 1; max-width: 200px; }
@@ -218,12 +221,7 @@
 <nav class="nav" aria-label="Primary navigation">
   <div class="nav-inner">
     <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
-    <div class="nav-links">
-      <a href="/" >Home</a>
-      <a href="/" class="active">World Cup</a>
-      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
-      <a href="#" data-cs="Betting Intelligence">Betting</a>
-    </div>
+    <div class="nav-links">\n      <a class="nav-link" href="/predictions">Picks</a>\n      <a class="nav-link" href="/standings">Standings</a>\n      <a class="nav-link" href="/fantasy">Fantasy</a>\n      <a class="nav-link" href="/picks-record">Record</a>\n    </div>
     <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
   </div>
 </nav>
@@ -234,12 +232,14 @@
     <div class="mh-badge">⚽ FIFA World Cup 2026 · Group C · Match 1</div>
     <div class="mh-teams">
       <div class="mh-team">
+        <img src="https://flagcdn.com/w80/br.png" alt="Brazil" class="team-flag-img" loading="lazy">
         <div class="mh-flag">🇧🇷</div>
         <div class="mh-name">Brazil</div>
         <div class="mh-rank">FIFA Rank #4 · Tournament Odds +800</div>
       </div>
       <div class="mh-vs">VS</div>
       <div class="mh-team">
+        <img src="https://flagcdn.com/w80/ma.png" alt="Morocco" class="team-flag-img" loading="lazy">
         <div class="mh-flag">🇲🇦</div>
         <div class="mh-name">Morocco</div>
         <div class="mh-rank">FIFA Rank #14 · Tournament Odds +5000</div>
@@ -539,6 +539,11 @@
     <!-- SIDEBAR -->
     <div>
 
+      <!-- Stadium thumbnail -->
+      <div style="border-radius:var(--r2);overflow:hidden;margin-bottom:16px;aspect-ratio:16/9;">
+        <img src="https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&q=80&fit=crop" alt="Match venue" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+      </div>
+
       <!-- Sportsbook comparison -->
       <div class="sidebar-card">
         <div class="sc-head">Best Odds: Brazil Win</div>
@@ -617,6 +622,29 @@
             <div class="trend-text" style="font-weight:600">Scotland vs Morocco</div>
             <div style="font-size:11px;color:var(--t3)">Jun 17</div>
           </div>
+        </div>
+      </div>
+
+
+      <!-- 𝕏 Analyst Feed -->
+      <div class="sidebar-card">
+        <div class="sc-head">𝕏 Analyst Feed</div>
+        <div style="padding:12px 12px 0;font-size:11px;color:var(--t3);font-family:var(--cond);letter-spacing:.04em;margin-bottom:8px;">LIVE FROM @FIFAWORLDCUP &amp; @OPTAJOE</div>
+        <div style="overflow:hidden;max-height:460px;">
+          <a class="twitter-timeline"
+             href="https://twitter.com/FIFAWorldCup"
+             data-tweet-limit="3"
+             data-chrome="nofooter noheader noborders transparent"
+             data-theme="light"
+             data-dnt="true">
+            Loading match tweets…
+          </a>
+        </div>
+        <div style="padding:10px 12px;border-top:1px solid var(--b1);text-align:center;">
+          <a href="https://twitter.com/getpitchiq" target="_blank" rel="noopener noreferrer"
+             style="font-family:var(--cond);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;">
+            Follow @getpitchiq for live picks →
+          </a>
         </div>
       </div>
 
@@ -725,5 +753,6 @@ document.querySelectorAll('[data-aff]').forEach(function(el){
   }
 });
 </script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

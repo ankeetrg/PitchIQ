@@ -105,6 +105,7 @@
     .badge-longshot { background: var(--t3); color: #fff; }
     .pred-cta { margin-top: auto; font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--grn); padding-top: 8px; border-top: 1px solid var(--b1); }
     .pred-card:hover .pred-cta { color: var(--grn-h); }
+    .pred-flag-img { width: 32px; height: auto; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,.3); margin-bottom: 4px; }
 
     /* SPORTSBOOK BONUS BAR */
     .bonus-bar { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); padding: 18px 20px; margin-bottom: 28px; }
@@ -155,11 +156,10 @@
   <div class="nav-inner">
     <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
     <div class="nav-links">
-      <a href="/" >Home</a>
-      <a href="/">World Cup</a>
-      <a href="/predictions" class="active" aria-current="page">Picks</a>
-      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
-      <a href="#" data-cs="Betting Intelligence">Betting</a>
+      <a class="nav-link active" href="/predictions" aria-current="page">Picks</a>
+      <a class="nav-link" href="/standings">Standings</a>
+      <a class="nav-link" href="/fantasy">Fantasy</a>
+      <a class="nav-link" href="/picks-record">Record</a>
     </div>
     <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
   </div>
@@ -177,6 +177,10 @@
     <div class="hero-badge">✦ PitchIQ AI Engine · FIFA World Cup 2026</div>
     <h1 class="hero-title">AI Match Predictions</h1>
     <p class="hero-sub">Model-driven picks for every World Cup 2026 fixture</p>
+    <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:12px;opacity:.7;">
+      <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=160&q=80&fit=crop" alt="World Cup trophy" style="width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid rgba(0,150,63,.5);" loading="lazy">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)">WC 2026 · Group Stage · AI Powered</span>
+    </div>
   </div>
 </div>
 
@@ -188,6 +192,8 @@
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="2026-06-13">Jun 13</button>
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="2026-06-14">Jun 14</button>
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="2026-06-15">Jun 15</button>
+    <button class="filter-tab" role="tab" aria-selected="false" data-filter="2026-06-16">Jun 16</button>
+    <button class="filter-tab" role="tab" aria-selected="false" data-filter="2026-06-17">Jun 17</button>
   </div>
 
   <!-- Predictions Grid -->
@@ -197,9 +203,9 @@
     <a href="/brazil-morocco" class="pred-card" data-date="2026-06-13">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 13 6PM ET</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇧🇷</span><span class="pred-name">Brazil</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇷</span><span class="pred-name">Brazil</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇲🇦</span><span class="pred-name">Morocco</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/ma.png" alt="Morocco" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇲🇦</span><span class="pred-name">Morocco</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:58%">58%</div><div class="pred-bar-draw" style="width:22%">22%</div><div class="pred-bar-away" style="width:20%">20%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Brazil -0.5 AH &nbsp;·&nbsp; <strong>-130</strong></div>
@@ -210,9 +216,9 @@
     <a href="/germany-curacao" class="pred-card" data-date="2026-06-14">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 14 1PM ET</span><span class="pred-venue">NRG Stadium Houston</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇩🇪</span><span class="pred-name">Germany</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/de.png" alt="Germany" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇩🇪</span><span class="pred-name">Germany</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇨🇼</span><span class="pred-name">Curacao</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/cw.png" alt="Curacao" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇼</span><span class="pred-name">Curacao</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:92%">92%</div><div class="pred-bar-draw" style="width:5%">5%</div><div class="pred-bar-away" style="width:3%">3%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Germany Win to Nil &nbsp;·&nbsp; <strong>-160</strong></div>
@@ -223,9 +229,9 @@
     <a href="/netherlands-japan" class="pred-card" data-date="2026-06-14">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 14 4PM ET</span><span class="pred-venue">AT&amp;T Stadium Dallas</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇳🇱</span><span class="pred-name">Netherlands</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇱</span><span class="pred-name">Netherlands</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇯🇵</span><span class="pred-name">Japan</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇯🇵</span><span class="pred-name">Japan</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:52%">52%</div><div class="pred-bar-draw" style="width:24%">24%</div><div class="pred-bar-away" style="width:24%">24%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-value">VALUE</span> Netherlands -0.5 &nbsp;·&nbsp; <strong>+105</strong></div>
@@ -236,9 +242,9 @@
     <a href="/uruguay-serbia" class="pred-card" data-date="2026-06-14">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 14 7PM ET</span><span class="pred-venue">SoFi Stadium</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇺🇾</span><span class="pred-name">Uruguay</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇾</span><span class="pred-name">Uruguay</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇷🇸</span><span class="pred-name">Serbia</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/rs.png" alt="Serbia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇷🇸</span><span class="pred-name">Serbia</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:28%">28%</div><div class="pred-bar-draw" style="width:28%">28%</div><div class="pred-bar-away" style="width:44%">44%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Under 2.5 Goals &nbsp;·&nbsp; <strong>-125</strong></div>
@@ -249,9 +255,9 @@
     <a href="/france-albania" class="pred-card" data-date="2026-06-14">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 14 10PM ET</span><span class="pred-venue">Rose Bowl Pasadena</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇫🇷</span><span class="pred-name">France</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/fr.png" alt="France" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇫🇷</span><span class="pred-name">France</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇦🇱</span><span class="pred-name">Albania</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/al.png" alt="Albania" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇱</span><span class="pred-name">Albania</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:88%">88%</div><div class="pred-bar-draw" style="width:9%">9%</div><div class="pred-bar-away" style="width:3%">3%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-hot">HOT</span> France Win to Nil &nbsp;·&nbsp; <strong>-130</strong></div>
@@ -262,9 +268,9 @@
     <a href="/spain-capeverde" class="pred-card" data-date="2026-06-15">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 15 1PM ET</span><span class="pred-venue">Mercedes-Benz Stadium Atlanta</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇪🇸</span><span class="pred-name">Spain</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/es.png" alt="Spain" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇸</span><span class="pred-name">Spain</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇨🇻</span><span class="pred-name">Cape Verde</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/cv.png" alt="Cape Verde" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇻</span><span class="pred-name">Cape Verde</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:89%">89%</div><div class="pred-bar-draw" style="width:8%">8%</div><div class="pred-bar-away" style="width:3%">3%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Spain Win to Nil &nbsp;·&nbsp; <strong>-110</strong></div>
@@ -275,9 +281,9 @@
     <a href="/argentina-peru" class="pred-card" data-date="2026-06-15">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 15 4PM ET</span><span class="pred-venue">Hard Rock Stadium Miami</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇦🇷</span><span class="pred-name">Argentina</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇷</span><span class="pred-name">Argentina</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇵🇪</span><span class="pred-name">Peru</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/pe.png" alt="Peru" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇪</span><span class="pred-name">Peru</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:86%">86%</div><div class="pred-bar-draw" style="width:10%">10%</div><div class="pred-bar-away" style="width:4%">4%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-hot">HOT</span> Argentina Win to Nil &nbsp;·&nbsp; <strong>-115</strong></div>
@@ -288,9 +294,9 @@
     <a href="/colombia-ecuador" class="pred-card" data-date="2026-06-15">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 15 7PM ET</span><span class="pred-venue">State Farm Stadium Glendale</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🇨🇴</span><span class="pred-name">Colombia</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇴</span><span class="pred-name">Colombia</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇪🇨</span><span class="pred-name">Ecuador</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇨</span><span class="pred-name">Ecuador</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:48%">48%</div><div class="pred-bar-draw" style="width:26%">26%</div><div class="pred-bar-away" style="width:26%">26%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-value">VALUE</span> Over 2.5 Goals &nbsp;·&nbsp; <strong>-110</strong></div>
@@ -301,16 +307,90 @@
     <a href="/england-senegal" class="pred-card" data-date="2026-06-15">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 15 10PM ET</span><span class="pred-venue">Levi's Stadium Santa Clara</span></div>
       <div class="pred-teams">
-        <div class="pred-team"><span class="pred-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="pred-name">England</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" class="pred-flag-img" loading="lazy"><span class="pred-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="pred-name">England</span></div>
         <div class="pred-vs">VS</div>
-        <div class="pred-team"><span class="pred-flag">🇸🇳</span><span class="pred-name">Senegal</span></div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/sn.png" alt="Senegal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇳</span><span class="pred-name">Senegal</span></div>
       </div>
       <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:72%">72%</div><div class="pred-bar-draw" style="width:18%">18%</div><div class="pred-bar-away" style="width:10%">10%</div></div>
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> England -0.5 AH &nbsp;·&nbsp; <strong>-110</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks →</div>
+    </a>"
+
+".    <!-- 10. Portugal vs Indonesia -->
+    <a href="/portugal-indonesia" class="pred-card" data-date="2026-06-16">
+      <div class="pred-header"><span class="pred-group">GROUP I · Jun 16 12PM ET</span><span class="pred-venue">Gillette Stadium</span></div>
+      <div class="pred-teams">
+        <div class="pred-team"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇹</span><span class="pred-name">Portugal</span></div>
+        <div class="pred-vs">VS</div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/id.png" alt="Indonesia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇮🇩</span><span class="pred-name">Indonesia</span></div>
+      </div>
+      <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:94%">94%</div><div class="pred-bar-draw" style="width:5%">5%</div><div class="pred-bar-away" style="width:1%">1%</div></div>
+      <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Portugal Win to Nil &nbsp;·&nbsp; <strong>-140</strong></div>
+      <div class="pred-cta">Full Preview &amp; Picks →</div>
     </a>
 
+    <!-- 11. Belgium vs New Zealand -->
+    <a href="/belgium-newzealand" class="pred-card" data-date="2026-06-16">
+      <div class="pred-header"><span class="pred-group">GROUP J · Jun 16 3PM ET</span><span class="pred-venue">Arrowhead Stadium</span></div>
+      <div class="pred-teams">
+        <div class="pred-team"><img src="https://flagcdn.com/w40/be.png" alt="Belgium" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇪</span><span class="pred-name">Belgium</span></div>
+        <div class="pred-vs">VS</div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/nz.png" alt="New Zealand" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇿</span><span class="pred-name">New Zealand</span></div>
+      </div>
+      <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:84%">84%</div><div class="pred-bar-draw" style="width:12%">12%</div><div class="pred-bar-away" style="width:4%">4%</div></div>
+      <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Belgium Win to Nil &nbsp;·&nbsp; <strong>-125</strong></div>
+      <div class="pred-cta">Full Preview &amp; Picks →</div>
+    </a>
+
+    <!-- 12. Croatia vs Australia -->
+    <a href="/croatia-australia" class="pred-card" data-date="2026-06-16">
+      <div class="pred-header"><span class="pred-group">GROUP K · Jun 16 6PM ET</span><span class="pred-venue">SoFi Stadium</span></div>
+      <div class="pred-teams">
+        <div class="pred-team"><img src="https://flagcdn.com/w40/hr.png" alt="Croatia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇭🇷</span><span class="pred-name">Croatia</span></div>
+        <div class="pred-vs">VS</div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/au.png" alt="Australia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇺</span><span class="pred-name">Australia</span></div>
+      </div>
+      <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:51%">51%</div><div class="pred-bar-draw" style="width:26%">26%</div><div class="pred-bar-away" style="width:23%">23%</div></div>
+      <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Under 2.5 Goals &nbsp;·&nbsp; <strong>-135</strong></div>
+      <div class="pred-cta">Full Preview &amp; Picks →</div>
+    </a>
+
+    <!-- 13. Senegal vs Slovakia -->
+    <a href="/senegal-slovakia" class="pred-card" data-date="2026-06-17">
+      <div class="pred-header"><span class="pred-group">GROUP G · Jun 17 12PM ET</span><span class="pred-venue">AT&amp;T Stadium</span></div>
+      <div class="pred-teams">
+        <div class="pred-team"><img src="https://flagcdn.com/w40/sn.png" alt="Senegal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇳</span><span class="pred-name">Senegal</span></div>
+        <div class="pred-vs">VS</div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/sk.png" alt="Slovakia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇰</span><span class="pred-name">Slovakia</span></div>
+      </div>
+      <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:45%">45%</div><div class="pred-bar-draw" style="width:30%">30%</div><div class="pred-bar-away" style="width:25%">25%</div></div>
+      <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Under 2.5 Goals &nbsp;·&nbsp; <strong>-145</strong></div>
+      <div class="pred-cta">Full Preview &amp; Picks →</div>
+    </a>
+
+    <!-- 14. USA vs Bolivia -->
+    <a href="/usa-bolivia" class="pred-card" data-date="2026-06-17">
+      <div class="pred-header"><span class="pred-group">GROUP A · Jun 17 9PM ET</span><span class="pred-venue">MetLife Stadium</span></div>
+      <div class="pred-teams">
+        <div class="pred-team"><img src="https://flagcdn.com/w40/us.png" alt="USA" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇸</span><span class="pred-name">USA</span></div>
+        <div class="pred-vs">VS</div>
+        <div class="pred-team"><img src="https://flagcdn.com/w40/bo.png" alt="Bolivia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇴</span><span class="pred-name">Bolivia</span></div>
+      </div>
+      <div class="pred-bar-wrap"><div class="pred-bar-home" style="width:87%">87%</div><div class="pred-bar-draw" style="width:10%">10%</div><div class="pred-bar-away" style="width:3%">3%</div></div>
+      <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> USA Win to Nil &nbsp;·&nbsp; <strong>-120</strong></div>
+      <div class="pred-cta">Full Preview &amp; Picks →</div>
+    </a>
+
+.
+
   </div><!-- /pred-grid -->
+
+  <!-- Our Record promo -->
+  <a href="/picks-record" style="display:block;background:var(--surf);border:1px solid var(--b1);border-radius:var(--r2);box-shadow:var(--sh);padding:18px 20px;margin-bottom:28px;text-decoration:none;">
+    <div style="font-family:var(--cond);font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:var(--t1);margin-bottom:6px;">📊 Our Pick Record</div>
+    <p style="font-size:13px;color:var(--t2);margin:0 0 8px;line-height:1.5;">Every pick logged before kickoff. No cherry-picking — see how PitchIQ’s AI model is performing this tournament.</p>
+    <span style="font-family:var(--cond);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--grn);">View Full Record →</span>
+  </a>
 
   <!-- Ad slot — 300x250 rectangle (mid-page) -->
   <div style="text-align:center;margin-bottom:28px;">

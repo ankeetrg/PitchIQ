@@ -181,10 +181,10 @@
   <div class="nav-inner">
     <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
     <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/" class="active">World Cup</a>
-      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
-      <a href="#" data-cs="Betting Intelligence">Betting</a>
+      <a class="nav-link" href="/predictions">Picks</a>
+      <a class="nav-link active" href="/standings" aria-current="page">Standings</a>
+      <a class="nav-link" href="/fantasy">Fantasy</a>
+      <a class="nav-link" href="/picks-record">Record</a>
     </div>
     <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
   </div>
@@ -236,9 +236,9 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr class="qualify"><td><span class="team-flag">🇺🇸</span>USA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="gd-pos">+3</td><td class="pts">3</td></tr>
-          <tr class="qualify"><td><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
-          <tr><td><span class="team-flag">🇧🇴</span>Bolivia<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/us.png" alt="USA" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇺🇸</span>USA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="gd-pos">+3</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/ca.png" alt="Canada" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/bo.png" alt="Bolivia" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇧🇴</span>Bolivia<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
         </tbody>
       </table>
     </div>
@@ -249,8 +249,8 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr class="qualify"><td><span class="team-flag">🇲🇽</span>Mexico</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>0</td><td class="gd-pos">+2</td><td class="pts">3</td></tr>
-          <tr class="qualify"><td><span class="team-flag">🇿🇦</span>South Africa</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td><td class="gd-neg">-2</td><td class="pts">0</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/mx.png" alt="Mexico" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇲🇽</span>Mexico</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>0</td><td class="gd-pos">+2</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/za.png" alt="South Africa" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇿🇦</span>South Africa</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td><td class="gd-neg">-2</td><td class="pts">0</td></tr>
           <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
         </tbody>
       </table>
@@ -262,8 +262,8 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr class="qualify"><td><span class="team-flag">🇰🇷</span>South Korea</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>1</td><td class="gd-pos">+1</td><td class="pts">3</td></tr>
-          <tr class="qualify"><td><span class="team-flag">🇨🇿</span>Czech Republic</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td class="gd-neg">-1</td><td class="pts">0</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/kr.png" alt="South Korea" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇰🇷</span>South Korea</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>1</td><td class="gd-pos">+1</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/cz.png" alt="Czech Republic" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇨🇿</span>Czech Republic</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td class="gd-neg">-1</td><td class="pts">0</td></tr>
           <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
         </tbody>
       </table>
@@ -275,8 +275,8 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr class="qualify"><td><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
-          <tr class="qualify"><td><span class="team-flag">🇧🇦</span>Bosnia &amp; Herzegovina</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/ca.png" alt="Canada" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr class="qualify"><td><img src="https://flagcdn.com/w40/ba.png" alt="Bosnia &amp; Herzegovina" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇧🇦</span>Bosnia &amp; Herzegovina</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
           <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
         </tbody>
       </table>
@@ -288,9 +288,9 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr><td><span class="team-flag">🇩🇪</span>Germany</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇺🇾</span>Uruguay</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇨🇼</span>Curacao</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/de.png" alt="Germany" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇩🇪</span>Germany</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇺🇾</span>Uruguay</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/cw.png" alt="Curacao" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇨🇼</span>Curacao</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
         </tbody>
       </table>
     </div>
@@ -301,9 +301,9 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr><td><span class="team-flag">🇳🇱</span>Netherlands</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇨🇴</span>Colombia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇪🇨</span>Ecuador</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇳🇱</span>Netherlands</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/co.png" alt="Colombia" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇨🇴</span>Colombia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇪🇨</span>Ecuador</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
         </tbody>
       </table>
     </div>
@@ -314,9 +314,9 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr><td><span class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇸🇳</span>Senegal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇸🇰</span>Slovakia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/sn.png" alt="Senegal" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇸🇳</span>Senegal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/sk.png" alt="Slovakia" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇸🇰</span>Slovakia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
         </tbody>
       </table>
     </div>
@@ -327,9 +327,9 @@
       <table class="standings-table">
         <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
         <tbody>
-          <tr><td><span class="team-flag">🇪🇸</span>Spain</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇫🇷</span>France</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
-          <tr><td><span class="team-flag">🇦🇱</span>Albania</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/es.png" alt="Spain" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇪🇸</span>Spain</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/fr.png" alt="France" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇫🇷</span>France</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><img src="https://flagcdn.com/w40/al.png" alt="Albania" style="width:20px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;" loading="lazy"><span class="team-flag">🇦🇱</span>Albania</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
         </tbody>
       </table>
     </div>

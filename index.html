@@ -455,7 +455,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .mh-teams {
-  background: linear-gradient(160deg, #0B2E50 0%, #071D36 100%);
+  background-image: linear-gradient(rgba(7,29,54,0.82), rgba(7,29,54,0.92)), url('https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&q=80&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
   padding: 28px 24px 22px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -1499,6 +1501,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nc-meta .by { color: var(--grn); }
 .nc-meta-dot { color: var(--b2); }
 
+/* Live news image cards */
+.nc-img img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s; }
+.news-card:hover .nc-img img { transform:scale(1.04); }
+.news-live-card { display:block;text-decoration:none;color:inherit; }
+.news-live-card:hover .nc-headline { color:var(--grn); }
+.live-dot { color:var(--red);font-size:11px;animation:pulse 1.2s ease-in-out infinite;margin-left:4px; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.25} }
+
+/* Skeleton loader */
+@keyframes shimmer { 0%{background-position:-400px 0}100%{background-position:400px 0} }
+.news-skeleton { pointer-events:none; }
+.skel-img { width:100%;height:100%;background:linear-gradient(90deg,var(--b1) 25%,var(--b2) 50%,var(--b1) 75%);background-size:800px 100%;animation:shimmer 1.4s infinite; }
+.skel-line { height:10px;border-radius:4px;background:linear-gradient(90deg,var(--b1) 25%,var(--b2) 50%,var(--b1) 75%);background-size:800px 100%;animation:shimmer 1.4s infinite;margin-bottom:8px; }
+.skel-wide { width:90%; }
+.skel-med  { width:70%; }
+.skel-sm   { width:45%; }
+
 /* featured news card (larger) */
 .news-card.featured {
   grid-column: span 2;
@@ -2161,6 +2180,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
       <a href="/predictions">Picks</a>
       <a href="/standings">Standings</a>
       <a href="/fantasy">Fantasy</a>
+      <a href="/picks-record">Record</a>
       <a href="#" data-cs="Betting Intelligence">Betting</a>
       <a href="#" data-cs="Match Analysis">Analysis</a>
       <a href="#" data-cs="News &amp; Previews">News</a>
@@ -2209,7 +2229,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
       <!-- teams -->
       <div class="mh-teams">
         <div class="mh-team">
-          <div class="mh-team-flag">🇧🇷</div>
+          <div class="mh-team-flag">🇧🇷<br><img src="https://flagcdn.com/w80/br.png" alt="Brazil" style="width:40px;height:auto;border-radius:3px;vertical-align:middle;margin-top:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
           <div class="mh-team-name">Brazil</div>
           <div class="mh-team-form">
             <div class="mh-fp w">W</div>
@@ -2225,7 +2245,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
           <div class="mh-score-min" style="color:var(--t3);">Jun 13</div>
         </div>
         <div class="mh-team">
-          <div class="mh-team-flag">🇲🇦</div>
+          <div class="mh-team-flag">🇲🇦<br><img src="https://flagcdn.com/w80/ma.png" alt="Morocco" loading="lazy" style="width:40px;height:auto;border-radius:3px;vertical-align:middle;margin-top:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
           <div class="mh-team-name">Morocco</div>
           <div class="mh-team-form">
             <div class="mh-fp w">W</div>
@@ -2353,47 +2373,47 @@ a.fixture-row { text-decoration:none; color:inherit; }
         </div>
         <a class="fixture-row" href="/brazil-morocco" data-date="2026-06-13">
           <div class="fix-status ko">JUN 13</div>
-          <div class="fix-match">Brazil vs Morocco<em>Group C · 6PM ET · MetLife · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Brazil vs <img src="https://flagcdn.com/w40/ma.png" alt="Morocco" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Morocco<em>Group C · 6PM ET · MetLife · Preview →</em></div>
           <div class="fix-score upcoming">6PM</div>
         </a>
         <a class="fixture-row" href="/germany-curacao" data-date="2026-06-14">
           <div class="fix-status ko">JUN 14</div>
-          <div class="fix-match">Germany vs Curacao<em>Group E · 1PM ET · NRG Stadium · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/de.png" alt="Germany" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Germany vs <img src="https://flagcdn.com/w40/cw.png" alt="Curacao" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Curacao<em>Group E · 1PM ET · NRG Stadium · Preview →</em></div>
           <div class="fix-score upcoming">1PM</div>
         </a>
         <a class="fixture-row" href="/netherlands-japan" data-date="2026-06-14">
           <div class="fix-status ko">JUN 14</div>
-          <div class="fix-match">Netherlands vs Japan<em>Group F · 4PM ET · AT&amp;T Stadium · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Netherlands vs <img src="https://flagcdn.com/w40/jp.png" alt="Japan" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Japan<em>Group F · 4PM ET · AT&amp;T Stadium · Preview →</em></div>
           <div class="fix-score upcoming">4PM</div>
         </a>
         <a class="fixture-row" href="/uruguay-serbia" data-date="2026-06-14">
           <div class="fix-status ko">JUN 14</div>
-          <div class="fix-match">Uruguay vs Serbia<em>Group E · 7PM ET · SoFi Stadium · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Uruguay vs <img src="https://flagcdn.com/w40/rs.png" alt="Serbia" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Serbia<em>Group E · 7PM ET · SoFi Stadium · Preview →</em></div>
           <div class="fix-score upcoming">7PM</div>
         </a>
         <a class="fixture-row" href="/france-albania" data-date="2026-06-14">
           <div class="fix-status ko">JUN 14</div>
-          <div class="fix-match">France vs Albania<em>Group H · 10PM ET · Rose Bowl · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/fr.png" alt="France" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">France vs <img src="https://flagcdn.com/w40/al.png" alt="Albania" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Albania<em>Group H · 10PM ET · Rose Bowl · Preview →</em></div>
           <div class="fix-score upcoming">10PM</div>
         </a>
         <a class="fixture-row" href="/spain-capeverde" data-date="2026-06-15">
           <div class="fix-status ko">JUN 15</div>
-          <div class="fix-match">Spain vs Cape Verde<em>Group H · 1PM ET · Mercedes-Benz · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/es.png" alt="Spain" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Spain vs <img src="https://flagcdn.com/w40/cv.png" alt="Cape Verde" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Cape Verde<em>Group H · 1PM ET · Mercedes-Benz · Preview →</em></div>
           <div class="fix-score upcoming">1PM</div>
         </a>
         <a class="fixture-row" href="/argentina-peru" data-date="2026-06-15">
           <div class="fix-status ko">JUN 15</div>
-          <div class="fix-match">Argentina vs Peru<em>Group C · 4PM ET · Hard Rock · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Argentina vs <img src="https://flagcdn.com/w40/pe.png" alt="Peru" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Peru<em>Group C · 4PM ET · Hard Rock · Preview →</em></div>
           <div class="fix-score upcoming">4PM</div>
         </a>
         <a class="fixture-row" href="/colombia-ecuador" data-date="2026-06-15">
           <div class="fix-status ko">JUN 15</div>
-          <div class="fix-match">Colombia vs Ecuador<em>Group F · 7PM ET · State Farm · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Colombia vs <img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Ecuador<em>Group F · 7PM ET · State Farm · Preview →</em></div>
           <div class="fix-score upcoming">7PM</div>
         </a>
         <a class="fixture-row" href="/england-senegal" data-date="2026-06-15">
           <div class="fix-status ko">JUN 15</div>
-          <div class="fix-match">England vs Senegal<em>Group G · 10PM ET · Levi's Stadium · Preview →</em></div>
+          <div class="fix-match"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">England vs <img src="https://flagcdn.com/w40/sn.png" alt="Senegal" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Senegal<em>Group G · 10PM ET · Levi's Stadium · Preview →</em></div>
           <div class="fix-score upcoming">10PM</div>
         </a>
         <a class="btn-all-picks" href="/predictions">View All AI Picks →</a>
@@ -2449,6 +2469,9 @@ a.fixture-row { text-decoration:none; color:inherit; }
 <!-- ── STATS STRIP ─────────────────────────────── -->
 <div class="stats-strip">
   <div class="stats-inner">
+    <div class="stat-item rv" style="flex:0 0 auto;padding:10px 16px;border-right:1px solid var(--b1);">
+      <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=120&q=80&fit=crop" alt="World Cup trophy" loading="lazy" style="width:48px;height:48px;object-fit:cover;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);">
+    </div>
     <div class="stat-item rv"><span class="stat-n" data-count="104">0</span><span class="stat-l">Total Matches</span></div>
     <div class="stat-item rv" style="transition-delay:.07s"><span class="stat-n" data-count="48">0</span><span class="stat-l">Nations</span></div>
     <div class="stat-item rv" style="transition-delay:.14s"><span class="stat-n" data-count="16">0</span><span class="stat-l">Host Cities</span></div>
@@ -2801,76 +2824,40 @@ a.fixture-row { text-decoration:none; color:inherit; }
   <!-- ── NEWS & ANALYSIS GRID ───────────────────── -->
   <section class="news-section rv">
     <div class="sec-header">
-      <div class="sec-title">Latest Analysis &amp; News</div>
-      <a class="btn-secondary" href="#" data-cs="News &amp; Analysis">All Articles →</a>
+      <div class="sec-title" id="newsSectionTitle">World Cup News <span class="live-dot" id="newsDot" style="display:none">●</span></div>
+      <a class="btn-secondary" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">All Articles →</a>
     </div>
-    <div class="news-grid">
+    <!-- Live news grid — populated by JS; falls back to static cards -->
+    <div class="news-grid" id="newsGrid">
 
-      <div class="news-card featured">
-        <div class="nc-img">
-          <div class="nc-img-inner brazil">🏆</div>
-          <div class="nc-cat">Featured Analysis</div>
-        </div>
+      <!-- SKELETON CARDS shown while fetching -->
+      <div class="news-card featured news-skeleton">
+        <div class="nc-img"><div class="skel-img"></div></div>
         <div class="nc-body">
-          <div class="nc-headline">USA Stun Paraguay 4–1 in World Cup Opener: Balogun Brace Signals USMNT's Tournament Intent</div>
-          <div class="nc-meta">
-            <span class="by">James Walker</span>
-            <span class="nc-meta-dot">·</span>
-            <span>Jun 12, 2026</span>
-            <span class="nc-meta-dot">·</span>
-            <span>7 min read</span>
-          </div>
+          <div class="skel-line skel-wide"></div>
+          <div class="skel-line skel-med"></div>
+          <div class="skel-line skel-sm"></div>
         </div>
       </div>
-
-      <div class="news-card">
-        <div class="nc-img">
-          <div class="nc-img-inner brazil">⚽</div>
-          <div class="nc-cat">Fantasy</div>
-        </div>
+      <div class="news-card news-skeleton">
+        <div class="nc-img"><div class="skel-img"></div></div>
         <div class="nc-body">
-          <div class="nc-headline">Vinicius Jr. vs. Morocco's Backline: The Fantasy Differential You Must Target on Matchday 2</div>
-          <div class="nc-meta">
-            <span class="by">Sarah Kim</span>
-            <span class="nc-meta-dot">·</span>
-            <span>Jun 12, 2026</span>
-            <span class="nc-meta-dot">·</span>
-            <span>5 min read</span>
-          </div>
+          <div class="skel-line skel-wide"></div>
+          <div class="skel-line skel-med"></div>
         </div>
       </div>
-
-      <div class="news-card">
-        <div class="nc-img">
-          <div class="nc-img-inner betting">📊</div>
-          <div class="nc-cat">Betting</div>
-        </div>
+      <div class="news-card news-skeleton">
+        <div class="nc-img"><div class="skel-img"></div></div>
         <div class="nc-body">
-          <div class="nc-headline">Mexico's Azteca Fortress Opens WC 2026 — Why the Sharp Money Backed El Tri From the Jump</div>
-          <div class="nc-meta">
-            <span class="by">Carlos Rivera</span>
-            <span class="nc-meta-dot">·</span>
-            <span>Jun 11, 2026</span>
-            <span class="nc-meta-dot">·</span>
-            <span>4 min read</span>
-          </div>
+          <div class="skel-line skel-wide"></div>
+          <div class="skel-line skel-med"></div>
         </div>
       </div>
-
-      <div class="news-card">
-        <div class="nc-img">
-          <div class="nc-img-inner fantasy">🌟</div>
-          <div class="nc-cat">Fantasy Picks</div>
-        </div>
+      <div class="news-card news-skeleton">
+        <div class="nc-img"><div class="skel-img"></div></div>
         <div class="nc-body">
-          <div class="nc-headline">3 Underowned Players Under 20% Ownership to Target for Matchday 2 — Including a Germany Striker</div>
-          <div class="nc-meta">
-            <span class="by">PitchIQ AI</span>
-            <span class="nc-meta-dot">·</span>
-            <span>Jun 12, 2026</span>
-            <span class="nc-meta-dot">·</span>
-            <span>3 min read</span>
-          </div>
+          <div class="skel-line skel-wide"></div>
+          <div class="skel-line skel-med"></div>
         </div>
       </div>
 
@@ -3229,6 +3216,121 @@ document.querySelectorAll('.fix-tab').forEach(function(tab) {
     });
   });
 });
+
+// ── Live World Cup News Feed ──────────────────────
+// Fetches latest soccer news from ESPN RSS via rss2json.com (free, no key required)
+(function() {
+  var FALLBACK_IMG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=800&q=75&fit=crop&auto=format';
+
+  // Multiple RSS sources to try in order
+  var RSS_SOURCES = [
+    { url: 'https://www.espn.com/espn/rss/soccer/news', name: 'ESPN' },
+    { url: 'https://feeds.bbci.co.uk/sport/football/rss.xml', name: 'BBC Sport' }
+  ];
+
+  function timeAgo(dateStr) {
+    if (!dateStr) return '';
+    try {
+      var diff = Date.now() - new Date(dateStr).getTime();
+      var mins = Math.floor(diff / 60000);
+      if (mins < 1) return 'Just now';
+      if (mins < 60) return mins + 'm ago';
+      var hrs = Math.floor(mins / 60);
+      if (hrs < 24) return hrs + 'h ago';
+      var days = Math.floor(hrs / 24);
+      return days === 1 ? '1d ago' : days + 'd ago';
+    } catch (e) { return ''; }
+  }
+
+  function escAttr(str) {
+    return (str || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function escHtml(str) {
+    return (str || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function buildCard(item, isFirst, source) {
+    var img = (item.thumbnail && item.thumbnail.startsWith('http')) ? item.thumbnail : FALLBACK_IMG;
+    var title = escHtml(item.title || 'World Cup 2026 News');
+    var link = item.link || '#';
+    var when = timeAgo(item.pubDate);
+    return '<a class="news-card' + (isFirst ? ' featured' : '') + ' news-live-card"' +
+           ' href="' + escAttr(link) + '" target="_blank" rel="noopener noreferrer">' +
+           '<div class="nc-img">' +
+           '<img src="' + escAttr(img) + '" alt="' + escAttr(item.title) + '" loading="lazy"' +
+           ' onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
+           '<div class="nc-cat">' + escHtml(source) + '</div>' +
+           '</div>' +
+           '<div class="nc-body">' +
+           '<div class="nc-headline">' + title + '</div>' +
+           '<div class="nc-meta">' +
+           '<span class="by">Live</span>' +
+           (when ? '<span class="nc-meta-dot">·</span><span>' + escHtml(when) + '</span>' : '') +
+           '</div>' +
+           '</div>' +
+           '</a>';
+  }
+
+  function renderStatic() {
+    // Static fallback if API fails
+    var grid = document.getElementById('newsGrid');
+    if (!grid) return;
+    grid.innerHTML =
+      '<a class="news-card featured news-live-card" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">' +
+      '<div class="nc-img"><div class="nc-img-inner brazil" style="font-size:48px;display:flex;align-items:center;justify-content:center;">🏆</div><div class="nc-cat">ESPN</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">World Cup 2026 — Live Updates, Match Predictions &amp; Fantasy Intel</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">' +
+      '<div class="nc-img"><div class="nc-img-inner betting" style="font-size:36px;display:flex;align-items:center;justify-content:center;">📊</div><div class="nc-cat">Analysis</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Group Stage Odds &amp; Betting Lines for Every Match</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="/predictions" >' +
+      '<div class="nc-img"><div class="nc-img-inner fantasy" style="font-size:36px;display:flex;align-items:center;justify-content:center;">⚡</div><div class="nc-cat">Fantasy</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">AI Fantasy Picks for Today\'s World Cup Matches</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="https://www.espn.com/soccer" target="_blank" rel="noopener noreferrer">' +
+      '<div class="nc-img"><div class="nc-img-inner france" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🌍</div><div class="nc-cat">World Cup</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Full World Cup 2026 Schedule, Standings &amp; Results</div>' +
+      '<div class="nc-meta"><span class="by">Live</span></div></div></a>';
+  }
+
+  function tryFetch(sourceIndex) {
+    if (sourceIndex >= RSS_SOURCES.length) {
+      renderStatic();
+      return;
+    }
+    var source = RSS_SOURCES[sourceIndex];
+    var apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' +
+                 encodeURIComponent(source.url) + '&count=5';
+
+    fetch(apiUrl, { mode: 'cors' })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+          throw new Error('empty');
+        }
+        var grid = document.getElementById('newsGrid');
+        if (!grid) return;
+        var html = '';
+        var items = data.items.slice(0, 5);
+        for (var i = 0; i < items.length; i++) {
+          html += buildCard(items[i], i === 0, source.name);
+        }
+        grid.innerHTML = html;
+        // Show live dot
+        var dot = document.getElementById('newsDot');
+        if (dot) dot.style.display = 'inline';
+      })
+      .catch(function() {
+        tryFetch(sourceIndex + 1);
+      });
+  }
+
+  // Only run on homepage (has the newsGrid)
+  if (document.getElementById('newsGrid')) {
+    tryFetch(0);
+  }
+})();
 </script>
 
 </body>
