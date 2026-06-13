@@ -523,8 +523,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-align: center;
   padding: 0 10px;
   border-right: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: background .15s;
+  border-radius: 4px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .mh-odd:last-child { border-right: none; }
+.mh-odd:hover { background: rgba(255,255,255,.06); }
 .mh-odd-label {
   font-family: var(--cond);
   font-size: 9px;
@@ -1338,6 +1347,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .bc-cta:hover { background: var(--gold); color: #fff; }
 
+/* ── SPORTSBOOK BONUS BANNER ── */
+.sb-banner { background: var(--nav); padding: 14px 0; margin-bottom: 32px; border-radius: var(--r2); overflow: hidden; }
+.sb-banner-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.sb-banner-label { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--grn); white-space: nowrap; padding-right: 12px; border-right: 1px solid rgba(255,255,255,.12); }
+.sb-books { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
+.sb-book { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r); padding: 8px 14px; text-decoration: none; transition: background .15s, border-color .15s; flex: 1; min-width: 160px; }
+.sb-book:hover { background: rgba(255,255,255,.12); border-color: var(--grn); }
+.sb-book-name { font-family: var(--cond); font-size: 13px; font-weight: 800; color: #fff; white-space: nowrap; }
+.sb-book-bonus { font-size: 11px; color: var(--grn); font-weight: 600; white-space: nowrap; }
+.sb-book-arrow { font-size: 12px; color: rgba(255,255,255,.3); margin-left: auto; }
+.sb-disclaimer { font-size: 10px; color: rgba(255,255,255,.25); white-space: nowrap; align-self: center; }
+@media (max-width: 600px) { .sb-banner-label { border-right: none; padding-right: 0; } .sb-disclaimer { display: none; } }
+
 /* move chart (sparkline-style) */
 .bc-move-chart {
   height: 36px;
@@ -2144,26 +2166,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
       <!-- odds strip -->
       <div class="mh-odds">
-        <div class="mh-odd">
+        <a class="mh-odd" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
           <div class="mh-odd-label">France Win</div>
           <div class="mh-odd-val fav">-145</div>
-          <div class="mh-odd-sportsbook">DraftKings</div>
-        </div>
-        <div class="mh-odd">
+          <div class="mh-odd-sportsbook">DraftKings ↗</div>
+        </a>
+        <a class="mh-odd" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
           <div class="mh-odd-label">Draw</div>
           <div class="mh-odd-val dog">+290</div>
-          <div class="mh-odd-sportsbook">FanDuel</div>
-        </div>
-        <div class="mh-odd">
+          <div class="mh-odd-sportsbook">FanDuel ↗</div>
+        </a>
+        <a class="mh-odd" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
           <div class="mh-odd-label">Uruguay Win</div>
           <div class="mh-odd-val dog">+380</div>
-          <div class="mh-odd-sportsbook">BetMGM</div>
-        </div>
-        <div class="mh-odd">
+          <div class="mh-odd-sportsbook">BetMGM ↗</div>
+        </a>
+        <a class="mh-odd" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
           <div class="mh-odd-label">O/U 2.5 Goals</div>
           <div class="mh-odd-val dog">-115</div>
-          <div class="mh-odd-sportsbook">Caesars</div>
-        </div>
+          <div class="mh-odd-sportsbook">Caesars ↗</div>
+        </a>
       </div>
 
       <!-- probability bar -->
@@ -2525,6 +2547,32 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     </div>
   </section>
 
+  <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
+  <div class="sb-banner rv">
+    <div class="sb-banner-inner">
+      <div class="sb-banner-label">Top Bonuses</div>
+      <div class="sb-books">
+        <a class="sb-book" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+      </div>
+      <div class="sb-disclaimer">21+ · T&amp;Cs apply</div>
+    </div>
+  </div>
+
   <!-- ── BETTING INTELLIGENCE ───────────────────── -->
   <section class="betting-section rv">
     <div class="sec-header">
@@ -2552,7 +2600,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
             <div class="bc-chip pos">74% Hit Rate</div>
             <div class="bc-chip">Last 12 WC Games</div>
           </div>
-          <a class="bc-cta" href="#" data-cs="Betting Intelligence">View Analysis &amp; Bet →</a>
+          <a class="bc-cta" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">Bet at DraftKings →</a>
         </div>
       </div>
 
@@ -2589,7 +2637,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
             <div class="bc-chip neg">−40 pts movement</div>
             <div class="bc-chip sharp" style="background:var(--blue-d);color:var(--blue);">Sharp action detected</div>
           </div>
-          <a class="bc-cta" href="#" data-cs="Line Movement Tracker">Track This Line →</a>
+          <a class="bc-cta" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">Bet at FanDuel →</a>
         </div>
       </div>
 
@@ -2619,7 +2667,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
             <div class="bc-chip pos">71% Money → Over</div>
             <div class="bc-chip">France avg 3.1 xG</div>
           </div>
-          <a class="bc-cta" href="#" data-cs="Betting Intelligence">Full Odds Analysis →</a>
+          <a class="bc-cta" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">Bet at Caesars →</a>
         </div>
       </div>
 
@@ -2808,6 +2856,37 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 <script>
 'use strict';
+
+/* ═══════════════════════════════════════════════════
+   AFFILIATE LINKS — paste your tracking URLs below
+   once approved. Leave '#' until then.
+   ─────────────────────────────────────────────────
+   DraftKings:  https://record.draftkings.com/?btag=YOUR_TAG
+   FanDuel:     https://wlwildcardentertainment.oc.ast.com/?btag=YOUR_TAG
+   BetMGM:      https://mediaserver.betmgmpartners.com/?btag=YOUR_TAG
+   Caesars:     https://wlcaesars.oc.ast.com/?btag=YOUR_TAG
+════════════════════════════════════════════════════ */
+var AFF = {
+  draftkings: '#', // ← paste DraftKings affiliate URL here
+  fanduel:    '#', // ← paste FanDuel affiliate URL here
+  betmgm:     '#', // ← paste BetMGM affiliate URL here
+  caesars:    '#', // ← paste Caesars affiliate URL here
+};
+
+// Wire all data-aff elements to affiliate URLs
+document.querySelectorAll('[data-aff]').forEach(function(el) {
+  var book = el.dataset.aff;
+  var url = AFF[book];
+  if (url && url !== '#') {
+    el.href = url;
+  } else {
+    // Not yet approved — fall back to Coming Soon modal
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      openCS('Betting at ' + book.charAt(0).toUpperCase() + book.slice(1));
+    });
+  }
+});
 
 // ── IntersectionObserver feature detection ───────
 // Add class that enables CSS transitions only when IO is supported
