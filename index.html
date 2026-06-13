@@ -1,0 +1,3005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#071D36"/>
+  <title>PitchIQ — World Cup 2026 Fantasy Picks, Predictions &amp; Betting Intelligence</title>
+  <meta name="description" content="AI-powered fantasy picks, live odds, match predictions and betting intelligence for World Cup 2026. Updated every 15 minutes."/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <link rel="canonical" href="https://pitchiq.com"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="PitchIQ"/>
+  <meta property="og:url" content="https://pitchiq.com"/>
+  <meta property="og:title" content="PitchIQ — World Cup 2026 Fantasy Picks, Predictions &amp; Betting Intelligence"/>
+  <meta property="og:description" content="AI-powered fantasy picks, live odds, match predictions and betting intelligence for World Cup 2026. Updated every 15 minutes."/>
+  <meta property="og:image" content="https://pitchiq.com/og-image.jpg"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@pitchiq"/>
+  <meta name="twitter:title" content="PitchIQ — World Cup 2026 Fantasy &amp; Betting Intelligence"/>
+  <meta name="twitter:description" content="AI-powered fantasy picks, live odds and match predictions for World Cup 2026."/>
+  <meta name="twitter:image" content="https://pitchiq.com/og-image.jpg"/>
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23071D36'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='20' fill='%2300963F'>P</text></svg>" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"PitchIQ","url":"https://pitchiq.com","description":"AI-powered soccer fantasy picks, live odds, match predictions and betting intelligence for World Cup 2026.","sameAs":[]}
+  </script>
+
+  <!-- ═══════════════════════════════════════
+       ANALYTICS — paste GA4 or Plausible snippet here
+       GA4: https://analytics.google.com
+       Plausible (privacy-first): https://plausible.io
+  ════════════════════════════════════════ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+
+/* ═══════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  /* page */
+  --bg:   #EEF1F6;
+  --bg2:  #F8FAFC;
+  --surf: #FFFFFF;
+
+  /* nav/dark */
+  --nav:  #071D36;
+  --nav2: #0B2545;
+  --nav3: rgba(255,255,255,0.08);
+
+  /* brand — soccer green */
+  --grn:    #00963F;
+  --grn-h:  #007A32;
+  --grn-d:  rgba(0,150,63,0.10);
+  --grn-b:  rgba(0,150,63,0.22);
+
+  /* betting / odds — amber */
+  --gold:   #D97706;
+  --gold-d: rgba(217,119,6,0.10);
+  --gold-b: rgba(217,119,6,0.22);
+
+  /* data blue */
+  --blue:   #1D4ED8;
+  --blue-d: rgba(29,78,216,0.10);
+
+  /* live/alert */
+  --red:    #DC2626;
+  --red-d:  rgba(220,38,38,0.10);
+
+  /* position pills */
+  --c-gk:  #D97706;
+  --c-def: #1D4ED8;
+  --c-mid: #00963F;
+  --c-fwd: #DC2626;
+
+  /* text */
+  --t1: #0F1923;
+  --t2: #3C5168;
+  --t3: #7C92A8;
+  --t4: #B5C4CF;
+
+  /* borders */
+  --b1: #E2E8F0;
+  --b2: #C8D5E0;
+
+  /* type */
+  --sans: 'Inter', system-ui, sans-serif;
+  --cond: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+
+  /* radii */
+  --r:  6px;
+  --r2: 12px;
+
+  /* shadows */
+  --sh:       0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.05);
+  --sh-md:    0 2px 8px rgba(0,0,0,0.09), 0 8px 24px rgba(0,0,0,0.06);
+  --sh-hover: 0 4px 16px rgba(0,0,0,0.13), 0 12px 32px rgba(0,0,0,0.08);
+
+  --mob-nav: 60px;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--t1);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  padding-bottom: var(--mob-nav);
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* max-width wrapper */
+.w {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ═══════════════════════════════════════════════════
+   LIVE TICKER
+═══════════════════════════════════════════════════ */
+.ticker {
+  background: var(--nav);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ticker-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 14px;
+  height: 100%;
+  background: var(--red);
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fff;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.ticker-dot {
+  width: 6px; height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+.ticker-scroll {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+}
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  animation: tickerScroll 36s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.tick-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,0.82);
+  border-right: 1px solid rgba(255,255,255,0.10);
+}
+.tick-item .score {
+  font-weight: 800;
+  color: #fff;
+  font-size: 13px;
+}
+.tick-status {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+.tick-status.live  { background:var(--red); color:#fff; }
+.tick-status.ft    { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); }
+.tick-status.ko    { background:rgba(0,150,63,0.5); color:#a7f3c6; }
+.ticker-right {
+  flex-shrink: 0;
+  padding: 0 14px;
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  border-left: 1px solid rgba(255,255,255,0.10);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+.nav {
+  background: var(--nav);
+  position: sticky;
+  top: 36px;
+  z-index: 190;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 0;
+}
+.nav-logo {
+  font-family: var(--cond);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-right: 32px;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--grn); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+.nav-links a {
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  padding: 0 14px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  transition: color .18s, background .18s;
+  position: relative;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grn);
+}
+.nav-links a .nav-new {
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--red);
+  color: #fff;
+  margin-left: 5px;
+  letter-spacing: .04em;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.btn-ghost {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  padding: 7px 14px;
+  border-radius: var(--r);
+  transition: color .18s, background .18s;
+}
+.btn-ghost:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.btn-pro {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--nav);
+  background: var(--grn);
+  padding: 7px 16px;
+  border-radius: var(--r);
+  transition: background .18s, transform .15s;
+}
+.btn-pro:hover { background: var(--grn-h); transform: translateY(-1px); }
+.nav-burger {
+  display: none;
+  color: rgba(255,255,255,.8);
+  font-size: 20px;
+  padding: 8px;
+}
+
+/* dropdown menu */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown:hover .nav-drop-menu { display: block; }
+.nav-drop-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--nav2);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 0 0 var(--r2) var(--r2);
+  min-width: 200px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  padding: 6px 0;
+  z-index: 300;
+}
+.nav-drop-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 12px;
+  height: auto;
+  background: none;
+}
+.nav-drop-menu a:hover { background: rgba(255,255,255,0.07); }
+
+/* ═══════════════════════════════════════════════════
+   PAGE
+═══════════════════════════════════════════════════ */
+.page { padding: 20px 0 40px; }
+
+/* ═══════════════════════════════════════════════════
+   HERO GRID
+═══════════════════════════════════════════════════ */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: start;
+}
+
+/* ─────────────────── FEATURED MATCH CARD ────────── */
+.match-hero {
+  border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow: var(--sh-md);
+}
+.mh-header {
+  background: linear-gradient(135deg, #071D36 0%, #0B2E50 55%, #0E3A66 100%);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mh-badge {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.mh-badge span { color: var(--grn); }
+.mh-time {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: .05em;
+}
+.mh-live-pill {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.mh-live-pill .dot {
+  width: 5px; height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.mh-teams {
+  background: linear-gradient(160deg, #0B2E50 0%, #071D36 100%);
+  padding: 28px 24px 22px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+.mh-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.mh-team-flag {
+  font-size: 44px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.40));
+}
+.mh-team-name {
+  font-family: var(--cond);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.mh-team-form {
+  display: flex;
+  gap: 3px;
+}
+.mh-fp {
+  width: 18px; height: 18px;
+  border-radius: 3px;
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mh-fp.w { background: rgba(0,150,63,0.25); color: #6ee7a8; }
+.mh-fp.d { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); }
+.mh-fp.l { background: rgba(220,38,38,0.25); color: #fca5a5; }
+.mh-vs {
+  text-align: center;
+}
+.mh-vs-text {
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,0.30);
+  text-transform: uppercase;
+}
+.mh-score {
+  font-family: var(--cond);
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin: 4px 0;
+  font-variant-numeric: tabular-nums;
+}
+.mh-score-min {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: .06em;
+}
+
+/* odds strip */
+.mh-odds {
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 24px;
+  display: flex;
+  gap: 0;
+}
+.mh-odd {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.mh-odd:last-child { border-right: none; }
+.mh-odd-label {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 3px;
+}
+.mh-odd-val {
+  font-family: var(--cond);
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.mh-odd-val.fav { color: #67e8a4; }
+.mh-odd-val.dog { color: rgba(255,255,255,0.70); }
+.mh-odd-sportsbook {
+  font-family: var(--cond);
+  font-size: 8.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: .04em;
+  margin-top: 2px;
+}
+
+/* probability bar */
+.mh-prob {
+  background: #fff;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--b1);
+}
+.mh-prob-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.mh-prob-title {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mh-prob-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--grn);
+}
+.mh-prob-ai-badge {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--grn-d);
+  color: var(--grn);
+  letter-spacing: .06em;
+}
+.prob-bar-wrap {
+  height: 10px;
+  background: var(--b1);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 8px;
+}
+.prob-seg {
+  height: 100%;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.prob-seg.home { background: var(--blue); border-radius: 5px 0 0 5px; }
+.prob-seg.draw { background: var(--b2); }
+.prob-seg.away { background: var(--red-d); border-radius: 0; }
+.prob-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.prob-lbl {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.prob-lbl .pct {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--t1);
+}
+.prob-lbl .team { color: var(--t3); font-size: 10px; }
+.prob-lbl.center-lbl { flex-direction: column; align-items: center; gap: 1px; }
+
+/* match stats strip */
+.mh-stats {
+  background: #fff;
+  padding: 14px 24px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--b1);
+}
+.mh-stat {
+  padding: 0 14px;
+  border-right: 1px solid var(--b1);
+  text-align: center;
+}
+.mh-stat:first-child { padding-left: 0; }
+.mh-stat:last-child { border-right: none; }
+.mh-stat-val {
+  font-family: var(--cond);
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--t1);
+  line-height: 1;
+  margin-bottom: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.mh-stat-val em { color: var(--blue); font-style: normal; }
+.mh-stat-lbl {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+/* match card CTA row */
+.mh-cta {
+  background: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-primary {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: var(--r);
+  background: var(--grn);
+  color: #fff;
+  transition: background .18s, transform .15s, box-shadow .18s;
+}
+.btn-primary:hover {
+  background: var(--grn-h);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,150,63,0.30);
+}
+.btn-secondary {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: var(--r);
+  background: transparent;
+  color: var(--t2);
+  border: 1.5px solid var(--b2);
+  transition: border-color .18s, color .18s, background .18s;
+}
+.btn-secondary:hover {
+  border-color: var(--grn);
+  color: var(--grn);
+  background: var(--grn-d);
+}
+.mh-cta-note {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--t3);
+  margin-left: auto;
+  letter-spacing: .03em;
+}
+
+/* ─────────────────── SIDE WIDGETS ────────────────── */
+.side-col { display: flex; flex-direction: column; gap: 14px; }
+.widget {
+  background: var(--surf);
+  border-radius: var(--r2);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+  box-shadow: var(--sh);
+  transition: box-shadow .22s, transform .22s;
+}
+.widget:hover { box-shadow: var(--sh-hover); transform: translateY(-1px); }
+.w-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--b1);
+  background: var(--bg2);
+}
+.w-title {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--t2);
+}
+.w-link {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: var(--grn);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.w-link:hover { text-decoration: underline; }
+
+/* fixtures list widget */
+.fixture-row {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--b1);
+  gap: 10px;
+  transition: background .15s;
+}
+.fixture-row:last-child { border-bottom: none; }
+.fixture-row:hover { background: var(--bg2); }
+.fix-status {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: 2px 5px;
+  border-radius: 3px;
+  width: 38px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.fix-status.live { background: var(--red); color: #fff; }
+.fix-status.ft   { background: var(--b1); color: var(--t3); }
+.fix-status.ko   { background: var(--grn-d); color: var(--grn); }
+.fix-match {
+  flex: 1;
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: .01em;
+}
+.fix-match em { font-style: normal; color: var(--t3); font-size: 10.5px; font-weight: 600; display: block; margin-top: 1px; }
+.fix-score {
+  font-family: var(--cond);
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--t1);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+.fix-score.upcoming { color: var(--t3); font-size: 12px; font-weight: 700; }
+
+/* odds widget */
+.bet-row {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--b1);
+  gap: 10px;
+  transition: background .15s;
+}
+.bet-row:last-child { border-bottom: none; }
+.bet-row:hover { background: var(--bg2); }
+.bet-match-info {
+  flex: 1;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.bet-match-info em { font-style: normal; color: var(--t3); font-size: 10px; font-weight: 600; display: block; }
+.bet-odds-pill {
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 4px;
+  background: var(--gold-d);
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+.bet-value-tag {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: var(--grn-d);
+  color: var(--grn);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   STATS STRIP
+═══════════════════════════════════════════════════ */
+.stats-strip {
+  background: var(--surf);
+  border-top: 1px solid var(--b1);
+  border-bottom: 1px solid var(--b1);
+  padding: 0;
+  margin-bottom: 28px;
+}
+.stats-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: stretch;
+}
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 12px;
+  border-right: 1px solid var(--b1);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .5s, transform .5s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item.vis { opacity: 1; transform: none; }
+.stat-n {
+  font-family: var(--cond);
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--grn);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 3px;
+}
+.stat-l {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════════ */
+.sec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--cond);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  color: var(--t1);
+  text-transform: uppercase;
+}
+.sec-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 20px;
+  background: var(--grn);
+  border-radius: 2px;
+}
+.sec-sub {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t3);
+  letter-spacing: .05em;
+  margin-left: 14px;
+}
+.sec-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--b1);
+  border-radius: var(--r);
+  padding: 2px;
+}
+.sec-tab {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 4px;
+  color: var(--t3);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.sec-tab.active {
+  background: var(--surf);
+  color: var(--t1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.sec-tab:hover:not(.active) { color: var(--t2); }
+
+/* ═══════════════════════════════════════════════════
+   FANTASY PICKS TABLE
+═══════════════════════════════════════════════════ */
+.fantasy-section { margin-bottom: 32px; }
+
+.fp-card {
+  background: var(--surf);
+  border-radius: var(--r2);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+  box-shadow: var(--sh);
+}
+.fp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--b1);
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.fp-filters {
+  display: flex;
+  gap: 4px;
+}
+.fp-filter {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: var(--r);
+  color: var(--t3);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  border: 1px solid transparent;
+}
+.fp-filter.active {
+  background: var(--surf);
+  color: var(--t1);
+  border-color: var(--b1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.fp-filter:hover:not(.active) { color: var(--t2); background: var(--b1); }
+.fp-filter[data-pos="FWD"].active { color: var(--c-fwd); border-color: rgba(220,38,38,.25); background: var(--red-d); }
+.fp-filter[data-pos="MID"].active { color: var(--c-mid); border-color: rgba(0,150,63,.25); background: var(--grn-d); }
+.fp-filter[data-pos="DEF"].active { color: var(--c-def); border-color: rgba(29,78,216,.25); background: var(--blue-d); }
+.fp-filter[data-pos="GK"].active  { color: var(--c-gk);  border-color: rgba(217,119,6,.25); background: var(--gold-d); }
+
+.fp-info {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--t3);
+  letter-spacing: .04em;
+}
+
+/* table */
+.fp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.fp-table thead tr {
+  background: var(--bg2);
+  border-bottom: 2px solid var(--b1);
+}
+.fp-table th {
+  font-family: var(--cond);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--t3);
+  padding: 9px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+.fp-table th.num { text-align: right; }
+.fp-table th .sort { margin-left: 3px; opacity: .5; }
+.fp-table tbody tr {
+  border-bottom: 1px solid var(--b1);
+  transition: background .12s;
+}
+.fp-table tbody tr:last-child { border-bottom: none; }
+.fp-table tbody tr:hover { background: #F0F6FF; }
+.fp-table tbody tr:nth-child(even) { background: var(--bg2); }
+.fp-table tbody tr:nth-child(even):hover { background: #F0F6FF; }
+.fp-table td {
+  padding: 11px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--t1);
+  vertical-align: middle;
+}
+.fp-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.fp-rank {
+  font-family: var(--cond);
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--t3);
+  width: 32px;
+}
+.fp-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+}
+.fp-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--b1);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+.fp-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--t1);
+}
+.fp-nation {
+  font-size: 11px;
+  color: var(--t3);
+  font-weight: 400;
+}
+.pos-pill {
+  font-family: var(--cond);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.pos-pill.GK  { background:rgba(217,119,6,.12);  color:var(--c-gk);  }
+.pos-pill.DEF { background:rgba(29,78,216,.10);   color:var(--c-def); }
+.pos-pill.MID { background:rgba(0,150,63,.10);    color:var(--c-mid); }
+.pos-pill.FWD { background:rgba(220,38,38,.10);   color:var(--c-fwd); }
+.fp-match {
+  font-family: var(--cond);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--t2);
+  white-space: nowrap;
+}
+.fp-match .opp { color: var(--t3); font-weight: 600; }
+.fp-proj {
+  font-family: var(--cond);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--t1);
+  font-variant-numeric: tabular-nums;
+}
+.fp-proj .pts-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-left: 2px;
+}
+.fp-own-wrap {
+  min-width: 80px;
+}
+.fp-own-bar {
+  height: 4px;
+  background: var(--b1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+.fp-own-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: width 1s ease-out;
+}
+.fp-own-pct {
+  font-family: var(--cond);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--t2);
+  font-variant-numeric: tabular-nums;
+}
+.fp-trend {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+.fp-trend.up   { color: var(--grn); }
+.fp-trend.down { color: var(--red); }
+.fp-trend.flat { color: var(--t3); }
+.btn-pick {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: var(--r);
+  background: var(--grn-d);
+  color: var(--grn);
+  border: 1px solid var(--grn-b);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.btn-pick:hover {
+  background: var(--grn);
+  color: #fff;
+}
+.fp-footer {
+  padding: 12px 16px;
+  background: var(--bg2);
+  border-top: 1px solid var(--b1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fp-footer-note {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.fp-footer-note::before {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--grn);
+}
+.btn-view-all {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: var(--r);
+  background: var(--t1);
+  color: #fff;
+  transition: background .15s, transform .15s;
+}
+.btn-view-all:hover { background: var(--nav2); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════════════
+   BETTING INTELLIGENCE
+═══════════════════════════════════════════════════ */
+.betting-section { margin-bottom: 32px; }
+.bet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.bet-card {
+  background: var(--surf);
+  border-radius: var(--r2);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+  box-shadow: var(--sh);
+  transition: box-shadow .22s, transform .22s;
+}
+.bet-card:hover { box-shadow: var(--sh-hover); transform: translateY(-2px); }
+.bc-head {
+  padding: 12px 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--b1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bc-label {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+.bc-badge {
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: .05em;
+}
+.bc-badge.value  { background: var(--grn-d); color: var(--grn); }
+.bc-badge.sharp  { background: var(--blue-d); color: var(--blue); }
+.bc-badge.move   { background: var(--gold-d); color: var(--gold); }
+.bc-body { padding: 16px; }
+.bc-bet-name {
+  font-family: var(--cond);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--t1);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.bc-match {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t3);
+  margin-bottom: 14px;
+  letter-spacing: .03em;
+}
+.bc-odds-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.bc-odds {
+  font-family: var(--cond);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.bc-odds-book {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--t3);
+  letter-spacing: .04em;
+}
+.bc-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bc-chip {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--b1);
+  color: var(--t2);
+  letter-spacing: .03em;
+}
+.bc-chip.pos { background: var(--grn-d); color: var(--grn); }
+.bc-chip.neg { background: var(--red-d); color: var(--red); }
+.bc-cta {
+  margin-top: 14px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 9px;
+  border-radius: var(--r);
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--gold-d);
+  color: var(--gold);
+  border: 1px solid var(--gold-b);
+  transition: background .15s, color .15s;
+}
+.bc-cta:hover { background: var(--gold); color: #fff; }
+
+/* move chart (sparkline-style) */
+.bc-move-chart {
+  height: 36px;
+  background: var(--bg2);
+  border-radius: var(--r);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 4px 8px;
+}
+.bc-bar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  background: var(--b2);
+  transition: background .15s;
+}
+.bc-bar.high { background: var(--red); }
+.bc-bar.med  { background: var(--gold); }
+.bc-bar.now  { background: var(--grn); }
+
+/* ticket split donut-replacement */
+.bc-split {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.bc-split-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+}
+.bc-split-home { height: 100%; background: var(--blue); }
+.bc-split-away { height: 100%; background: var(--red-d); }
+.bc-split-lbl {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--t2);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════
+   NEWS / ANALYSIS GRID
+═══════════════════════════════════════════════════ */
+.news-section { margin-bottom: 32px; }
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.news-card {
+  background: var(--surf);
+  border-radius: var(--r2);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+  box-shadow: var(--sh);
+  cursor: pointer;
+  transition: box-shadow .22s, transform .22s;
+}
+.news-card:hover { box-shadow: var(--sh-hover); transform: translateY(-2px); }
+.nc-img {
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+}
+.nc-img-inner {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.nc-img-inner.france   { background: linear-gradient(135deg, #002395 0%, #ED2939 100%); }
+.nc-img-inner.brazil   { background: linear-gradient(135deg, #009C3B 0%, #FFDF00 100%); }
+.nc-img-inner.betting  { background: linear-gradient(135deg, #1D4ED8 0%, #7C3AED 100%); }
+.nc-img-inner.fantasy  { background: linear-gradient(135deg, #059669 0%, #0EA5E9 100%); }
+.nc-cat {
+  position: absolute;
+  top: 8px; left: 8px;
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.nc-body { padding: 14px; }
+.nc-headline {
+  font-family: var(--cond);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--t1);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.nc-meta {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: .03em;
+}
+.nc-meta .by { color: var(--grn); }
+.nc-meta-dot { color: var(--b2); }
+
+/* featured news card (larger) */
+.news-card.featured {
+  grid-column: span 2;
+}
+.news-card.featured .nc-img { height: 200px; }
+.news-card.featured .nc-headline {
+  font-size: 19px;
+  -webkit-line-clamp: 2;
+}
+
+/* ═══════════════════════════════════════════════════
+   NEWSLETTER STRIP
+═══════════════════════════════════════════════════ */
+.nl-strip {
+  background: var(--nav);
+  padding: 40px 0;
+  margin-bottom: 0;
+}
+.nl-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.nl-copy { flex: 1; }
+.nl-eyebrow {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--grn);
+  margin-bottom: 6px;
+}
+.nl-title {
+  font-family: var(--cond);
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.nl-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+.nl-form {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 320px;
+}
+.nl-input-row {
+  display: flex;
+  gap: 0;
+}
+.nl-input {
+  flex: 1;
+  padding: 11px 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-right: none;
+  border-radius: var(--r) 0 0 var(--r);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+  transition: border-color .18s, background .18s;
+}
+.nl-input::placeholder { color: rgba(255,255,255,0.30); }
+.nl-input:focus {
+  border-color: var(--grn);
+  background: rgba(255,255,255,0.12);
+}
+.nl-btn {
+  padding: 11px 20px;
+  background: var(--grn);
+  color: #fff;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  border-radius: 0 var(--r) var(--r) 0;
+  cursor: pointer;
+  transition: background .18s;
+  border: none;
+}
+.nl-btn:hover { background: var(--grn-h); }
+.nl-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.30);
+  text-align: center;
+}
+.nl-perks {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.nl-perk {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: .03em;
+}
+.nl-perk::before {
+  content: '✓';
+  color: var(--grn);
+  font-weight: 900;
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+.footer {
+  background: var(--nav2);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 0 20px;
+}
+.ft-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+.ft-brand {}
+.ft-logo {
+  font-family: var(--cond);
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.ft-logo span { color: var(--grn); }
+.ft-tagline {
+  font-size: 12px;
+  color: rgba(255,255,255,0.40);
+  line-height: 1.6;
+  max-width: 260px;
+  margin-bottom: 14px;
+}
+.ft-socials {
+  display: flex;
+  gap: 8px;
+}
+.ft-social {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  transition: background .15s, color .15s;
+}
+.ft-social:hover { background: var(--grn); color: #fff; }
+.ft-col-title {
+  font-family: var(--cond);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.ft-col ul li a {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.55);
+  transition: color .15s;
+}
+.ft-col ul li a:hover { color: #fff; }
+.ft-bot {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ft-legal {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.6;
+}
+.ft-legal a { color: rgba(255,255,255,0.40); }
+.ft-legal a:hover { color: rgba(255,255,255,0.70); }
+.ft-disclaimer {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.20);
+  max-width: 500px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE BOTTOM NAV
+═══════════════════════════════════════════════════ */
+.mob-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--mob-nav);
+  background: var(--nav);
+  border-top: 1px solid rgba(255,255,255,0.10);
+  z-index: 300;
+}
+.mob-nav-inner {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+.mob-nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: color .15s;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.mob-nav-btn.active { color: var(--grn); }
+.mob-nav-btn .icon { font-size: 18px; line-height: 1; }
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════ */
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease-out, transform .55s ease-out;
+}
+.rv.vis { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr 280px; }
+  .bet-grid { grid-template-columns: 1fr 1fr; }
+  .bet-grid .bet-card:nth-child(3) { grid-column: span 2; }
+  .news-grid { grid-template-columns: 1fr 1fr; }
+  .news-card.featured { grid-column: span 2; }
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .side-col { flex-direction: row; gap: 12px; }
+  .side-col .widget { flex: 1; }
+  .bet-grid { grid-template-columns: 1fr; }
+  .bet-grid .bet-card:nth-child(3) { grid-column: span 1; }
+  .ft-grid { grid-template-columns: 1fr 1fr; }
+  .nl-inner { flex-direction: column; gap: 24px; }
+  .nl-form { min-width: unset; width: 100%; max-width: 420px; }
+}
+/* Mobile nav drawer */
+#navLinks.mob-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 92px; left: 0; right: 0;
+  background: var(--nav2);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  padding: 8px 0;
+  z-index: 180;
+  box-shadow: 0 8px 24px rgba(0,0,0,.30);
+}
+#navLinks.mob-open a {
+  height: 44px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+#navLinks.mob-open a::after { display: none; }
+
+@media (max-width: 640px) {
+  .mob-nav { display: flex; }
+  .nav-links, .nav-right { display: none; }
+  .nav-burger { display: block; }
+  .news-grid { grid-template-columns: 1fr; }
+  .news-card.featured { grid-column: span 1; }
+  .news-card.featured .nc-img { height: 160px; }
+  .fp-table th:nth-child(5),
+  .fp-table td:nth-child(5),
+  .fp-table th:nth-child(6),
+  .fp-table td:nth-child(6) { display: none; }
+  .side-col { flex-direction: column; }
+  .ft-grid { grid-template-columns: 1fr; }
+  .mh-stats { grid-template-columns: repeat(2,1fr); }
+  .mh-stats .mh-stat:nth-child(2) { border-right: none; }
+  .mh-stats .mh-stat:nth-child(3),
+  .mh-stats .mh-stat:nth-child(4) { border-top: 1px solid var(--b1); }
+  .ticker-right { display: none; }
+}
+
+/* ── IntersectionObserver fallback ──────────────── */
+/* .rv starts visible; JS adds opacity:0 immediately if IO supported */
+.rv-js .rv { opacity: 0; transform: translateY(18px); }
+.rv-js .rv.vis { opacity: 1; transform: none; }
+.rv-js .stat-item { opacity: 0; transform: translateY(6px); }
+.rv-js .stat-item.vis { opacity: 1; transform: none; }
+
+/* ── Skip-to-content ─────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 8px 18px;
+  background: var(--grn);
+  color: #fff;
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  border-radius: 0 0 var(--r) var(--r);
+  transition: top .15s;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Global focus-visible ────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--grn);
+  outline-offset: 2px;
+}
+.fp-filter:focus-visible,
+.sec-tab:focus-visible,
+.btn-pick:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-pro:focus-visible,
+.btn-ghost:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
+
+/* ── webkit prefix for backdrop-filter ──────────── */
+.nc-cat {
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── fp-filter and sec-tab as buttons ───────────── */
+.fp-filter, .sec-tab {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  font-family: var(--cond);
+  cursor: pointer;
+}
+
+/* ── COMING SOON MODAL ───────────────────────────── */
+.cs-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(7,29,54,0.75);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cs-overlay.open { display: flex; }
+.cs-modal {
+  background: var(--surf);
+  border-radius: var(--r2);
+  border: 1px solid var(--b1);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  max-width: 440px;
+  width: 100%;
+  overflow: hidden;
+  animation: csIn .22s ease-out;
+}
+@keyframes csIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+.cs-head {
+  background: var(--nav);
+  padding: 20px 24px 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.cs-logo {
+  font-family: var(--cond);
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+}
+.cs-logo span { color: var(--grn); }
+.cs-close {
+  background: rgba(255,255,255,.12);
+  border: none;
+  color: rgba(255,255,255,.7);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+  flex-shrink: 0;
+}
+.cs-close:hover { background: rgba(255,255,255,.22); }
+.cs-body { padding: 24px; }
+.cs-eyebrow {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grn);
+  margin-bottom: 6px;
+}
+.cs-title {
+  font-family: var(--cond);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--t1);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.cs-sub {
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+.cs-form { display: flex; gap: 0; margin-bottom: 8px; }
+.cs-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--b2);
+  border-right: none;
+  border-radius: var(--r) 0 0 var(--r);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--t1);
+  background: var(--bg2);
+  outline: none;
+  transition: border-color .18s;
+}
+.cs-input::placeholder { color: var(--t3); }
+.cs-input:focus { border-color: var(--grn); }
+.cs-btn {
+  padding: 10px 18px;
+  background: var(--grn);
+  color: #fff;
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: 0 var(--r) var(--r) 0;
+  cursor: pointer;
+  border: none;
+  transition: background .15s;
+}
+.cs-btn:hover { background: var(--grn-h); }
+.cs-note { font-size: 11px; color: var(--t3); text-align: center; }
+.cs-confirm {
+  display: none;
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.cs-confirm.show { display: block; }
+.cs-confirm-msg {
+  font-family: var(--cond);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grn);
+}
+
+/* ── GAMBLING DISCLAIMER BANNER ──────────────────── */
+.disclaimer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  z-index: 1000;
+  background: #111;
+  color: rgba(255,255,255,.85);
+  font-size: 11.5px;
+  font-family: var(--sans);
+  line-height: 1.5;
+  padding: 10px 16px 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  transform: translateY(0);
+  transition: transform .25s ease;
+}
+.disclaimer-bar.hidden { transform: translateY(100%); }
+/* sits above mobile nav */
+@media (max-width: 640px) { .disclaimer-bar { bottom: var(--mob-nav); } }
+.disclaimer-bar a { color: rgba(255,255,255,.7); text-decoration: underline; }
+.disclaimer-bar a:hover { color: #fff; }
+.disclaimer-bar .disc-icon { font-size: 14px; flex-shrink: 0; }
+.disclaimer-bar .disc-text { flex: 1; }
+.disc-close {
+  flex-shrink: 0;
+  background: rgba(255,255,255,.12);
+  border: none;
+  color: rgba(255,255,255,.7);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.disc-close:hover { background: rgba(255,255,255,.22); }
+
+/* ── Visually hidden (a11y) ──────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Skip to content -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- Gambling Disclaimer Banner -->
+<div class="disclaimer-bar" id="disclaimerBar" role="alert" aria-live="polite">
+  <span class="disc-icon" aria-hidden="true">⚠️</span>
+  <span class="disc-text">PitchIQ is for entertainment purposes only. Gambling involves risk. Must be 21+. Problem gambling? Call <a href="tel:18005224700">1-800-522-4700</a> · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">Responsible Gambling</a></span>
+  <button class="disc-close" id="disclaimerClose" aria-label="Dismiss gambling disclaimer">✕</button>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="cs-overlay" id="csOverlay" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+  <div class="cs-modal">
+    <div class="cs-head">
+      <div class="cs-logo">Pitch<span>IQ</span></div>
+      <button class="cs-close" id="csClose" aria-label="Close">✕</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-eyebrow">Coming Soon</div>
+      <div class="cs-title" id="csTitle">Building <span id="csPageName">this page</span></div>
+      <div class="cs-sub" id="csSub">We're launching <strong id="csPageName2">this feature</strong> during World Cup 2026 Group Stage. Drop your email and we'll notify you the moment it's live.</div>
+      <div id="csFormWrap">
+        <div class="cs-form">
+          <label for="csEmail" class="sr-only">Email address</label>
+          <input class="cs-input" type="email" id="csEmail" placeholder="Your email address…" autocomplete="email"/>
+          <button class="cs-btn" id="csSubmit">Notify Me</button>
+        </div>
+        <div class="cs-note">No spam. One email when we launch.</div>
+      </div>
+      <div class="cs-confirm" id="csConfirm">
+        <div class="cs-confirm-msg">✓ You're on the list — we'll let you know!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     LIVE TICKER
+═══════════════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-badge">
+    <div class="ticker-dot"></div>
+    Live
+  </div>
+  <div class="ticker-scroll">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- duplicated for seamless loop -->
+      <div class="tick-item"><span class="tick-status live">LIVE</span> FRA <span class="score">1–0</span> URU <span class="tick-status live">67'</span></div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ARG <span class="score">2–1</span> AUS</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> GER <span class="score">4–0</span> KSA</div>
+      <div class="tick-item"><span class="tick-status ko">6PM ET</span> ESP vs MEX</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> BRA vs COL</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> POR vs KOR</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ENG <span class="score">3–0</span> USA</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> NED vs ECU</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> ITA vs GHA</div>
+      <!-- duplicate -->
+      <div class="tick-item"><span class="tick-status live">LIVE</span> FRA <span class="score">1–0</span> URU <span class="tick-status live">67'</span></div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ARG <span class="score">2–1</span> AUS</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> GER <span class="score">4–0</span> KSA</div>
+      <div class="tick-item"><span class="tick-status ko">6PM ET</span> ESP vs MEX</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> BRA vs COL</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> POR vs KOR</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ENG <span class="score">3–0</span> USA</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> NED vs ECU</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> ITA vs GHA</div>
+    </div>
+  </div>
+  <div class="ticker-right">WC 2026 · Group Stage</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════ -->
+<nav class="nav" aria-label="Primary navigation">
+  <div class="nav-inner w">
+    <a class="nav-logo" href="/" aria-label="PitchIQ home">Pitch<span>IQ</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#" data-cs="Live Scores">Scores</a>
+      <a href="#" class="active" aria-current="page">World Cup</a>
+      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
+      <a href="#" data-cs="Betting Intelligence">Betting</a>
+      <a href="#" data-cs="Match Analysis">Analysis</a>
+      <a href="#" data-cs="News &amp; Previews">News</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-ghost" href="#" data-cs="Sign In">Sign In</a>
+      <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE BODY
+═══════════════════════════════════════════════════ -->
+<main id="main-content">
+<div class="page">
+<div class="w">
+
+  <!-- ── HERO GRID ──────────────────────────────── -->
+  <div class="hero-grid rv">
+
+    <!-- FEATURED MATCH CARD -->
+    <div class="match-hero">
+      <!-- header -->
+      <div class="mh-header">
+        <div class="mh-badge">Group E · Match 1 · <span>MetLife Stadium, NJ</span></div>
+        <div class="mh-live-pill"><div class="dot"></div> 67'</div>
+        <div class="mh-time">Today · 3:00 PM ET</div>
+      </div>
+
+      <!-- teams -->
+      <div class="mh-teams">
+        <div class="mh-team">
+          <div class="mh-team-flag">🇫🇷</div>
+          <div class="mh-team-name">France</div>
+          <div class="mh-team-form">
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp d">D</div>
+            <div class="mh-fp w">W</div>
+          </div>
+        </div>
+        <div class="mh-vs">
+          <div class="mh-vs-text">vs</div>
+          <div class="mh-score">1–0</div>
+          <div class="mh-score-min">● 67'</div>
+        </div>
+        <div class="mh-team">
+          <div class="mh-team-flag">🇺🇾</div>
+          <div class="mh-team-name">Uruguay</div>
+          <div class="mh-team-form">
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp d">D</div>
+            <div class="mh-fp l">L</div>
+            <div class="mh-fp w">W</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- odds strip -->
+      <div class="mh-odds">
+        <div class="mh-odd">
+          <div class="mh-odd-label">France Win</div>
+          <div class="mh-odd-val fav">-145</div>
+          <div class="mh-odd-sportsbook">DraftKings</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">Draw</div>
+          <div class="mh-odd-val dog">+290</div>
+          <div class="mh-odd-sportsbook">FanDuel</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">Uruguay Win</div>
+          <div class="mh-odd-val dog">+380</div>
+          <div class="mh-odd-sportsbook">BetMGM</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">O/U 2.5 Goals</div>
+          <div class="mh-odd-val dog">-115</div>
+          <div class="mh-odd-sportsbook">Caesars</div>
+        </div>
+      </div>
+
+      <!-- probability bar -->
+      <div class="mh-prob">
+        <div class="mh-prob-head">
+          <div class="mh-prob-title">AI Win Probability — 50,000 Simulations</div>
+          <div class="mh-prob-ai-badge">✦ PitchIQ AI</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-seg home" style="width:65%"></div>
+          <div class="prob-seg draw" style="width:20%"></div>
+          <div class="prob-seg away" style="width:15%"></div>
+        </div>
+        <div class="prob-labels">
+          <div class="prob-lbl">
+            <span class="pct">65%</span>
+            <span class="team">France Win</span>
+          </div>
+          <div class="prob-lbl center-lbl">
+            <span class="pct">20%</span>
+            <span class="team">Draw</span>
+          </div>
+          <div class="prob-lbl">
+            <span class="pct">15%</span>
+            <span class="team">Uruguay Win</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- key stats row -->
+      <div class="mh-stats">
+        <div class="mh-stat">
+          <div class="mh-stat-val">3–1–1</div>
+          <div class="mh-stat-lbl">H2H Last 5</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val"><em>2.8</em></div>
+          <div class="mh-stat-lbl">France Avg xG</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val">1.4</div>
+          <div class="mh-stat-lbl">Uruguay Avg xG</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val"><em>High</em></div>
+          <div class="mh-stat-lbl">AI Confidence</div>
+        </div>
+      </div>
+
+      <!-- CTA row -->
+      <div class="mh-cta">
+        <a class="btn-primary" href="#" data-cs="Match Analysis">Full Match Analysis →</a>
+        <a class="btn-secondary" href="#" data-cs="Fantasy Picks">⭐ Pick Mbappé</a>
+        <div class="mh-cta-note">Last updated 3 mins ago · Odds subject to change</div>
+      </div>
+    </div><!-- /match-hero -->
+
+    <!-- RIGHT SIDE WIDGETS -->
+    <div class="side-col">
+
+      <!-- TODAY'S FIXTURES -->
+      <div class="widget">
+        <div class="w-head">
+          <div class="w-title">Today's Fixtures</div>
+          <a class="w-link" href="#" data-cs="Live Scores &amp; Schedule">Full Schedule →</a>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status live">LIVE</div>
+          <div class="fix-match">France vs Uruguay<em>Group E · 67'</em></div>
+          <div class="fix-score">1–0</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ft">FT</div>
+          <div class="fix-match">Argentina vs Australia<em>Group A · Full Time</em></div>
+          <div class="fix-score">2–1</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ft">FT</div>
+          <div class="fix-match">Germany vs Saudi Arabia<em>Group B · Full Time</em></div>
+          <div class="fix-score">4–0</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">6PM</div>
+          <div class="fix-match">Spain vs Mexico<em>Group C · MetLife Stadium</em></div>
+          <div class="fix-score upcoming">6:00 PM</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">9PM</div>
+          <div class="fix-match">Brazil vs Colombia<em>Group D · Allegiant Stadium</em></div>
+          <div class="fix-score upcoming">9:00 PM</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">9PM</div>
+          <div class="fix-match">Portugal vs South Korea<em>Group F · AT&T Stadium</em></div>
+          <div class="fix-score upcoming">9:00 PM</div>
+        </div>
+      </div>
+
+      <!-- BETTING SPOTLIGHT -->
+      <div class="widget">
+        <div class="w-head">
+          <div class="w-title">⚡ Best Bets Today</div>
+          <a class="w-link" href="#" data-cs="Betting Intelligence">All Picks →</a>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">France –1.5 Goals<em>FRA vs URU · Group E</em></div>
+          <div class="bet-value-tag">VALUE</div>
+          <div class="bet-odds-pill">+118</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Spain to Win & BTTS<em>ESP vs MEX · Group C</em></div>
+          <div class="bet-value-tag">VALUE</div>
+          <div class="bet-odds-pill">+195</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Mbappé Anytime Scorer<em>FRA vs URU · Group E</em></div>
+          <div class="bet-value-tag">HOT</div>
+          <div class="bet-odds-pill">-130</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Over 2.5 Goals<em>BRA vs COL · Group D</em></div>
+          <div class="bet-value-tag">AI</div>
+          <div class="bet-odds-pill">-108</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Vinicius Jr. Goal/Assist<em>BRA vs COL · Group D</em></div>
+          <div class="bet-odds-pill">+110</div>
+        </div>
+      </div>
+
+    </div><!-- /side-col -->
+
+  </div><!-- /hero-grid -->
+
+</div><!-- /w -->
+
+<!-- ── STATS STRIP ─────────────────────────────── -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item rv"><span class="stat-n" data-count="48">0</span><span class="stat-l">Total Matches</span></div>
+    <div class="stat-item rv" style="transition-delay:.07s"><span class="stat-n" data-count="32">0</span><span class="stat-l">Nations</span></div>
+    <div class="stat-item rv" style="transition-delay:.14s"><span class="stat-n" data-count="16">0</span><span class="stat-l">Host Cities</span></div>
+    <div class="stat-item rv" style="transition-delay:.21s"><span class="stat-n" data-count="84" data-suffix="%">0</span><span class="stat-l">AI Accuracy</span></div>
+    <div class="stat-item rv" style="transition-delay:.28s"><span class="stat-n" data-count="50" data-suffix="K+">0</span><span class="stat-l">Sims / Match</span></div>
+    <div class="stat-item rv" style="transition-delay:.35s"><span class="stat-n" data-prefix="1M+">—</span><span class="stat-l">Fantasy Users</span></div>
+  </div>
+</div>
+
+<div class="w">
+
+  <!-- ── FANTASY PICKS ──────────────────────────── -->
+  <section class="fantasy-section rv">
+    <div class="sec-header">
+      <div class="sec-title">Fantasy Picks<span class="sec-sub">World Cup 2026 · Matchday 1 · Jun 12</span></div>
+      <div class="sec-right">
+        <a class="btn-view-all" href="#" data-cs="Fantasy Player Rankings">View All 250+ Players →</a>
+      </div>
+    </div>
+
+    <div class="fp-card">
+      <div class="fp-toolbar">
+        <div class="fp-filters">
+          <div class="fp-filter active">All</div>
+          <div class="fp-filter" data-pos="FWD">FWD</div>
+          <div class="fp-filter" data-pos="MID">MID</div>
+          <div class="fp-filter" data-pos="DEF">DEF</div>
+          <div class="fp-filter" data-pos="GK">GK</div>
+        </div>
+        <div class="fp-info">Projections updated 12 mins ago · Based on matchups, form &amp; AI model</div>
+        <div class="sec-tabs">
+          <div class="sec-tab active">Proj Pts</div>
+          <div class="sec-tab">Ownership</div>
+          <div class="sec-tab">Value</div>
+        </div>
+      </div>
+
+      <table class="fp-table">
+        <thead>
+          <tr>
+            <th>RK</th>
+            <th>Player</th>
+            <th>Pos</th>
+            <th>Match</th>
+            <th class="num">Proj Pts <span class="sort">▼</span></th>
+            <th class="num">Own %</th>
+            <th class="num">vs Avg</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fp-rank">1</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇫🇷</div>
+                <div>
+                  <div class="fp-name">Kylian Mbappé</div>
+                  <div class="fp-nation">France</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">FRA <span class="opp">vs URU</span></div></td>
+            <td class="num fp-proj">9.2 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">68.4%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:68.4%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend up">↑ +1.8</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">2</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇧🇷</div>
+                <div>
+                  <div class="fp-name">Vinicius Jr.</div>
+                  <div class="fp-nation">Brazil</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td class="num fp-proj">8.7 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">54.2%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:54.2%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend up">↑ +0.9</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">3</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇳🇴</div>
+                <div>
+                  <div class="fp-name">Erling Haaland</div>
+                  <div class="fp-nation">Norway</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">NOR <span class="opp">vs GHA</span></div></td>
+            <td class="num fp-proj">8.4 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">71.1%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:71.1%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend flat">→ 0.0</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">4</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇵🇹</div>
+                <div>
+                  <div class="fp-name">Bruno Fernandes</div>
+                  <div class="fp-nation">Portugal</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill MID">MID</span></td>
+            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td class="num fp-proj">7.8 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">41.3%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:41.3%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend up">↑ +2.1</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">5</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇪🇸</div>
+                <div>
+                  <div class="fp-name">Pedri</div>
+                  <div class="fp-nation">Spain</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill MID">MID</span></td>
+            <td><div class="fp-match">ESP <span class="opp">vs MEX</span></div></td>
+            <td class="num fp-proj">7.6 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">38.9%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:38.9%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend down">↓ −0.4</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">6</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇵🇹</div>
+                <div>
+                  <div class="fp-name">Rúben Dias</div>
+                  <div class="fp-nation">Portugal</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill DEF">DEF</span></td>
+            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td class="num fp-proj">6.8 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">29.7%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:29.7%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend up">↑ +0.8</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">7</td>
+            <td>
+              <div class="fp-player">
+                <div class="fp-avatar">🇧🇷</div>
+                <div>
+                  <div class="fp-name">Alisson</div>
+                  <div class="fp-nation">Brazil</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="pos-pill GK">GK</span></td>
+            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td class="num fp-proj">6.4 <span class="pts-lbl">pts</span></td>
+            <td class="num">
+              <div class="fp-own-wrap">
+                <div class="fp-own-pct">22.1%</div>
+                <div class="fp-own-bar"><div class="fp-own-fill" style="width:22.1%"></div></div>
+              </div>
+            </td>
+            <td class="num"><div class="fp-trend flat">→ 0.0</div></td>
+            <td><button class="btn-pick">+ Pick</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="fp-footer">
+        <div class="fp-footer-note">Projections powered by PitchIQ AI · Updated every 15 minutes during matches</div>
+        <a class="btn-view-all" href="#" data-cs="Fantasy Player Rankings">View Full Rankings →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BETTING INTELLIGENCE ───────────────────── -->
+  <section class="betting-section rv">
+    <div class="sec-header">
+      <div class="sec-title">Betting Intelligence<span class="sec-sub">AI-identified value across all markets</span></div>
+      <a class="btn-secondary" href="#" data-cs="Betting Intelligence">All Picks →</a>
+    </div>
+
+    <div class="bet-grid">
+
+      <!-- Card 1: Best Value Bet -->
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Best Value Bet · Today</div>
+          <div class="bc-badge value">AI PICK</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">France to Score First</div>
+          <div class="bc-match">FRA vs URU · Group E · MetLife Stadium</div>
+          <div class="bc-odds-row">
+            <div class="bc-odds">+115</div>
+            <div class="bc-odds-book">DraftKings<br/>Best Available</div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip pos">Value Rating 8.4/10</div>
+            <div class="bc-chip pos">74% Hit Rate</div>
+            <div class="bc-chip">Last 12 WC Games</div>
+          </div>
+          <a class="bc-cta" href="#" data-cs="Betting Intelligence">View Analysis &amp; Bet →</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Sharp Money Alert -->
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Sharp Money Movement</div>
+          <div class="bc-badge sharp">SHARP</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">Uruguay ML — Line Moving</div>
+          <div class="bc-match">FRA vs URU · Group E · Today</div>
+          <div class="bc-move-chart">
+            <div class="bc-bar" style="height:30%"></div>
+            <div class="bc-bar" style="height:40%"></div>
+            <div class="bc-bar" style="height:35%"></div>
+            <div class="bc-bar" style="height:55%"></div>
+            <div class="bc-bar high" style="height:70%"></div>
+            <div class="bc-bar high" style="height:80%"></div>
+            <div class="bc-bar now" style="height:65%"></div>
+          </div>
+          <div class="bc-odds-row">
+            <div>
+              <div style="font-family:var(--cond);font-size:11px;color:var(--t3);margin-bottom:2px;">OPENED</div>
+              <div class="bc-odds" style="font-size:18px;color:var(--t3);">+420</div>
+            </div>
+            <div style="font-family:var(--cond);font-size:22px;color:var(--b2);align-self:flex-end;padding-bottom:4px;">→</div>
+            <div>
+              <div style="font-family:var(--cond);font-size:11px;color:var(--t3);margin-bottom:2px;">CURRENT</div>
+              <div class="bc-odds">+380</div>
+            </div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip neg">−40 pts movement</div>
+            <div class="bc-chip sharp" style="background:var(--blue-d);color:var(--blue);">Sharp action detected</div>
+          </div>
+          <a class="bc-cta" href="#" data-cs="Line Movement Tracker">Track This Line →</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Public vs Sharp Ticket Split -->
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Ticket Split · Over/Under</div>
+          <div class="bc-badge move">TRENDING</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">FRA vs URU — Over 2.5 Goals</div>
+          <div class="bc-match">Total Goals Market · Best: −115 at Caesars</div>
+          <div class="bc-odds-row">
+            <div class="bc-odds">−115</div>
+            <div class="bc-odds-book">Caesars<br/>Best Line</div>
+          </div>
+          <div class="bc-split">
+            <div class="bc-split-lbl" style="color:var(--blue)">OVER</div>
+            <div class="bc-split-bar">
+              <div class="bc-split-home" style="width:62%"></div>
+              <div class="bc-split-away" style="width:38%"></div>
+            </div>
+            <div class="bc-split-lbl" style="color:var(--red)">UNDER</div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip pos">62% Tickets → Over</div>
+            <div class="bc-chip pos">71% Money → Over</div>
+            <div class="bc-chip">France avg 3.1 xG</div>
+          </div>
+          <a class="bc-cta" href="#" data-cs="Betting Intelligence">Full Odds Analysis →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── NEWS & ANALYSIS GRID ───────────────────── -->
+  <section class="news-section rv">
+    <div class="sec-header">
+      <div class="sec-title">Latest Analysis &amp; News</div>
+      <a class="btn-secondary" href="#" data-cs="News &amp; Analysis">All Articles →</a>
+    </div>
+    <div class="news-grid">
+
+      <div class="news-card featured">
+        <div class="nc-img">
+          <div class="nc-img-inner france">🏆</div>
+          <div class="nc-cat">Featured Analysis</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">France's Striker Revolution: Why Deschamps' Bold System Change Makes Les Bleus the 2026 Favorites</div>
+          <div class="nc-meta">
+            <span class="by">James Walker</span>
+            <span class="nc-meta-dot">·</span>
+            <span>Jun 12, 2026</span>
+            <span class="nc-meta-dot">·</span>
+            <span>9 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner brazil">⚽</div>
+          <div class="nc-cat">Fantasy</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">Vinicius Jr. vs. Colombia's Leaky Defense: The Fantasy Differential of Matchday 1</div>
+          <div class="nc-meta">
+            <span class="by">Sarah Kim</span>
+            <span class="nc-meta-dot">·</span>
+            <span>Jun 12, 2026</span>
+            <span class="nc-meta-dot">·</span>
+            <span>5 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner betting">📊</div>
+          <div class="nc-cat">Betting</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">Sharp Money Is Hammering Spain –1.5 Against Mexico: Here's Why the Model Agrees</div>
+          <div class="nc-meta">
+            <span class="by">Carlos Rivera</span>
+            <span class="nc-meta-dot">·</span>
+            <span>Jun 12, 2026</span>
+            <span class="nc-meta-dot">·</span>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner fantasy">🌟</div>
+          <div class="nc-cat">Fantasy Picks</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">3 Underowned Defenders Under 30% Ownership Who Could Win You Matchday 1</div>
+          <div class="nc-meta">
+            <span class="by">PitchIQ AI</span>
+            <span class="nc-meta-dot">·</span>
+            <span>Jun 12, 2026</span>
+            <span class="nc-meta-dot">·</span>
+            <span>3 min read</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /w -->
+
+<!-- ── NEWSLETTER STRIP ───────────────────────── -->
+<div class="nl-strip rv">
+  <div class="w">
+    <div class="nl-inner">
+      <div class="nl-copy">
+        <div class="nl-eyebrow">✦ PitchIQ Daily</div>
+        <div class="nl-title">Get the Edge Before Kickoff</div>
+        <div class="nl-sub">AI picks, line movement alerts, and fantasy intel delivered every match day morning. Join 1M+ soccer fans already winning.</div>
+        <div class="nl-perks" style="margin-top:12px;">
+          <div class="nl-perk">Daily AI Picks</div>
+          <div class="nl-perk">Line Movement Alerts</div>
+          <div class="nl-perk">Fantasy Top Picks</div>
+          <div class="nl-perk">Free Forever</div>
+        </div>
+      </div>
+      <div class="nl-form">
+        <div class="nl-input-row">
+          <label for="nlEmail" class="sr-only">Email address for PitchIQ newsletter</label>
+          <input class="nl-input" type="email" id="nlEmail" placeholder="Enter your email address…" autocomplete="email"/>
+          <button class="nl-btn" id="nlSubmit">Subscribe</button>
+        </div>
+        <div class="nl-note">No spam. Unsubscribe anytime. Gambling is for adults 21+.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="footer" aria-label="Site footer">
+  <div class="w">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo">Pitch<span>IQ</span></div>
+        <div class="ft-tagline">AI-powered soccer intelligence for fantasy players and sports bettors. World Cup 2026 coverage and beyond.</div>
+        <div class="ft-socials">
+          <a class="ft-social" href="#" aria-label="PitchIQ on X (Twitter)" data-cs="Social Media">𝕏</a>
+          <a class="ft-social" href="#" aria-label="PitchIQ on LinkedIn" data-cs="Social Media">in</a>
+          <a class="ft-social" href="#" aria-label="PitchIQ on YouTube" data-cs="Social Media">▶</a>
+          <a class="ft-social" href="#" aria-label="PitchIQ on Instagram" data-cs="Social Media">📸</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">World Cup 2026</div>
+        <ul>
+          <li><a href="#" data-cs="Match Schedule">Match Schedule</a></li>
+          <li><a href="#" data-cs="Group Standings">Group Standings</a></li>
+          <li><a href="#" data-cs="Player Stats">Player Stats</a></li>
+          <li><a href="#" data-cs="AI Predictions">AI Predictions</a></li>
+          <li><a href="#" data-cs="Bracket Tracker">Bracket Tracker</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">Fantasy</div>
+        <ul>
+          <li><a href="#" data-cs="Fantasy Player Rankings">Player Rankings</a></li>
+          <li><a href="#" data-cs="Fantasy Picks">Daily Picks</a></li>
+          <li><a href="#" data-cs="Ownership Tracker">Ownership %</a></li>
+          <li><a href="#" data-cs="Injury Report">Injury Report</a></li>
+          <li><a href="#" data-cs="Draft Assistant">Draft Assistant</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">Betting</div>
+        <ul>
+          <li><a href="#" data-cs="Betting Intelligence">Today's Best Bets</a></li>
+          <li><a href="#" data-cs="Odds Tracker">Odds Tracker</a></li>
+          <li><a href="#" data-cs="Line Movement Tracker">Line Movement</a></li>
+          <li><a href="#" data-cs="Sharp Money Reports">Sharp Reports</a></li>
+          <li><a href="#" data-cs="Sportsbook Comparisons">Sportsbooks</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-legal">
+        © 2026 PitchIQ · <a href="#" data-cs="Privacy Policy">Privacy</a> · <a href="#" data-cs="Terms of Service">Terms</a> · <a href="#" data-cs="About PitchIQ">About</a> · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">Responsible Gambling</a>
+      </div>
+      <div class="ft-disclaimer">
+        Gambling involves risk. 21+ only. If you have a gambling problem, call 1-800-522-4700. PitchIQ is an entertainment and information service — not a licensed sportsbook.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MOBILE BOTTOM NAV ────────────────────────── -->
+<nav class="mob-nav">
+  <div class="mob-nav-inner">
+    <button class="mob-nav-btn active"><span class="icon">🏠</span>Home</button>
+    <button class="mob-nav-btn"><span class="icon">⚽</span>Scores</button>
+    <button class="mob-nav-btn"><span class="icon">🌟</span>Fantasy</button>
+    <button class="mob-nav-btn"><span class="icon">📊</span>Betting</button>
+    <button class="mob-nav-btn"><span class="icon">👤</span>Account</button>
+  </div>
+</nav>
+
+<script>
+'use strict';
+
+// ── IntersectionObserver feature detection ───────
+// Add class that enables CSS transitions only when IO is supported
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('rv-js');
+}
+
+// ── Scroll reveal + countup ──────────────────────
+if ('IntersectionObserver' in window) {
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('vis');
+      el.querySelectorAll('[data-count]').forEach(n => {
+        const target = +n.dataset.count;
+        const suffix = n.dataset.suffix || '';
+        const prefix = n.dataset.prefix || '';
+        if (prefix) { n.textContent = prefix; return; }
+        countUp(n, target, 1200, suffix);
+      });
+      revObs.unobserve(el);
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv, .stat-item').forEach(el => revObs.observe(el));
+
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('.fp-own-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        requestAnimationFrame(() => { bar.style.width = w; });
+      });
+      barObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fp-card').forEach(el => barObs.observe(el));
+} else {
+  // Fallback: make everything visible immediately
+  document.querySelectorAll('.rv, .stat-item').forEach(el => el.classList.add('vis'));
+}
+
+function countUp(el, target, dur, suffix) {
+  suffix = suffix || '';
+  var start = performance.now();
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
+  (function frame(now) {
+    var p = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(ease(p) * target) + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+  })(start);
+}
+
+// ── Coming Soon modal ────────────────────────────
+var overlay = document.getElementById('csOverlay');
+var csClose  = document.getElementById('csClose');
+var csPageName  = document.getElementById('csPageName');
+var csPageName2 = document.getElementById('csPageName2');
+var csSubmit = document.getElementById('csSubmit');
+var csEmail  = document.getElementById('csEmail');
+var csConfirm = document.getElementById('csConfirm');
+var csFormWrap = document.getElementById('csFormWrap');
+
+function openCS(pageName) {
+  var name = pageName || 'this feature';
+  csPageName.textContent  = name;
+  csPageName2.textContent = name;
+  csConfirm.classList.remove('show');
+  csFormWrap.style.display = '';
+  csEmail.value = '';
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  setTimeout(function() { csEmail.focus(); }, 50);
+}
+function closeCS() {
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+}
+
+// Wire every data-cs link
+document.querySelectorAll('[data-cs]').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    openCS(el.dataset.cs);
+  });
+  // Keyboard: Enter / Space
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCS(el.dataset.cs); }
+  });
+});
+
+csClose.addEventListener('click', closeCS);
+overlay.addEventListener('click', function(e) { if (e.target === overlay) closeCS(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCS(); });
+
+csSubmit.addEventListener('click', function() {
+  var email = csEmail.value.trim();
+  if (!email || !email.includes('@')) { csEmail.focus(); return; }
+  // Store in localStorage
+  var list = JSON.parse(localStorage.getItem('pitchiq_notify') || '[]');
+  if (!list.includes(email)) { list.push(email); localStorage.setItem('pitchiq_notify', JSON.stringify(list)); }
+  csFormWrap.style.display = 'none';
+  csConfirm.classList.add('show');
+  setTimeout(closeCS, 2200);
+});
+csEmail.addEventListener('keydown', function(e) { if (e.key === 'Enter') csSubmit.click(); });
+
+// ── Gambling disclaimer banner ───────────────────
+var disclaimerBar   = document.getElementById('disclaimerBar');
+var disclaimerClose = document.getElementById('disclaimerClose');
+if (disclaimerBar) {
+  if (localStorage.getItem('pitchiq_disclaimer_seen')) {
+    disclaimerBar.classList.add('hidden');
+  }
+  disclaimerClose.addEventListener('click', function() {
+    disclaimerBar.classList.add('hidden');
+    localStorage.setItem('pitchiq_disclaimer_seen', '1');
+  });
+}
+
+// ── Newsletter ───────────────────────────────────
+var nlSubmit = document.getElementById('nlSubmit');
+var nlEmail  = document.getElementById('nlEmail');
+if (nlSubmit) {
+  nlSubmit.addEventListener('click', function() {
+    var email = nlEmail.value.trim();
+    if (!email || !email.includes('@')) { nlEmail.focus(); return; }
+    var list = JSON.parse(localStorage.getItem('pitchiq_newsletter') || '[]');
+    if (!list.includes(email)) { list.push(email); localStorage.setItem('pitchiq_newsletter', JSON.stringify(list)); }
+    nlSubmit.textContent = '✓ Subscribed!';
+    nlSubmit.disabled = true;
+    nlEmail.value = '';
+  });
+  nlEmail.addEventListener('keydown', function(e) { if (e.key === 'Enter') nlSubmit.click(); });
+}
+
+// ── Mobile hamburger ─────────────────────────────
+var burger   = document.getElementById('navBurger');
+var navLinks = document.getElementById('navLinks');
+if (burger && navLinks) {
+  burger.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('mob-open');
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    burger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+  });
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!navLinks.contains(e.target) && !burger.contains(e.target)) {
+      navLinks.classList.remove('mob-open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// ── Fantasy position filter tabs ─────────────────
+document.querySelectorAll('.fp-filter').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.fp-filter').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var pos = btn.dataset.pos;
+    document.querySelectorAll('.fp-table tbody tr').forEach(function(row) {
+      if (!pos) { row.style.display = ''; return; }
+      var pill = row.querySelector('.pos-pill');
+      row.style.display = (pill && pill.textContent.trim() === pos) ? '' : 'none';
+    });
+  });
+});
+
+// ── Sec sort tabs ────────────────────────────────
+document.querySelectorAll('.sec-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    tab.closest('.sec-tabs').querySelectorAll('.sec-tab').forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+  });
+});
+
+// ── Mobile bottom nav ────────────────────────────
+document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.mob-nav-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+  });
+  // Mobile nav Coming Soon (non-home buttons)
+  if (!btn.classList.contains('active')) {
+    btn.addEventListener('click', function() {
+      var label = btn.textContent.trim();
+      if (label !== 'Home') openCS(label);
+    });
+  }
+});
+</script>
+
+</body>
+</html>

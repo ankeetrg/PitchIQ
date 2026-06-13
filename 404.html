@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#071D36"/>
+  <meta name="robots" content="noindex"/>
+  <title>Page Not Found — PitchIQ</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23071D36'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='20' fill='%2300963F'>P</text></svg>" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --nav: #071D36; --nav2: #0B2545; --grn: #00963F; --grn-h: #007A32;
+      --bg: #EEF1F6; --surf: #fff; --t1: #0F1923; --t2: #3C5168; --t3: #7C92A8;
+      --b1: #E2E8F0; --b2: #C8D5E0; --r: 6px; --r2: 12px;
+      --sans: 'Inter', system-ui, sans-serif;
+      --cond: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--t1); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .nav { background: var(--nav); height: 56px; display: flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,.25); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--cond); font-size: 22px; font-weight: 900; color: #fff; }
+    .nav-logo span { color: var(--grn); }
+    .nav-home { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.65); padding: 7px 14px; border-radius: var(--r); transition: color .15s, background .15s; }
+    .nav-home:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .hero { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 20px; }
+    .hero-card { background: var(--surf); border-radius: var(--r2); border: 1px solid var(--b1); box-shadow: 0 2px 8px rgba(0,0,0,.09), 0 8px 24px rgba(0,0,0,.06); padding: 52px 48px; max-width: 520px; width: 100%; text-align: center; }
+    .err-code { font-family: var(--cond); font-size: 88px; font-weight: 900; color: var(--grn); line-height: 1; letter-spacing: -.03em; margin-bottom: 4px; }
+    .err-title { font-family: var(--cond); font-size: 24px; font-weight: 900; color: var(--t1); margin-bottom: 10px; }
+    .err-sub { font-size: 14px; color: var(--t2); line-height: 1.6; margin-bottom: 28px; }
+    .btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn-home { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .10em; text-transform: uppercase; padding: 10px 22px; border-radius: var(--r); background: var(--grn); color: #fff; transition: background .18s, transform .15s; }
+    .btn-home:hover { background: var(--grn-h); transform: translateY(-1px); }
+    .btn-notify { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .10em; text-transform: uppercase; padding: 10px 22px; border-radius: var(--r); border: 1.5px solid var(--b2); color: var(--t2); transition: border-color .18s, color .18s, background .18s; cursor: pointer; background: transparent; }
+    .btn-notify:hover { border-color: var(--grn); color: var(--grn); background: rgba(0,150,63,.08); }
+    .footer { padding: 20px; text-align: center; font-size: 11px; color: var(--t3); border-top: 1px solid var(--b1); background: var(--surf); }
+
+    /* Coming Soon Modal */
+    .cs-overlay { display:none; position:fixed; inset:0; z-index:2000; background:rgba(7,29,54,.75); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:20px; }
+    .cs-overlay.open { display:flex; }
+    .cs-modal { background:#fff; border-radius:var(--r2); border:1px solid var(--b1); box-shadow:0 24px 64px rgba(0,0,0,.25); max-width:440px; width:100%; overflow:hidden; animation:csIn .22s ease-out; }
+    @keyframes csIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+    .cs-head { background:var(--nav); padding:20px 24px 18px; display:flex; align-items:flex-start; justify-content:space-between; }
+    .cs-logo { font-family:var(--cond); font-size:18px; font-weight:900; color:#fff; }
+    .cs-logo span { color:var(--grn); }
+    .cs-close { background:rgba(255,255,255,.12); border:none; color:rgba(255,255,255,.7); width:28px; height:28px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .cs-close:hover { background:rgba(255,255,255,.22); }
+    .cs-body { padding:24px; }
+    .cs-eyebrow { font-family:var(--cond); font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--grn); margin-bottom:6px; }
+    .cs-title { font-family:var(--cond); font-size:22px; font-weight:900; color:var(--t1); margin-bottom:6px; }
+    .cs-sub { font-size:13px; color:var(--t2); line-height:1.5; margin-bottom:18px; }
+    .cs-form { display:flex; gap:0; margin-bottom:8px; }
+    .cs-input { flex:1; padding:10px 14px; border:1.5px solid var(--b2); border-right:none; border-radius:var(--r) 0 0 var(--r); font-family:var(--sans); font-size:13px; color:var(--t1); background:#f8fafc; outline:none; }
+    .cs-input:focus { border-color:var(--grn); }
+    .cs-btn { padding:10px 18px; background:var(--grn); color:#fff; font-family:var(--cond); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:0 var(--r) var(--r) 0; cursor:pointer; border:none; }
+    .cs-btn:hover { background:var(--grn-h); }
+    .cs-note { font-size:11px; color:var(--t3); text-align:center; }
+    .cs-confirm { display:none; text-align:center; padding:8px 0 4px; }
+    .cs-confirm.show { display:block; }
+    .cs-confirm-msg { font-family:var(--cond); font-size:14px; font-weight:700; color:var(--grn); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
+    <a class="nav-home" href="/">← Back to Home</a>
+  </div>
+</nav>
+
+<main class="hero">
+  <div class="hero-card">
+    <div class="err-code" aria-hidden="true">404</div>
+    <h1 class="err-title">Page Not Found</h1>
+    <p class="err-sub">This page doesn't exist yet — but it's coming. World Cup 2026 coverage is being built right now. Drop your email and we'll let you know the moment it's live.</p>
+    <div class="btn-row">
+      <a class="btn-home" href="/">← Back to Home</a>
+      <button class="btn-notify" id="notifyBtn">Get Notified</button>
+    </div>
+  </div>
+</main>
+
+<!-- Coming Soon Modal -->
+<div class="cs-overlay" id="csOverlay" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+  <div class="cs-modal">
+    <div class="cs-head">
+      <div class="cs-logo">Pitch<span>IQ</span></div>
+      <button class="cs-close" id="csClose" aria-label="Close">✕</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-eyebrow">Coming Soon</div>
+      <div class="cs-title" id="csTitle">We're building it</div>
+      <div class="cs-sub">World Cup 2026 full coverage launching during Group Stage. Be first to know.</div>
+      <div id="csFormWrap">
+        <div class="cs-form">
+          <label for="csEmail" class="sr-only">Email address</label>
+          <input class="cs-input" type="email" id="csEmail" placeholder="Your email address…" autocomplete="email"/>
+          <button class="cs-btn" id="csSubmit">Notify Me</button>
+        </div>
+        <div class="cs-note">No spam. One email when we launch.</div>
+      </div>
+      <div class="cs-confirm" id="csConfirm">
+        <div class="cs-confirm-msg">✓ You're on the list!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  © 2026 PitchIQ · Entertainment purposes only · 21+ · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Responsible Gambling</a>
+</footer>
+
+<script>
+'use strict';
+var overlay   = document.getElementById('csOverlay');
+var csClose   = document.getElementById('csClose');
+var csSubmit  = document.getElementById('csSubmit');
+var csEmail   = document.getElementById('csEmail');
+var csConfirm = document.getElementById('csConfirm');
+var csFormWrap = document.getElementById('csFormWrap');
+var notifyBtn = document.getElementById('notifyBtn');
+
+function openCS() {
+  csConfirm.classList.remove('show');
+  csFormWrap.style.display = '';
+  csEmail.value = '';
+  overlay.classList.add('open');
+  setTimeout(function() { csEmail.focus(); }, 50);
+}
+function closeCS() { overlay.classList.remove('open'); }
+
+notifyBtn.addEventListener('click', openCS);
+csClose.addEventListener('click', closeCS);
+overlay.addEventListener('click', function(e) { if (e.target === overlay) closeCS(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCS(); });
+
+csSubmit.addEventListener('click', function() {
+  var email = csEmail.value.trim();
+  if (!email || !email.includes('@')) { csEmail.focus(); return; }
+  var list = JSON.parse(localStorage.getItem('pitchiq_notify') || '[]');
+  if (!list.includes(email)) { list.push(email); localStorage.setItem('pitchiq_notify', JSON.stringify(list)); }
+  csFormWrap.style.display = 'none';
+  csConfirm.classList.add('show');
+  setTimeout(closeCS, 2200);
+});
+csEmail.addEventListener('keydown', function(e) { if (e.key === 'Enter') csSubmit.click(); });
+</script>
+</body>
+</html>
