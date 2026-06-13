@@ -2090,6 +2090,136 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .fix-tab:focus-visible { outline:2px solid var(--grn); outline-offset:2px; }
 a.fixture-row { text-decoration:none; color:inherit; }
 
+/* ── Section rhythm ──────────────────────────────── */
+:root { --gap: 32px; }
+html, body { scroll-behavior: smooth; }
+.fantasy-section, .news-section, .standings-section, .sb-banner { margin-bottom: var(--gap); }
+.betting-section { margin-bottom: var(--gap); padding: 32px 0; }
+.sec-divider { height: 1px; background: var(--b1); margin: 0 0 var(--gap); }
+
+/* ── MATCH CAROUSEL (hero) ──────────────────────── */
+.match-hero { position: relative; }
+.mc-viewport {
+  position: relative;
+  height: 360px;
+  border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow: var(--sh-md);
+  background: var(--nav);
+}
+.mc-card {
+  position: absolute;
+  inset: 0;
+  background: var(--surf);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.4,0,.2,1), opacity .5s ease-out;
+  will-change: transform;
+}
+.mc-head {
+  background: linear-gradient(135deg, #071D36 0%, #0E3A66 100%);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mc-badge { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.mc-badge span { color: var(--grn); }
+.mc-status { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.mc-status.up { background: rgba(0,150,63,.22); color: #67e8a4; }
+.mc-status.live { background: var(--red); color: #fff; display: inline-flex; align-items: center; gap: 5px; }
+.mc-status.live .dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
+.mc-teams {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+}
+.mc-team { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.mc-team img { width: 50px; height: auto; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+.mc-team-name { font-family: var(--cond); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; color: #fff; line-height: 1.05; }
+.mc-mid { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mc-vs { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .12em; color: rgba(255,255,255,.32); }
+.mc-time { font-family: var(--cond); font-size: 20px; font-weight: 900; color: #fff; }
+.mc-min { font-family: var(--cond); font-size: 11px; font-weight: 700; color: #fca5a5; }
+.mc-ai { margin-top: 6px; display: inline-block; font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; background: var(--grn); color: #fff; padding: 4px 11px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,150,63,.35); }
+.mc-odds { display: flex; background: #fff; border-top: 1px solid var(--b1); }
+.mc-odd { flex: 1; text-align: center; padding: 10px 6px; border-right: 1px solid var(--b1); display: flex; flex-direction: column; gap: 3px; text-decoration: none; transition: background .15s; }
+.mc-odd:last-child { border-right: none; }
+.mc-odd:hover { background: var(--bg2); }
+.mc-odd-lbl { font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); }
+.mc-odd-val { font-family: var(--cond); font-size: 17px; font-weight: 900; color: var(--t1); font-variant-numeric: tabular-nums; }
+.mc-odd-val.fav { color: var(--grn); }
+.mc-cta-row { display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #fff; border-top: 1px solid var(--b1); }
+.mc-cta { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 9px 18px; border-radius: var(--r); background: var(--grn); color: #fff; transition: background .15s, transform .15s; }
+.mc-cta:hover { background: var(--grn-h); transform: translateY(-1px); }
+.mc-venue { margin-left: auto; font-family: var(--cond); font-size: 10px; font-weight: 600; color: var(--t3); letter-spacing: .03em; }
+.mc-arrow {
+  position: absolute; top: calc(50% - 12px); transform: translateY(-50%);
+  z-index: 5; width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(7,29,54,.55); color: #fff; font-size: 20px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer; transition: background .15s;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.mc-arrow:hover { background: rgba(7,29,54,.85); }
+.mc-prev { left: 10px; }
+.mc-next { right: 10px; }
+.mc-dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
+.mc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--b2); border: none; cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
+.mc-dot.active { background: var(--grn); transform: scale(1.25); }
+
+/* ── TODAY'S RESULTS SCOREBOARD ──────────────────── */
+.scoreboard { background: var(--nav); margin-bottom: var(--gap); border-top: 1px solid rgba(255,255,255,.07); border-bottom: 1px solid rgba(255,255,255,.07); }
+.scb-inner { max-width: 1320px; margin: 0 auto; padding: 12px 20px; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: thin; }
+.scb-pill { flex: 0 0 auto; display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r); padding: 8px 13px; }
+.scb-pill.ft { opacity: .6; }
+.scb-side { display: flex; align-items: center; gap: 6px; font-family: var(--cond); font-size: 12px; font-weight: 700; color: #fff; }
+.scb-side img { width: 20px; height: auto; border-radius: 2px; }
+.scb-mid { font-family: var(--cond); font-size: 14px; font-weight: 900; color: #fff; font-variant-numeric: tabular-nums; padding: 0 3px; }
+.scb-st { font-family: var(--cond); font-size: 9.5px; font-weight: 800; letter-spacing: .05em; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+.scb-st.s-ft { background: rgba(255,255,255,.12); color: rgba(255,255,255,.55); }
+.scb-st.s-live { background: var(--red); color: #fff; display: inline-flex; align-items: center; gap: 4px; }
+.scb-st.s-live .d { width: 5px; height: 5px; background: #fff; border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
+.scb-st.s-up { background: rgba(0,150,63,.25); color: #67e8a4; }
+
+/* ── GROUP STANDINGS WIDGET ──────────────────────── */
+.st-card { background: var(--surf); border-radius: var(--r2); border: 1px solid var(--b1); overflow: hidden; box-shadow: var(--sh); }
+.st-tabs { display: flex; gap: 0; background: var(--bg2); border-bottom: 1px solid var(--b1); overflow-x: auto; }
+.st-tab { flex: 0 0 auto; font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 11px 18px; color: var(--t3); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color .15s, border-color .15s; }
+.st-tab:hover { color: var(--t1); }
+.st-tab.active { color: var(--grn); border-bottom-color: var(--grn); }
+.st-table { width: 100%; border-collapse: collapse; }
+.st-table th { font-family: var(--cond); font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); padding: 9px 10px; text-align: center; border-bottom: 2px solid var(--b1); background: var(--bg2); }
+.st-table th:first-child, .st-table td:first-child { text-align: left; }
+.st-table td { padding: 10px; font-size: 13px; color: var(--t1); text-align: center; font-variant-numeric: tabular-nums; border-bottom: 1px solid var(--b1); }
+.st-table tr:last-child td { border-bottom: none; }
+.st-team { display: flex; align-items: center; gap: 9px; }
+.st-team img { width: 24px; height: auto; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.st-team-name { font-weight: 600; }
+.st-note { font-family: var(--cond); font-size: 10px; font-weight: 600; color: var(--t3); margin-left: 6px; }
+.st-pts { font-family: var(--cond); font-size: 14px; font-weight: 900; color: var(--t1); }
+.st-row-leader td:first-child { box-shadow: inset 3px 0 0 var(--grn); }
+
+/* ── Fantasy TODAY badge ─────────────────────────── */
+.fp-today { display: inline-block; font-family: var(--cond); font-size: 8.5px; font-weight: 800; letter-spacing: .06em; background: var(--red); color: #fff; padding: 1px 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+
+/* ── News skeleton tweaks ────────────────────────── */
+.news-card.news-skeleton { border: 1px solid var(--b1); }
+.news-skeleton .nc-img { height: 200px; }
+
+@media (max-width: 640px) {
+  .mc-viewport { height: 380px; }
+  .mc-team-name { font-size: 15px; }
+  .mc-team img { width: 42px; }
+}
+
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -2217,123 +2347,12 @@ a.fixture-row { text-decoration:none; color:inherit; }
   <!-- ── HERO GRID ──────────────────────────────── -->
   <div class="hero-grid rv">
 
-    <!-- FEATURED MATCH CARD -->
+    <!-- FEATURED MATCH CAROUSEL -->
     <div class="match-hero">
-      <!-- header -->
-      <div class="mh-header">
-        <div class="mh-badge">Group C · Match 1 · <span>MetLife Stadium, NJ</span></div>
-        <div class="mh-live-pill" style="background:rgba(29,78,216,.18);color:#60a5fa;">🗓 Tomorrow</div>
-        <div class="mh-time">Jun 13 · 6:00 PM ET</div>
-      </div>
-
-      <!-- teams -->
-      <div class="mh-teams">
-        <div class="mh-team">
-          <div class="mh-team-flag">🇧🇷<br><img src="https://flagcdn.com/w80/br.png" alt="Brazil" style="width:40px;height:auto;border-radius:3px;vertical-align:middle;margin-top:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
-          <div class="mh-team-name">Brazil</div>
-          <div class="mh-team-form">
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp d">D</div>
-          </div>
-        </div>
-        <div class="mh-vs">
-          <div class="mh-vs-text">vs</div>
-          <div class="mh-score" style="font-size:16px;color:var(--t3);">6PM ET</div>
-          <div class="mh-score-min" style="color:var(--t3);">Jun 13</div>
-        </div>
-        <div class="mh-team">
-          <div class="mh-team-flag">🇲🇦<br><img src="https://flagcdn.com/w80/ma.png" alt="Morocco" loading="lazy" style="width:40px;height:auto;border-radius:3px;vertical-align:middle;margin-top:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)"></div>
-          <div class="mh-team-name">Morocco</div>
-          <div class="mh-team-form">
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp d">D</div>
-            <div class="mh-fp w">W</div>
-            <div class="mh-fp l">L</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- odds strip -->
-      <div class="mh-odds">
-        <a class="mh-odd" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
-          <div class="mh-odd-label">Brazil Win</div>
-          <div class="mh-odd-val fav">-138</div>
-          <div class="mh-odd-sportsbook">DraftKings ↗</div>
-        </a>
-        <a class="mh-odd" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
-          <div class="mh-odd-label">Draw</div>
-          <div class="mh-odd-val dog">+290</div>
-          <div class="mh-odd-sportsbook">FanDuel ↗</div>
-        </a>
-        <a class="mh-odd" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
-          <div class="mh-odd-label">Morocco Win</div>
-          <div class="mh-odd-val dog">+500</div>
-          <div class="mh-odd-sportsbook">BetMGM ↗</div>
-        </a>
-        <a class="mh-odd" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
-          <div class="mh-odd-label">O/U 2.5 Goals</div>
-          <div class="mh-odd-val dog">-110</div>
-          <div class="mh-odd-sportsbook">Caesars ↗</div>
-        </a>
-      </div>
-
-      <!-- probability bar -->
-      <div class="mh-prob">
-        <div class="mh-prob-head">
-          <div class="mh-prob-title">AI Win Probability — 50,000 Simulations</div>
-          <div class="mh-prob-ai-badge">✦ PitchIQ AI</div>
-        </div>
-        <div class="prob-bar-wrap">
-          <div class="prob-seg home" style="width:58%"></div>
-          <div class="prob-seg draw" style="width:22%"></div>
-          <div class="prob-seg away" style="width:20%"></div>
-        </div>
-        <div class="prob-labels">
-          <div class="prob-lbl">
-            <span class="pct">58%</span>
-            <span class="team">Brazil Win</span>
-          </div>
-          <div class="prob-lbl center-lbl">
-            <span class="pct">22%</span>
-            <span class="team">Draw</span>
-          </div>
-          <div class="prob-lbl">
-            <span class="pct">20%</span>
-            <span class="team">Morocco Win</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- key stats row -->
-      <div class="mh-stats">
-        <div class="mh-stat">
-          <div class="mh-stat-val">3–2–0</div>
-          <div class="mh-stat-lbl">H2H Last 5</div>
-        </div>
-        <div class="mh-stat">
-          <div class="mh-stat-val"><em>2.6</em></div>
-          <div class="mh-stat-lbl">Brazil Avg xG</div>
-        </div>
-        <div class="mh-stat">
-          <div class="mh-stat-val">1.2</div>
-          <div class="mh-stat-lbl">Morocco Avg xG</div>
-        </div>
-        <div class="mh-stat">
-          <div class="mh-stat-val"><em>High</em></div>
-          <div class="mh-stat-lbl">AI Confidence</div>
-        </div>
-      </div>
-
-      <!-- CTA row -->
-      <div class="mh-cta">
-        <a class="btn-preview" href="/brazil-morocco">Full Preview &amp; Picks →</a>
-        <a class="btn-secondary" href="#" data-cs="Fantasy Picks">⭐ Pick Vinicius Jr.</a>
-        <div class="mh-cta-note">Odds as of Jun 12 · Subject to change · 21+</div>
-      </div>
+      <div class="mc-viewport" id="mcViewport" aria-roledescription="carousel" aria-label="Today's matches"></div>
+      <button class="mc-arrow mc-prev" id="mcPrev" aria-label="Previous match">‹</button>
+      <button class="mc-arrow mc-next" id="mcNext" aria-label="Next match">›</button>
+      <div class="mc-dots" id="mcDots" role="tablist" aria-label="Select match"></div>
     </div><!-- /match-hero -->
 
     <!-- RIGHT SIDE WIDGETS -->
@@ -2456,37 +2475,30 @@ a.fixture-row { text-decoration:none; color:inherit; }
         </div>
       </div>
 
-      <!-- AD SLOT — Rectangle (300×250) in sidebar -->
-      <div class="widget" style="text-align:center;padding:12px;">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="XXXXXXXXXX"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
     </div><!-- /side-col -->
 
   </div><!-- /hero-grid -->
 
+  <!-- AD SLOT — Rectangle (300×250) moved below hero for better rhythm -->
+  <div style="text-align:center;padding:4px 0 8px;">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:250px"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
 </div><!-- /w -->
 
-<!-- ── STATS STRIP ─────────────────────────────── -->
-<div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-item rv" style="flex:0 0 auto;padding:10px 16px;border-right:1px solid var(--b1);">
-      <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=120&q=80&fit=crop" alt="World Cup trophy" loading="lazy" style="width:48px;height:48px;object-fit:cover;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);">
-    </div>
-    <div class="stat-item rv"><span class="stat-n" data-count="104">0</span><span class="stat-l">Total Matches</span></div>
-    <div class="stat-item rv" style="transition-delay:.07s"><span class="stat-n" data-count="48">0</span><span class="stat-l">Nations</span></div>
-    <div class="stat-item rv" style="transition-delay:.14s"><span class="stat-n" data-count="16">0</span><span class="stat-l">Host Cities</span></div>
-    <div class="stat-item rv" style="transition-delay:.21s"><span class="stat-n" data-count="84" data-suffix="%">0</span><span class="stat-l">AI Accuracy</span></div>
-    <div class="stat-item rv" style="transition-delay:.28s"><span class="stat-n" data-count="50" data-suffix="K+">0</span><span class="stat-l">Sims / Match</span></div>
-    <div class="stat-item rv" style="transition-delay:.35s"><span class="stat-n" data-prefix="1M+">—</span><span class="stat-l">Fantasy Users</span></div>
-  </div>
+<!-- ── TODAY'S RESULTS SCOREBOARD ───────────────── -->
+<div class="scoreboard rv" aria-label="Today's scores and fixtures">
+  <div class="scb-inner" id="scbInner"></div>
 </div>
 
 <div class="w">
+
+  <!-- divider between scoreboard and fantasy -->
+  <div class="sec-divider"></div>
 
   <!-- ── FANTASY PICKS ──────────────────────────── -->
   <section class="fantasy-section rv">
@@ -2540,7 +2552,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill FWD">FWD</span></td>
-            <td><div class="fp-match">FRA <span class="opp">vs URU</span></div></td>
+            <td><div class="fp-match">FRA <span class="opp">vs SEN</span></div></td>
             <td class="num fp-proj">9.2 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2563,7 +2575,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill FWD">FWD</span></td>
-            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td><div class="fp-match">BRA <span class="opp">vs MAR</span> <span class="fp-today">TODAY</span></div></td>
             <td class="num fp-proj">8.7 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2586,7 +2598,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill FWD">FWD</span></td>
-            <td><div class="fp-match">NOR <span class="opp">vs GHA</span></div></td>
+            <td><div class="fp-match">NOR <span class="opp">vs IRQ</span></div></td>
             <td class="num fp-proj">8.4 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2609,7 +2621,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill MID">MID</span></td>
-            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td><div class="fp-match">POR <span class="opp">vs DRC</span></div></td>
             <td class="num fp-proj">7.8 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2632,7 +2644,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill MID">MID</span></td>
-            <td><div class="fp-match">ESP <span class="opp">vs MEX</span></div></td>
+            <td><div class="fp-match">ESP <span class="opp">vs CPV</span></div></td>
             <td class="num fp-proj">7.6 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2655,7 +2667,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill DEF">DEF</span></td>
-            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td><div class="fp-match">POR <span class="opp">vs DRC</span></div></td>
             <td class="num fp-proj">6.8 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2678,7 +2690,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
               </div>
             </td>
             <td><span class="pos-pill GK">GK</span></td>
-            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td><div class="fp-match">BRA <span class="opp">vs MAR</span> <span class="fp-today">TODAY</span></div></td>
             <td class="num fp-proj">6.4 <span class="pts-lbl">pts</span></td>
             <td class="num">
               <div class="fp-own-wrap">
@@ -2696,6 +2708,31 @@ a.fixture-row { text-decoration:none; color:inherit; }
         <div class="fp-footer-note">Projections powered by PitchIQ AI · Updated every 15 minutes during matches</div>
         <a class="btn-view-all" href="#" data-cs="Fantasy Player Rankings">View Full Rankings →</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ── GROUP STANDINGS ────────────────────────── -->
+  <section class="standings-section rv">
+    <div class="sec-header">
+      <div class="sec-title">Group Standings<span class="sec-sub">WC2026 · After Jun 12–13 results</span></div>
+      <a class="btn-view-all" href="/standings">All Groups →</a>
+    </div>
+    <div class="st-card">
+      <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
+        <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
+        <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
+        <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
+        <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
+      </div>
+      <table class="st-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody id="stBody"></tbody>
+      </table>
     </div>
   </section>
 
@@ -2983,6 +3020,209 @@ a.fixture-row { text-decoration:none; color:inherit; }
 
 <script>
 'use strict';
+
+/* ═══════════════════════════════════════════════════
+   TODAY'S MATCH CAROUSEL
+   Rendered first so injected [data-aff] odds links get
+   wired by the affiliate block below.
+════════════════════════════════════════════════════ */
+var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&q=80&fit=crop&auto=format';
+
+var TODAY_MATCHES = [
+  { slug:'qatar-switzerland', home:'Qatar', home_iso:'qa', home_ml:'+340',
+    away:'Switzerland', away_iso:'ch', away_ml:'-145', draw_ml:'+280',
+    group:'B', time:'12PM PT', venue:'BMO Field, Toronto',
+    ai_pick:'Switzerland Win', ai_conf:74, status:'live', elapsed:85 },
+  { slug:'germany-curacao', home:'Germany', home_iso:'de', home_ml:'-360',
+    away:'Curaçao', away_iso:'cw', away_ml:'+900', draw_ml:'+500',
+    group:'E', time:'3PM PT', venue:'Mercedes-Benz Stadium, Atlanta',
+    ai_pick:'Germany Win to Nil', ai_conf:81, status:'upcoming' },
+  { slug:'brazil-morocco', home:'Brazil', home_iso:'br', home_ml:'-138',
+    away:'Morocco', away_iso:'ma', away_ml:'+500', draw_ml:'+290',
+    group:'C', time:'6PM PT', venue:'MetLife Stadium, NJ',
+    ai_pick:'Brazil Win', ai_conf:68, status:'upcoming' },
+  { slug:'haiti-scotland', home:'Haiti', home_iso:'ht', home_ml:'+380',
+    away:'Scotland', away_iso:'gb-sct', away_ml:'-125', draw_ml:'+310',
+    group:'C', time:'9PM PT', venue:'Gillette Stadium, MA',
+    ai_pick:'Under 2.5 Goals', ai_conf:62, status:'upcoming' }
+];
+
+function mcFlag(iso, name) {
+  return '<img src="https://flagcdn.com/w80/' + iso + '.png" alt="' + name + '" loading="lazy">';
+}
+function mcProbs(m) {
+  function p(ml) { ml = parseInt(ml, 10); return ml < 0 ? (-ml) / (-ml + 100) : 100 / (ml + 100); }
+  return [p(m.home_ml), p(m.draw_ml), p(m.away_ml)];
+}
+function buildMatchCard(m) {
+  var probs = mcProbs(m);
+  var favIdx = probs.indexOf(Math.max(probs[0], probs[1], probs[2]));
+  function odd(label, val, idx, book) {
+    return '<a class="mc-odd" href="#" data-aff="' + book + '" rel="noopener sponsored" target="_blank">' +
+           '<span class="mc-odd-lbl">' + label + '</span>' +
+           '<span class="mc-odd-val' + (idx === favIdx ? ' fav' : '') + '">' + val + '</span></a>';
+  }
+  var isLive = m.status === 'live';
+  var statusHtml = isLive
+    ? '<div class="mc-status live"><span class="dot"></span>LIVE</div>'
+    : '<div class="mc-status up">' + m.time + '</div>';
+  var mid = isLive
+    ? '<div class="mc-time" style="color:#fff">LIVE</div><div class="mc-min">' + m.elapsed + '&rsquo;</div>' +
+      '<span class="mc-ai">✦ ' + m.ai_pick + ' · ' + m.ai_conf + '%</span>'
+    : '<div class="mc-vs">VS</div><div class="mc-time">' + m.time + '</div>' +
+      '<span class="mc-ai">✦ ' + m.ai_pick + ' · ' + m.ai_conf + '%</span>';
+  return '<article class="mc-card" role="group" aria-roledescription="slide" aria-label="' + m.home + ' versus ' + m.away + '">' +
+    '<div class="mc-head"><div class="mc-badge">Group ' + m.group + ' · <span>' + m.venue + '</span></div>' + statusHtml + '</div>' +
+    '<div class="mc-teams" style="background-image:linear-gradient(rgba(7,29,54,.86),rgba(7,29,54,.94)),url(\'' + HERO_BG + '\')">' +
+      '<div class="mc-team">' + mcFlag(m.home_iso, m.home) + '<div class="mc-team-name">' + m.home + '</div></div>' +
+      '<div class="mc-mid">' + mid + '</div>' +
+      '<div class="mc-team">' + mcFlag(m.away_iso, m.away) + '<div class="mc-team-name">' + m.away + '</div></div>' +
+    '</div>' +
+    '<div class="mc-odds">' +
+      odd(m.home + ' Win', m.home_ml, 0, 'draftkings') +
+      odd('Draw', m.draw_ml, 1, 'fanduel') +
+      odd(m.away + ' Win', m.away_ml, 2, 'betmgm') +
+    '</div>' +
+    '<div class="mc-cta-row"><a class="mc-cta" href="/' + m.slug + '">Full Preview →</a>' +
+      '<span class="mc-venue">Odds subject to change · 21+</span></div>' +
+  '</article>';
+}
+(function initCarousel() {
+  var vp = document.getElementById('mcViewport');
+  if (!vp) return;
+  vp.innerHTML = TODAY_MATCHES.map(buildMatchCard).join('');
+  var cards = Array.prototype.slice.call(vp.querySelectorAll('.mc-card'));
+  var dotsWrap = document.getElementById('mcDots');
+  dotsWrap.innerHTML = cards.map(function(_, i) {
+    return '<button class="mc-dot' + (i === 0 ? ' active' : '') + '" role="tab" aria-label="Match ' + (i + 1) + '"></button>';
+  }).join('');
+  var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.mc-dot'));
+  var cur = 0, timer = null;
+  function place() {
+    cards.forEach(function(c, i) { c.style.transform = 'translateX(' + ((i - cur) * 100) + '%)'; });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+  }
+  function go(n) { cur = (n + cards.length) % cards.length; place(); }
+  function next() { go(cur + 1); }
+  function prev() { go(cur - 1); }
+  // staggered entrance: card i fades in 60ms after the previous
+  cards.forEach(function(c, i) {
+    c.style.opacity = '0';
+    c.style.transform = 'translateX(' + ((i - cur) * 100) + '%)';
+    setTimeout(function() {
+      c.style.transitionDelay = (i * 60) + 'ms';
+      c.style.opacity = '1';
+      setTimeout(function() { c.style.transitionDelay = '0ms'; }, 600 + i * 60);
+    }, 20);
+  });
+  place();
+  function start() { stop(); timer = setInterval(next, 6000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  var nextBtn = document.getElementById('mcNext');
+  var prevBtn = document.getElementById('mcPrev');
+  if (nextBtn) nextBtn.addEventListener('click', function() { next(); start(); });
+  if (prevBtn) prevBtn.addEventListener('click', function() { prev(); start(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); start(); }); });
+  vp.addEventListener('mouseenter', stop);
+  vp.addEventListener('mouseleave', start);
+  start();
+})();
+
+/* ═══════════════════════════════════════════════════
+   TODAY'S RESULTS SCOREBOARD
+════════════════════════════════════════════════════ */
+var SCB_ABBR = {
+  'Mexico':'MEX','South Africa':'RSA','South Korea':'KOR','Czechia':'CZE',
+  'Canada':'CAN','Bosnia':'BIH','USA':'USA','Paraguay':'PAR','Qatar':'QAT',
+  'Switzerland':'SUI','Germany':'GER','Curaçao':'CUW','Brazil':'BRA',
+  'Morocco':'MAR','Haiti':'HAI','Scotland':'SCO'
+};
+function scbAb(name) { return SCB_ABBR[name] || name.slice(0, 3).toUpperCase(); }
+var SCOREBOARD = [
+  { home:'Mexico',      home_iso:'mx', score:'2–0', away:'South Africa', away_iso:'za', status:'FT',  group:'A' },
+  { home:'South Korea', home_iso:'kr', score:'2–1', away:'Czechia',      away_iso:'cz', status:'FT',  group:'A' },
+  { home:'Canada',      home_iso:'ca', score:'1–1', away:'Bosnia',       away_iso:'ba', status:'FT',  group:'B' },
+  { home:'USA',         home_iso:'us', score:'4–1', away:'Paraguay',     away_iso:'py', status:'FT',  group:'D' },
+  { home:'Qatar',       home_iso:'qa', score:'',    away:'Switzerland',  away_iso:'ch', status:'LIVE', group:'B', time:'85\'' },
+  { home:'Germany',     home_iso:'de', score:'',    away:'Curaçao',      away_iso:'cw', status:'3PM',  group:'E' },
+  { home:'Brazil',      home_iso:'br', score:'',    away:'Morocco',      away_iso:'ma', status:'6PM',  group:'C' },
+  { home:'Haiti',       home_iso:'ht', score:'',    away:'Scotland',     away_iso:'gb-sct', status:'9PM', group:'C' }
+];
+(function initScoreboard() {
+  var el = document.getElementById('scbInner');
+  if (!el) return;
+  el.innerHTML = SCOREBOARD.map(function(g) {
+    var st = g.status === 'FT'
+      ? '<span class="scb-st s-ft">FT</span>'
+      : g.status === 'LIVE'
+        ? '<span class="scb-st s-live"><span class="d"></span>' + (g.time || 'LIVE') + '</span>'
+        : '<span class="scb-st s-up">' + g.status + '</span>';
+    var mid = g.score
+      ? '<span class="scb-mid">' + g.score + '</span>'
+      : '<span class="scb-mid" style="color:rgba(255,255,255,.4)">–</span>';
+    var cls = g.status === 'FT' ? 'scb-pill ft' : 'scb-pill';
+    return '<div class="' + cls + '">' +
+      '<span class="scb-side"><img src="https://flagcdn.com/w40/' + g.home_iso + '.png" alt="' + g.home + '">' + scbAb(g.home) + '</span>' +
+      mid +
+      '<span class="scb-side">' + scbAb(g.away) + '<img src="https://flagcdn.com/w40/' + g.away_iso + '.png" alt="' + g.away + '"></span>' +
+      st + '</div>';
+  }).join('');
+})();
+
+/* ═══════════════════════════════════════════════════
+   GROUP STANDINGS WIDGET
+════════════════════════════════════════════════════ */
+var STANDINGS = {
+  A: [
+    { iso:'mx', name:'Mexico',       p:1, w:1, d:0, l:0, gd:'+2', pts:3 },
+    { iso:'kr', name:'Korea Rep.',   p:1, w:1, d:0, l:0, gd:'+1', pts:3 },
+    { iso:'cz', name:'Czechia',      p:1, w:0, d:0, l:1, gd:'-1', pts:0 },
+    { iso:'za', name:'South Africa', p:1, w:0, d:0, l:1, gd:'-2', pts:0 }
+  ],
+  B: [
+    { iso:'ca', name:'Canada',      p:1, w:0, d:1, l:0, gd:'0', pts:1 },
+    { iso:'ba', name:'Bosnia',      p:1, w:0, d:1, l:0, gd:'0', pts:1 },
+    { iso:'ch', name:'Switzerland', p:1, w:0, d:0, l:0, gd:'–', pts:0, note:'Playing' },
+    { iso:'qa', name:'Qatar',       p:1, w:0, d:0, l:0, gd:'–', pts:0, note:'Playing' }
+  ],
+  C: [
+    { iso:'br', name:'Brazil',      p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'6PM today' },
+    { iso:'ma', name:'Morocco',     p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'6PM today' },
+    { iso:'ht', name:'Haiti',       p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'9PM today' },
+    { iso:'gb-sct', name:'Scotland',p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'9PM today' }
+  ],
+  D: [
+    { iso:'us', name:'USA',      p:1, w:1, d:0, l:0, gd:'+3', pts:3 },
+    { iso:'py', name:'Paraguay', p:1, w:0, d:0, l:1, gd:'-3', pts:0 },
+    { iso:'au', name:'Australia',p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'tr', name:'Türkiye',  p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ]
+};
+(function initStandings() {
+  var body = document.getElementById('stBody');
+  if (!body) return;
+  function render(group) {
+    var rows = STANDINGS[group] || [];
+    body.innerHTML = rows.map(function(t, i) {
+      var note = t.note ? '<span class="st-note">' + t.note + '</span>' : '';
+      return '<tr' + (i === 0 ? ' class="st-row-leader"' : '') + '>' +
+        '<td><div class="st-team"><img src="https://flagcdn.com/w40/' + t.iso + '.png" alt="' + t.name + '">' +
+          '<span class="st-team-name">' + t.name + '</span>' + note + '</div></td>' +
+        '<td>' + t.p + '</td><td>' + t.w + '</td><td>' + t.d + '</td><td>' + t.l + '</td><td>' + t.gd + '</td>' +
+        '<td><span class="st-pts">' + t.pts + '</span></td></tr>';
+    }).join('');
+  }
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.st-tab'));
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      render(tab.dataset.group);
+    });
+  });
+  render('A');
+})();
 
 /* ═══════════════════════════════════════════════════
    AFFILIATE LINKS — paste your tracking URLs below
@@ -3277,26 +3517,22 @@ document.querySelectorAll('.fix-tab').forEach(function(tab) {
   }
 
   function renderStatic() {
-    // Static fallback if API fails
+    // Static fallback if API fails — link to today's match previews
     var grid = document.getElementById('newsGrid');
     if (!grid) return;
     grid.innerHTML =
-      '<a class="news-card featured news-live-card" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">' +
-      '<div class="nc-img"><div class="nc-img-inner brazil" style="font-size:48px;display:flex;align-items:center;justify-content:center;">🏆</div><div class="nc-cat">ESPN</div></div>' +
-      '<div class="nc-body"><div class="nc-headline">World Cup 2026 — Live Updates, Match Predictions &amp; Fantasy Intel</div>' +
-      '<div class="nc-meta"><span class="by">PitchIQ</span></div></div></a>' +
-      '<a class="news-card news-live-card" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">' +
-      '<div class="nc-img"><div class="nc-img-inner betting" style="font-size:36px;display:flex;align-items:center;justify-content:center;">📊</div><div class="nc-cat">Analysis</div></div>' +
-      '<div class="nc-body"><div class="nc-headline">Group Stage Odds &amp; Betting Lines for Every Match</div>' +
-      '<div class="nc-meta"><span class="by">PitchIQ AI</span></div></div></a>' +
-      '<a class="news-card news-live-card" href="/predictions" >' +
-      '<div class="nc-img"><div class="nc-img-inner fantasy" style="font-size:36px;display:flex;align-items:center;justify-content:center;">⚡</div><div class="nc-cat">Fantasy</div></div>' +
-      '<div class="nc-body"><div class="nc-headline">AI Fantasy Picks for Today\'s World Cup Matches</div>' +
-      '<div class="nc-meta"><span class="by">PitchIQ AI</span></div></div></a>' +
-      '<a class="news-card news-live-card" href="https://www.espn.com/soccer" target="_blank" rel="noopener noreferrer">' +
-      '<div class="nc-img"><div class="nc-img-inner france" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🌍</div><div class="nc-cat">World Cup</div></div>' +
-      '<div class="nc-body"><div class="nc-headline">Full World Cup 2026 Schedule, Standings &amp; Results</div>' +
-      '<div class="nc-meta"><span class="by">Live</span></div></div></a>';
+      '<a class="news-card featured news-live-card" href="/brazil-morocco">' +
+      '<div class="nc-img"><div class="nc-img-inner brazil" style="font-size:48px;display:flex;align-items:center;justify-content:center;">🇧🇷</div><div class="nc-cat">Preview</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Brazil vs Morocco Preview — AI Pick, Odds &amp; Fantasy Picks</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Group C · Today</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="/germany-curacao">' +
+      '<div class="nc-img"><div class="nc-img-inner betting" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🇩🇪</div><div class="nc-cat">Preview</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Germany vs Curaçao Preview — Win to Nil &amp; Best Bets</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Group E · Today</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="/spain-capeverde">' +
+      '<div class="nc-img"><div class="nc-img-inner fantasy" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🇪🇸</div><div class="nc-cat">Preview</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Spain vs Cape Verde Preview — Clean Sheet Value &amp; Picks</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Group H · Jun 15</span></div></div></a>';
   }
 
   function tryFetch(sourceIndex) {
