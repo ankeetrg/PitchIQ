@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#071D36"/>
+  <title>World Cup 2026 Group Stage Standings — All 16 Groups | PitchIQ</title>
+  <meta name="description" content="Live World Cup 2026 group standings. All 16 groups, updated results, and a qualification tracker for the 48-team tournament."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://getpitchiq.net/standings"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="PitchIQ"/>
+  <meta property="og:url" content="https://getpitchiq.net/standings"/>
+  <meta property="og:title" content="World Cup 2026 Group Stage Standings — All 16 Groups"/>
+  <meta property="og:description" content="Live World Cup 2026 group standings. All 16 groups, updated results, and a qualification tracker for the 48-team tournament."/>
+  <meta property="og:image" content="https://getpitchiq.net/pitchiq-banner.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@getpitchiq"/>
+  <meta name="twitter:creator" content="@getpitchiq"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23071D36'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='20' fill='%2300963F'>P</text></svg>" type="image/svg+xml"/>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"World Cup 2026 Group Stage Standings","url":"https://getpitchiq.net/standings","description":"Live World Cup 2026 group standings. All 16 groups, updated results, and a qualification tracker for the 48-team tournament."}
+  </script>
+
+  <!-- GA4 — replace with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+  <!-- AdSense — replace with your publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --nav: #071D36; --grn: #00963F; --grn-h: #007A32; --gold: #D97706;
+      --blue: #1D4ED8; --red: #DC2626;
+      --bg: #EEF1F6; --surf: #fff; --t1: #0F1923; --t2: #3C5168; --t3: #7C92A8;
+      --b1: #E2E8F0; --b2: #C8D5E0; --r: 6px; --r2: 12px;
+      --sh: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.05);
+      --sh-md: 0 2px 8px rgba(0,0,0,.09), 0 8px 24px rgba(0,0,0,.06);
+      --sans: 'Inter', system-ui, sans-serif;
+      --cond: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--t1); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .w { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+    /* NAV */
+    .nav { background: var(--nav); height: 56px; display: flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,.25); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { font-family: var(--cond); font-size: 22px; font-weight: 900; color: #fff; }
+    .nav-logo span { color: var(--grn); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.65); padding: 6px 12px; border-radius: var(--r); transition: color .15s, background .15s; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .nav-links a.active { color: #fff; }
+    .btn-pro { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: var(--grn); color: #fff; padding: 7px 14px; border-radius: var(--r); transition: background .15s; white-space: nowrap; }
+    .btn-pro:hover { background: var(--grn-h); }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 12px 0; font-size: 12px; color: var(--t3); }
+    .breadcrumb a { color: var(--t3); }
+    .breadcrumb a:hover { color: var(--grn); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* HERO */
+    .hero { background: var(--nav); padding: 32px 0 30px; margin-bottom: 24px; }
+    .hero-badge { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grn); margin-bottom: 12px; }
+    .hero-title { font-family: var(--cond); font-size: 40px; font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,.72); line-height: 1.6; max-width: 760px; }
+    .hero-sub strong { color: #fff; font-weight: 600; }
+    .hero-note { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; }
+
+    /* TAB BAR */
+    .tabbar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
+    .tab { font-family: var(--cond); font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--t2); background: var(--surf); border: 1px solid var(--b1); border-radius: 24px; padding: 9px 18px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; box-shadow: var(--sh); }
+    .tab:hover { border-color: var(--b2); color: var(--t1); }
+    .tab.active { background: var(--nav); color: #fff; border-color: var(--nav); }
+    .tab:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
+
+    /* GROUPS GRID */
+    .groups-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    /* GROUP CARD */
+    .group-card { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); overflow: hidden; }
+    .group-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid var(--b1); background: #fbfcfe; }
+    .group-label { font-family: var(--cond); font-size: 17px; font-weight: 900; letter-spacing: .04em; color: var(--t1); }
+    .group-status { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+    .group-status.live { background: rgba(220,38,38,.1); color: var(--red); }
+    .group-status.ft { background: rgba(0,150,63,.1); color: var(--grn); }
+    .group-status.upcoming { background: var(--bg); color: var(--t3); }
+
+    /* STANDINGS TABLE */
+    .standings-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .standings-table thead th { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; color: var(--t3); text-align: center; padding: 9px 4px; border-bottom: 1px solid var(--b1); cursor: pointer; user-select: none; white-space: nowrap; transition: color .12s, background .12s; }
+    .standings-table thead th:first-child { text-align: left; padding-left: 16px; }
+    .standings-table thead th:last-child { padding-right: 16px; }
+    .standings-table thead th:hover { color: var(--t1); background: var(--bg); }
+    .standings-table thead th:focus-visible { outline: 2px solid var(--grn); outline-offset: -2px; }
+    .standings-table thead th[aria-sort="descending"], .standings-table thead th[aria-sort="ascending"] { color: var(--grn); }
+    .standings-table tbody td { padding: 10px 4px; text-align: center; border-bottom: 1px solid var(--b1); color: var(--t2); }
+    .standings-table tbody tr:last-child td { border-bottom: none; }
+    .standings-table tbody td:first-child { text-align: left; padding-left: 16px; font-weight: 600; color: var(--t1); white-space: nowrap; }
+    .standings-table tbody td:last-child { padding-right: 16px; }
+    .standings-table .team-flag { display: inline-block; width: 22px; margin-right: 7px; }
+    .standings-table .pts { font-family: var(--cond); font-size: 16px; font-weight: 900; color: var(--t1); }
+    .standings-table tbody tr.qualify td { border-left: none; }
+    .standings-table tbody tr.qualify td:first-child { border-left: 3px solid var(--grn); padding-left: 13px; }
+    .standings-table .gd-pos { color: var(--grn); }
+    .standings-table .gd-neg { color: var(--red); }
+    .team-note { font-size: 10px; color: var(--t3); font-weight: 400; display: block; margin-top: 1px; }
+    .group-caption { font-size: 11px; color: var(--t3); padding: 9px 16px 11px; font-style: italic; }
+
+    /* QUALIFY LEGEND */
+    .legend { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--t3); margin: 18px 0 4px; }
+    .legend-dot { width: 14px; height: 3px; border-radius: 2px; background: var(--grn); display: inline-block; }
+
+    /* BONUS BAR */
+    .bonus-bar { margin: 34px 0 8px; }
+    .bonus-head { font-family: var(--cond); font-size: 13px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: var(--t1); margin-bottom: 4px; }
+    .bonus-sub { font-size: 12px; color: var(--t3); margin-bottom: 14px; }
+    .bonus-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .bonus-card { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); padding: 16px; text-align: center; transition: border-color .15s, transform .15s, box-shadow .15s; }
+    .bonus-card:hover { border-color: var(--grn); transform: translateY(-2px); box-shadow: var(--sh-md); }
+    .bonus-book { font-family: var(--cond); font-size: 18px; font-weight: 900; color: var(--t1); margin-bottom: 4px; }
+    .bonus-offer { font-size: 13px; color: var(--grn); font-weight: 700; margin-bottom: 12px; }
+    .bonus-cta { display: inline-block; font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,150,63,.1); color: var(--grn); border: 1px solid rgba(0,150,63,.2); border-radius: var(--r); padding: 8px 16px; transition: background .15s, color .15s; }
+    .bonus-card:hover .bonus-cta { background: var(--grn); color: #fff; }
+    .bonus-note { font-size: 10px; color: var(--t3); margin-top: 12px; text-align: center; }
+
+    /* FOOTER */
+    .footer { background: var(--nav); color: rgba(255,255,255,.5); font-size: 11px; padding: 24px 0; margin-top: 40px; text-align: center; line-height: 1.8; }
+    .footer a { color: rgba(255,255,255,.5); text-decoration: underline; }
+    .footer a:hover { color: #fff; }
+
+    /* CS MODAL */
+    .cs-overlay { display:none; position:fixed; inset:0; z-index:2000; background:rgba(7,29,54,.75); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:20px; }
+    .cs-overlay.open { display:flex; }
+    .cs-modal { background:#fff; border-radius:var(--r2); border:1px solid var(--b1); box-shadow:0 24px 64px rgba(0,0,0,.25); max-width:440px; width:100%; overflow:hidden; animation:csIn .22s ease-out; }
+    @keyframes csIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+    .cs-head { background:var(--nav); padding:20px 24px 18px; display:flex; align-items:flex-start; justify-content:space-between; }
+    .cs-logo { font-family:var(--cond); font-size:18px; font-weight:900; color:#fff; }
+    .cs-logo span { color:var(--grn); }
+    .cs-close { background:rgba(255,255,255,.12); border:none; color:rgba(255,255,255,.7); width:28px; height:28px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .cs-close:hover { background:rgba(255,255,255,.22); }
+    .cs-body { padding:24px; }
+    .cs-eyebrow { font-family:var(--cond); font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--grn); margin-bottom:6px; }
+    .cs-title { font-family:var(--cond); font-size:22px; font-weight:900; color:var(--t1); margin-bottom:6px; }
+    .cs-sub { font-size:13px; color:var(--t2); line-height:1.5; margin-bottom:18px; }
+    .cs-form { display:flex; gap:0; margin-bottom:8px; }
+    .cs-input { flex:1; padding:10px 14px; border:1.5px solid var(--b2); border-right:none; border-radius:var(--r) 0 0 var(--r); font-size:13px; color:var(--t1); background:#f8fafc; outline:none; }
+    .cs-input:focus { border-color:var(--grn); }
+    .cs-btn { padding:10px 18px; background:var(--grn); color:#fff; font-family:var(--cond); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:0 var(--r) var(--r) 0; cursor:pointer; border:none; }
+    .cs-note { font-size:11px; color:var(--t3); text-align:center; }
+    .cs-confirm { display:none; text-align:center; padding:8px 0 4px; }
+    .cs-confirm.show { display:block; }
+    .cs-confirm-msg { font-family:var(--cond); font-size:14px; font-weight:700; color:var(--grn); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .groups-grid { grid-template-columns: 1fr; }
+      .bonus-grid { grid-template-columns: 1fr 1fr; }
+      .hero-title { font-size: 30px; }
+      .standings-table { font-size: 12px; }
+      .standings-table thead th, .standings-table tbody td { padding-left: 2px; padding-right: 2px; }
+      .standings-table thead th:first-child, .standings-table tbody td:first-child { padding-left: 12px; }
+    }
+    @media (max-width: 480px) {
+      .bonus-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/" class="active">World Cup</a>
+      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
+      <a href="#" data-cs="Betting Intelligence">Betting</a>
+    </div>
+    <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
+  </div>
+</nav>
+
+<!-- Ad slot — leaderboard below nav -->
+<div class="w" style="margin-top:16px;">
+  <div style="text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero" style="margin-top:16px;">
+  <div class="w">
+    <div class="hero-badge">⚽ FIFA World Cup 2026 · Group Stage</div>
+    <h1 class="hero-title">World Cup 2026 Group Standings</h1>
+    <p class="hero-sub"><strong>New 48-team format — 16 groups of 3.</strong> Top 2 from each group advance automatically, plus the 8 best 3rd-place finishers (32 teams reach the Round of 32).</p>
+    <div class="hero-note">🔄 WC2026 standings are updated manually during the Group Stage. Refresh for latest results.</div>
+  </div>
+</div>
+
+<div class="w" style="padding-bottom: 40px;">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a><span>›</span>
+    <a href="/">World Cup 2026</a><span>›</span>
+    Group Standings
+  </div>
+
+  <!-- Tab bar -->
+  <div class="tabbar" role="tablist" aria-label="Filter groups by region">
+    <button class="tab active" role="tab" aria-selected="true" data-filter="all">All Groups</button>
+    <button class="tab" role="tab" aria-selected="false" data-filter="americas">Americas</button>
+    <button class="tab" role="tab" aria-selected="false" data-filter="europe">Europe</button>
+    <button class="tab" role="tab" aria-selected="false" data-filter="africa-asia">Africa/Asia</button>
+  </div>
+
+  <div class="legend"><span class="legend-dot"></span> Green border = currently in a qualifying position (top 2 advance + best 3rd-place finishers).</div>
+
+  <!-- Groups grid -->
+  <div class="groups-grid" id="groupsGrid">
+
+    <!-- GROUP A -->
+    <div class="group-card" data-region="americas">
+      <div class="group-head"><span class="group-label">GROUP A</span><span class="group-status ft">✓ FT</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr class="qualify"><td><span class="team-flag">🇺🇸</span>USA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="gd-pos">+3</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr><td><span class="team-flag">🇧🇴</span>Bolivia<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP B -->
+    <div class="group-card" data-region="americas">
+      <div class="group-head"><span class="group-label">GROUP B</span><span class="group-status ft">✓ FT</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr class="qualify"><td><span class="team-flag">🇲🇽</span>Mexico</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>0</td><td class="gd-pos">+2</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><span class="team-flag">🇿🇦</span>South Africa</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td><td class="gd-neg">-2</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP C -->
+    <div class="group-card" data-region="africa-asia">
+      <div class="group-head"><span class="group-label">GROUP C</span><span class="group-status ft">✓ FT</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr class="qualify"><td><span class="team-flag">🇰🇷</span>South Korea</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>1</td><td class="gd-pos">+1</td><td class="pts">3</td></tr>
+          <tr class="qualify"><td><span class="team-flag">🇨🇿</span>Czech Republic</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td class="gd-neg">-1</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP D -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP D</span><span class="group-status ft">✓ FT</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr class="qualify"><td><span class="team-flag">🇨🇦</span>Canada</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr class="qualify"><td><span class="team-flag">🇧🇦</span>Bosnia &amp; Herzegovina</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td class="pts">1</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>TBD<span class="team-note">plays next</span></td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP E -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP E</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🇩🇪</span>Germany</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇺🇾</span>Uruguay</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇨🇼</span>Curacao</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP F -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP F</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🇳🇱</span>Netherlands</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇨🇴</span>Colombia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇪🇨</span>Ecuador</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP G -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP G</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇸🇳</span>Senegal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇸🇰</span>Slovakia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROUP H -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP H</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🇪🇸</span>Spain</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇫🇷</span>France</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🇦🇱</span>Albania</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AD: 300x250 rectangle, placed mid-grid (full-width grid cell) -->
+    <div style="grid-column:1 / -1;text-align:center;margin:6px 0;">
+      <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- GROUP I -->
+    <div class="group-card" data-region="americas">
+      <div class="group-head"><span class="group-label">GROUP I</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP J -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP J</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP K -->
+    <div class="group-card" data-region="africa-asia">
+      <div class="group-head"><span class="group-label">GROUP K</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP L -->
+    <div class="group-card" data-region="americas">
+      <div class="group-head"><span class="group-label">GROUP L</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP M -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP M</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP N -->
+    <div class="group-card" data-region="africa-asia">
+      <div class="group-head"><span class="group-label">GROUP N</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP O -->
+    <div class="group-card" data-region="europe">
+      <div class="group-head"><span class="group-label">GROUP O</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+    <!-- GROUP P -->
+    <div class="group-card" data-region="africa-asia">
+      <div class="group-head"><span class="group-label">GROUP P</span><span class="group-status upcoming">UPCOMING</span></div>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th title="Games Played">GP</th><th title="Wins">W</th><th title="Draws">D</th><th title="Losses">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Points">Pts</th></tr></thead>
+        <tbody>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+          <tr><td><span class="team-flag">🏳️</span>Team TBD</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+        </tbody>
+      </table>
+      <div class="group-caption">Fixture data loading…</div>
+    </div>
+
+  </div><!-- /groups-grid -->
+
+  <!-- Sportsbook bonus bar -->
+  <div class="bonus-bar">
+    <div class="bonus-head">⚡ Best World Cup 2026 Sportsbook Bonuses</div>
+    <div class="bonus-sub">Lock in a welcome offer before the next round of group games kicks off. 21+ · T&amp;Cs apply.</div>
+    <div class="bonus-grid">
+      <a class="bonus-card" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
+        <div class="bonus-book">DraftKings</div>
+        <div class="bonus-offer">Bet $5, Get $200</div>
+        <span class="bonus-cta">Claim Offer ↗</span>
+      </a>
+      <a class="bonus-card" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
+        <div class="bonus-book">FanDuel</div>
+        <div class="bonus-offer">$200 Bonus Bets</div>
+        <span class="bonus-cta">Claim Offer ↗</span>
+      </a>
+      <a class="bonus-card" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
+        <div class="bonus-book">BetMGM</div>
+        <div class="bonus-offer">Up to $1,500 Back</div>
+        <span class="bonus-cta">Claim Offer ↗</span>
+      </a>
+      <a class="bonus-card" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
+        <div class="bonus-book">Caesars</div>
+        <div class="bonus-offer">$1,000 First Bet</div>
+        <span class="bonus-cta">Claim Offer ↗</span>
+      </a>
+    </div>
+    <div class="bonus-note">21+ only · Gambling involves risk · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener" style="color:var(--grn)">Responsible Gambling</a></div>
+  </div>
+
+</div><!-- /w -->
+
+<!-- Ad slot — footer banner leaderboard above footer -->
+<div class="w" style="margin-bottom:24px;">
+  <div style="text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="cs-overlay" id="csOverlay" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+  <div class="cs-modal">
+    <div class="cs-head">
+      <div class="cs-logo">Pitch<span>IQ</span></div>
+      <button class="cs-close" id="csClose" aria-label="Close">✕</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-eyebrow">Coming Soon</div>
+      <div class="cs-title" id="csTitle">Building <span id="csPageName">this feature</span></div>
+      <div class="cs-sub">Interested in <strong id="csPageName2">this feature</strong>? Enter your email and we'll reach out.</div>
+      <div id="csFormWrap">
+        <div class="cs-form">
+          <label for="csEmail" class="sr-only">Email address</label>
+          <input class="cs-input" type="email" id="csEmail" placeholder="Your email address…" autocomplete="email"/>
+          <button class="cs-btn" id="csSubmit">Submit</button>
+        </div>
+        <div class="cs-note">We'll be in touch. No spam.</div>
+      </div>
+      <div class="cs-confirm" id="csConfirm">
+        <div class="cs-confirm-msg">✓ Got it — we'll reach out soon!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div style="margin-bottom:10px;">
+    <a href="https://twitter.com/getpitchiq" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 18px;color:#fff;font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;">
+      𝕏 Follow @getpitchiq for live picks &amp; match updates
+    </a>
+  </div>
+  © 2026 PitchIQ · <a href="/">getpitchiq.net</a> · Entertainment purposes only · Must be 21+ to bet · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">Responsible Gambling</a>
+</footer>
+
+<script>
+'use strict';
+
+var AFF = {
+  draftkings: '#',
+  fanduel:    '#',
+  betmgm:     '#',
+  caesars:    '#',
+};
+
+var overlay    = document.getElementById('csOverlay');
+var csClose    = document.getElementById('csClose');
+var csSubmit   = document.getElementById('csSubmit');
+var csEmail    = document.getElementById('csEmail');
+var csConfirm  = document.getElementById('csConfirm');
+var csFormWrap = document.getElementById('csFormWrap');
+var csPageName = document.getElementById('csPageName');
+var csPageName2= document.getElementById('csPageName2');
+
+function openCS(name) {
+  csPageName.textContent  = name || 'this feature';
+  csPageName2.textContent = name || 'this feature';
+  csConfirm.classList.remove('show');
+  csFormWrap.style.display = '';
+  csEmail.value = '';
+  overlay.classList.add('open');
+  setTimeout(function(){ csEmail.focus(); }, 50);
+}
+function closeCS() { overlay.classList.remove('open'); }
+
+csClose.addEventListener('click', closeCS);
+overlay.addEventListener('click', function(e){ if(e.target===overlay) closeCS(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCS(); });
+
+csSubmit.addEventListener('click', function(){
+  var email = csEmail.value.trim();
+  if(!email || !email.includes('@')){ csEmail.focus(); return; }
+  var list = JSON.parse(localStorage.getItem('pitchiq_notify')||'[]');
+  if(!list.includes(email)){ list.push(email); localStorage.setItem('pitchiq_notify', JSON.stringify(list)); }
+  csFormWrap.style.display = 'none';
+  csConfirm.classList.add('show');
+  setTimeout(closeCS, 2200);
+});
+csEmail.addEventListener('keydown', function(e){ if(e.key==='Enter') csSubmit.click(); });
+
+document.querySelectorAll('[data-cs]').forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault();
+    openCS(el.dataset.cs);
+  });
+});
+
+document.querySelectorAll('[data-aff]').forEach(function(el){
+  var url = AFF[el.dataset.aff];
+  if(url && url !== '#'){
+    el.href = url;
+  } else {
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openCS('Betting at ' + el.dataset.aff.charAt(0).toUpperCase() + el.dataset.aff.slice(1));
+    });
+  }
+});
+
+/* ===== REGION TABS ===== */
+var tabs  = document.querySelectorAll('.tab');
+var cards = document.querySelectorAll('.group-card');
+
+tabs.forEach(function(tab){
+  tab.addEventListener('click', function(){
+    var filter = tab.dataset.filter;
+    tabs.forEach(function(t){
+      var on = (t === tab);
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    cards.forEach(function(card){
+      var show = (filter === 'all') || (card.dataset.region === filter);
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+/* ===== SORTABLE COLUMNS ===== */
+function cellNumber(cell){
+  if(!cell) return -Infinity;
+  var raw = cell.textContent.replace(/[+\s]/g, '').trim();
+  if(raw === '' || raw === '—' || raw.toLowerCase() === 'tbd') return -Infinity;
+  var n = parseFloat(raw);
+  return isNaN(n) ? -Infinity : n;
+}
+
+document.querySelectorAll('.standings-table').forEach(function(table){
+  var headRow = table.querySelector('thead tr');
+  var tbody   = table.querySelector('tbody');
+  if(!headRow || !tbody) return;
+  var ths = headRow.querySelectorAll('th');
+
+  ths.forEach(function(th, colIndex){
+    // Make header keyboard-focusable for accessibility.
+    th.setAttribute('tabindex', '0');
+    th.setAttribute('role', 'button');
+
+    function doSort(){
+      // Descending for Pts/GD/GF and other numeric columns; team column (0) is non-numeric, skip.
+      if(colIndex === 0) return;
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+      var dir  = th.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+
+      rows.sort(function(a, b){
+        var av = cellNumber(a.children[colIndex]);
+        var bv = cellNumber(b.children[colIndex]);
+        return dir === 'descending' ? (bv - av) : (av - bv);
+      });
+
+      // Clear sort indicators on sibling headers in this table only.
+      ths.forEach(function(other){ if(other !== th) other.removeAttribute('aria-sort'); });
+      th.setAttribute('aria-sort', dir);
+
+      rows.forEach(function(r){ tbody.appendChild(r); });
+    }
+
+    th.addEventListener('click', doSort);
+    th.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); doSort(); }
+    });
+  });
+});
+</script>
+</body>
+</html>

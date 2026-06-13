@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#071D36"/>
+  <title>World Cup 2026 Fantasy Lineup Builder — Best Picks & Projections | PitchIQ</title>
+  <meta name="description" content="Build your World Cup 2026 fantasy lineup with AI projections. 40 top players, formation selector, auto Best XI, and differential recommendations."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://getpitchiq.net/fantasy"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="PitchIQ"/>
+  <meta property="og:url" content="https://getpitchiq.net/fantasy"/>
+  <meta property="og:title" content="World Cup 2026 Fantasy Lineup Builder — Best Picks & Projections"/>
+  <meta property="og:description" content="Build your World Cup 2026 fantasy lineup with AI projections. 40 top players, formation selector, auto Best XI, and differential recommendations."/>
+  <meta property="og:image" content="https://getpitchiq.net/pitchiq-banner.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@getpitchiq"/>
+  <meta name="twitter:creator" content="@getpitchiq"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23071D36'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='20' fill='%2300963F'>P</text></svg>" type="image/svg+xml"/>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"PitchIQ Fantasy Lineup Builder","applicationCategory":"SportsApplication","operatingSystem":"Web","description":"Build your World Cup 2026 fantasy lineup with AI projections, a formation selector, auto Best XI and differential recommendations.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+
+  <!-- GA4 — replace with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+  <!-- AdSense — replace with your publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --nav: #071D36; --grn: #00963F; --grn-h: #007A32; --gold: #D97706;
+      --blue: #1D4ED8; --red: #DC2626;
+      --bg: #EEF1F6; --surf: #fff; --t1: #0F1923; --t2: #3C5168; --t3: #7C92A8;
+      --b1: #E2E8F0; --b2: #C8D5E0; --r: 6px; --r2: 12px;
+      --sh: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.05);
+      --sh-md: 0 2px 8px rgba(0,0,0,.09), 0 8px 24px rgba(0,0,0,.06);
+      --sans: 'Inter', system-ui, sans-serif;
+      --cond: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--t1); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .w { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+    :focus-visible { outline: 3px solid var(--grn); outline-offset: 2px; border-radius: 4px; }
+
+    /* NAV */
+    .nav { background: var(--nav); height: 56px; display: flex; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,.25); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { font-family: var(--cond); font-size: 22px; font-weight: 900; color: #fff; }
+    .nav-logo span { color: var(--grn); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.65); padding: 6px 12px; border-radius: var(--r); transition: color .15s, background .15s; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .nav-links a.active { color: #fff; }
+    .btn-pro { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: var(--grn); color: #fff; padding: 7px 14px; border-radius: var(--r); transition: background .15s; white-space: nowrap; }
+    .btn-pro:hover { background: var(--grn-h); }
+
+    /* HERO */
+    .hero { background: var(--nav); padding: 32px 0 28px; margin-bottom: 24px; }
+    .hero-badge { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grn); margin-bottom: 12px; }
+    .hero-title { font-family: var(--cond); font-size: 40px; font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 8px; }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,.6); }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 12px 0; font-size: 12px; color: var(--t3); }
+    .breadcrumb a { color: var(--t3); }
+    .breadcrumb a:hover { color: var(--grn); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* CARDS */
+    .card { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); margin-bottom: 16px; overflow: hidden; }
+    .card-head { padding: 14px 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .card-title { font-family: var(--cond); font-size: 14px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t1); }
+    .card-badge { font-family: var(--cond); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; }
+    .badge-ai { background: rgba(0,150,63,.12); color: var(--grn); }
+    .badge-value { background: rgba(217,119,6,.12); color: var(--gold); }
+    .card-body { padding: 14px 18px 18px; }
+
+    /* BUILDER LAYOUT */
+    .builder-grid { display: grid; grid-template-columns: 1fr 360px; gap: 20px; align-items: start; }
+    .page-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; margin-top: 24px; }
+    @media (max-width: 768px) {
+      .builder-grid { grid-template-columns: 1fr; }
+      .page-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 30px; }
+    }
+
+    /* FORMATION SELECTOR */
+    .formation-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .formation-label { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
+    .formation-btns { display: flex; gap: 6px; }
+    .formation-btn { font-family: var(--cond); font-size: 14px; font-weight: 800; letter-spacing: .04em; padding: 7px 14px; border-radius: var(--r); border: 1.5px solid var(--b2); background: var(--surf); color: var(--t2); cursor: pointer; transition: all .15s; }
+    .formation-btn:hover { border-color: var(--grn); color: var(--grn); }
+    .formation-btn.active { background: var(--grn); border-color: var(--grn); color: #fff; }
+
+    /* PITCH */
+    .pitch { background: linear-gradient(to bottom,#2d6a1f 0%,#2d6a1f 48%,#1f5214 48%,#1f5214 52%,#2d6a1f 52%,#2d6a1f 100%); border-radius: var(--r2); position: relative; min-height: 480px; border: 2px solid rgba(255,255,255,.15); padding: 16px 8px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .pitch-markings { position: absolute; inset: 0; pointer-events: none; }
+    .pitch-markings .halfway { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(255,255,255,.18); }
+    .pitch-markings .center-circle { position: absolute; left: 50%; top: 50%; width: 110px; height: 110px; transform: translate(-50%,-50%); border: 2px solid rgba(255,255,255,.18); border-radius: 50%; }
+    .pitch-markings .center-dot { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; transform: translate(-50%,-50%); background: rgba(255,255,255,.25); border-radius: 50%; }
+    .pitch-markings .box-top { position: absolute; left: 50%; top: 0; width: 150px; height: 46px; transform: translateX(-50%); border: 2px solid rgba(255,255,255,.13); border-top: none; border-radius: 0 0 8px 8px; }
+    .pitch-markings .box-bottom { position: absolute; left: 50%; bottom: 0; width: 150px; height: 46px; transform: translateX(-50%); border: 2px solid rgba(255,255,255,.13); border-bottom: none; border-radius: 8px 8px 0 0; }
+    .pitch-row { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    /* PLAYER SLOTS */
+    .p-slot { width: 78px; min-height: 92px; border-radius: var(--r); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; transition: transform .12s, box-shadow .12s; position: relative; }
+    .p-slot.empty { background: rgba(255,255,255,.10); border: 1.5px dashed rgba(255,255,255,.4); }
+    .p-slot.empty:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.7); }
+    .p-slot-icon { font-size: 26px; font-weight: 700; color: rgba(255,255,255,.75); line-height: 1; }
+    .p-slot-label { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .08em; color: rgba(255,255,255,.7); margin-top: 6px; }
+    .p-slot.filled { background: var(--surf); border: 1.5px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.3); padding: 8px 4px; }
+    .p-slot.filled:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.35); }
+    .p-slot-flag { font-size: 24px; line-height: 1; }
+    .p-slot-name { font-family: var(--cond); font-size: 13px; font-weight: 800; color: var(--t1); margin-top: 3px; line-height: 1.05; max-width: 72px; overflow: hidden; text-overflow: ellipsis; }
+    .p-slot-pts { font-size: 10px; font-weight: 700; color: var(--grn); margin-top: 2px; }
+    .p-slot-remove { position: absolute; top: -7px; right: -7px; width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: #fff; border: 1.5px solid #fff; font-size: 13px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+    .p-slot-remove:hover { background: #b91c1c; }
+
+    /* SCORE CARD */
+    .score-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .score-cell { background: var(--bg); border: 1px solid var(--b1); border-radius: var(--r); padding: 14px; text-align: center; }
+    .score-val { font-family: var(--cond); font-size: 28px; font-weight: 900; color: var(--t1); line-height: 1; }
+    .score-val.grn { color: var(--grn); }
+    .score-val.over { color: var(--red); }
+    .score-lbl { font-size: 10px; color: var(--t3); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+    .budget-warn { display: none; margin-top: 12px; background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.25); color: var(--red); font-size: 12px; font-weight: 600; padding: 9px 12px; border-radius: var(--r); text-align: center; }
+    .budget-warn.show { display: block; }
+
+    /* ACTION BUTTONS */
+    .action-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .act-btn { flex: 1; min-width: 120px; font-family: var(--cond); font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 11px 14px; border-radius: var(--r); cursor: pointer; border: 1.5px solid var(--b2); background: var(--surf); color: var(--t1); transition: all .15s; }
+    .act-btn:hover { border-color: var(--grn); color: var(--grn); }
+    .act-btn.primary { background: var(--grn); border-color: var(--grn); color: #fff; }
+    .act-btn.primary:hover { background: var(--grn-h); border-color: var(--grn-h); color: #fff; }
+    .act-btn.share { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .act-btn.share:hover { background: #b45c05; border-color: #b45c05; color: #fff; }
+
+    /* PLAYER PANEL */
+    .panel-filters { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+    .filter-btn { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .04em; padding: 6px 12px; border-radius: 20px; border: 1.5px solid var(--b2); background: var(--surf); color: var(--t2); cursor: pointer; transition: all .15s; }
+    .filter-btn:hover { border-color: var(--grn); color: var(--grn); }
+    .filter-btn.active { background: var(--nav); border-color: var(--nav); color: #fff; }
+    .player-list { max-height: 560px; overflow-y: auto; margin: 0 -6px; padding: 0 6px; }
+    .player-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 9px 8px; border: 1px solid transparent; border-bottom: 1px solid var(--b1); background: none; cursor: pointer; transition: background .12s, border-color .12s; border-radius: var(--r); }
+    .player-row:hover:not(:disabled) { background: var(--bg); }
+    .player-row:disabled { opacity: .42; cursor: not-allowed; }
+    .player-row.selected { background: rgba(0,150,63,.08); }
+    .pr-flag { font-size: 22px; line-height: 1; flex-shrink: 0; }
+    .pr-info { flex: 1; min-width: 0; }
+    .pr-name { font-size: 13px; font-weight: 700; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pr-meta { font-size: 11px; color: var(--t3); }
+    .pr-pos { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .06em; padding: 2px 6px; border-radius: 10px; flex-shrink: 0; }
+    .pos-FWD { background: rgba(220,38,38,.1); color: var(--red); }
+    .pos-MID { background: rgba(29,78,216,.1); color: var(--blue); }
+    .pos-DEF { background: rgba(217,119,6,.12); color: var(--gold); }
+    .pos-GK { background: rgba(0,150,63,.12); color: var(--grn); }
+    .pr-stats { text-align: right; flex-shrink: 0; }
+    .pr-pts { font-family: var(--cond); font-size: 16px; font-weight: 900; color: var(--grn); line-height: 1; }
+    .pr-sub { font-size: 10px; color: var(--t3); margin-top: 2px; }
+    .pr-price { font-family: var(--cond); font-size: 13px; font-weight: 800; color: var(--t1); white-space: nowrap; }
+    .panel-empty { text-align: center; font-size: 12px; color: var(--t3); padding: 24px 0; }
+
+    /* DIFFERENTIALS */
+    .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 768px) { .diff-grid { grid-template-columns: 1fr; } .score-card { grid-template-columns: 1fr; } }
+    .diff-card { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); padding: 16px; }
+    .diff-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .diff-flag { font-size: 30px; line-height: 1; }
+    .diff-name { font-family: var(--cond); font-size: 17px; font-weight: 900; color: var(--t1); }
+    .diff-pos { font-size: 11px; color: var(--t3); }
+    .diff-stats { display: flex; gap: 14px; margin-bottom: 10px; }
+    .diff-stat-val { font-family: var(--cond); font-size: 18px; font-weight: 900; color: var(--grn); }
+    .diff-stat-lbl { font-size: 10px; color: var(--t3); text-transform: uppercase; letter-spacing: .05em; }
+    .diff-stat .diff-stat-val.own { color: var(--gold); }
+    .diff-note { font-size: 13px; color: var(--t2); line-height: 1.55; }
+
+    /* SIDEBAR */
+    .sidebar-card { background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); margin-bottom: 16px; overflow: hidden; }
+    .sc-head { background: var(--nav); padding: 12px 16px; font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+    .sc-body { padding: 14px 16px; }
+    .sb-book-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--b1); text-decoration: none; transition: background .12s; margin: 0 -16px; padding: 9px 16px; }
+    .sb-book-row:last-child { border-bottom: none; }
+    .sb-book-row:hover { background: var(--bg); }
+    .sb-book-name { font-size: 13px; font-weight: 700; color: var(--t1); }
+    .sb-book-bonus { font-size: 11px; color: var(--grn); font-weight: 600; }
+    .sb-book-odds { font-family: var(--cond); font-size: 16px; font-weight: 900; color: var(--t1); }
+
+    /* BONUS BAR */
+    .bonus-bar { background: linear-gradient(90deg, rgba(217,119,6,.10), rgba(0,150,63,.10)); border: 1px solid rgba(217,119,6,.22); border-radius: var(--r2); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+    .bonus-text { font-size: 13px; color: var(--t2); }
+    .bonus-text strong { color: var(--t1); }
+    .bonus-cta { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; background: var(--gold); color: #fff; padding: 9px 16px; border-radius: var(--r); white-space: nowrap; transition: background .15s; }
+    .bonus-cta:hover { background: #b45c05; }
+
+    /* FOOTER */
+    .footer { background: var(--nav); color: rgba(255,255,255,.5); font-size: 11px; padding: 24px 0; margin-top: 40px; text-align: center; line-height: 1.8; }
+    .footer a { color: rgba(255,255,255,.5); text-decoration: underline; }
+    .footer a:hover { color: #fff; }
+
+    /* CS MODAL */
+    .cs-overlay { display:none; position:fixed; inset:0; z-index:2000; background:rgba(7,29,54,.75); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:20px; }
+    .cs-overlay.open { display:flex; }
+    .cs-modal { background:#fff; border-radius:var(--r2); border:1px solid var(--b1); box-shadow:0 24px 64px rgba(0,0,0,.25); max-width:440px; width:100%; overflow:hidden; animation:csIn .22s ease-out; }
+    @keyframes csIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+    .cs-head { background:var(--nav); padding:20px 24px 18px; display:flex; align-items:flex-start; justify-content:space-between; }
+    .cs-logo { font-family:var(--cond); font-size:18px; font-weight:900; color:#fff; }
+    .cs-logo span { color:var(--grn); }
+    .cs-close { background:rgba(255,255,255,.12); border:none; color:rgba(255,255,255,.7); width:28px; height:28px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .cs-close:hover { background:rgba(255,255,255,.22); }
+    .cs-body { padding:24px; }
+    .cs-eyebrow { font-family:var(--cond); font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--grn); margin-bottom:6px; }
+    .cs-title { font-family:var(--cond); font-size:22px; font-weight:900; color:var(--t1); margin-bottom:6px; }
+    .cs-sub { font-size:13px; color:var(--t2); line-height:1.5; margin-bottom:18px; }
+    .cs-form { display:flex; gap:0; margin-bottom:8px; }
+    .cs-input { flex:1; padding:10px 14px; border:1.5px solid var(--b2); border-right:none; border-radius:var(--r) 0 0 var(--r); font-size:13px; color:var(--t1); background:#f8fafc; outline:none; }
+    .cs-input:focus { border-color:var(--grn); }
+    .cs-btn { padding:10px 18px; background:var(--grn); color:#fff; font-family:var(--cond); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:0 var(--r) var(--r) 0; cursor:pointer; border:none; }
+    .cs-note { font-size:11px; color:var(--t3); text-align:center; }
+    .cs-confirm { display:none; text-align:center; padding:8px 0 4px; }
+    .cs-confirm.show { display:block; }
+    .cs-confirm-msg { font-family:var(--cond); font-size:14px; font-weight:700; color:var(--grn); }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/">World Cup</a>
+      <a href="/fantasy" class="active" aria-current="page">Fantasy</a>
+      <a href="#" data-cs="Betting Intelligence">Betting</a>
+    </div>
+    <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
+  </div>
+</nav>
+
+<!-- Ad slot — leaderboard below nav -->
+<div class="w" style="text-align:center;margin:16px auto 0;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="w">
+    <div class="hero-badge">⚽ FIFA World Cup 2026 · Fantasy Tool</div>
+    <h1 class="hero-title">Fantasy Lineup Builder</h1>
+    <div class="hero-sub">Build your WC2026 squad · 40 players · AI projections</div>
+  </div>
+</div>
+
+<div class="w" style="padding-bottom: 40px;">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a><span>›</span>
+    <a href="/">World Cup 2026</a><span>›</span>
+    Fantasy Lineup Builder
+  </div>
+
+  <!-- Builder -->
+  <div class="builder-grid">
+
+    <!-- LEFT: Pitch + score + actions -->
+    <div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">⚽ Your Starting XI</div>
+          <div class="card-badge badge-ai">AI PROJECTIONS</div>
+        </div>
+        <div class="card-body">
+          <div class="formation-bar">
+            <span class="formation-label">Formation</span>
+            <div class="formation-btns" id="formationBtns" role="group" aria-label="Choose formation">
+              <button class="formation-btn active" type="button" data-formation="4-3-3" aria-pressed="true">4-3-3</button>
+              <button class="formation-btn" type="button" data-formation="4-4-2" aria-pressed="false">4-4-2</button>
+              <button class="formation-btn" type="button" data-formation="3-4-3" aria-pressed="false">3-4-3</button>
+            </div>
+          </div>
+
+          <div class="pitch" id="pitch">
+            <div class="pitch-markings" aria-hidden="true">
+              <div class="box-top"></div>
+              <div class="box-bottom"></div>
+              <div class="halfway"></div>
+              <div class="center-circle"></div>
+              <div class="center-dot"></div>
+            </div>
+            <div class="pitch-row" id="row-FWD"></div>
+            <div class="pitch-row" id="row-MID"></div>
+            <div class="pitch-row" id="row-DEF"></div>
+            <div class="pitch-row" id="row-GK"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score card -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">📊 Lineup Summary</div>
+        </div>
+        <div class="card-body">
+          <div class="score-card">
+            <div class="score-cell">
+              <div class="score-val grn" id="totalPts">0</div>
+              <div class="score-lbl">Total Proj. Points</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-val" id="budgetUsed">0</div>
+              <div class="score-lbl">Budget Used</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-val" id="budgetLeft">100</div>
+              <div class="score-lbl">Budget Remaining</div>
+            </div>
+          </div>
+          <div class="budget-warn" id="budgetWarn">⚠ Over budget! Your squad costs more than 100 credits — swap in cheaper players.</div>
+
+          <div class="action-bar">
+            <button class="act-btn primary" type="button" id="autoBtn">⚡ Auto Best XI</button>
+            <button class="act-btn" type="button" id="clearBtn">Clear Lineup</button>
+            <button class="act-btn share" type="button" id="shareBtn">Share Lineup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Player panel -->
+    <div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">👥 Player Pool</div>
+          <div class="card-badge badge-value" id="poolCount">40 players</div>
+        </div>
+        <div class="card-body">
+          <div class="panel-filters" id="filterBtns" role="group" aria-label="Filter players by position">
+            <button class="filter-btn active" type="button" data-filter="ALL" aria-pressed="true">All</button>
+            <button class="filter-btn" type="button" data-filter="FWD" aria-pressed="false">FWD</button>
+            <button class="filter-btn" type="button" data-filter="MID" aria-pressed="false">MID</button>
+            <button class="filter-btn" type="button" data-filter="DEF" aria-pressed="false">DEF</button>
+            <button class="filter-btn" type="button" data-filter="GK" aria-pressed="false">GK</button>
+          </div>
+          <div class="player-list" id="playerList"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /builder-grid -->
+
+  <!-- Top Differentials -->
+  <div class="card" style="margin-top:24px;background:transparent;border:none;box-shadow:none;overflow:visible;">
+    <div class="card-head" style="padding:0 0 14px;">
+      <div class="card-title" style="font-size:18px;">🎯 Top Differentials</div>
+      <div class="card-badge badge-ai">LOW-OWNED EDGE</div>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-top">
+          <div class="diff-flag">🇯🇵</div>
+          <div>
+            <div class="diff-name">Takefusa Kubo</div>
+            <div class="diff-pos">MID · Japan</div>
+          </div>
+        </div>
+        <div class="diff-stats">
+          <div class="diff-stat"><div class="diff-stat-val">30</div><div class="diff-stat-lbl">Proj. Pts</div></div>
+          <div class="diff-stat"><div class="diff-stat-val own">8%</div><div class="diff-stat-lbl">Owned</div></div>
+        </div>
+        <div class="diff-note">Kubo is the most dangerous player in Group F that nobody is picking. Elite dribbler in tight spaces.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-top">
+          <div class="diff-flag">🇪🇨</div>
+          <div>
+            <div class="diff-name">Moisés Caicedo</div>
+            <div class="diff-pos">MID · Ecuador</div>
+          </div>
+        </div>
+        <div class="diff-stats">
+          <div class="diff-stat"><div class="diff-stat-val">28</div><div class="diff-stat-lbl">Proj. Pts</div></div>
+          <div class="diff-stat"><div class="diff-stat-val own">8%</div><div class="diff-stat-lbl">Owned</div></div>
+        </div>
+        <div class="diff-note">Chelsea's $115M man controls midfield. Under-owned relative to his floor.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-top">
+          <div class="diff-flag">🇨🇴</div>
+          <div>
+            <div class="diff-name">Luis Díaz</div>
+            <div class="diff-pos">FWD · Colombia</div>
+          </div>
+        </div>
+        <div class="diff-stats">
+          <div class="diff-stat"><div class="diff-stat-val">34</div><div class="diff-stat-lbl">Proj. Pts</div></div>
+          <div class="diff-stat"><div class="diff-stat-val own">12%</div><div class="diff-stat-lbl">Owned</div></div>
+        </div>
+        <div class="diff-note">One of the most explosive wide forwards in the tournament. Criminally under-owned.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sportsbook sidebar/bonus + rectangle ad -->
+  <div class="page-grid">
+    <div>
+      <div class="bonus-bar">
+        <div class="bonus-text"><strong>Turn your fantasy edge into real value.</strong> New users get up to $200 in bonus bets at DraftKings — 21+.</div>
+        <a class="bonus-cta" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">Claim $200 →</a>
+      </div>
+
+      <div class="sidebar-card" style="margin-bottom:0;">
+        <div class="sc-head">Best Sportsbook Bonuses · World Cup 2026</div>
+        <div class="sc-body">
+          <a class="sb-book-row" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
+            <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
+            <div class="sb-book-odds">→</div>
+          </a>
+          <a class="sb-book-row" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
+            <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
+            <div class="sb-book-odds">→</div>
+          </a>
+          <a class="sb-book-row" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
+            <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
+            <div class="sb-book-odds">→</div>
+          </a>
+          <a class="sb-book-row" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
+            <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
+            <div class="sb-book-odds">→</div>
+          </a>
+          <div style="font-size:10px;color:var(--t3);margin-top:10px;">21+ only · T&Cs apply · Odds subject to change · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener" style="color:var(--grn)">Responsible Gambling</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar 300x250 rectangle ad -->
+    <div>
+      <div style="text-align:center;">
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /w -->
+
+<!-- Ad slot — footer banner leaderboard above footer -->
+<div class="w" style="text-align:center;margin:0 auto 20px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="cs-overlay" id="csOverlay" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+  <div class="cs-modal">
+    <div class="cs-head">
+      <div class="cs-logo">Pitch<span>IQ</span></div>
+      <button class="cs-close" id="csClose" aria-label="Close">✕</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-eyebrow">Coming Soon</div>
+      <div class="cs-title" id="csTitle">Building <span id="csPageName">this feature</span></div>
+      <div class="cs-sub">Interested in <strong id="csPageName2">this feature</strong>? Enter your email and we'll reach out.</div>
+      <div id="csFormWrap">
+        <div class="cs-form">
+          <label for="csEmail" class="sr-only">Email address</label>
+          <input class="cs-input" type="email" id="csEmail" placeholder="Your email address…" autocomplete="email"/>
+          <button class="cs-btn" id="csSubmit">Submit</button>
+        </div>
+        <div class="cs-note">We'll be in touch. No spam.</div>
+      </div>
+      <div class="cs-confirm" id="csConfirm">
+        <div class="cs-confirm-msg">✓ Got it — we'll reach out soon!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div style="margin-bottom:10px;">
+    <a href="https://twitter.com/getpitchiq" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 18px;color:#fff;font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;">
+      𝕏 Follow @getpitchiq for live picks &amp; match updates
+    </a>
+  </div>
+  © 2026 PitchIQ · <a href="/">getpitchiq.net</a> · Entertainment purposes only · Must be 21+ to bet · <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">Responsible Gambling</a>
+</footer>
+
+<script>
+'use strict';
+
+var AFF = {
+  draftkings: '#',
+  fanduel:    '#',
+  betmgm:     '#',
+  caesars:    '#',
+};
+
+/* ---------- Coming Soon modal ---------- */
+var overlay    = document.getElementById('csOverlay');
+var csClose    = document.getElementById('csClose');
+var csSubmit   = document.getElementById('csSubmit');
+var csEmail    = document.getElementById('csEmail');
+var csConfirm  = document.getElementById('csConfirm');
+var csFormWrap = document.getElementById('csFormWrap');
+var csPageName = document.getElementById('csPageName');
+var csPageName2= document.getElementById('csPageName2');
+
+function openCS(name) {
+  if (!overlay) return;
+  if (csPageName)  csPageName.textContent  = name || 'this feature';
+  if (csPageName2) csPageName2.textContent = name || 'this feature';
+  if (csConfirm)  csConfirm.classList.remove('show');
+  if (csFormWrap) csFormWrap.style.display = '';
+  if (csEmail)    csEmail.value = '';
+  overlay.classList.add('open');
+  setTimeout(function(){ if (csEmail) csEmail.focus(); }, 50);
+}
+function closeCS() { if (overlay) overlay.classList.remove('open'); }
+
+if (csClose)  csClose.addEventListener('click', closeCS);
+if (overlay)  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeCS(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCS(); });
+
+if (csSubmit) csSubmit.addEventListener('click', function(){
+  var email = csEmail ? csEmail.value.trim() : '';
+  if(!email || !email.includes('@')){ if (csEmail) csEmail.focus(); return; }
+  var list = JSON.parse(localStorage.getItem('pitchiq_notify')||'[]');
+  if(!list.includes(email)){ list.push(email); localStorage.setItem('pitchiq_notify', JSON.stringify(list)); }
+  if (csFormWrap) csFormWrap.style.display = 'none';
+  if (csConfirm)  csConfirm.classList.add('show');
+  setTimeout(closeCS, 2200);
+});
+if (csEmail) csEmail.addEventListener('keydown', function(e){ if(e.key==='Enter') csSubmit.click(); });
+
+document.querySelectorAll('[data-cs]').forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault();
+    openCS(el.dataset.cs);
+  });
+});
+
+document.querySelectorAll('[data-aff]').forEach(function(el){
+  var url = AFF[el.dataset.aff];
+  if(url && url !== '#'){
+    el.href = url;
+  } else {
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openCS('Betting at ' + el.dataset.aff.charAt(0).toUpperCase() + el.dataset.aff.slice(1));
+    });
+  }
+});
+
+/* ---------- Fantasy Lineup Builder ---------- */
+const PLAYERS = [
+  {id:1,name:"Kylian Mbappé",team:"FRA",flag:"🇫🇷",pos:"FWD",pts:45,own:"32%",price:12},
+  {id:2,name:"Lionel Messi",team:"ARG",flag:"🇦🇷",pos:"FWD",pts:48,own:"38%",price:12},
+  {id:3,name:"Erling Haaland",team:"NOR",flag:"🇳🇴",pos:"FWD",pts:44,own:"29%",price:12},
+  {id:4,name:"Vinicius Jr.",team:"BRA",flag:"🇧🇷",pos:"FWD",pts:42,own:"26%",price:11},
+  {id:5,name:"Lamine Yamal",team:"ESP",flag:"🇪🇸",pos:"FWD",pts:40,own:"24%",price:11},
+  {id:6,name:"Julián Álvarez",team:"ARG",flag:"🇦🇷",pos:"FWD",pts:40,own:"28%",price:10},
+  {id:7,name:"Harry Kane",team:"ENG",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",pos:"FWD",pts:36,own:"22%",price:10},
+  {id:8,name:"Jamal Musiala",team:"GER",flag:"🇩🇪",pos:"FWD",pts:38,own:"22%",price:10},
+  {id:9,name:"Cody Gakpo",team:"NED",flag:"🇳🇱",pos:"FWD",pts:36,own:"16%",price:10},
+  {id:10,name:"Dušan Vlahović",team:"SRB",flag:"🇷🇸",pos:"FWD",pts:34,own:"14%",price:9},
+  {id:11,name:"Luis Díaz",team:"COL",flag:"🇨🇴",pos:"FWD",pts:34,own:"12%",price:9},
+  {id:12,name:"Rodrygo",team:"BRA",flag:"🇧🇷",pos:"FWD",pts:34,own:"13%",price:9},
+  {id:13,name:"Mikel Oyarzabal",team:"ESP",flag:"🇪🇸",pos:"FWD",pts:32,own:"16%",price:9},
+  {id:14,name:"Darwin Núñez",team:"URU",flag:"🇺🇾",pos:"FWD",pts:32,own:"13%",price:9},
+  {id:15,name:"Kai Havertz",team:"GER",flag:"🇩🇪",pos:"FWD",pts:31,own:"14%",price:9},
+  {id:16,name:"Jude Bellingham",team:"ENG",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",pos:"MID",pts:38,own:"19%",price:11},
+  {id:17,name:"Phil Foden",team:"ENG",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",pos:"MID",pts:34,own:"17%",price:10},
+  {id:18,name:"Pedri",team:"ESP",flag:"🇪🇸",pos:"MID",pts:34,own:"19%",price:10},
+  {id:19,name:"Florian Wirtz",team:"GER",flag:"🇩🇪",pos:"MID",pts:34,own:"18%",price:10},
+  {id:20,name:"James Rodríguez",team:"COL",flag:"🇨🇴",pos:"MID",pts:30,own:"10%",price:9},
+  {id:21,name:"Hakim Ziyech",team:"MAR",flag:"🇲🇦",pos:"MID",pts:29,own:"11%",price:9},
+  {id:22,name:"Enzo Fernández",team:"ARG",flag:"🇦🇷",pos:"MID",pts:30,own:"16%",price:9},
+  {id:23,name:"Takefusa Kubo",team:"JPN",flag:"🇯🇵",pos:"MID",pts:30,own:"8%",price:8},
+  {id:24,name:"Federico Valverde",team:"URU",flag:"🇺🇾",pos:"MID",pts:28,own:"10%",price:9},
+  {id:25,name:"Rodri",team:"ESP",flag:"🇪🇸",pos:"MID",pts:28,own:"12%",price:9},
+  {id:26,name:"Moisés Caicedo",team:"ECU",flag:"🇪🇨",pos:"MID",pts:28,own:"8%",price:8},
+  {id:27,name:"Tijjani Reijnders",team:"NED",flag:"🇳🇱",pos:"MID",pts:26,own:"9%",price:8},
+  {id:28,name:"Sergej M-Savić",team:"SRB",flag:"🇷🇸",pos:"MID",pts:26,own:"9%",price:8},
+  {id:29,name:"Sadio Mané",team:"SEN",flag:"🇸🇳",pos:"MID",pts:26,own:"7%",price:8},
+  {id:30,name:"N'Golo Kanté",team:"FRA",flag:"🇫🇷",pos:"MID",pts:24,own:"9%",price:8},
+  {id:31,name:"Bukayo Saka",team:"ENG",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",pos:"DEF",pts:34,own:"21%",price:10},
+  {id:32,name:"Achraf Hakimi",team:"MAR",flag:"🇲🇦",pos:"DEF",pts:22,own:"8%",price:7},
+  {id:33,name:"Marquinhos",team:"BRA",flag:"🇧🇷",pos:"DEF",pts:24,own:"9%",price:7},
+  {id:34,name:"Virgil van Dijk",team:"NED",flag:"🇳🇱",pos:"DEF",pts:22,own:"11%",price:7},
+  {id:35,name:"Kalidou Koulibaly",team:"SEN",flag:"🇸🇳",pos:"DEF",pts:20,own:"6%",price:7},
+  {id:36,name:"Pervis Estupiñán",team:"ECU",flag:"🇪🇨",pos:"DEF",pts:20,own:"6%",price:6},
+  {id:37,name:"Emiliano Martínez",team:"ARG",flag:"🇦🇷",pos:"GK",pts:22,own:"11%",price:6},
+  {id:38,name:"Yassine Bounou",team:"MAR",flag:"🇲🇦",pos:"GK",pts:21,own:"8%",price:6},
+  {id:39,name:"Unai Simón",team:"ESP",flag:"🇪🇸",pos:"GK",pts:20,own:"10%",price:6},
+  {id:40,name:"Jordan Pickford",team:"ENG",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",pos:"GK",pts:18,own:"9%",price:6},
+  {id:41,name:"Manuel Neuer",team:"GER",flag:"🇩🇪",pos:"GK",pts:18,own:"7%",price:6},
+];
+
+var BUDGET = 100;
+var POS_ORDER = ['FWD', 'MID', 'DEF', 'GK']; // rows top -> bottom (attack at top)
+
+var FORMATIONS = {
+  '4-3-3': { GK:1, DEF:4, MID:3, FWD:3 },
+  '4-4-2': { GK:1, DEF:4, MID:4, FWD:2 },
+  '3-4-3': { GK:1, DEF:3, MID:4, FWD:3 },
+};
+
+// state.slots[pos] = array of length = slotCount, holding player ids or null
+var state = {
+  formation: '4-3-3',
+  filter: 'ALL',
+  slots: {},
+};
+
+function playerById(id) {
+  for (var i = 0; i < PLAYERS.length; i++) {
+    if (PLAYERS[i].id === id) return PLAYERS[i];
+  }
+  return null;
+}
+
+function shortName(name) {
+  var parts = String(name).trim().split(/\s+/);
+  return parts[parts.length - 1];
+}
+
+function selectedIds() {
+  var ids = [];
+  for (var p = 0; p < POS_ORDER.length; p++) {
+    var arr = state.slots[POS_ORDER[p]] || [];
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] != null) ids.push(arr[i]);
+    }
+  }
+  return ids;
+}
+
+function isSelected(id) {
+  return selectedIds().indexOf(id) !== -1;
+}
+
+function buildEmptySlots(formation) {
+  var counts = FORMATIONS[formation] || FORMATIONS['4-3-3'];
+  var slots = {};
+  for (var p = 0; p < POS_ORDER.length; p++) {
+    var pos = POS_ORDER[p];
+    var n = counts[pos] || 0;
+    var arr = [];
+    for (var i = 0; i < n; i++) arr.push(null);
+    slots[pos] = arr;
+  }
+  return slots;
+}
+
+// Re-map an existing lineup into a new formation, preserving picked players
+// where there's still room for that position; drop extras gracefully.
+function setFormation(formation) {
+  if (!FORMATIONS[formation]) return;
+  var prev = state.slots;
+  var next = buildEmptySlots(formation);
+  for (var p = 0; p < POS_ORDER.length; p++) {
+    var pos = POS_ORDER[p];
+    var prevArr = (prev && prev[pos]) ? prev[pos] : [];
+    var kept = [];
+    for (var i = 0; i < prevArr.length; i++) {
+      if (prevArr[i] != null) kept.push(prevArr[i]);
+    }
+    for (var k = 0; k < kept.length && k < next[pos].length; k++) {
+      next[pos][k] = kept[k];
+    }
+  }
+  state.formation = formation;
+  state.slots = next;
+  renderAll();
+}
+
+function totals() {
+  var pts = 0, price = 0;
+  var ids = selectedIds();
+  for (var i = 0; i < ids.length; i++) {
+    var pl = playerById(ids[i]);
+    if (pl) { pts += pl.pts; price += pl.price; }
+  }
+  return { pts: pts, price: price };
+}
+
+/* ---------- Player actions ---------- */
+function addPlayer(id) {
+  var pl = playerById(id);
+  if (!pl) return;
+  if (isSelected(id)) return;                 // already picked
+  var arr = state.slots[pl.pos];
+  if (!arr) return;
+  var emptyIdx = arr.indexOf(null);
+  if (emptyIdx === -1) return;                // no empty slot for this position
+  // budget guard: only block when it would push over budget
+  var t = totals();
+  if (t.price + pl.price > BUDGET) {
+    // still allow the pick but it will be flagged red; per spec clicking honors
+    // "budget allows" — we block manual over-budget picks here.
+    flashBudget();
+    return;
+  }
+  arr[emptyIdx] = id;
+  renderAll();
+}
+
+function removePlayer(id) {
+  for (var p = 0; p < POS_ORDER.length; p++) {
+    var arr = state.slots[POS_ORDER[p]];
+    if (!arr) continue;
+    var idx = arr.indexOf(id);
+    if (idx !== -1) { arr[idx] = null; renderAll(); return; }
+  }
+}
+
+function togglePlayer(id) {
+  if (isSelected(id)) removePlayer(id);
+  else addPlayer(id);
+}
+
+function clearLineup() {
+  state.slots = buildEmptySlots(state.formation);
+  renderAll();
+}
+
+// Auto Best XI: clear, then greedily fill GK -> DEF -> MID -> FWD with the
+// highest-pts available players for each position (ignores budget per spec).
+function autoBestXI() {
+  state.slots = buildEmptySlots(state.formation);
+  var fillOrder = ['GK', 'DEF', 'MID', 'FWD'];
+  var used = {};
+  for (var f = 0; f < fillOrder.length; f++) {
+    var pos = fillOrder[f];
+    var arr = state.slots[pos];
+    if (!arr || !arr.length) continue;
+    var pool = PLAYERS.filter(function(pl){ return pl.pos === pos && !used[pl.id]; });
+    pool.sort(function(a, b){ return b.pts - a.pts; });
+    for (var s = 0; s < arr.length && s < pool.length; s++) {
+      arr[s] = pool[s].id;
+      used[pool[s].id] = true;
+    }
+  }
+  renderAll();
+}
+
+/* ---------- Rendering ---------- */
+function flashBudget() {
+  var warn = document.getElementById('budgetWarn');
+  if (!warn) return;
+  warn.classList.add('show');
+  warn.textContent = '⚠ Not enough budget for that pick — you have 100 credits. Remove a player or pick a cheaper option.';
+}
+
+function renderPitch() {
+  for (var p = 0; p < POS_ORDER.length; p++) {
+    var pos = POS_ORDER[p];
+    var row = document.getElementById('row-' + pos);
+    if (!row) continue;
+    var arr = state.slots[pos] || [];
+    var html = '';
+    for (var i = 0; i < arr.length; i++) {
+      var id = arr[i];
+      if (id == null) {
+        html += '<div class="p-slot empty" data-pos="' + pos + '" role="button" tabindex="0" aria-label="Empty ' + pos + ' slot — add a player">' +
+                  '<div class="p-slot-icon">+</div>' +
+                  '<div class="p-slot-label">' + pos + '</div>' +
+                '</div>';
+      } else {
+        var pl = playerById(id);
+        if (!pl) {
+          html += '<div class="p-slot empty" data-pos="' + pos + '"><div class="p-slot-icon">+</div><div class="p-slot-label">' + pos + '</div></div>';
+          continue;
+        }
+        html += '<div class="p-slot filled" data-remove="' + pl.id + '" tabindex="0" aria-label="' + pl.name + ', ' + pl.pos + ', ' + pl.pts + ' points — remove">' +
+                  '<button class="p-slot-remove" type="button" data-remove="' + pl.id + '" aria-label="Remove ' + pl.name + '">×</button>' +
+                  '<div class="p-slot-flag">' + pl.flag + '</div>' +
+                  '<div class="p-slot-name">' + shortName(pl.name) + '</div>' +
+                  '<div class="p-slot-pts">' + pl.pts + ' pts</div>' +
+                '</div>';
+      }
+    }
+    row.innerHTML = html;
+  }
+}
+
+function renderPanel() {
+  var list = document.getElementById('playerList');
+  if (!list) return;
+  var filter = state.filter;
+  var rows = PLAYERS.filter(function(pl){ return filter === 'ALL' || pl.pos === filter; });
+  rows.sort(function(a, b){ return b.pts - a.pts; });
+
+  if (!rows.length) {
+    list.innerHTML = '<div class="panel-empty">No players for this filter.</div>';
+    return;
+  }
+
+  var counts = FORMATIONS[state.formation];
+  var html = '';
+  for (var i = 0; i < rows.length; i++) {
+    var pl = rows[i];
+    var sel = isSelected(pl.id);
+    var arr = state.slots[pl.pos] || [];
+    var posFull = arr.indexOf(null) === -1;
+    // disabled when already selected, or position is full (and not selected)
+    var disabled = sel || posFull;
+    var t = totals();
+    var overBudget = (!sel) && (t.price + pl.price > BUDGET);
+    var reallyDisabled = disabled || overBudget;
+    var aria = sel ? 'Selected — click to remove ' + pl.name
+                   : (posFull ? pl.pos + ' positions are full' : 'Add ' + pl.name);
+    html += '<button class="player-row' + (sel ? ' selected' : '') + '" type="button" data-id="' + pl.id + '"' +
+              (reallyDisabled && !sel ? ' disabled' : '') +
+              ' aria-pressed="' + (sel ? 'true' : 'false') + '" aria-label="' + aria + '">' +
+              '<span class="pr-flag">' + pl.flag + '</span>' +
+              '<span class="pr-pos pos-' + pl.pos + '">' + pl.pos + '</span>' +
+              '<span class="pr-info">' +
+                '<span class="pr-name">' + pl.name + '</span>' +
+                '<span class="pr-meta">' + pl.team + ' · ' + pl.own + ' owned</span>' +
+              '</span>' +
+              '<span class="pr-stats">' +
+                '<span class="pr-pts">' + pl.pts + '</span>' +
+                '<span class="pr-sub">pts · ' + pl.price + ' cr</span>' +
+              '</span>' +
+            '</button>';
+  }
+  list.innerHTML = html;
+}
+
+function renderScore() {
+  var t = totals();
+  var totalPts   = document.getElementById('totalPts');
+  var budgetUsed = document.getElementById('budgetUsed');
+  var budgetLeft = document.getElementById('budgetLeft');
+  var warn       = document.getElementById('budgetWarn');
+  var remaining  = BUDGET - t.price;
+
+  if (totalPts)   totalPts.textContent   = t.pts;
+  if (budgetUsed) budgetUsed.textContent = t.price;
+  if (budgetLeft) {
+    budgetLeft.textContent = remaining;
+    budgetLeft.classList.toggle('over', remaining < 0);
+  }
+  if (warn) {
+    if (t.price > BUDGET) {
+      warn.textContent = '⚠ Over budget! Your squad costs ' + t.price + ' credits — that is ' + (t.price - BUDGET) + ' over the 100-credit cap. Swap in cheaper players.';
+      warn.classList.add('show');
+    } else {
+      warn.classList.remove('show');
+    }
+  }
+}
+
+function renderAll() {
+  renderPitch();
+  renderPanel();
+  renderScore();
+  syncFormationButtons();
+}
+
+function syncFormationButtons() {
+  var btns = document.querySelectorAll('#formationBtns .formation-btn');
+  btns.forEach(function(b){
+    var on = b.dataset.formation === state.formation;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+
+/* ---------- Event wiring (delegated, robust to rapid clicks) ---------- */
+var pitchEl = document.getElementById('pitch');
+if (pitchEl) {
+  pitchEl.addEventListener('click', function(e){
+    var rm = e.target.closest('[data-remove]');
+    if (rm) {
+      e.preventDefault();
+      removePlayer(parseInt(rm.getAttribute('data-remove'), 10));
+      return;
+    }
+    var empty = e.target.closest('.p-slot.empty');
+    if (empty) {
+      // focus the panel filter for that position to help the user pick
+      var pos = empty.getAttribute('data-pos');
+      setFilter(pos);
+    }
+  });
+  pitchEl.addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var rm = e.target.closest('.p-slot.filled');
+    if (rm && rm.getAttribute('data-remove')) {
+      e.preventDefault();
+      removePlayer(parseInt(rm.getAttribute('data-remove'), 10));
+      return;
+    }
+    var empty = e.target.closest('.p-slot.empty');
+    if (empty) {
+      e.preventDefault();
+      setFilter(empty.getAttribute('data-pos'));
+    }
+  });
+}
+
+var playerListEl = document.getElementById('playerList');
+if (playerListEl) {
+  playerListEl.addEventListener('click', function(e){
+    var row = e.target.closest('.player-row');
+    if (!row || row.disabled) return;
+    var id = parseInt(row.getAttribute('data-id'), 10);
+    if (!isNaN(id)) togglePlayer(id);
+  });
+}
+
+var formationBtnsEl = document.getElementById('formationBtns');
+if (formationBtnsEl) {
+  formationBtnsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.formation-btn');
+    if (!b) return;
+    setFormation(b.dataset.formation);
+  });
+}
+
+function setFilter(filter) {
+  var valid = (filter === 'ALL' || POS_ORDER.indexOf(filter) !== -1);
+  if (!valid) return;
+  state.filter = filter;
+  var btns = document.querySelectorAll('#filterBtns .filter-btn');
+  btns.forEach(function(b){
+    var on = b.dataset.filter === filter;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  renderPanel();
+}
+
+var filterBtnsEl = document.getElementById('filterBtns');
+if (filterBtnsEl) {
+  filterBtnsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.filter-btn');
+    if (!b) return;
+    setFilter(b.dataset.filter);
+  });
+}
+
+var autoBtn  = document.getElementById('autoBtn');
+var clearBtn = document.getElementById('clearBtn');
+var shareBtn = document.getElementById('shareBtn');
+if (autoBtn)  autoBtn.addEventListener('click', autoBestXI);
+if (clearBtn) clearBtn.addEventListener('click', clearLineup);
+if (shareBtn) shareBtn.addEventListener('click', function(){ openCS('Share Your Lineup'); });
+
+/* ---------- Init ---------- */
+state.slots = buildEmptySlots(state.formation);
+renderAll();
+</script>
+</body>
+</html>

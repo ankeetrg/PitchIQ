@@ -2035,7 +2035,44 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 0;
 }
 
+/* ── Internal-page CTAs (preview / all-picks) ───── */
+.btn-preview, .btn-all-picks {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: var(--r);
+  background: var(--grn);
+  color: #fff;
+  transition: background .18s, transform .15s, box-shadow .18s;
+}
+.btn-preview:hover, .btn-all-picks:hover {
+  background: var(--grn-h);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,150,63,.30);
+}
+.btn-all-picks {
+  display: block;
+  text-align: center;
+  margin: 12px 14px 14px;
+}
+.btn-preview:focus-visible, .btn-all-picks:focus-visible {
+  outline: 2px solid var(--grn);
+  outline-offset: 2px;
+}
+
+/* ── Fixture date filter tabs ───────────────────── */
+.fix-tabs { display:flex; gap:6px; margin:0 14px 10px; flex-wrap:wrap; }
+.fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; }
+.fix-tab:hover { border-color:var(--grn); color:var(--grn); }
+.fix-tab.active { background:var(--grn); border-color:var(--grn); color:#fff; }
+.fix-tab:focus-visible { outline:2px solid var(--grn); outline-offset:2px; }
+a.fixture-row { text-decoration:none; color:inherit; }
+
   </style>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -2121,7 +2158,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     <div class="nav-links" id="navLinks">
       <a href="#" data-cs="Live Scores">Scores</a>
       <a href="#" class="active" aria-current="page">World Cup</a>
-      <a href="#" data-cs="Fantasy Picks">Fantasy</a>
+      <a href="/predictions">Picks</a>
+      <a href="/standings">Standings</a>
+      <a href="/fantasy">Fantasy</a>
       <a href="#" data-cs="Betting Intelligence">Betting</a>
       <a href="#" data-cs="Match Analysis">Analysis</a>
       <a href="#" data-cs="News &amp; Previews">News</a>
@@ -2271,7 +2310,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
       <!-- CTA row -->
       <div class="mh-cta">
-        <a class="btn-primary" href="#" data-cs="Match Analysis">Full Match Analysis →</a>
+        <a class="btn-preview" href="/brazil-morocco">Full Preview &amp; Picks →</a>
         <a class="btn-secondary" href="#" data-cs="Fantasy Picks">⭐ Pick Vinicius Jr.</a>
         <div class="mh-cta-note">Odds as of Jun 12 · Subject to change · 21+</div>
       </div>
@@ -2283,39 +2322,81 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <!-- TODAY'S FIXTURES -->
       <div class="widget">
         <div class="w-head">
-          <div class="w-title">Today's Fixtures</div>
-          <a class="w-link" href="#" data-cs="Live Scores &amp; Schedule">Full Schedule →</a>
+          <div class="w-title">Fixtures &amp; Previews</div>
+          <a class="w-link" href="/predictions">Full Schedule →</a>
         </div>
-        <div class="fixture-row">
+        <div class="fix-tabs" role="tablist" aria-label="Filter fixtures by date">
+          <button class="fix-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="fix-tab" data-filter="2026-06-13" role="tab" aria-selected="false">Jun 13</button>
+          <button class="fix-tab" data-filter="2026-06-14" role="tab" aria-selected="false">Jun 14</button>
+          <button class="fix-tab" data-filter="2026-06-15" role="tab" aria-selected="false">Jun 15</button>
+        </div>
+        <div class="fixture-row" data-date="2026-06-13">
           <div class="fix-status ft">FT</div>
           <div class="fix-match">Mexico vs South Africa<em>Group A · Estadio Azteca</em></div>
           <div class="fix-score">2–0</div>
         </div>
-        <div class="fixture-row">
+        <div class="fixture-row" data-date="2026-06-13">
           <div class="fix-status ft">FT</div>
           <div class="fix-match">South Korea vs Czechia<em>Group A · SoFi Stadium</em></div>
           <div class="fix-score">2–1</div>
         </div>
-        <div class="fixture-row">
+        <div class="fixture-row" data-date="2026-06-13">
           <div class="fix-status ft">FT</div>
           <div class="fix-match">Canada vs Bosnia &amp; Herz.<em>Group B · BMO Field</em></div>
           <div class="fix-score">1–1</div>
         </div>
-        <div class="fixture-row">
+        <div class="fixture-row" data-date="2026-06-13">
           <div class="fix-status ft">FT</div>
           <div class="fix-match">USA vs Paraguay<em>Group D · SoFi Stadium</em></div>
           <div class="fix-score">4–1</div>
         </div>
-        <div class="fixture-row">
+        <a class="fixture-row" href="/brazil-morocco" data-date="2026-06-13">
           <div class="fix-status ko">JUN 13</div>
-          <div class="fix-match">Brazil vs Morocco<em>Group C · 6PM ET · MetLife</em></div>
+          <div class="fix-match">Brazil vs Morocco<em>Group C · 6PM ET · MetLife · Preview →</em></div>
           <div class="fix-score upcoming">6PM</div>
-        </div>
-        <div class="fixture-row">
-          <div class="fix-status ko">JUN 13</div>
-          <div class="fix-match">Qatar vs Switzerland<em>Group B · 3PM ET · Levi's Stadium</em></div>
-          <div class="fix-score upcoming">3PM</div>
-        </div>
+        </a>
+        <a class="fixture-row" href="/germany-curacao" data-date="2026-06-14">
+          <div class="fix-status ko">JUN 14</div>
+          <div class="fix-match">Germany vs Curacao<em>Group E · 1PM ET · NRG Stadium · Preview →</em></div>
+          <div class="fix-score upcoming">1PM</div>
+        </a>
+        <a class="fixture-row" href="/netherlands-japan" data-date="2026-06-14">
+          <div class="fix-status ko">JUN 14</div>
+          <div class="fix-match">Netherlands vs Japan<em>Group F · 4PM ET · AT&amp;T Stadium · Preview →</em></div>
+          <div class="fix-score upcoming">4PM</div>
+        </a>
+        <a class="fixture-row" href="/uruguay-serbia" data-date="2026-06-14">
+          <div class="fix-status ko">JUN 14</div>
+          <div class="fix-match">Uruguay vs Serbia<em>Group E · 7PM ET · SoFi Stadium · Preview →</em></div>
+          <div class="fix-score upcoming">7PM</div>
+        </a>
+        <a class="fixture-row" href="/france-albania" data-date="2026-06-14">
+          <div class="fix-status ko">JUN 14</div>
+          <div class="fix-match">France vs Albania<em>Group H · 10PM ET · Rose Bowl · Preview →</em></div>
+          <div class="fix-score upcoming">10PM</div>
+        </a>
+        <a class="fixture-row" href="/spain-capeverde" data-date="2026-06-15">
+          <div class="fix-status ko">JUN 15</div>
+          <div class="fix-match">Spain vs Cape Verde<em>Group H · 1PM ET · Mercedes-Benz · Preview →</em></div>
+          <div class="fix-score upcoming">1PM</div>
+        </a>
+        <a class="fixture-row" href="/argentina-peru" data-date="2026-06-15">
+          <div class="fix-status ko">JUN 15</div>
+          <div class="fix-match">Argentina vs Peru<em>Group C · 4PM ET · Hard Rock · Preview →</em></div>
+          <div class="fix-score upcoming">4PM</div>
+        </a>
+        <a class="fixture-row" href="/colombia-ecuador" data-date="2026-06-15">
+          <div class="fix-status ko">JUN 15</div>
+          <div class="fix-match">Colombia vs Ecuador<em>Group F · 7PM ET · State Farm · Preview →</em></div>
+          <div class="fix-score upcoming">7PM</div>
+        </a>
+        <a class="fixture-row" href="/england-senegal" data-date="2026-06-15">
+          <div class="fix-status ko">JUN 15</div>
+          <div class="fix-match">England vs Senegal<em>Group G · 10PM ET · Levi's Stadium · Preview →</em></div>
+          <div class="fix-score upcoming">10PM</div>
+        </a>
+        <a class="btn-all-picks" href="/predictions">View All AI Picks →</a>
       </div>
 
       <!-- BETTING SPOTLIGHT -->
@@ -2858,18 +2939,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="ft-col">
         <div class="ft-col-title">World Cup 2026</div>
         <ul>
-          <li><a href="#" data-cs="Match Schedule">Match Schedule</a></li>
-          <li><a href="#" data-cs="Group Standings">Group Standings</a></li>
+          <li><a href="/predictions">Match Schedule</a></li>
+          <li><a href="/standings">Group Standings</a></li>
           <li><a href="#" data-cs="Player Stats">Player Stats</a></li>
-          <li><a href="#" data-cs="AI Predictions">AI Predictions</a></li>
+          <li><a href="/predictions">AI Predictions</a></li>
           <li><a href="#" data-cs="Bracket Tracker">Bracket Tracker</a></li>
         </ul>
       </div>
       <div class="ft-col">
         <div class="ft-col-title">Fantasy</div>
         <ul>
-          <li><a href="#" data-cs="Fantasy Player Rankings">Player Rankings</a></li>
-          <li><a href="#" data-cs="Fantasy Picks">Daily Picks</a></li>
+          <li><a href="/fantasy">Player Rankings</a></li>
+          <li><a href="/fantasy">Lineup Builder</a></li>
           <li><a href="#" data-cs="Ownership Tracker">Ownership %</a></li>
           <li><a href="#" data-cs="Injury Report">Injury Report</a></li>
           <li><a href="#" data-cs="Draft Assistant">Draft Assistant</a></li>
@@ -2878,7 +2959,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="ft-col">
         <div class="ft-col-title">Betting</div>
         <ul>
-          <li><a href="#" data-cs="Betting Intelligence">Today's Best Bets</a></li>
+          <li><a href="/predictions">Today's Best Bets</a></li>
           <li><a href="#" data-cs="Odds Tracker">Odds Tracker</a></li>
           <li><a href="#" data-cs="Line Movement Tracker">Line Movement</a></li>
           <li><a href="#" data-cs="Sharp Money Reports">Sharp Reports</a></li>
@@ -3131,6 +3212,22 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
       if (label !== 'Home') openCS(label);
     });
   }
+});
+
+// ── Fixture date filter tabs ─────────────────────
+document.querySelectorAll('.fix-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    var filter = this.dataset.filter;
+    document.querySelectorAll('.fix-tab').forEach(function(t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    this.classList.add('active');
+    this.setAttribute('aria-selected', 'true');
+    document.querySelectorAll('.fixture-row[data-date]').forEach(function(row) {
+      row.style.display = (filter === 'all' || row.dataset.date === filter) ? '' : 'none';
+    });
+  });
 });
 </script>
 

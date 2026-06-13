@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://getpitchiq.net/</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://getpitchiq.net/</loc><changefreq>hourly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://getpitchiq.net/predictions</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://getpitchiq.net/standings</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://getpitchiq.net/fantasy</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/brazil-morocco</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/germany-curacao</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/netherlands-japan</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/spain-capeverde</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/uruguay-serbia</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/france-albania</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/argentina-peru</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/colombia-ecuador</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getpitchiq.net/england-senegal</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
 </urlset>
