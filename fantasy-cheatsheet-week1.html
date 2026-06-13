@@ -1,0 +1,727 @@
+<!--
+  PitchIQ — Fantasy Cheat Sheet: WC2026 Group Stage Week 1
+  ─────────────────────────────────────────────────────────
+  Self-contained HTML block. Drop into fantasy.html or use standalone.
+  Matches June 11–17. All player data based on qualifying + recent form.
+
+  HOW TO INSERT INTO fantasy.html:
+  1. Copy the <style> block into the <head> (or merge with existing styles).
+  2. Copy the <section class="cs-wrap"> block into the page body where you want it.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WC2026 Fantasy Cheat Sheet — Week 1 | PitchIQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --nav:#071D36; --grn:#00963F; --grn-h:#007A32; --bg:#EEF1F6;
+      --surf:#fff; --t1:#0F1923; --t2:#3C5168; --t3:#7C92A8;
+      --b1:#E2E8F0; --b2:#C8D5E0; --r:6px; --r2:12px;
+      --sans:'Inter',system-ui,sans-serif;
+      --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+    }
+    body { font-family:var(--sans); background:var(--bg); color:var(--t1); -webkit-font-smoothing:antialiased; padding:20px; }
+
+    /* ── CHEAT SHEET ── */
+    .cs-wrap { max-width: 900px; margin: 0 auto; }
+    .cs-header { background: var(--nav); border-radius: var(--r2) var(--r2) 0 0; padding: 24px 28px; }
+    .cs-eyebrow { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--grn); margin-bottom: 6px; }
+    .cs-title { font-family: var(--cond); font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .cs-subtitle { font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* ── TABS ── */
+    .cs-tabs { display: flex; background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.1); padding: 0 28px; }
+    .cs-tab { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 12px 16px; color: rgba(255,255,255,.45); cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; user-select: none; }
+    .cs-tab:hover { color: rgba(255,255,255,.75); }
+    .cs-tab.active { color: #fff; border-color: var(--grn); }
+
+    /* ── PANELS ── */
+    .cs-panel { display: none; background: var(--surf); border: 1px solid var(--b1); border-top: none; border-radius: 0 0 var(--r2) var(--r2); }
+    .cs-panel.active { display: block; }
+
+    /* ── PLAYER GRID ── */
+    .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; padding: 20px; }
+    .player-card { border: 1px solid var(--b1); border-radius: var(--r2); overflow: hidden; transition: box-shadow .15s; }
+    .player-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+    .pc-top { padding: 14px 16px 10px; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .pc-flag { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+    .pc-info { flex: 1; min-width: 0; }
+    .pc-name { font-size: 14px; font-weight: 700; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pc-pos { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); margin-top: 1px; }
+    .pc-team { font-size: 11px; color: var(--t3); margin-top: 2px; }
+    .pc-value { font-family: var(--cond); font-size: 13px; font-weight: 900; color: var(--t2); flex-shrink: 0; text-align: right; }
+    .pc-val-lbl { font-size: 9px; color: var(--t3); font-weight: 500; text-align: right; }
+    .pc-divider { border: none; border-top: 1px solid var(--b1); }
+    .pc-bottom { padding: 10px 16px 14px; }
+    .pc-tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+    .pc-tag { font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+    .tag-must { background: rgba(0,150,63,.12); color: #007A32; border: 1px solid rgba(0,150,63,.25); }
+    .tag-value { background: rgba(0,100,200,.1); color: #0064C8; border: 1px solid rgba(0,100,200,.2); }
+    .tag-fade { background: rgba(220,53,69,.08); color: #B02A37; border: 1px solid rgba(220,53,69,.18); }
+    .tag-captain { background: #FFF3CD; color: #856404; border: 1px solid #ffd95c; }
+    .pc-reason { font-size: 12px; color: var(--t2); line-height: 1.55; }
+
+    /* ── TIPS SECTION ── */
+    .cs-tips { padding: 20px; }
+    .tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .tip-card { background: var(--bg); border: 1px solid var(--b1); border-radius: var(--r); padding: 16px; }
+    .tip-num { font-family: var(--cond); font-size: 28px; font-weight: 900; color: var(--grn); margin-bottom: 4px; }
+    .tip-head { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 6px; }
+    .tip-body { font-size: 12px; color: var(--t2); line-height: 1.6; }
+
+    /* ── MATCHUPS TABLE ── */
+    .cs-matchups { padding: 20px; }
+    .matchup-table { width: 100%; border-collapse: collapse; border: 1px solid var(--b1); border-radius: var(--r2); overflow: hidden; }
+    .matchup-table thead th { background: var(--nav); color: rgba(255,255,255,.7); font-family: var(--cond); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+    .matchup-table tbody td { padding: 11px 14px; font-size: 12px; border-bottom: 1px solid var(--b1); vertical-align: top; }
+    .matchup-table tbody tr:last-child td { border-bottom: none; }
+    .matchup-table tbody tr:nth-child(odd) { background: #f8fafc; }
+    .matchup-table tbody tr:nth-child(even) { background: var(--surf); }
+    .matchup-date { font-size: 10px; color: var(--t3); font-weight: 600; }
+    .matchup-teams { font-weight: 700; font-size: 13px; }
+    .matchup-verdict { font-size: 11px; color: var(--t2); line-height: 1.5; margin-top: 3px; }
+    .matchup-targets { font-size: 11px; font-weight: 600; color: var(--grn); }
+
+    /* ── NOTE BOX ── */
+    .cs-note-box { margin: 0 20px 20px; background: rgba(0,150,63,.06); border: 1.5px solid rgba(0,150,63,.2); border-radius: var(--r); padding: 14px 18px; font-size: 12px; color: var(--t2); line-height: 1.6; }
+    .cs-note-box strong { color: var(--t1); }
+  </style>
+</head>
+<body>
+
+<div class="cs-wrap">
+
+  <!-- Header -->
+  <div class="cs-header">
+    <div class="cs-eyebrow">PitchIQ Fantasy Intel</div>
+    <div class="cs-title">WC2026 Group Stage — Week 1 Cheat Sheet</div>
+    <div class="cs-subtitle">June 12–17 · 20 matches · Updated daily</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="cs-tabs" style="background:var(--nav);">
+    <div class="cs-tab active" data-tab="must-starts">Must-Starts</div>
+    <div class="cs-tab" data-tab="value">Value Plays</div>
+    <div class="cs-tab" data-tab="fades">Fades</div>
+    <div class="cs-tab" data-tab="matchups">Matchup Guide</div>
+    <div class="cs-tab" data-tab="tips">Strategy</div>
+  </div>
+
+  <!-- PANEL: Must-Starts -->
+  <div class="cs-panel active" id="tab-must-starts">
+    <div class="player-grid">
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇧🇷</div>
+          <div class="pc-info">
+            <div class="pc-name">Vinicius Jr.</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Brazil · Group C · Jun 13</div>
+          </div>
+          <div>
+            <div class="pc-value">$9.2M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+            <span class="pc-tag tag-captain">Captain</span>
+          </div>
+          <div class="pc-reason">Morocco's right back Hakimi plays as a hybrid wing-back, creating space behind on counter-attacks. Vini targets that exact channel — he's pulled in 3+ key actions in 7 of his last 10 caps. Start him. Captain him.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇩🇪</div>
+          <div class="pc-info">
+            <div class="pc-name">Jamal Musiala</div>
+            <div class="pc-pos">Attacking Midfield</div>
+            <div class="pc-team">Germany · Group E · Jun 14</div>
+          </div>
+          <div>
+            <div class="pc-value">$8.8M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+            <span class="pc-tag tag-captain">Captain</span>
+          </div>
+          <div class="pc-reason">11 goals + 8 assists in his last 14 club appearances. Curaçao haven't kept a clean sheet in 8 straight. Germany will dominate possession and Musiala operates in the half-spaces where he gets open looks all match.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇪🇸</div>
+          <div class="pc-info">
+            <div class="pc-name">Lamine Yamal</div>
+            <div class="pc-pos">Forward / Right Wing</div>
+            <div class="pc-team">Spain · Group H · Jun 15</div>
+          </div>
+          <div>
+            <div class="pc-value">$8.5M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+          </div>
+          <div class="pc-reason">18 years old and already the most creative player in this tournament. Cape Verde's left side gave up 4.2 dribbles per 90 in AFCON qualifying. Yamal dribbles past his man on 58% of attempts. Pick him now before his price jumps.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇦🇷</div>
+          <div class="pc-info">
+            <div class="pc-name">Lionel Messi</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Argentina · Group J · Jun 16</div>
+          </div>
+          <div>
+            <div class="pc-value">$10.5M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+            <span class="pc-tag tag-captain">Captain</span>
+          </div>
+          <div class="pc-reason">Last World Cup. Algeria sit in a low block — exactly the setup where Messi exploits gaps between the lines. He scored in his last 4 World Cup group stage openers. Yes, pay the price. Yes, captain him.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇫🇷</div>
+          <div class="pc-info">
+            <div class="pc-name">Kylian Mbappé</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">France · Group I · Jun 16</div>
+          </div>
+          <div>
+            <div class="pc-value">$10.2M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+          </div>
+          <div class="pc-reason">Scored in both previous World Cup group openers (2018 vs Australia, 2022 vs Australia). Senegal's backline has pace concerns at right center-back. Mbappé will run in behind. The question isn't if he scores — it's when.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇳🇱</div>
+          <div class="pc-info">
+            <div class="pc-name">Cody Gakpo</div>
+            <div class="pc-pos">Forward / Left Wing</div>
+            <div class="pc-team">Netherlands · Group F · Jun 14</div>
+          </div>
+          <div>
+            <div class="pc-value">$7.8M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+          </div>
+          <div class="pc-reason">Led Liverpool in goals from open play this season. Japan's right back Sugawara is excellent going forward but vulnerable defensively. Gakpo hunts exactly that space. Scored 3 goals in 4 World Cup appearances in 2022.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇧🇪</div>
+          <div class="pc-info">
+            <div class="pc-name">Kevin De Bruyne</div>
+            <div class="pc-pos">Midfield</div>
+            <div class="pc-team">Belgium · Group G · Jun 15</div>
+          </div>
+          <div>
+            <div class="pc-value">$9.0M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+          </div>
+          <div class="pc-reason">Playing his last World Cup and motivated like it. Egypt will sit in a 4-4-2 block — the kind of low-block setup where KDB averages 3.2 key passes per 90. He picks passes through traffic. High assist and goal involvement ceiling.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇵🇹</div>
+          <div class="pc-info">
+            <div class="pc-name">Bruno Fernandes</div>
+            <div class="pc-pos">Attacking Midfield</div>
+            <div class="pc-team">Portugal · Group K · Jun 17</div>
+          </div>
+          <div>
+            <div class="pc-value">$8.4M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-must">Must-Start</span>
+          </div>
+          <div class="pc-reason">Arguably the most consistent performer for Portugal across both qualifying cycles. Takes direct free kicks, penalty duties (shared with Ronaldo), and averages 4 shots per 90 in major tournaments. DR Congo concede 1.8 xG per 90. Start him.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="cs-note-box">
+      <strong>Captain logic this week:</strong> Musiala (Germany vs Curaçao, easiest matchup), Messi (Argentina vs Algeria, legacy match), Vinicius (Brazil vs Morocco, best individual duel upside). If you spread your squad across matches, captain whichever of these three plays latest so you have full info before locking in.
+    </div>
+  </div>
+
+  <!-- PANEL: Value Plays -->
+  <div class="cs-panel" id="tab-value">
+    <div class="player-grid">
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇺🇾</div>
+          <div class="pc-info">
+            <div class="pc-name">Darwin Núñez</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Uruguay · Group H · Jun 15</div>
+          </div>
+          <div>
+            <div class="pc-value">$6.8M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Suárez's heir in this squad and priced like a secondary option. Uruguay will dominate Saudi Arabia — Saudi Arabia's high line gives up 2.1 chances per 90 through balls in behind. Núñez lives in that space. At $6.8M, he's a steal.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🏴󠁧󠁢󠁷󠁬󠁳󠁿</div>
+          <div class="pc-info">
+            <div class="pc-name">Florian Wirtz</div>
+            <div class="pc-pos">Attacking Midfield</div>
+            <div class="pc-team">Germany · Group E · Jun 14</div>
+          </div>
+          <div>
+            <div class="pc-value">$7.2M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Germany's second most creative outlet after Musiala, currently priced $1.6M cheaper. They start together. Wirtz gets more space because defenders focus on Musiala. His shot volume in the second half of matches is elite.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇳🇴</div>
+          <div class="pc-info">
+            <div class="pc-name">Erling Haaland</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Norway · Group I · Jun 16</div>
+          </div>
+          <div>
+            <div class="pc-value">$7.5M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Iraq have kept just one clean sheet in their last 12 competitive matches. Norway play direct and quick — Haaland gets 4+ touches in the box per 90 when Norway dominate. He's underowned because Norway's group reputation is weak. Exploit it.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇲🇦</div>
+          <div class="pc-info">
+            <div class="pc-name">Hakim Ziyech</div>
+            <div class="pc-pos">Forward / Right Wing</div>
+            <div class="pc-team">Morocco · Group C · Jun 13</div>
+          </div>
+          <div>
+            <div class="pc-value">$6.5M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Underpriced because Morocco are expected to lose. But they're 8-match unbeaten in qualifying and Ziyech can punish on the counter. If you want Morocco exposure at 2-1 value odds against Brazil, Ziyech is your pick. Low ownership + upside.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇨🇭</div>
+          <div class="pc-info">
+            <div class="pc-name">Breel Embolo</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Switzerland · Group B · Jun 13</div>
+          </div>
+          <div>
+            <div class="pc-value">$6.2M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Switzerland beat Qatar 3-1 in their last friendly. Embolo scores in big moments — he got Switzerland's only goal against Cameroon in 2022. Qatar are vulnerable in transition. Switzerland -0.5 AH makes Embolo a target-forward play at $6.2M.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+          <div class="pc-info">
+            <div class="pc-name">Jude Bellingham</div>
+            <div class="pc-pos">Midfield</div>
+            <div class="pc-team">England · Group L · Jun 17</div>
+          </div>
+          <div>
+            <div class="pc-value">$9.1M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-value">Value</span>
+          </div>
+          <div class="pc-reason">Not cheap, but value relative to his ceiling. Croatia's defensive structure is aging — Kovačić and Brozović can't cover lateral runs the way they could in 2018. Bellingham runs at defenders. England at -160 means he's in a winning team most of the time.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PANEL: Fades -->
+  <div class="cs-panel" id="tab-fades">
+    <div class="player-grid">
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇸🇳</div>
+          <div class="pc-info">
+            <div class="pc-name">Sadio Mané</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Senegal · Group I · Jun 16</div>
+          </div>
+          <div>
+            <div class="pc-value">$8.0M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-fade">Fade</span>
+          </div>
+          <div class="pc-reason">Mané is 31 and coming off a season with reduced club minutes. France's double pivot (Camavinga + Tchouaméni) will shut down central access. Senegal's best route is wide — but Upamecano and Koundé dominate aerial duels. $8M for a fade game.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇭🇷</div>
+          <div class="pc-info">
+            <div class="pc-name">Luka Modrić</div>
+            <div class="pc-pos">Midfield</div>
+            <div class="pc-team">Croatia · Group L · Jun 17</div>
+          </div>
+          <div>
+            <div class="pc-value">$7.4M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-fade">Fade</span>
+          </div>
+          <div class="pc-reason">At 40 years old he's still a genius, but his floor in a losing team is near zero for fantasy points. England are -160 favorites. Croatia's plan is to defend and hit on the counter — Modrić won't be in a high-output environment. Skip.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇶🇦</div>
+          <div class="pc-info">
+            <div class="pc-name">Almoez Ali</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Qatar · Group B · Jun 13</div>
+          </div>
+          <div>
+            <div class="pc-value">$5.5M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-fade">Fade</span>
+          </div>
+          <div class="pc-reason">Qatar failed to win a single group stage match in 2022 as hosts. Against Switzerland — who press high and win the ball back quickly — Qatar's forwards won't see enough ball. The xG will be stacked on Switzerland's side. Hard pass.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇸🇦</div>
+          <div class="pc-info">
+            <div class="pc-name">Salem Al-Dawsari</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Saudi Arabia · Group H · Jun 15</div>
+          </div>
+          <div>
+            <div class="pc-value">$6.1M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-fade">Fade</span>
+          </div>
+          <div class="pc-reason">Hero of 2022 vs Argentina, but Saudi Arabia are a completely different proposition against Uruguay's organized defensive block. Bentancur and Valverde will win the midfield. Saudi Arabia won't generate enough volume to make any of their forwards viable.</div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="pc-top">
+          <div class="pc-flag">🇭🇹</div>
+          <div class="pc-info">
+            <div class="pc-name">Frantzdy Pierrot</div>
+            <div class="pc-pos">Forward</div>
+            <div class="pc-team">Haiti · Group C · Jun 13</div>
+          </div>
+          <div>
+            <div class="pc-value">$5.0M</div>
+            <div class="pc-val-lbl">avg price</div>
+          </div>
+        </div>
+        <hr class="pc-divider"/>
+        <div class="pc-bottom">
+          <div class="pc-tag-row">
+            <span class="pc-tag tag-fade">Fade</span>
+          </div>
+          <div class="pc-reason">Scotland won't allow Haiti to generate easy chances. Clarke's defensive shape is meticulous — 8.4 shots against per 90 in qualifying. Haiti's striker will be isolated against a disciplined back four. Under 2.5 total goals is the play in this match.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PANEL: Matchup Guide -->
+  <div class="cs-panel" id="tab-matchups">
+    <div class="cs-matchups">
+      <table class="matchup-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Match</th>
+            <th>Fantasy Verdict</th>
+            <th>Top Targets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="matchup-date">Jun 13</div></td>
+            <td><div class="matchup-teams">🇧🇷 Brazil vs Morocco 🇲🇦</div></td>
+            <td><div class="matchup-verdict">High-ceiling game. Brazil expected to control. Morocco dangerous on counter. 2-3 total goals likely.</div></td>
+            <td class="matchup-targets">Vinicius, Rodrygo, Ziyech (upside)</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 13</div></td>
+            <td><div class="matchup-teams">🇭🇹 Haiti vs Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></td>
+            <td><div class="matchup-verdict">Low-scoring grind. Both teams defend first. Avoid unless you want contrarian Scotland hold mid.</div></td>
+            <td class="matchup-targets">Lawrence, Dykes (modest floor only)</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 13</div></td>
+            <td><div class="matchup-teams">🇶🇦 Qatar vs Switzerland 🇨🇭</div></td>
+            <td><div class="matchup-verdict">Switzerland should control. Qatar minimal threat. Low-ownership Swiss players have value.</div></td>
+            <td class="matchup-targets">Embolo, Shaqiri, Freuler (assists)</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 14</div></td>
+            <td><div class="matchup-teams">🇩🇪 Germany vs Curaçao 🇨🇼</div></td>
+            <td><div class="matchup-verdict">Best stack game of Week 1. Go heavy Germany. 4+ goals total expected. Multiple German attackers viable.</div></td>
+            <td class="matchup-targets">Musiala, Wirtz, Havertz, Gnabry</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 14</div></td>
+            <td><div class="matchup-teams">🇳🇱 Netherlands vs Japan 🇯🇵</div></td>
+            <td><div class="matchup-verdict">Competitive match. Both teams score. BTTS likely. Netherlands forwards + Japan's Kubo all viable.</div></td>
+            <td class="matchup-targets">Gakpo, Depay, Kubo (Japan), Kamada</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 14</div></td>
+            <td><div class="matchup-teams">🇦🇺 Australia vs Türkiye 🇹🇷</div></td>
+            <td><div class="matchup-verdict">Tight matchup. Both ranked similarly. Moderate scoring expected. Caution with heavy investment here.</div></td>
+            <td class="matchup-targets">Yılmaz (TUR), Leckie (AUS, assist potential)</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 15</div></td>
+            <td><div class="matchup-teams">🇪🇸 Spain vs Cape Verde 🇨🇻</div></td>
+            <td><div class="matchup-verdict">Spain dominate possession. Multiple goals. Stack Spain midfielders and forwards.</div></td>
+            <td class="matchup-targets">Yamal, Pedri, Morata, Olmo</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 15</div></td>
+            <td><div class="matchup-teams">🇮🇷 Iran vs New Zealand 🇳🇿</div></td>
+            <td><div class="matchup-verdict">Iran heavy favorites. New Zealand defensive. Under game with Iran attackers viable.</div></td>
+            <td class="matchup-targets">Azmoun, Taremi (assists likely)</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 15</div></td>
+            <td><div class="matchup-teams">🇧🇪 Belgium vs Egypt 🇪🇬</div></td>
+            <td><div class="matchup-verdict">Belgium stack game. De Bruyne + Lukaku + Trossard all viable. Egypt don't score here.</div></td>
+            <td class="matchup-targets">De Bruyne, Lukaku, Trossard</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 15</div></td>
+            <td><div class="matchup-teams">🇸🇦 Saudi Arabia vs Uruguay 🇺🇾</div></td>
+            <td><div class="matchup-verdict">Uruguay control game. Darwin Núñez best value of the day at $6.8M vs Saudi Arabia's high line.</div></td>
+            <td class="matchup-targets">Núñez, Valverde (assists), Bentancur</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 16</div></td>
+            <td><div class="matchup-teams">🇫🇷 France vs Senegal 🇸🇳</div></td>
+            <td><div class="matchup-verdict">France expected to win but clean sheet not certain. Mbappé high-floor pick. Under 2.5 likely total.</div></td>
+            <td class="matchup-targets">Mbappé, Giroud (sub impact), Dembélé</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 16</div></td>
+            <td><div class="matchup-teams">🇮🇶 Iraq vs Norway 🇳🇴</div></td>
+            <td><div class="matchup-verdict">Norway should dominate. Iraq vulnerable on set pieces. Haaland + Ødegaard both very viable.</div></td>
+            <td class="matchup-targets">Haaland, Ødegaard (assists), Sørloth</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 16</div></td>
+            <td><div class="matchup-teams">🇦🇷 Argentina vs Algeria 🇩🇿</div></td>
+            <td><div class="matchup-verdict">Stack game. Argentina motivated. Algeria sit deep — Messi and Alvarez excel in these moments.</div></td>
+            <td class="matchup-targets">Messi (captain consideration), Álvarez, Di María</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 17</div></td>
+            <td><div class="matchup-teams">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England vs Croatia 🇭🇷</div></td>
+            <td><div class="matchup-verdict">England should win but don't expect a high-scoring game. Bellingham and Kane most reliable targets.</div></td>
+            <td class="matchup-targets">Kane, Bellingham, Saka</td>
+          </tr>
+          <tr>
+            <td><div class="matchup-date">Jun 17</div></td>
+            <td><div class="matchup-targets">🇵🇹 Portugal vs DR Congo 🇨🇩</div></td>
+            <td><div class="matchup-verdict">Portugal should score 3+. Multiple attacking options viable. Bruno + Ronaldo share the ceiling.</div></td>
+            <td class="matchup-targets">Bruno Fernandes, Ronaldo, Leão</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PANEL: Strategy -->
+  <div class="cs-panel" id="tab-tips">
+    <div class="cs-tips">
+      <div class="tip-grid">
+        <div class="tip-card">
+          <div class="tip-num">01</div>
+          <div class="tip-head">Stack the Germany game</div>
+          <div class="tip-body">Germany vs Curaçao (Jun 14) is the highest projected total of Week 1. 4+ goals expected. Load 3-4 German attackers. Yes, it feels obvious — but it's the right play. Don't be contrarian just to be different.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">02</div>
+          <div class="tip-head">Wait on your captain decision</div>
+          <div class="tip-body">If you're in a daily format, wait until 2 hours before the last game of the day to set your captain. You'll have injury news and early match feedback to work with. Musiala (Jun 14), Messi (Jun 16), and Yamal (Jun 15) are all in play.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">03</div>
+          <div class="tip-head">Underown Haaland this week</div>
+          <div class="tip-body">Norway's group reputation scares people off Haaland. But Iraq are defensively porous — 1.9 goals conceded per 90 in qualifying. At $7.5M he's priced 15% below his ceiling. Most lineups will skip him. Exploit the low ownership.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">04</div>
+          <div class="tip-head">Don't stack the Haiti match</div>
+          <div class="tip-body">Haiti vs Scotland is projected to be the lowest-scoring game of the week. Under 2.5 is the consensus line. Two defensive teams with no genuine attacking star power. Avoid both squads unless you have a specific tactical read.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">05</div>
+          <div class="tip-head">Midfielder value beats forwards this week</div>
+          <div class="tip-body">In matches where goals are expected (Germany, Spain, Belgium, Argentina), the midfielders who set up goals score nearly as many points as the forwards — at lower price points. Bruno Fernandes, De Bruyne, and Pedri all offer goal+assist upside at lower cost than a second forward.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">06</div>
+          <div class="tip-head">Check GK + defender bonus</div>
+          <div class="tip-body">Germany vs Curaçao, Spain vs Cape Verde, and France vs Senegal all project for clean sheets. If your format gives bonus points for clean sheets, GK Neuer (GER), Unai Simón (ESP), or Maignan (FRA) are high-floor plays in cash games.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var tabs   = document.querySelectorAll('.cs-tab');
+  var panels = document.querySelectorAll('.cs-panel');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = 'tab-' + this.getAttribute('data-tab');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      this.classList.add('active');
+      var panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    }.bind(tab));
+  });
+})();
+</script>
+
+</body>
+</html>

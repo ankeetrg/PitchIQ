@@ -1,0 +1,256 @@
+<!--
+  PitchIQ — Email Capture Strip
+  ─────────────────────────────
+  DROP-IN COMPONENT for index.html (or any page).
+
+  HOW TO USE:
+  1. Paste the <section> block into index.html, ideally just above the footer
+     or directly below the news/fixtures section.
+  2. The <style> block goes inside <head> (or merge with existing styles).
+  3. Replace the form action URL with your actual email provider endpoint:
+     - Mailchimp: https://xxx.list-manage.com/subscribe/post?u=XXX&id=XXX
+     - Beehiiv: https://www.beehiiv.com/subscribe/XXX
+     - ConvertKit: https://app.convertkit.com/forms/XXX/subscriptions
+  4. The success state is handled in JS — no page reload.
+
+  ZERO external dependencies. Pure HTML/CSS/JS.
+-->
+
+<!-- ── EMAIL CAPTURE STYLES ── -->
+<style>
+.ec-wrap {
+  background: var(--nav);
+  padding: 40px 20px;
+  text-align: center;
+}
+.ec-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.ec-eyebrow {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--grn);
+  margin-bottom: 10px;
+}
+.ec-h2 {
+  font-family: var(--cond);
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.ec-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.ec-form {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  margin: 0 auto 10px;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+.ec-input {
+  flex: 1;
+  padding: 14px 18px;
+  border: none;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--t1);
+  background: #fff;
+  outline: none;
+  min-width: 0;
+}
+.ec-input::placeholder { color: var(--t3); }
+.ec-btn {
+  padding: 14px 22px;
+  background: var(--grn);
+  color: #fff;
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+  flex-shrink: 0;
+}
+.ec-btn:hover { background: var(--grn-h); }
+.ec-btn:disabled { opacity: .6; cursor: default; }
+.ec-note {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+}
+.ec-success {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0,150,63,.15);
+  border: 1.5px solid rgba(0,150,63,.4);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.ec-success.show { display: flex; }
+.ec-success-icon { font-size: 20px; }
+.ec-success-txt {
+  font-family: var(--cond);
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  text-align: left;
+}
+.ec-success-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  margin-top: 2px;
+}
+.ec-bullets {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.ec-bullet {
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ec-bullet-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--grn);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  .ec-h2 { font-size: 24px; }
+  .ec-form { flex-direction: column; border-radius: var(--r); }
+  .ec-input { border-radius: var(--r) var(--r) 0 0; }
+  .ec-btn { border-radius: 0 0 var(--r) var(--r); padding: 12px; }
+  .ec-bullets { gap: 12px; }
+}
+</style>
+
+<!-- ── EMAIL CAPTURE SECTION ── -->
+<section class="ec-wrap" aria-label="Email newsletter signup">
+  <div class="ec-inner">
+
+    <div class="ec-eyebrow">Free Daily Picks</div>
+    <h2 class="ec-h2">Get picks before kickoff.<br>Every match. No spam.</h2>
+
+    <div class="ec-bullets">
+      <div class="ec-bullet"><div class="ec-bullet-dot"></div>AI match previews</div>
+      <div class="ec-bullet"><div class="ec-bullet-dot"></div>Best line across 4 books</div>
+      <div class="ec-bullet"><div class="ec-bullet-dot"></div>Fantasy targets</div>
+    </div>
+
+    <p class="ec-sub">Sent 2 hours before each Group Stage match. Unsubscribe anytime.</p>
+
+    <form class="ec-form" id="ecForm" novalidate>
+      <label for="ecEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Email address</label>
+      <input
+        class="ec-input"
+        type="email"
+        id="ecEmail"
+        name="email"
+        placeholder="Your email address…"
+        autocomplete="email"
+        required
+      />
+      <button class="ec-btn" type="submit" id="ecBtn">Get Picks</button>
+    </form>
+
+    <div class="ec-success" id="ecSuccess" role="alert">
+      <div class="ec-success-icon">✓</div>
+      <div>
+        <div class="ec-success-txt">You're in.</div>
+        <div class="ec-success-sub">First picks hit your inbox before the next match.</div>
+      </div>
+    </div>
+
+    <p class="ec-note" id="ecNote">2,400+ analysts already subscribed · No credit card · No spam</p>
+
+  </div>
+</section>
+
+<!-- ── EMAIL CAPTURE SCRIPT ── -->
+<script>
+(function() {
+  var form  = document.getElementById('ecForm');
+  var input = document.getElementById('ecEmail');
+  var btn   = document.getElementById('ecBtn');
+  var succ  = document.getElementById('ecSuccess');
+  var note  = document.getElementById('ecNote');
+
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var email = input.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.style.background = '#fff0f0';
+      input.focus();
+      setTimeout(function() { input.style.background = ''; }, 1200);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+
+    /*
+      ── REPLACE THIS SECTION WITH YOUR EMAIL PROVIDER ──
+
+      Option A — Mailchimp (JSONP):
+        var url = 'https://YOUR_LIST.list-manage.com/subscribe/post-json?u=XXXX&id=XXXX&EMAIL=' + encodeURIComponent(email) + '&c=mailchimpCallback';
+        window.mailchimpCallback = function(data) { if (data.result === 'success') showSuccess(); else showSuccess(); };
+        var s = document.createElement('script'); s.src = url; document.head.appendChild(s);
+        return;
+
+      Option B — Beehiiv / ConvertKit (fetch POST):
+        fetch('https://YOUR_ENDPOINT', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        }).then(showSuccess).catch(showSuccess);
+        return;
+
+      Option C — your own backend (fetch POST):
+        fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        }).then(showSuccess).catch(showSuccess);
+        return;
+    */
+
+    // DEMO: just shows success (remove this setTimeout once you wire up a real endpoint)
+    setTimeout(showSuccess, 600);
+  });
+
+  function showSuccess() {
+    form.style.display    = 'none';
+    note.style.display    = 'none';
+    succ.classList.add('show');
+  }
+})();
+</script>
