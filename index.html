@@ -2104,7 +2104,7 @@ html, body { scroll-behavior: smooth; }
   height: 360px;
   border-radius: var(--r2);
   overflow: hidden;
-  box-shadow: var(--sh-md);
+  box-shadow: none;
   background: var(--nav);
 }
 .mc-card {
@@ -2156,7 +2156,7 @@ html, body { scroll-behavior: smooth; }
 .mc-odd-lbl { font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--t3); }
 .mc-odd-val { font-family: var(--cond); font-size: 17px; font-weight: 900; color: var(--t1); font-variant-numeric: tabular-nums; }
 .mc-odd-val.fav { color: var(--grn); }
-.mc-cta-row { display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #fff; border-top: 1px solid var(--b1); }
+.mc-cta-row { display: flex; align-items: center; gap: 10px; padding: 12px 20px 30px; background: #fff; border-top: 1px solid var(--b1); }
 .mc-cta { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 9px 18px; border-radius: var(--r); background: var(--grn); color: #fff; transition: background .15s, transform .15s; }
 .mc-cta:hover { background: var(--grn-h); transform: translateY(-1px); }
 .mc-venue { margin-left: auto; font-family: var(--cond); font-size: 10px; font-weight: 600; color: var(--t3); letter-spacing: .03em; }
@@ -2171,7 +2171,7 @@ html, body { scroll-behavior: smooth; }
 .mc-arrow:hover { background: rgba(7,29,54,.85); }
 .mc-prev { left: 10px; }
 .mc-next { right: 10px; }
-.mc-dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
+.mc-dots { display: flex; justify-content: center; gap: 7px; position: absolute; left: 0; right: 0; bottom: 12px; z-index: 6; background: transparent; box-shadow: none; border: none; }
 .mc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--b2); border: none; cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
 .mc-dot.active { background: var(--grn); transform: scale(1.25); }
 
