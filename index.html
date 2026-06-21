@@ -2089,8 +2089,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Fixture date filter tabs ───────────────────── */
-.fix-tabs { display:flex; gap:6px; margin:14px 14px 12px; flex-wrap:wrap; }
-.fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; }
+.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:nowrap; justify-content:flex-start; }
+.fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; white-space:nowrap; }
+/* today / tomorrow buttons are white */
+.fix-tab-day { background:#fff; border-color:var(--b2); color:#0b1f17; }
 .fix-tab:hover { border-color:var(--grn); color:var(--grn); }
 .fix-tab.active { background:var(--grn); border-color:var(--grn); color:#fff; }
 .fix-tab:focus-visible { outline:2px solid var(--grn); outline-offset:2px; }
@@ -3579,16 +3581,21 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   });
   list.innerHTML = html;
 
-  // Build date tabs (All + one per unique date, chronological)
-  var dates = [];
-  FIXTURES.forEach(function(f) { if (dates.indexOf(f[2]) === -1) dates.push(f[2]); });
-  dates.sort();
+  // Build exactly three tabs: All (default, green) + today + tomorrow.
+  // The date labels are computed from the current calendar date, so the
+  // numbers roll forward automatically each day (e.g. Jun 21 / Jun 22).
+  function isoOf(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') +
+      '-' + String(d.getDate()).padStart(2, '0');
+  }
+  var now = new Date();
+  var tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
+  var todayIso = isoOf(now), tomorrowIso = isoOf(tomorrow);
 
-  var tabsHtml = '<button class="fix-tab" data-filter="all" role="tab" aria-selected="false">All</button>';
-  dates.forEach(function(d) {
-    tabsHtml += '<button class="fix-tab" data-filter="' + d + '" role="tab" aria-selected="false">' +
-      tabLabel(d) + '</button>';
-  });
+  var tabsHtml =
+    '<button class="fix-tab active" data-filter="all" role="tab" aria-selected="true">All</button>' +
+    '<button class="fix-tab fix-tab-day" data-filter="' + todayIso + '" role="tab" aria-selected="false">' + tabLabel(todayIso) + '</button>' +
+    '<button class="fix-tab fix-tab-day" data-filter="' + tomorrowIso + '" role="tab" aria-selected="false">' + tabLabel(tomorrowIso) + '</button>';
   var tabsWrap = document.getElementById('fixTabs');
   tabsWrap.innerHTML = tabsHtml;
 
@@ -3608,18 +3615,8 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     });
   });
 
-  // Default: today's date if it has fixtures, else "All"
-  function isoToday() {
-    var d = new Date();
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') +
-      '-' + String(d.getDate()).padStart(2, '0');
-  }
-  var todayIso = isoToday();
-  var defaultFilter = dates.indexOf(todayIso) !== -1 ? todayIso : 'all';
-  var defaultTab = tabsWrap.querySelector('.fix-tab[data-filter="' + defaultFilter + '"]') || tabs[0];
-  defaultTab.classList.add('active');
-  defaultTab.setAttribute('aria-selected', 'true');
-  applyFilter(defaultFilter);
+  // Default view: All
+  applyFilter('all');
 })();
 
 // ── Live World Cup News Feed ──────────────────────
