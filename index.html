@@ -2220,6 +2220,154 @@ html, body { scroll-behavior: smooth; }
   .mc-team img { width: 42px; }
 }
 
+/* ── WORLD CUP NEWS HOVER BAR ─────────────────────── */
+.news-hover-section {
+  border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow: var(--sh-md);
+  margin-bottom: var(--gap);
+}
+.news-hover-bar {
+  background: var(--nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 50px;
+  gap: 16px;
+  cursor: default;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.news-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.news-bar-title {
+  font-family: var(--cond);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.news-bar-accent {
+  display: block;
+  width: 4px;
+  height: 18px;
+  background: var(--grn);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.news-bar-hint {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.28);
+  white-space: nowrap;
+}
+.news-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.news-bar-btn {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--grn);
+  padding: 5px 13px;
+  border: 1px solid rgba(0,150,63,.38);
+  border-radius: var(--r);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.news-bar-btn:hover { background: var(--grn); color: #fff; }
+.news-bar-chevron {
+  font-size: 14px;
+  color: rgba(255,255,255,.38);
+  transition: transform .38s cubic-bezier(.4,0,.2,1);
+  transition-delay: .14s;
+  flex-shrink: 0;
+  user-select: none;
+  line-height: 1;
+}
+.news-hover-section:hover .news-bar-chevron {
+  transform: rotate(180deg);
+  transition-delay: 0s;
+}
+.news-expand-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background: var(--bg);
+  transition: max-height .52s cubic-bezier(.4,0,.2,1), opacity .28s ease;
+  transition-delay: .14s;
+}
+.news-hover-section:hover .news-expand-body {
+  max-height: 1000px;
+  opacity: 1;
+  transition-delay: 0s;
+}
+.news-expand-body .news-grid {
+  padding: 16px;
+}
+/* Always show on touch devices that have no hover */
+@media (hover: none) {
+  .news-expand-body {
+    max-height: 1000px !important;
+    opacity: 1 !important;
+    transition: none;
+  }
+  .news-bar-chevron { display: none; }
+  .news-bar-hint    { display: none; }
+}
+@media (max-width: 640px) {
+  .news-bar-hint { display: none; }
+}
+
+/* ── FIXTURES — FIXED HEIGHT + INTERNAL SCROLL ────── */
+#fixWidget {
+  display: flex;
+  flex-direction: column;
+  height: 360px;          /* fixed — matches carousel card height */
+  overflow: hidden;
+}
+#fixBody {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--b2) transparent;
+}
+#fixBody::-webkit-scrollbar { width: 8px; }
+#fixBody::-webkit-scrollbar-track { background: transparent; }
+#fixBody::-webkit-scrollbar-thumb {
+  background: var(--b2);
+  border-radius: 4px;
+}
+#fixBody::-webkit-scrollbar-thumb:hover { background: var(--t3); }
+.fix-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border-top: 1px solid var(--b1);
+}
+
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -2347,23 +2495,51 @@ html, body { scroll-behavior: smooth; }
   <!-- ── HERO GRID ──────────────────────────────── -->
   <div class="hero-grid rv">
 
-    <!-- FEATURED MATCH CAROUSEL -->
-    <div class="match-hero">
-      <div class="mc-viewport" id="mcViewport" aria-roledescription="carousel" aria-label="Today's matches"></div>
-      <button class="mc-arrow mc-prev" id="mcPrev" aria-label="Previous match">‹</button>
-      <button class="mc-arrow mc-next" id="mcNext" aria-label="Next match">›</button>
-      <div class="mc-dots" id="mcDots" role="tablist" aria-label="Select match"></div>
-    </div><!-- /match-hero -->
+    <!-- LEFT COLUMN: FEATURED MATCH CAROUSEL + GROUP STANDINGS -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="match-hero">
+        <div class="mc-viewport" id="mcViewport" aria-roledescription="carousel" aria-label="Today's matches"></div>
+        <button class="mc-arrow mc-prev" id="mcPrev" aria-label="Previous match">‹</button>
+        <button class="mc-arrow mc-next" id="mcNext" aria-label="Next match">›</button>
+        <div class="mc-dots" id="mcDots" role="tablist" aria-label="Select match"></div>
+      </div><!-- /match-hero -->
+
+      <!-- GROUP STANDINGS -->
+      <section class="standings-section rv" style="margin-bottom:0">
+        <div class="sec-header">
+          <div class="sec-title">Group Standings<span class="sec-sub">WC2026 · After Jun 12–13 results</span></div>
+          <a class="btn-view-all" href="/standings">All Groups →</a>
+        </div>
+        <div class="st-card">
+          <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
+            <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
+            <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
+            <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
+            <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
+          </div>
+          <table class="st-table">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
+              </tr>
+            </thead>
+            <tbody id="stBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div><!-- /left-col -->
 
     <!-- RIGHT SIDE WIDGETS -->
     <div class="side-col">
 
       <!-- TODAY'S FIXTURES -->
-      <div class="widget">
+      <div class="widget" id="fixWidget">
         <div class="w-head">
           <div class="w-title">Fixtures &amp; Previews</div>
           <a class="w-link" href="/predictions">Full Schedule →</a>
         </div>
+        <div id="fixBody">
         <div class="fix-tabs" role="tablist" aria-label="Filter fixtures by date">
           <button class="fix-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
           <button class="fix-tab" data-filter="2026-06-13" role="tab" aria-selected="false">Jun 13</button>
@@ -2440,7 +2616,10 @@ html, body { scroll-behavior: smooth; }
           <div class="fix-match"><img src="https://flagcdn.com/w40/ir.png" alt="Iran" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">Iran vs <img src="https://flagcdn.com/w40/nz.png" alt="New Zealand" loading="lazy" style="width:24px;height:auto;border-radius:2px;vertical-align:middle;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.15)">New Zealand<em>Group G · 9PM ET · Los Angeles Stadium · Preview →</em></div>
           <div class="fix-score upcoming">9PM</div>
         </a>
-        <a class="btn-all-picks" href="/predictions">View All AI Picks →</a>
+        </div><!-- /fixBody -->
+        <div class="fix-footer">
+          <a class="btn-all-picks" href="/predictions" style="margin:0;display:block;width:100%;text-align:center;">View All AI Picks →</a>
+        </div>
       </div>
 
       <!-- BETTING SPOTLIGHT -->
@@ -2479,25 +2658,7 @@ html, body { scroll-behavior: smooth; }
 
   </div><!-- /hero-grid -->
 
-  <!-- AD SLOT — Rectangle (300×250) moved below hero for better rhythm -->
-  <div style="text-align:center;padding:4px 0 8px;">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:300px;height:250px"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="XXXXXXXXXX"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-</div><!-- /w -->
-
-<!-- ── TODAY'S RESULTS SCOREBOARD ───────────────── -->
-<div class="scoreboard rv" aria-label="Today's scores and fixtures">
-  <div class="scb-inner" id="scbInner"></div>
-</div>
-
-<div class="w">
-
-  <!-- divider between scoreboard and fantasy -->
+  <!-- divider -->
   <div class="sec-divider"></div>
 
   <!-- ── FANTASY PICKS ──────────────────────────── -->
@@ -2711,31 +2872,6 @@ html, body { scroll-behavior: smooth; }
     </div>
   </section>
 
-  <!-- ── GROUP STANDINGS ────────────────────────── -->
-  <section class="standings-section rv">
-    <div class="sec-header">
-      <div class="sec-title">Group Standings<span class="sec-sub">WC2026 · After Jun 12–13 results</span></div>
-      <a class="btn-view-all" href="/standings">All Groups →</a>
-    </div>
-    <div class="st-card">
-      <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
-        <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
-        <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
-        <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
-        <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
-      </div>
-      <table class="st-table">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
-          </tr>
-        </thead>
-        <tbody id="stBody"></tbody>
-      </table>
-    </div>
-  </section>
-
   <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
   <div class="sb-banner rv">
     <div class="sb-banner-inner">
@@ -2863,48 +2999,59 @@ html, body { scroll-behavior: smooth; }
     </div>
   </section>
 
-  <!-- ── NEWS & ANALYSIS GRID ───────────────────── -->
-  <section class="news-section rv">
-    <div class="sec-header">
-      <div class="sec-title" id="newsSectionTitle">World Cup News <span class="live-dot" id="newsDot" style="display:none">●</span></div>
-      <a class="btn-secondary" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">All Articles →</a>
+  <!-- ── NEWS HOVER BAR ───────────────────────────── -->
+  <div class="news-hover-section rv">
+    <div class="news-hover-bar">
+      <div class="news-bar-left">
+        <span class="news-bar-title">
+          <span class="news-bar-accent"></span>
+          <span id="newsSectionTitle">World Cup News</span>
+          <span class="live-dot" id="newsDot" style="display:none">●</span>
+        </span>
+        <span class="news-bar-hint">Hover to browse latest</span>
+      </div>
+      <div class="news-bar-right">
+        <a class="news-bar-btn" href="https://www.espn.com/soccer/story/_/id/world-cup-2026" target="_blank" rel="noopener noreferrer">All Articles →</a>
+        <span class="news-bar-chevron">▾</span>
+      </div>
     </div>
-    <!-- Live news grid — populated by JS; falls back to static cards -->
-    <div class="news-grid" id="newsGrid">
+    <div class="news-expand-body">
+      <div class="news-grid" id="newsGrid">
 
-      <!-- SKELETON CARDS shown while fetching -->
-      <div class="news-card featured news-skeleton">
-        <div class="nc-img"><div class="skel-img"></div></div>
-        <div class="nc-body">
-          <div class="skel-line skel-wide"></div>
-          <div class="skel-line skel-med"></div>
-          <div class="skel-line skel-sm"></div>
+        <!-- SKELETON CARDS shown while fetching -->
+        <div class="news-card featured news-skeleton">
+          <div class="nc-img"><div class="skel-img"></div></div>
+          <div class="nc-body">
+            <div class="skel-line skel-wide"></div>
+            <div class="skel-line skel-med"></div>
+            <div class="skel-line skel-sm"></div>
+          </div>
         </div>
-      </div>
-      <div class="news-card news-skeleton">
-        <div class="nc-img"><div class="skel-img"></div></div>
-        <div class="nc-body">
-          <div class="skel-line skel-wide"></div>
-          <div class="skel-line skel-med"></div>
+        <div class="news-card news-skeleton">
+          <div class="nc-img"><div class="skel-img"></div></div>
+          <div class="nc-body">
+            <div class="skel-line skel-wide"></div>
+            <div class="skel-line skel-med"></div>
+          </div>
         </div>
-      </div>
-      <div class="news-card news-skeleton">
-        <div class="nc-img"><div class="skel-img"></div></div>
-        <div class="nc-body">
-          <div class="skel-line skel-wide"></div>
-          <div class="skel-line skel-med"></div>
+        <div class="news-card news-skeleton">
+          <div class="nc-img"><div class="skel-img"></div></div>
+          <div class="nc-body">
+            <div class="skel-line skel-wide"></div>
+            <div class="skel-line skel-med"></div>
+          </div>
         </div>
-      </div>
-      <div class="news-card news-skeleton">
-        <div class="nc-img"><div class="skel-img"></div></div>
-        <div class="nc-body">
-          <div class="skel-line skel-wide"></div>
-          <div class="skel-line skel-med"></div>
+        <div class="news-card news-skeleton">
+          <div class="nc-img"><div class="skel-img"></div></div>
+          <div class="nc-body">
+            <div class="skel-line skel-wide"></div>
+            <div class="skel-line skel-med"></div>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </section>
+  </div>
 
 </div><!-- /w -->
 
@@ -3126,47 +3273,6 @@ function buildMatchCard(m) {
   vp.addEventListener('mouseenter', stop);
   vp.addEventListener('mouseleave', start);
   start();
-})();
-
-/* ═══════════════════════════════════════════════════
-   TODAY'S RESULTS SCOREBOARD
-════════════════════════════════════════════════════ */
-var SCB_ABBR = {
-  'Mexico':'MEX','South Africa':'RSA','South Korea':'KOR','Czechia':'CZE',
-  'Canada':'CAN','Bosnia':'BIH','USA':'USA','Paraguay':'PAR','Qatar':'QAT',
-  'Switzerland':'SUI','Germany':'GER','Curaçao':'CUW','Brazil':'BRA',
-  'Morocco':'MAR','Haiti':'HAI','Scotland':'SCO'
-};
-function scbAb(name) { return SCB_ABBR[name] || name.slice(0, 3).toUpperCase(); }
-var SCOREBOARD = [
-  { home:'Mexico',      home_iso:'mx', score:'2–0', away:'South Africa', away_iso:'za', status:'FT',  group:'A' },
-  { home:'South Korea', home_iso:'kr', score:'2–1', away:'Czechia',      away_iso:'cz', status:'FT',  group:'A' },
-  { home:'Canada',      home_iso:'ca', score:'1–1', away:'Bosnia',       away_iso:'ba', status:'FT',  group:'B' },
-  { home:'USA',         home_iso:'us', score:'4–1', away:'Paraguay',     away_iso:'py', status:'FT',  group:'D' },
-  { home:'Qatar',       home_iso:'qa', score:'',    away:'Switzerland',  away_iso:'ch', status:'LIVE', group:'B', time:'85\'' },
-  { home:'Germany',     home_iso:'de', score:'',    away:'Curaçao',      away_iso:'cw', status:'3PM',  group:'E' },
-  { home:'Brazil',      home_iso:'br', score:'',    away:'Morocco',      away_iso:'ma', status:'6PM',  group:'C' },
-  { home:'Haiti',       home_iso:'ht', score:'',    away:'Scotland',     away_iso:'gb-sct', status:'9PM', group:'C' }
-];
-(function initScoreboard() {
-  var el = document.getElementById('scbInner');
-  if (!el) return;
-  el.innerHTML = SCOREBOARD.map(function(g) {
-    var st = g.status === 'FT'
-      ? '<span class="scb-st s-ft">FT</span>'
-      : g.status === 'LIVE'
-        ? '<span class="scb-st s-live"><span class="d"></span>' + (g.time || 'LIVE') + '</span>'
-        : '<span class="scb-st s-up">' + g.status + '</span>';
-    var mid = g.score
-      ? '<span class="scb-mid">' + g.score + '</span>'
-      : '<span class="scb-mid" style="color:rgba(255,255,255,.4)">–</span>';
-    var cls = g.status === 'FT' ? 'scb-pill ft' : 'scb-pill';
-    return '<div class="' + cls + '">' +
-      '<span class="scb-side"><img src="https://flagcdn.com/w40/' + g.home_iso + '.png" alt="' + g.home + '">' + scbAb(g.home) + '</span>' +
-      mid +
-      '<span class="scb-side">' + scbAb(g.away) + '<img src="https://flagcdn.com/w40/' + g.away_iso + '.png" alt="' + g.away + '"></span>' +
-      st + '</div>';
-  }).join('');
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -3461,6 +3567,40 @@ document.querySelectorAll('.fix-tab').forEach(function(tab) {
     });
   });
 });
+
+// ── Dynamic fixture date tabs ─────────────────────
+(function() {
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function isoDate(d) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+  function shortLabel(d) { return MONTHS[d.getMonth()] + ' ' + d.getDate(); }
+
+  var d0 = new Date(), d1 = new Date(d0), d2 = new Date(d0);
+  d1.setDate(d0.getDate() + 1);
+  d2.setDate(d0.getDate() + 2);
+
+  var OLD_DATES = ['2026-06-13', '2026-06-14', '2026-06-15'];
+  var NEW_DATES = [isoDate(d0), isoDate(d1), isoDate(d2)];
+  var LABELS    = [shortLabel(d0), shortLabel(d1), shortLabel(d2)];
+
+  // Remap tab filters and labels
+  document.querySelectorAll('.fix-tab[data-filter]').forEach(function(tab) {
+    var idx = OLD_DATES.indexOf(tab.dataset.filter);
+    if (idx !== -1) {
+      tab.dataset.filter = NEW_DATES[idx];
+      tab.textContent = LABELS[idx];
+    }
+  });
+
+  // Remap fixture row data-date attributes
+  document.querySelectorAll('.fixture-row[data-date]').forEach(function(row) {
+    var idx = OLD_DATES.indexOf(row.dataset.date);
+    if (idx !== -1) row.dataset.date = NEW_DATES[idx];
+  });
+})();
 
 // ── Live World Cup News Feed ──────────────────────
 // Fetches latest soccer news from ESPN RSS via rss2json.com (free, no key required)
