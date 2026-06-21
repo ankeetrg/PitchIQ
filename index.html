@@ -2441,30 +2441,8 @@ html, body { scroll-behavior: smooth; }
     Live
   </div>
   <div class="ticker-scroll">
-    <div class="ticker-track" id="tickerTrack">
-      <!-- duplicated for seamless loop -->
-      <div class="tick-item"><span class="tick-status ft">FT</span> MEX 🇲🇽 <span class="score">2–0</span> 🇿🇦 RSA <em>Group A</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> KOR 🇰🇷 <span class="score">2–1</span> 🇨🇿 CZE <em>Group A</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> CAN 🇨🇦 <span class="score">1–1</span> 🇧🇦 BIH <em>Group B</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> USA 🇺🇸 <span class="score">4–1</span> 🇵🇾 PAR <em>Group D</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 3PM</span> QAT vs SUI <em>Group B</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 6PM</span> BRA vs MAR <em>Group C · MetLife</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 9PM</span> HTI vs SCO <em>Group C</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 14 · 4PM</span> NED vs JPN <em>Group F · AT&T Stadium</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 14 · 1PM</span> GER vs CUW <em>Group E · Houston</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 15 · 1PM</span> ESP vs CPV <em>Group H · Atlanta</em></div>
-      <!-- duplicate -->
-      <div class="tick-item"><span class="tick-status ft">FT</span> MEX 🇲🇽 <span class="score">2–0</span> 🇿🇦 RSA <em>Group A</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> KOR 🇰🇷 <span class="score">2–1</span> 🇨🇿 CZE <em>Group A</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> CAN 🇨🇦 <span class="score">1–1</span> 🇧🇦 BIH <em>Group B</em></div>
-      <div class="tick-item"><span class="tick-status ft">FT</span> USA 🇺🇸 <span class="score">4–1</span> 🇵🇾 PAR <em>Group D</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 3PM</span> QAT vs SUI <em>Group B</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 6PM</span> BRA vs MAR <em>Group C · MetLife</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 13 · 9PM</span> HTI vs SCO <em>Group C</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 14 · 4PM</span> NED vs JPN <em>Group F · AT&T Stadium</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 14 · 1PM</span> GER vs CUW <em>Group E · Houston</em></div>
-      <div class="tick-item"><span class="tick-status ko">JUN 15 · 1PM</span> ESP vs CPV <em>Group H · Atlanta</em></div>
-    </div>
+    <!-- Populated dynamically with ONLY today's fixtures (see ticker script below) -->
+    <div class="ticker-track" id="tickerTrack"></div>
   </div>
   <div class="ticker-right">WC 2026 · Group Stage</div>
 </div>
@@ -3606,6 +3584,43 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   var now = new Date();
   var tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
   var todayIso = isoOf(now), tomorrowIso = isoOf(tomorrow);
+
+  // ── LIVE TICKER — show ONLY today's fixtures, sourced from FIXTURES ──
+  // The top ribbon is driven by the same hard-coded dataset, filtered to
+  // the current calendar date so it always reflects "today's" matches.
+  (function buildTicker() {
+    var track = document.getElementById('tickerTrack');
+    if (!track) return;
+
+    function flagEmoji(code) {
+      if (!code || code.length !== 2) return '🏴';
+      return String.fromCodePoint.apply(null, code.toUpperCase().split('').map(function(c) {
+        return 0x1F1E6 + c.charCodeAt(0) - 65;
+      }));
+    }
+
+    var today = FIXTURES.filter(function(f) { return f[2] === todayIso; });
+
+    if (!today.length) {
+      track.innerHTML = '<div class="tick-item"><span class="tick-status ko">' +
+        badge(todayIso) + '</span> No matches scheduled today <em>WC 2026 · Group Stage</em></div>';
+      return;
+    }
+
+    function itemHtml(f) {
+      var parts = f[0].split('-');
+      var home = TEAMS[parts[0]], away = TEAMS[parts[1]];
+      if (!home || !away) return '';
+      return '<div class="tick-item"><span class="tick-status ko">' +
+        badge(f[2]) + ' · ' + f[3] + '</span> ' +
+        flagEmoji(home[1]) + ' ' + home[0] + ' vs ' + away[0] + ' ' + flagEmoji(away[1]) +
+        ' <em>Group ' + f[1] + '</em></div>';
+    }
+
+    var single = today.map(itemHtml).join('');
+    // Duplicate the set so the seamless CSS scroll loop has no visible gap.
+    track.innerHTML = single + single;
+  })();
 
   var CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>';
 
