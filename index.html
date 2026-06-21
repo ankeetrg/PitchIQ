@@ -1367,6 +1367,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .bc-cta:hover { background: var(--gold); color: #fff; }
 
+/* equal-height cards with CTA pinned to the bottom edge */
+.bet-card { display: flex; flex-direction: column; }
+.bc-body { display: flex; flex-direction: column; flex: 1; }
+.bc-meta { margin-bottom: 14px; }
+.bc-cta { margin-top: auto; }
+
 /* ── SPORTSBOOK BONUS BANNER ── */
 .sb-banner { background: var(--nav); padding: 14px 0; margin-bottom: 32px; border-radius: var(--r2); overflow: hidden; }
 .sb-banner-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -2083,7 +2089,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Fixture date filter tabs ───────────────────── */
-.fix-tabs { display:flex; gap:6px; margin:0 14px 10px; flex-wrap:wrap; }
+.fix-tabs { display:flex; gap:6px; margin:14px 14px 12px; flex-wrap:wrap; }
 .fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; }
 .fix-tab:hover { border-color:var(--grn); color:var(--grn); }
 .fix-tab.active { background:var(--grn); border-color:var(--grn); color:#fff; }
@@ -2094,7 +2100,7 @@ a.fixture-row { text-decoration:none; color:inherit; }
 :root { --gap: 32px; }
 html, body { scroll-behavior: smooth; }
 .fantasy-section, .news-section, .standings-section, .sb-banner { margin-bottom: var(--gap); }
-.betting-section { margin-bottom: var(--gap); padding: 32px 0; }
+.betting-section { margin-bottom: var(--gap); padding: 0; }
 .sec-divider { height: 1px; background: var(--b1); margin: 0 0 var(--gap); }
 
 /* ── MATCH CAROUSEL (hero) ──────────────────────── */
@@ -2872,32 +2878,6 @@ html, body { scroll-behavior: smooth; }
     </div>
   </section>
 
-  <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
-  <div class="sb-banner rv">
-    <div class="sb-banner-inner">
-      <div class="sb-banner-label">Top Bonuses</div>
-      <div class="sb-books">
-        <a class="sb-book" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-      </div>
-      <div class="sb-disclaimer">21+ · T&amp;Cs apply</div>
-    </div>
-  </div>
-
   <!-- ── BETTING INTELLIGENCE ───────────────────── -->
   <section class="betting-section rv">
     <div class="sec-header">
@@ -2998,6 +2978,32 @@ html, body { scroll-behavior: smooth; }
 
     </div>
   </section>
+
+  <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
+  <div class="sb-banner rv">
+    <div class="sb-banner-inner">
+      <div class="sb-banner-label">Top Bonuses</div>
+      <div class="sb-books">
+        <a class="sb-book" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+      </div>
+      <div class="sb-disclaimer">21+ · T&amp;Cs apply</div>
+    </div>
+  </div>
 
   <!-- ── NEWS HOVER BAR ───────────────────────────── -->
   <div class="news-hover-section rv">
@@ -3552,23 +3558,7 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   }
 });
 
-// ── Fixture date filter tabs ─────────────────────
-document.querySelectorAll('.fix-tab').forEach(function(tab) {
-  tab.addEventListener('click', function() {
-    var filter = this.dataset.filter;
-    document.querySelectorAll('.fix-tab').forEach(function(t) {
-      t.classList.remove('active');
-      t.setAttribute('aria-selected', 'false');
-    });
-    this.classList.add('active');
-    this.setAttribute('aria-selected', 'true');
-    document.querySelectorAll('.fixture-row[data-date]').forEach(function(row) {
-      row.style.display = (filter === 'all' || row.dataset.date === filter) ? '' : 'none';
-    });
-  });
-});
-
-// ── Dynamic fixture date tabs ─────────────────────
+// ── Fixture date tabs: remap to today+2, then wire filtering ──
 (function() {
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function isoDate(d) {
@@ -3586,7 +3576,7 @@ document.querySelectorAll('.fix-tab').forEach(function(tab) {
   var NEW_DATES = [isoDate(d0), isoDate(d1), isoDate(d2)];
   var LABELS    = [shortLabel(d0), shortLabel(d1), shortLabel(d2)];
 
-  // Remap tab filters and labels
+  // 1) Remap tab filters + labels to the live dates
   document.querySelectorAll('.fix-tab[data-filter]').forEach(function(tab) {
     var idx = OLD_DATES.indexOf(tab.dataset.filter);
     if (idx !== -1) {
@@ -3595,11 +3585,30 @@ document.querySelectorAll('.fix-tab').forEach(function(tab) {
     }
   });
 
-  // Remap fixture row data-date attributes
+  // 2) Remap each fixture row's data-date to the matching live date
   document.querySelectorAll('.fixture-row[data-date]').forEach(function(row) {
     var idx = OLD_DATES.indexOf(row.dataset.date);
     if (idx !== -1) row.dataset.date = NEW_DATES[idx];
   });
+
+  // 3) Wire filtering — selecting a date shows ONLY that day's fixtures
+  function applyFilter(filter) {
+    document.querySelectorAll('.fixture-row[data-date]').forEach(function(row) {
+      row.style.display = (filter === 'all' || row.dataset.date === filter) ? '' : 'none';
+    });
+  }
+  var tabs = document.querySelectorAll('.fix-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+      applyFilter(this.dataset.filter);
+    });
+  });
+  // Initial state honours whichever tab is marked active (defaults to "All")
+  var current = document.querySelector('.fix-tab.active');
+  applyFilter(current ? current.dataset.filter : 'all');
 })();
 
 // ── Live World Cup News Feed ──────────────────────
