@@ -2089,12 +2089,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Fixture date filter tabs ───────────────────── */
-.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:nowrap; justify-content:flex-start; }
+.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:nowrap; justify-content:flex-start; position:relative; }
 .fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; white-space:nowrap; }
 /* today / tomorrow buttons are white */
 .fix-tab-day { background:#fff; border-color:var(--b2); color:#0b1f17; }
 .fix-tab:hover { border-color:var(--grn); color:var(--grn); }
 .fix-tab.active { background:var(--grn); border-color:var(--grn); color:#fff; }
+/* calendar icon button — same footprint as the other tabs */
+.fix-cal-btn { display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; background:#fff; border-color:var(--b2); color:#0b1f17; }
+.fix-cal-btn svg { width:15px; height:15px; display:block; }
+.fix-cal-btn.active { background:var(--grn); border-color:var(--grn); color:#fff; }
+/* calendar popover */
+.fix-cal-pop { position:absolute; top:42px; right:0; z-index:60; width:248px; background:var(--bg2); border:1px solid var(--b2); border-radius:14px; box-shadow:0 12px 32px rgba(15,25,35,.18); padding:12px; display:none; }
+.fix-cal-pop.open { display:block; }
+.fix-cal-head { font-family:var(--cond); font-weight:800; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--t1); text-align:center; margin-bottom:10px; }
+.fix-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.fix-cal-dow { font-family:var(--cond); font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--t2); text-align:center; padding:2px 0; }
+.cal-day { font-family:var(--cond); font-size:13px; font-weight:700; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--b2); }
+.cal-day.cal-has { background:var(--grn); color:#fff; border-color:var(--grn); cursor:pointer; transition:transform .1s; }
+.cal-day.cal-has:hover { transform:scale(1.08); background:var(--grn-h); }
+.cal-day.cal-none { background:#fff; color:var(--b2); cursor:not-allowed; }
+.cal-day.cal-blank { background:transparent; border:none; }
 .fix-tab:focus-visible { outline:2px solid var(--grn); outline-offset:2px; }
 a.fixture-row { text-decoration:none; color:inherit; }
 
@@ -3592,10 +3607,13 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   var tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
   var todayIso = isoOf(now), tomorrowIso = isoOf(tomorrow);
 
+  var CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>';
+
   var tabsHtml =
     '<button class="fix-tab active" data-filter="all" role="tab" aria-selected="true">All</button>' +
     '<button class="fix-tab fix-tab-day" data-filter="' + todayIso + '" role="tab" aria-selected="false">' + tabLabel(todayIso) + '</button>' +
-    '<button class="fix-tab fix-tab-day" data-filter="' + tomorrowIso + '" role="tab" aria-selected="false">' + tabLabel(tomorrowIso) + '</button>';
+    '<button class="fix-tab fix-tab-day" data-filter="' + tomorrowIso + '" role="tab" aria-selected="false">' + tabLabel(tomorrowIso) + '</button>' +
+    '<button class="fix-tab fix-cal-btn" id="fixCalBtn" type="button" aria-label="Pick a date" aria-haspopup="dialog" aria-expanded="false">' + CAL_ICON + '</button>';
   var tabsWrap = document.getElementById('fixTabs');
   tabsWrap.innerHTML = tabsHtml;
 
@@ -3605,15 +3623,68 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
       row.style.display = (filter === 'all' || row.dataset.date === filter) ? '' : 'none';
     });
   }
-  var tabs = tabsWrap.querySelectorAll('.fix-tab');
-  tabs.forEach(function(tab) {
+  var dayTabs = tabsWrap.querySelectorAll('.fix-tab[data-filter]');
+  function setActive(el) {
+    tabsWrap.querySelectorAll('.fix-tab').forEach(function(t) {
+      t.classList.remove('active'); t.setAttribute('aria-selected', 'false');
+    });
+    if (el) { el.classList.add('active'); el.setAttribute('aria-selected', 'true'); }
+  }
+  dayTabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      this.classList.add('active');
-      this.setAttribute('aria-selected', 'true');
+      setActive(this);
       applyFilter(this.dataset.filter);
     });
   });
+
+  // ── Calendar popover ──────────────────────────────
+  // Hard-coded to the tournament month (June 2026). Days WITH fixtures
+  // are green + clickable; days WITHOUT fixtures are white + disabled.
+  var fixtureDates = {};
+  FIXTURES.forEach(function(f) { fixtureDates[f[2]] = true; });
+
+  var CAL_Y = 2026, CAL_M = 5; // June (0-based)
+  var DOW = ['S','M','T','W','T','F','S'];
+  var firstDow = new Date(CAL_Y, CAL_M, 1).getDay();
+  var daysInMonth = new Date(CAL_Y, CAL_M + 1, 0).getDate();
+
+  var grid = '';
+  DOW.forEach(function(d) { grid += '<div class="fix-cal-dow">' + d + '</div>'; });
+  for (var b = 0; b < firstDow; b++) { grid += '<div class="cal-day cal-blank"></div>'; }
+  for (var day = 1; day <= daysInMonth; day++) {
+    var iso = CAL_Y + '-' + String(CAL_M + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    if (fixtureDates[iso]) {
+      grid += '<button type="button" class="cal-day cal-has" data-date="' + iso + '">' + day + '</button>';
+    } else {
+      grid += '<button type="button" class="cal-day cal-none" disabled aria-disabled="true">' + day + '</button>';
+    }
+  }
+
+  var pop = document.createElement('div');
+  pop.className = 'fix-cal-pop';
+  pop.setAttribute('role', 'dialog');
+  pop.setAttribute('aria-label', 'Select a fixture date');
+  pop.innerHTML = '<div class="fix-cal-head">June 2026</div><div class="fix-cal-grid">' + grid + '</div>';
+  tabsWrap.appendChild(pop);
+
+  var calBtn = document.getElementById('fixCalBtn');
+  function closeCal() { pop.classList.remove('open'); calBtn.setAttribute('aria-expanded', 'false'); }
+  function openCal() { pop.classList.add('open'); calBtn.setAttribute('aria-expanded', 'true'); }
+  calBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    pop.classList.contains('open') ? closeCal() : openCal();
+  });
+  pop.addEventListener('click', function(e) {
+    var cell = e.target.closest('.cal-day.cal-has');
+    if (!cell) return;
+    setActive(calBtn);              // keep the calendar button highlighted as the active selector
+    applyFilter(cell.dataset.date);
+    closeCal();
+  });
+  document.addEventListener('click', function(e) {
+    if (pop.classList.contains('open') && !pop.contains(e.target) && e.target !== calBtn && !calBtn.contains(e.target)) closeCal();
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCal(); });
 
   // Default view: All
   applyFilter('all');
