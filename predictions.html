@@ -76,6 +76,26 @@
     .filter-tab.active { background: var(--grn); border-color: var(--grn); color: #fff; }
     .filter-tab:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
 
+    /* SEARCH + GROUP CONTROLS */
+    .pred-controls { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 0 0 16px; }
+    .pred-search { position: relative; flex: 0 1 320px; min-width: 220px; }
+    .pred-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: .6; pointer-events: none; }
+    .pred-search-input { width: 100%; font-family: var(--sans); font-size: 13px; color: var(--t1); background: var(--surf); border: 1px solid var(--b1); border-radius: 20px; padding: 9px 14px 9px 34px; outline: none; transition: border-color .15s, box-shadow .15s; }
+    .pred-search-input::placeholder { color: var(--t3); }
+    .pred-search-input:focus { border-color: var(--grn); box-shadow: 0 0 0 3px rgba(0,150,63,.12); }
+    .group-filters { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .group-tab { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--t2); background: var(--surf); border: 1px solid var(--b1); border-radius: 18px; padding: 6px 12px; cursor: pointer; transition: all .15s; }
+    .group-tab:hover { border-color: var(--grn); color: var(--grn); }
+    .group-tab.active { background: var(--nav); border-color: var(--nav); color: #fff; }
+    .group-tab:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
+    .pred-meta-row { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 18px; min-height: 18px; }
+    .pred-count { font-size: 12px; color: var(--t3); font-weight: 500; }
+    .pred-clear { font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--red); background: none; border: none; cursor: pointer; padding: 0; }
+    .pred-clear:hover { text-decoration: underline; }
+    .pred-empty { text-align: center; background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh); padding: 40px 20px; margin-bottom: 28px; }
+    .pred-empty-title { font-family: var(--cond); font-size: 22px; font-weight: 900; color: var(--t1); margin-bottom: 6px; }
+    .pred-empty-sub { font-size: 13px; color: var(--t2); }
+
     /* PREDICTIONS GRID */
     .pred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
     @media (max-width: 1024px) { .pred-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -202,6 +222,39 @@
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="md1">Matchday 1</button>
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="md2">Matchday 2</button>
     <button class="filter-tab" role="tab" aria-selected="false" data-filter="md3">Matchday 3</button>
+  </div>
+
+  <!-- Search + Group filters -->
+  <div class="pred-controls">
+    <div class="pred-search">
+      <span class="pred-search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="predSearch" class="pred-search-input" placeholder="Search a team…" aria-label="Search predictions by team name" autocomplete="off"/>
+    </div>
+    <div class="group-filters" role="group" aria-label="Filter predictions by group">
+      <button class="group-tab active" data-group="all">All Groups</button>
+      <button class="group-tab" data-group="A">A</button>
+      <button class="group-tab" data-group="B">B</button>
+      <button class="group-tab" data-group="C">C</button>
+      <button class="group-tab" data-group="D">D</button>
+      <button class="group-tab" data-group="E">E</button>
+      <button class="group-tab" data-group="F">F</button>
+      <button class="group-tab" data-group="G">G</button>
+      <button class="group-tab" data-group="H">H</button>
+      <button class="group-tab" data-group="I">I</button>
+      <button class="group-tab" data-group="J">J</button>
+      <button class="group-tab" data-group="K">K</button>
+      <button class="group-tab" data-group="L">L</button>
+    </div>
+  </div>
+
+  <div class="pred-meta-row">
+    <span class="pred-count" id="predCount" aria-live="polite"></span>
+    <button class="pred-clear" id="predClear" type="button" hidden>Clear filters ✕</button>
+  </div>
+
+  <div class="pred-empty" id="predEmpty" hidden>
+    <div class="pred-empty-title">No matches found</div>
+    <p class="pred-empty-sub">Try a different team name, group, or matchday.</p>
   </div>
 
   <!-- Predictions Grid -->
@@ -1095,24 +1148,86 @@ var AFF = {
   caesars:    '#',
 };
 
-/* ---- Date filter tabs ---- */
+/* ---- Combined filtering: matchday + group + team search ---- */
 var filterTabs = document.querySelectorAll('.filter-tab');
+var groupTabs  = document.querySelectorAll('.group-tab');
 var predCards  = document.querySelectorAll('.pred-card');
+var searchInput= document.getElementById('predSearch');
+var predCount  = document.getElementById('predCount');
+var predClear  = document.getElementById('predClear');
+var predEmpty  = document.getElementById('predEmpty');
+var predGrid   = document.querySelector('.pred-grid');
+
+var state = { md: 'all', group: 'all', q: '' };
+
+/* Derive group letter + searchable team text from existing markup, once. */
+predCards.forEach(function(card){
+  var grpText = (card.querySelector('.pred-group') || {}).textContent || '';
+  var m = grpText.match(/GROUP\s+([A-L])/i);
+  card.dataset.group = m ? m[1].toUpperCase() : '';
+  var names = card.querySelectorAll('.pred-name');
+  var teams = [];
+  names.forEach(function(n){ teams.push(n.textContent.toLowerCase()); });
+  card.dataset.teams = teams.join(' ');
+});
+
+function applyFilters(){
+  var q = state.q.trim().toLowerCase();
+  var shown = 0;
+  predCards.forEach(function(card){
+    var ok = (state.md === 'all' || card.dataset.date === state.md)
+          && (state.group === 'all' || card.dataset.group === state.group)
+          && (q === '' || card.dataset.teams.indexOf(q) !== -1);
+    card.style.display = ok ? '' : 'none';
+    if (ok) shown++;
+  });
+  predEmpty.hidden = shown !== 0;
+  if (predGrid) predGrid.style.display = shown === 0 ? 'none' : '';
+  predCount.textContent = shown === predCards.length
+    ? 'Showing all ' + shown + ' fixtures'
+    : 'Showing ' + shown + ' of ' + predCards.length + ' fixtures';
+  var filtered = state.md !== 'all' || state.group !== 'all' || q !== '';
+  predClear.hidden = !filtered;
+}
 
 filterTabs.forEach(function(tab){
   tab.addEventListener('click', function(){
-    var filter = tab.dataset.filter;
+    state.md = tab.dataset.filter;
     filterTabs.forEach(function(t){
       var on = (t === tab);
       t.classList.toggle('active', on);
       t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    predCards.forEach(function(card){
-      var show = (filter === 'all' || card.dataset.date === filter);
-      card.style.display = show ? '' : 'none';
-    });
+    applyFilters();
   });
 });
+
+groupTabs.forEach(function(tab){
+  tab.addEventListener('click', function(){
+    state.group = tab.dataset.group;
+    groupTabs.forEach(function(t){ t.classList.toggle('active', t === tab); });
+    applyFilters();
+  });
+});
+
+searchInput.addEventListener('input', function(){
+  state.q = searchInput.value;
+  applyFilters();
+});
+
+predClear.addEventListener('click', function(){
+  state.md = 'all'; state.group = 'all'; state.q = '';
+  searchInput.value = '';
+  filterTabs.forEach(function(t){
+    var on = t.dataset.filter === 'all';
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  groupTabs.forEach(function(t){ t.classList.toggle('active', t.dataset.group === 'all'); });
+  applyFilters();
+});
+
+applyFilters();
 
 /* ---- Coming Soon modal ---- */
 var overlay    = document.getElementById('csOverlay');
