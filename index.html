@@ -139,8 +139,10 @@ body {
   color: var(--t1);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  padding-bottom: var(--mob-nav);
 }
+/* Empty/unfilled AdSense units collapse so they leave no whitespace */
+.ad-slot { line-height: 0; }
+ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
@@ -1816,6 +1818,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 @media (max-width: 640px) {
   .mob-nav { display: flex; }
+  /* clearance for the fixed mobile bottom nav (desktop needs none) */
+  body { padding-bottom: var(--mob-nav); }
   .nav-links, .nav-right { display: none; }
   .nav-burger { display: block; }
   .news-grid { grid-template-columns: 1fr; }
@@ -2476,7 +2480,7 @@ html, body { scroll-behavior: smooth; }
      AD SLOT — Leaderboard (728×90 desktop / responsive mobile)
      Replace data-ad-client and data-ad-slot with your values from AdSense
 ═══════════════════════════════════════════════════ -->
-<div style="text-align:center;padding:8px 0;background:#f8fafc;border-bottom:1px solid #E2E8F0;">
+<div class="ad-slot" style="text-align:center;">
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -2799,60 +2803,6 @@ html, body { scroll-behavior: smooth; }
     </div>
   </section>
 
-<<<<<<< Updated upstream
-=======
-  <!-- ── GROUP STANDINGS ────────────────────────── -->
-  <section class="standings-section rv">
-    <div class="sec-header">
-      <div class="sec-title">Group Standings<span class="sec-sub">WC2026 · After Jun 13–14 results</span></div>
-      <a class="btn-view-all" href="/standings">All Groups →</a>
-    </div>
-    <div class="st-card">
-      <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
-        <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
-        <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
-        <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
-        <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
-      </div>
-      <table class="st-table">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
-          </tr>
-        </thead>
-        <tbody id="stBody"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
-  <div class="sb-banner rv">
-    <div class="sb-banner-inner">
-      <div class="sb-banner-label">Top Bonuses</div>
-      <div class="sb-books">
-        <a class="sb-book" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-        <a class="sb-book" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
-          <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
-          <div class="sb-book-arrow">↗</div>
-        </a>
-      </div>
-      <div class="sb-disclaimer">21+ · T&amp;Cs apply</div>
-    </div>
-  </div>
-
->>>>>>> Stashed changes
   <!-- ── BETTING INTELLIGENCE ───────────────────── -->
   <section class="betting-section rv">
     <div class="sec-header">
@@ -3066,8 +3016,8 @@ html, body { scroll-behavior: smooth; }
 </div><!-- /page -->
 </main>
 
-<!-- AD SLOT — Banner above footer -->
-<div style="text-align:center;padding:16px 0;background:#f8fafc;border-top:1px solid #E2E8F0;">
+<!-- AD SLOT — Banner above footer (collapses when unfilled) -->
+<div class="ad-slot" style="text-align:center;">
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -3257,54 +3207,6 @@ function buildMatchCard(m) {
 })();
 
 /* ═══════════════════════════════════════════════════
-<<<<<<< Updated upstream
-=======
-   TODAY'S RESULTS SCOREBOARD
-════════════════════════════════════════════════════ */
-var SCB_ABBR = {
-  'Mexico':'MEX','South Africa':'RSA','South Korea':'KOR','Czechia':'CZE',
-  'Canada':'CAN','Bosnia':'BIH','USA':'USA','Paraguay':'PAR','Qatar':'QAT',
-  'Switzerland':'SUI','Germany':'GER','Curaçao':'CUW','Brazil':'BRA',
-  'Morocco':'MAR','Haiti':'HAI','Scotland':'SCO'
-};
-function scbAb(name) { return SCB_ABBR[name] || name.slice(0, 3).toUpperCase(); }
-var SCOREBOARD = [
-  { home:'Mexico',      home_iso:'mx', score:'2–0', away:'South Africa', away_iso:'za',     status:'FT', group:'A' },
-  { home:'South Korea', home_iso:'kr', score:'2–1', away:'Czechia',      away_iso:'cz',     status:'FT', group:'A' },
-  { home:'Canada',      home_iso:'ca', score:'1–1', away:'Bosnia',       away_iso:'ba',     status:'FT', group:'B' },
-  { home:'USA',         home_iso:'us', score:'4–1', away:'Paraguay',     away_iso:'py',     status:'FT', group:'D' },
-  { home:'Qatar',       home_iso:'qa', score:'1–1', away:'Switzerland',  away_iso:'ch',     status:'FT', group:'B' },
-  { home:'Brazil',      home_iso:'br', score:'1–1', away:'Morocco',      away_iso:'ma',     status:'FT', group:'C' },
-  { home:'Haiti',       home_iso:'ht', score:'0–1', away:'Scotland',     away_iso:'gb-sct', status:'FT', group:'C' },
-  { home:'Australia',   home_iso:'au', score:'2–0', away:'Türkiye',      away_iso:'tr',     status:'FT', group:'D' },
-  { home:'Germany',     home_iso:'de', score:'',    away:'Curaçao',      away_iso:'cw',     status:'1PM PT', group:'E' },
-  { home:'Netherlands', home_iso:'nl', score:'',    away:'Japan',        away_iso:'jp',     status:'4PM PT', group:'F' },
-  { home:'Ivory Coast', home_iso:'ci', score:'',    away:'Ecuador',      away_iso:'ec',     status:'7PM PT', group:'G' },
-  { home:'Sweden',      home_iso:'se', score:'',    away:'Tunisia',      away_iso:'tn',     status:'10PM PT', group:'H' }
-];
-(function initScoreboard() {
-  var el = document.getElementById('scbInner');
-  if (!el) return;
-  el.innerHTML = SCOREBOARD.map(function(g) {
-    var st = g.status === 'FT'
-      ? '<span class="scb-st s-ft">FT</span>'
-      : g.status === 'LIVE'
-        ? '<span class="scb-st s-live"><span class="d"></span>' + (g.time || 'LIVE') + '</span>'
-        : '<span class="scb-st s-up">' + g.status + '</span>';
-    var mid = g.score
-      ? '<span class="scb-mid">' + g.score + '</span>'
-      : '<span class="scb-mid" style="color:rgba(255,255,255,.4)">–</span>';
-    var cls = g.status === 'FT' ? 'scb-pill ft' : 'scb-pill';
-    return '<div class="' + cls + '">' +
-      '<span class="scb-side"><img src="https://flagcdn.com/w40/' + g.home_iso + '.png" alt="' + g.home + '">' + scbAb(g.home) + '</span>' +
-      mid +
-      '<span class="scb-side">' + scbAb(g.away) + '<img src="https://flagcdn.com/w40/' + g.away_iso + '.png" alt="' + g.away + '"></span>' +
-      st + '</div>';
-  }).join('');
-})();
-
-/* ═══════════════════════════════════════════════════
->>>>>>> Stashed changes
    GROUP STANDINGS WIDGET
 ════════════════════════════════════════════════════ */
 var STANDINGS = {
