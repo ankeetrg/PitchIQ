@@ -2093,8 +2093,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Fixture date filter tabs ───────────────────── */
-.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:wrap; justify-content:flex-start; position:relative; }
-.fix-tab { flex:0 0 auto; max-width:100%; }
+.fix-tabs { margin:14px 14px 12px; position:relative; }
+.fix-tabs-scroll { display:flex; gap:8px; flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; overflow-y:hidden; scroll-behavior:smooth; padding-bottom:3px; }
+.fix-tabs-scroll::-webkit-scrollbar { height:5px; }
+.fix-tabs-scroll::-webkit-scrollbar-thumb { background:var(--b2); border-radius:3px; }
+.fix-tabs-scroll { scrollbar-width:thin; scrollbar-color:var(--b2) transparent; }
+.fix-tab { flex:0 0 auto; }
 .fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; white-space:nowrap; }
 /* today / tomorrow buttons are white */
 .fix-tab-day { background:#fff; border-color:var(--b2); color:#0b1f17; }
@@ -3638,7 +3642,10 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     '<button class="fix-tab fix-tab-day" data-filter="' + tomorrowIso + '" role="tab" aria-selected="false">' + tabLabel(tomorrowIso) + '</button>' +
     '<button class="fix-tab fix-cal-btn" id="fixCalBtn" type="button" aria-label="Pick a date" aria-haspopup="dialog" aria-expanded="false">' + CAL_ICON + '</button>';
   var tabsWrap = document.getElementById('fixTabs');
-  tabsWrap.innerHTML = tabsHtml;
+  // Buttons live in a horizontal scroll strip; popover is appended to
+  // tabsWrap (outside the scroll container) so it is never clipped.
+  tabsWrap.innerHTML = '<div class="fix-tabs-scroll" id="fixTabsScroll">' + tabsHtml + '</div>';
+  var scroller = document.getElementById('fixTabsScroll');
 
   // Filtering — selecting a date shows ONLY that day's fixtures
   function applyFilter(filter) {
@@ -3700,6 +3707,8 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     calBtn.innerHTML = CAL_ICON + '<span class="fix-cal-label">' + tabLabel(iso) + '</span>' +
       '<span class="fix-cal-clear" role="button" aria-label="Clear date, show All">&times;</span>';
     calBtn.setAttribute('aria-label', 'Showing ' + tabLabel(iso) + ' — pick another date');
+    // Reveal the expanded button if it overflows the scroll strip
+    scroller.scrollLeft = scroller.scrollWidth;
   }
   function closeCal() { pop.classList.remove('open'); calBtn.setAttribute('aria-expanded', 'false'); }
   function openCal() { pop.classList.add('open'); calBtn.setAttribute('aria-expanded', 'true'); }
