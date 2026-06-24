@@ -2103,6 +2103,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .fix-cal-btn { display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; background:#fff; border-color:var(--b2); color:#0b1f17; }
 .fix-cal-btn svg { width:15px; height:15px; display:block; }
 .fix-cal-btn.active { background:var(--grn); border-color:var(--grn); color:#fff; }
+.fix-cal-label { margin-left:6px; font-family:var(--cond); font-weight:700; letter-spacing:.08em; }
 /* calendar popover */
 .fix-cal-pop { position:absolute; top:42px; right:0; z-index:60; width:248px; background:var(--bg2); border:1px solid var(--b2); border-radius:14px; box-shadow:0 12px 32px rgba(15,25,35,.18); padding:12px; display:none; }
 .fix-cal-pop.open { display:block; }
@@ -3652,6 +3653,7 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   dayTabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
       setActive(this);
+      collapseCal();   // deselecting the calendar shrinks it back to the icon
       applyFilter(this.dataset.filter);
     });
   });
@@ -3687,6 +3689,14 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   tabsWrap.appendChild(pop);
 
   var calBtn = document.getElementById('fixCalBtn');
+  function collapseCal() {
+    calBtn.innerHTML = CAL_ICON;
+    calBtn.setAttribute('aria-label', 'Pick a date');
+  }
+  function expandCal(iso) {
+    calBtn.innerHTML = CAL_ICON + '<span class="fix-cal-label">' + tabLabel(iso) + '</span>';
+    calBtn.setAttribute('aria-label', 'Showing ' + tabLabel(iso) + ' — pick another date');
+  }
   function closeCal() { pop.classList.remove('open'); calBtn.setAttribute('aria-expanded', 'false'); }
   function openCal() { pop.classList.add('open'); calBtn.setAttribute('aria-expanded', 'true'); }
   calBtn.addEventListener('click', function(e) {
@@ -3697,6 +3707,7 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     var cell = e.target.closest('.cal-day.cal-has');
     if (!cell) return;
     setActive(calBtn);              // keep the calendar button highlighted as the active selector
+    expandCal(cell.dataset.date);   // expand the icon to show the chosen date
     applyFilter(cell.dataset.date);
     closeCal();
   });
