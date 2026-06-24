@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PitchIQ v3 Match Page Generator — all 72 WC2026 group stage matches"""
-import os, re, sys
+import os, re, sys, json
 
 PROJ = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(PROJ, 'brazil-morocco.html'), encoding='utf-8') as f:
@@ -28,6 +28,44 @@ def replace_between(html, start, end, new_content):
     s = html.index(start)
     e = html.index(end, s)
     return html[:s] + new_content + html[e:]
+
+
+def schema_json_ld(m):
+    """Build JSON-LD blocks for every generated match preview page."""
+    breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://getpitchiq.net"},
+            {"@type": "ListItem", "position": 2, "name": "World Cup 2026", "item": "https://getpitchiq.net/standings"},
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": f"{m['home']} vs {m['away']}",
+                "item": f"https://getpitchiq.net/{m['slug']}",
+            },
+        ],
+    }
+    event = {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": f"{m['home']} vs {m['away']} — FIFA World Cup 2026",
+        "startDate": m["json_dt"],
+        "location": {"@type": "Place", "name": m["venue"]},
+        "description": (
+            f"AI match preview, odds, fantasy picks and betting intelligence for "
+            f"{m['home']} vs {m['away']} at the 2026 FIFA World Cup."
+        ),
+        "url": f"https://getpitchiq.net/{m['slug']}",
+    }
+    return (
+        '  <script type="application/ld+json">\n'
+        f"  {json.dumps(breadcrumb, ensure_ascii=False, separators=(',', ':'))}\n"
+        "  </script>\n"
+        '  <script type="application/ld+json">\n'
+        f"  {json.dumps(event, ensure_ascii=False, separators=(',', ':'))}\n"
+        "  </script>"
+    )
 
 
 # ── Section builders ──────────────────────────────────────────────────────────
@@ -320,11 +358,26 @@ def generate_page(m):
         h
     )
 
-    # JSON-LD SportsEvent
+    # JSON-LD: BreadcrumbList + SportsEvent
+    schema_block = schema_json_ld(m)
     h = re.sub(
-        r'\{"@context":"https://schema\.org","@type":"SportsEvent"[^<]*\}',
-        f'{{"@context":"https://schema.org","@type":"SportsEvent","name":"{m["home"]} vs {m["away"]}","startDate":"{m["json_dt"]}","location":{{"@type":"Place","name":"{m["venue_name"]}","address":"{m["venue_addr"]}"}},"sport":"Soccer","description":"FIFA World Cup 2026 Group {m["group"]} match between {m["home"]} and {m["away"]}"}}',
-        h
+        r'\s*<script type="application/ld\+json">\s*\{"@context":"https://schema\.org","@type":"BreadcrumbList".*?</script>\s*',
+        '\n',
+        h,
+        flags=re.DOTALL,
+    )
+    h = re.sub(
+        r'\s*<script type="application/ld\+json">\s*\{"@context":"https://schema\.org","@type":"SportsEvent".*?</script>\s*',
+        '\n',
+        h,
+        count=1,
+        flags=re.DOTALL,
+    )
+    h = re.sub(
+        r'\s*<!-- GA4 — replace with your Measurement ID -->',
+        '\n' + schema_block + '\n\n  <!-- GA4 — replace with your Measurement ID -->',
+        h,
+        count=1,
     )
 
     # Stadium background photo (appears twice: header + sidebar thumbnail)
@@ -398,6 +451,16 @@ def generate_page(m):
     h = replace_between(h, '      <!-- Betting Picks -->', '      <!-- Fantasy Picks -->', picks_section(m))
     h = replace_between(h, '      <!-- Fantasy Picks -->', '    </div><!-- /main -->', fantasy_section(m))
     h = replace_between(h, '    <!-- SIDEBAR -->', '    </div><!-- /sidebar -->', sidebar_section(m))
+
+    # Footer internal link
+    if '/predictions.html">More predictions' not in h:
+        h = h.replace(
+            '  © 2026 PitchIQ · <a href="/">getpitchiq.net</a>',
+            (
+                '  <div style="margin-bottom:8px;"><a href="/predictions.html">More predictions →</a></div>\n'
+                '  © 2026 PitchIQ · <a href="/">getpitchiq.net</a>'
+            ),
+        )
 
     return h
 

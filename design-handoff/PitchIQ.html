@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#091525"/>
+  <title>PitchIQ — World Cup 2026 Fantasy &amp; Betting Intelligence</title>
+  <meta name="description" content="AI-powered fantasy picks, live odds, and match predictions for World Cup 2026."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="pitchiq.css"/>
+  <style>
+    /* runtime overrides */
+    .mh-teams { grid-template-columns: 1fr 140px 1fr !important; }
+    .mh-score { white-space: nowrap !important; font-size: 52px !important; text-align: center; }
+    .mh-vs    { text-align: center; min-width: 140px; }
+  </style>
+</head>
+<body>
+
+<!-- ── LIVE TICKER ────────────────────────── -->
+<div class="ticker">
+  <div class="ticker-badge"><div class="ticker-dot"></div> Live</div>
+  <div class="ticker-scroll">
+    <div class="ticker-track" id="tickerTrack">
+      <div class="tick-item"><span class="tick-status live">LIVE</span> FRA <span class="score">1–0</span> URU <span class="tick-status live">67'</span></div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ARG <span class="score">2–1</span> AUS</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> GER <span class="score">4–0</span> KSA</div>
+      <div class="tick-item"><span class="tick-status ko">6PM ET</span> ESP vs MEX</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> BRA vs COL</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> POR vs KOR</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ENG <span class="score">3–0</span> USA</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> NED vs ECU</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> ITA vs GHA</div>
+      <!-- duplicate for seamless loop -->
+      <div class="tick-item"><span class="tick-status live">LIVE</span> FRA <span class="score">1–0</span> URU <span class="tick-status live">67'</span></div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ARG <span class="score">2–1</span> AUS</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> GER <span class="score">4–0</span> KSA</div>
+      <div class="tick-item"><span class="tick-status ko">6PM ET</span> ESP vs MEX</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> BRA vs COL</div>
+      <div class="tick-item"><span class="tick-status ko">9PM ET</span> POR vs KOR</div>
+      <div class="tick-item"><span class="tick-status ft">FT</span> ENG <span class="score">3–0</span> USA</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> NED vs ECU</div>
+      <div class="tick-item"><span class="tick-status ko">JUN 13</span> ITA vs GHA</div>
+    </div>
+  </div>
+  <div class="ticker-right">WC 2026 · Group Stage</div>
+</div>
+
+<!-- ── NAVBAR ─────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner w">
+    <a class="nav-logo" href="#">Pitch<span>IQ</span></a>
+    <div class="nav-links">
+      <a href="#">Scores</a>
+      <a href="#" class="active">World Cup</a>
+      <a href="#">Fantasy</a>
+      <a href="#">Betting</a>
+      <a href="#">Analysis</a>
+      <a href="#">News <span class="nav-new">NEW</span></a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── SPORT SWITCHER ─────────────────────── -->
+<div class="sport-switcher">
+  <div class="ss-inner w">
+    <div class="ss-tab active">⚽ Soccer</div>
+    <div class="ss-tab" id="cricketTab">🏏 Cricket <span class="ss-badge">Q4 2026</span></div>
+    <div class="ss-right">IPL &amp; International · Coming Soon — click to register interest</div>
+  </div>
+</div>
+
+<!-- ── PAGE ───────────────────────────────── -->
+<div class="page">
+<div class="w">
+
+  <!-- HERO GRID -->
+  <div class="hero-grid" data-screen-label="hero">
+
+    <!-- FEATURED MATCH CARD -->
+    <div class="match-hero">
+
+      <div class="mh-header">
+        <div class="mh-badge">Group E · Match 1 · <span>MetLife Stadium, NJ</span></div>
+        <div class="mh-live-pill">
+          <div class="dot"></div>
+          <span id="matchStatusBadge">67'</span>
+        </div>
+        <div class="mh-time">Jun 12, 2026 · 3:00 PM ET</div>
+      </div>
+
+      <div class="mh-teams">
+        <div class="mh-team">
+          <div class="mh-team-flag">🇫🇷</div>
+          <div class="mh-team-name">France</div>
+          <div class="mh-team-form">
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp d">D</div>
+            <div class="mh-fp w">W</div>
+          </div>
+        </div>
+        <div class="mh-vs">
+          <div class="mh-vs-text">vs</div>
+          <div class="mh-score" id="heroScore">1–0</div>
+          <div class="mh-score-min" id="heroMin">● 67'</div>
+        </div>
+        <div class="mh-team">
+          <div class="mh-team-flag">🇺🇾</div>
+          <div class="mh-team-name">Uruguay</div>
+          <div class="mh-team-form">
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp w">W</div>
+            <div class="mh-fp d">D</div>
+            <div class="mh-fp l">L</div>
+            <div class="mh-fp w">W</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live odds strip -->
+      <div class="mh-odds">
+        <div class="mh-odd">
+          <div class="mh-odd-label">France Win</div>
+          <div class="mh-odd-val fav" id="odd-fra">-140</div>
+          <div class="mh-odd-move up" id="odd-fra-move">▲ moved</div>
+          <div class="mh-odd-book">DraftKings</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">Draw</div>
+          <div class="mh-odd-val dog" id="odd-draw">+290</div>
+          <div class="mh-odd-move down" id="odd-draw-move">▼ moved</div>
+          <div class="mh-odd-book">FanDuel</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">Uruguay Win</div>
+          <div class="mh-odd-val dog" id="odd-uru">+380</div>
+          <div class="mh-odd-move up" id="odd-uru-move">▲ moved</div>
+          <div class="mh-odd-book">BetMGM</div>
+        </div>
+        <div class="mh-odd">
+          <div class="mh-odd-label">O/U 2.5 Goals</div>
+          <div class="mh-odd-val dog" id="odd-ou">-110</div>
+          <div class="mh-odd-move" style="color:var(--t4)">— even</div>
+          <div class="mh-odd-book">Caesars</div>
+        </div>
+      </div>
+
+      <!-- AI probability -->
+      <div class="mh-prob">
+        <div class="mh-prob-head">
+          <div class="mh-prob-title">AI Win Probability — 50,000 Simulations</div>
+          <div class="mh-prob-ai-badge">✦ PitchIQ AI</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-seg home" id="probHome" style="width:0%"></div>
+          <div class="prob-seg draw" id="probDraw" style="width:0%"></div>
+          <div class="prob-seg away" id="probAway" style="width:0%"></div>
+        </div>
+        <div class="prob-labels">
+          <div class="prob-lbl">
+            <span class="pct" id="probHomePct">65%</span>
+            <span class="team">France Win</span>
+          </div>
+          <div class="prob-lbl c">
+            <span class="pct" id="probDrawPct">20%</span>
+            <span class="team">Draw</span>
+          </div>
+          <div class="prob-lbl">
+            <span class="pct" id="probAwayPct">15%</span>
+            <span class="team">Uruguay Win</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key stats -->
+      <div class="mh-stats">
+        <div class="mh-stat">
+          <div class="mh-stat-val">3–1–1</div>
+          <div class="mh-stat-lbl">H2H Last 5</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val"><em>2.8</em></div>
+          <div class="mh-stat-lbl">France xG/Game</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val">1.4</div>
+          <div class="mh-stat-lbl">Uruguay xG/Game</div>
+        </div>
+        <div class="mh-stat">
+          <div class="mh-stat-val"><em>High</em></div>
+          <div class="mh-stat-lbl">AI Confidence</div>
+        </div>
+      </div>
+
+      <!-- CTA row -->
+      <div class="mh-cta">
+        <a class="btn-primary" href="#">Bet at DraftKings −140 →</a>
+        <a class="btn-secondary" href="#">Full Match Analysis</a>
+        <div class="mh-cta-note">Odds live · Updated 2 min ago · 18+ only</div>
+      </div>
+
+    </div><!-- /match-hero -->
+
+    <!-- SIDE WIDGETS -->
+    <div class="side-col">
+
+      <div class="widget">
+        <div class="w-head">
+          <div class="w-title">Today's Fixtures</div>
+          <a class="w-link" href="#">Full Schedule →</a>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status live">LIVE</div>
+          <div class="fix-match">France vs Uruguay<em>Group E · <span id="side-minute">67'</span></em></div>
+          <div class="fix-score" id="side-score">1–0</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ft">FT</div>
+          <div class="fix-match">Argentina vs Australia<em>Group A · Full Time</em></div>
+          <div class="fix-score">2–1</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ft">FT</div>
+          <div class="fix-match">Germany vs Saudi Arabia<em>Group B · Full Time</em></div>
+          <div class="fix-score">4–0</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">6PM</div>
+          <div class="fix-match">Spain vs Mexico<em>Group C · MetLife Stadium</em></div>
+          <div class="fix-score upcoming">6:00 PM</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">9PM</div>
+          <div class="fix-match">Brazil vs Colombia<em>Group D · Allegiant Stadium</em></div>
+          <div class="fix-score upcoming">9:00 PM</div>
+        </div>
+        <div class="fixture-row">
+          <div class="fix-status ko">9PM</div>
+          <div class="fix-match">Portugal vs South Korea<em>Group F · AT&amp;T Stadium</em></div>
+          <div class="fix-score upcoming">9:00 PM</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="w-head">
+          <div class="w-title">⚡ Best Bets Today</div>
+          <a class="w-link" href="#">All Picks →</a>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">France –1.5 Goals<em>FRA vs URU · Group E</em></div>
+          <div class="bet-value-tag">VALUE</div>
+          <div class="bet-odds-pill">+118</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Spain Win &amp; BTTS<em>ESP vs MEX · Group C</em></div>
+          <div class="bet-value-tag">VALUE</div>
+          <div class="bet-odds-pill">+195</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Mbappé Anytime Scorer<em>FRA vs URU · Group E</em></div>
+          <div class="bet-value-tag" style="background:var(--red-d);color:var(--red)">HOT</div>
+          <div class="bet-odds-pill">-130</div>
+        </div>
+        <div class="bet-row">
+          <div class="bet-match-info">Brazil Over 2.5 Goals<em>BRA vs COL · Group D</em></div>
+          <div class="bet-value-tag" style="background:var(--blue-d);color:var(--blue)">SHARP</div>
+          <div class="bet-odds-pill">-120</div>
+        </div>
+      </div>
+
+    </div><!-- /side-col -->
+
+  </div><!-- /hero-grid -->
+
+</div><!-- /w -->
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-n" data-count="64">0</div><div class="stat-l">Matches Covered</div></div>
+    <div class="stat-item"><div class="stat-n" data-count="1800">0</div><div class="stat-l">Players Ranked</div></div>
+    <div class="stat-item"><div class="stat-n" data-count="72" data-suffix="%">0</div><div class="stat-l">AI Pick Accuracy</div></div>
+    <div class="stat-item"><div class="stat-n" data-count="50000">0</div><div class="stat-l">Daily Simulations</div></div>
+    <div class="stat-item"><div class="stat-n" data-count="1" data-suffix="M+">0</div><div class="stat-l">Active Users</div></div>
+    <div class="stat-item"><div class="stat-n" data-count="24" data-suffix="/7">0</div><div class="stat-l">Live Coverage</div></div>
+  </div>
+</div>
+
+<div class="w">
+
+  <!-- FANTASY PICKS -->
+  <section class="fantasy-section rv" data-screen-label="fantasy">
+    <div class="sec-header">
+      <div class="sec-title">Fantasy Picks<span class="sec-sub">World Cup 2026 · Matchday 1 · Jun 12</span></div>
+      <div class="sec-right">
+        <div class="sec-tabs">
+          <div class="sec-tab active">Proj Pts</div>
+          <div class="sec-tab">Ownership</div>
+          <div class="sec-tab">Value</div>
+        </div>
+        <a class="btn-view-all" href="#">View All 250+ →</a>
+      </div>
+    </div>
+
+    <div class="fp-card">
+      <div class="fp-toolbar">
+        <div class="fp-filters">
+          <div class="fp-filter active">All</div>
+          <div class="fp-filter" data-pos="FWD">FWD</div>
+          <div class="fp-filter" data-pos="MID">MID</div>
+          <div class="fp-filter" data-pos="DEF">DEF</div>
+          <div class="fp-filter" data-pos="GK">GK</div>
+        </div>
+        <div class="fp-info">Projections updated 12 min ago · AI model + form + matchup data</div>
+      </div>
+
+      <table class="fp-table">
+        <thead>
+          <tr>
+            <th>Rk</th>
+            <th>Player</th>
+            <th>Pos</th>
+            <th>Match</th>
+            <th class="num">Proj Pts ▼</th>
+            <th class="num">Own %</th>
+            <th class="num">vs Avg</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fp-rank">1</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇫🇷</div><div><div class="fp-name">Kylian Mbappé</div><div class="fp-nation">France</div></div></div></td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">FRA <span class="opp">vs URU</span></div></td>
+            <td class="num fp-proj">9.2 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">68.4%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:68.4%"></div></div></div></td>
+            <td class="num"><div class="fp-trend up">↑ +1.8</div></td>
+            <td><button class="btn-pick" data-player="Mbappé">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">2</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇧🇷</div><div><div class="fp-name">Vinicius Jr.</div><div class="fp-nation">Brazil</div></div></div></td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td class="num fp-proj">8.7 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">54.2%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:54.2%"></div></div></div></td>
+            <td class="num"><div class="fp-trend up">↑ +0.9</div></td>
+            <td><button class="btn-pick" data-player="Vinicius Jr.">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">3</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇳🇴</div><div><div class="fp-name">Erling Haaland</div><div class="fp-nation">Norway</div></div></div></td>
+            <td><span class="pos-pill FWD">FWD</span></td>
+            <td><div class="fp-match">NOR <span class="opp">vs GHA</span></div></td>
+            <td class="num fp-proj">8.4 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">71.1%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:71.1%"></div></div></div></td>
+            <td class="num"><div class="fp-trend flat">→ 0.0</div></td>
+            <td><button class="btn-pick" data-player="Haaland">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">4</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇵🇹</div><div><div class="fp-name">Bruno Fernandes</div><div class="fp-nation">Portugal</div></div></div></td>
+            <td><span class="pos-pill MID">MID</span></td>
+            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td class="num fp-proj">7.8 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">41.3%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:41.3%"></div></div></div></td>
+            <td class="num"><div class="fp-trend up">↑ +2.1</div></td>
+            <td><button class="btn-pick" data-player="Fernandes">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">5</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇪🇸</div><div><div class="fp-name">Pedri</div><div class="fp-nation">Spain</div></div></div></td>
+            <td><span class="pos-pill MID">MID</span></td>
+            <td><div class="fp-match">ESP <span class="opp">vs MEX</span></div></td>
+            <td class="num fp-proj">7.6 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">38.9%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:38.9%"></div></div></div></td>
+            <td class="num"><div class="fp-trend down">↓ −0.4</div></td>
+            <td><button class="btn-pick" data-player="Pedri">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">6</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇵🇹</div><div><div class="fp-name">Rúben Dias</div><div class="fp-nation">Portugal</div></div></div></td>
+            <td><span class="pos-pill DEF">DEF</span></td>
+            <td><div class="fp-match">POR <span class="opp">vs KOR</span></div></td>
+            <td class="num fp-proj">6.8 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">29.7%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:29.7%"></div></div></div></td>
+            <td class="num"><div class="fp-trend up">↑ +0.8</div></td>
+            <td><button class="btn-pick" data-player="Dias">+ Pick</button></td>
+          </tr>
+          <tr>
+            <td class="fp-rank">7</td>
+            <td><div class="fp-player"><div class="fp-avatar">🇧🇷</div><div><div class="fp-name">Alisson</div><div class="fp-nation">Brazil</div></div></div></td>
+            <td><span class="pos-pill GK">GK</span></td>
+            <td><div class="fp-match">BRA <span class="opp">vs COL</span></div></td>
+            <td class="num fp-proj">6.4 <span class="pts-lbl">pts</span></td>
+            <td class="num"><div class="fp-own-wrap"><div class="fp-own-pct">22.1%</div><div class="fp-own-bar"><div class="fp-own-fill" style="width:22.1%"></div></div></div></td>
+            <td class="num"><div class="fp-trend flat">→ 0.0</div></td>
+            <td><button class="btn-pick" data-player="Alisson">+ Pick</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="fp-footer">
+        <div class="fp-footer-note">Projections powered by PitchIQ AI · Updated every 15 min during live matches</div>
+        <a class="btn-view-all" href="#">View Full Rankings →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETTING INTELLIGENCE -->
+  <section class="betting-section rv" data-screen-label="betting">
+    <div class="sec-header">
+      <div class="sec-title">Betting Intelligence<span class="sec-sub">AI-identified value across all markets</span></div>
+      <a class="btn-secondary" href="#">All Picks →</a>
+    </div>
+
+    <div class="bet-grid">
+
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Best Value Bet · Today</div>
+          <div class="bc-badge value">AI PICK</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">France to Score First</div>
+          <div class="bc-match">FRA vs URU · Group E · MetLife Stadium</div>
+          <div class="bc-books">
+            <div class="bc-book-row best">
+              <span class="bc-book-name">DraftKings</span>
+              <span class="bc-book-odds">+120</span>
+              <span class="bc-book-best-tag">BEST</span>
+            </div>
+            <div class="bc-book-row">
+              <span class="bc-book-name">FanDuel</span>
+              <span class="bc-book-odds">+115</span>
+            </div>
+            <div class="bc-book-row">
+              <span class="bc-book-name">BetMGM</span>
+              <span class="bc-book-odds">+110</span>
+            </div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip pos">Value 8.4/10</div>
+            <div class="bc-chip pos">74% Hit Rate</div>
+            <div class="bc-chip">Last 12 WC Games</div>
+          </div>
+          <a class="bc-cta" href="#">Bet at DraftKings +120 →</a>
+        </div>
+      </div>
+
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Sharp Money Alert</div>
+          <div class="bc-badge sharp">SHARP</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">Uruguay ML — Line Moving</div>
+          <div class="bc-match">FRA vs URU · Group E · Today</div>
+          <div class="bc-move-wrap">
+            <div class="bc-move-title">Line Movement — Last 6 Hours</div>
+            <div class="bc-move-chart">
+              <div class="bc-bar" style="height:30%"></div>
+              <div class="bc-bar" style="height:38%"></div>
+              <div class="bc-bar" style="height:34%"></div>
+              <div class="bc-bar high" style="height:62%"></div>
+              <div class="bc-bar high" style="height:76%"></div>
+              <div class="bc-bar now" style="height:60%"></div>
+            </div>
+          </div>
+          <div class="bc-books">
+            <div class="bc-book-row">
+              <span class="bc-book-name">Opened</span>
+              <span class="bc-book-odds" style="color:var(--t3)">+420</span>
+            </div>
+            <div class="bc-book-row best">
+              <span class="bc-book-name">Current Best</span>
+              <span class="bc-book-odds">+380</span>
+              <span class="bc-book-best-tag">NOW</span>
+            </div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip neg">−40 pts moved</div>
+            <div class="bc-chip shr">Sharp action</div>
+          </div>
+          <a class="bc-cta" href="#">Track at BetMGM →</a>
+        </div>
+      </div>
+
+      <div class="bet-card">
+        <div class="bc-head">
+          <div class="bc-label">Public vs Sharp · Over/Under</div>
+          <div class="bc-badge move">TRENDING</div>
+        </div>
+        <div class="bc-body">
+          <div class="bc-bet-name">FRA vs URU — Over 2.5</div>
+          <div class="bc-match">Total Goals Market · Best: −110 Caesars</div>
+          <div class="bc-books" style="margin-bottom:10px;">
+            <div class="bc-book-row best">
+              <span class="bc-book-name">Caesars</span>
+              <span class="bc-book-odds">−110</span>
+              <span class="bc-book-best-tag">BEST</span>
+            </div>
+            <div class="bc-book-row">
+              <span class="bc-book-name">DraftKings</span>
+              <span class="bc-book-odds">−115</span>
+            </div>
+          </div>
+          <div class="bc-split-wrap">
+            <div class="bc-split-labels">
+              <span style="color:var(--blue)">OVER 62%</span>
+              <span style="color:var(--red)">UNDER 38%</span>
+            </div>
+            <div class="bc-split-bar">
+              <div class="bc-split-home" style="width:62%"></div>
+              <div class="bc-split-away" style="width:38%"></div>
+            </div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-chip pos">62% Tickets → Over</div>
+            <div class="bc-chip pos">71% Money → Over</div>
+          </div>
+          <a class="bc-cta" href="#">Bet Over at Caesars →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWS & ANALYSIS -->
+  <section class="news-section rv" data-screen-label="news">
+    <div class="sec-header">
+      <div class="sec-title">Latest Analysis &amp; News</div>
+      <a class="btn-secondary" href="#">All Articles →</a>
+    </div>
+    <div class="news-grid">
+
+      <div class="news-card featured">
+        <div class="nc-img">
+          <div class="nc-img-inner france">🏆</div>
+          <div class="nc-cat">Featured Analysis</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">France's Striker Revolution: Why Deschamps' Bold System Change Makes Les Bleus the 2026 Favorites</div>
+          <div class="nc-meta"><span class="by">James Walker</span><span class="nc-meta-dot">·</span><span>Jun 12, 2026</span><span class="nc-meta-dot">·</span><span>9 min read</span></div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner brazil">⚽</div>
+          <div class="nc-cat">Fantasy</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">Vinicius Jr. vs. Colombia's Leaky Defense: The Fantasy Differential of Matchday 1</div>
+          <div class="nc-meta"><span class="by">Sarah Kim</span><span class="nc-meta-dot">·</span><span>Jun 12, 2026</span><span class="nc-meta-dot">·</span><span>5 min read</span></div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner betting">📊</div>
+          <div class="nc-cat">Betting</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">Sharp Money Is Hammering Spain –1.5 Against Mexico: Here's Why the Model Agrees</div>
+          <div class="nc-meta"><span class="by">Carlos Rivera</span><span class="nc-meta-dot">·</span><span>Jun 12, 2026</span><span class="nc-meta-dot">·</span><span>4 min read</span></div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-img">
+          <div class="nc-img-inner fantasy">🌟</div>
+          <div class="nc-cat">Fantasy Picks</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-headline">3 Underowned Defenders Under 30% Who Could Win You Matchday 1</div>
+          <div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Jun 12, 2026</span><span class="nc-meta-dot">·</span><span>3 min read</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /w -->
+
+<!-- NEWSLETTER -->
+<div class="nl-strip rv">
+  <div class="w">
+    <div class="nl-inner">
+      <div class="nl-copy">
+        <div class="nl-eyebrow">✦ PitchIQ Daily</div>
+        <div class="nl-title">Get the Edge Before Kickoff</div>
+        <div class="nl-sub">AI picks, line movement alerts, and fantasy intel delivered every match day morning. Join 1M+ fans already winning.</div>
+        <div class="nl-perks">
+          <div class="nl-perk">Daily AI Picks</div>
+          <div class="nl-perk">Line Movement Alerts</div>
+          <div class="nl-perk">Fantasy Top Picks</div>
+          <div class="nl-perk">Free Forever</div>
+        </div>
+      </div>
+      <div class="nl-form">
+        <div class="nl-input-row">
+          <input class="nl-input" type="email" placeholder="Enter your email address…"/>
+          <button class="nl-btn" id="nlSubmit">Subscribe</button>
+        </div>
+        <div class="nl-note">No spam. Unsubscribe anytime. 18+ only.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="w">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">Pitch<span>IQ</span></div>
+        <div class="ft-tagline">AI-powered soccer intelligence for fantasy players and sports bettors. World Cup 2026 and beyond.</div>
+        <div class="ft-socials">
+          <a class="ft-social" href="#">𝕏</a>
+          <a class="ft-social" href="#">in</a>
+          <a class="ft-social" href="#">▶</a>
+          <a class="ft-social" href="#">📸</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">World Cup 2026</div>
+        <ul>
+          <li><a href="#">Match Schedule</a></li>
+          <li><a href="#">Group Standings</a></li>
+          <li><a href="#">Player Stats</a></li>
+          <li><a href="#">AI Predictions</a></li>
+          <li><a href="#">Bracket Tracker</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">Fantasy</div>
+        <ul>
+          <li><a href="#">Player Rankings</a></li>
+          <li><a href="#">Daily Picks</a></li>
+          <li><a href="#">Ownership %</a></li>
+          <li><a href="#">Injury Report</a></li>
+          <li><a href="#">Draft Assistant</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-title">Betting</div>
+        <ul>
+          <li><a href="#">Today's Best Bets</a></li>
+          <li><a href="#">Odds Tracker</a></li>
+          <li><a href="#">Line Movement</a></li>
+          <li><a href="#">Sharp Reports</a></li>
+          <li><a href="#">Sportsbooks</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-legal">© 2026 PitchIQ · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">About</a></div>
+      <div class="ft-disclaimer">Gambling involves risk. Must be of legal age in your jurisdiction. PitchIQ is an entertainment &amp; information service — not a licensed sportsbook.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mob-nav">
+  <div class="mob-nav-inner">
+    <button class="mob-nav-btn active"><span class="icon">🏠</span>Home</button>
+    <button class="mob-nav-btn"><span class="icon">⚽</span>Scores</button>
+    <button class="mob-nav-btn"><span class="icon">🌟</span>Fantasy</button>
+    <button class="mob-nav-btn"><span class="icon">📊</span>Betting</button>
+    <button class="mob-nav-btn"><span class="icon">👤</span>Account</button>
+  </div>
+</nav>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<!-- CRICKET COMING SOON MODAL -->
+<div class="modal-overlay" id="cricketModal">
+  <div class="modal-sheet">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <div style="font-family:var(--cond);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">🏏 Phase 2 · Coming Q4 2026</div>
+        <div style="font-family:var(--cond);font-size:26px;font-weight:900;color:var(--t1);line-height:1.2;letter-spacing:-.01em;">PitchIQ Cricket<br/>IPL &amp; International Coverage</div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+      <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">🏏</div>
+        <div style="font-family:var(--cond);font-size:13px;font-weight:800;color:var(--t1);">IPL 2027</div>
+        <div style="font-family:var(--cond);font-size:10px;color:var(--t3);margin-top:3px;">Fantasy picks + betting intel</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">🌍</div>
+        <div style="font-family:var(--cond);font-size:13px;font-weight:800;color:var(--t1);">International</div>
+        <div style="font-family:var(--cond);font-size:10px;color:var(--t3);margin-top:3px;">Test, ODI &amp; T20I coverage</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">🤖</div>
+        <div style="font-family:var(--cond);font-size:13px;font-weight:800;color:var(--t1);">PitchIQ AI</div>
+        <div style="font-family:var(--cond);font-size:10px;color:var(--t3);margin-top:3px;">Same engine, new sport</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:1.6;">Be the first to access PitchIQ Cricket. We'll send you early access plus our opening IPL picks when we launch.</p>
+    <div style="display:flex;margin-bottom:12px;">
+      <input type="email" id="cricketEmail" placeholder="Enter your email for early access…" style="flex:1;padding:12px 16px;border:1.5px solid var(--b2);border-right:none;border-radius:var(--r) 0 0 var(--r);font-family:var(--sans);font-size:13px;background:var(--surf);color:var(--t1);outline:none;"/>
+      <button id="cricketSubmit" style="padding:12px 20px;background:var(--gold);color:#fff;font-family:var(--cond);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:0 var(--r) var(--r) 0;cursor:pointer;transition:background .18s;">Notify Me</button>
+    </div>
+    <p style="font-size:11px;color:var(--t4);">No spam. Cricket launch alerts only. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script src="pitchiq.js"></script>
+<script>
+  // Cricket modal email
+  document.getElementById('cricketSubmit')?.addEventListener('click', function() {
+    const input = document.getElementById('cricketEmail');
+    if (input?.value?.includes('@')) {
+      this.textContent = '✓ Registered!';
+      this.style.background = 'var(--grn)';
+      input.value = '';
+      showToast('✓ You\'re on the Cricket early access list!');
+      setTimeout(() => {
+        document.getElementById('cricketModal')?.classList.remove('open');
+        this.textContent = 'Notify Me';
+        this.style.background = '';
+      }, 2000);
+    } else {
+      input?.focus();
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -38,7 +38,7 @@
        1. Go to https://analytics.google.com
        2. Create a property for getpitchiq.net
        3. Copy your Measurement ID (looks like G-XXXXXXXXXX)
-       4. Replace GA_MEASUREMENT_ID below with your ID
+       4. Replace G-N9PX9ZKHLR below with your ID
   ════════════════════════════════════════ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9PX9ZKHLR"></script>
   <script>
@@ -2799,6 +2799,60 @@ html, body { scroll-behavior: smooth; }
     </div>
   </section>
 
+<<<<<<< Updated upstream
+=======
+  <!-- ── GROUP STANDINGS ────────────────────────── -->
+  <section class="standings-section rv">
+    <div class="sec-header">
+      <div class="sec-title">Group Standings<span class="sec-sub">WC2026 · After Jun 13–14 results</span></div>
+      <a class="btn-view-all" href="/standings">All Groups →</a>
+    </div>
+    <div class="st-card">
+      <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
+        <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
+        <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
+        <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
+        <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
+      </div>
+      <table class="st-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody id="stBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
+  <div class="sb-banner rv">
+    <div class="sb-banner-inner">
+      <div class="sb-banner-label">Top Bonuses</div>
+      <div class="sb-books">
+        <a class="sb-book" href="#" data-aff="draftkings" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">DraftKings</div><div class="sb-book-bonus">Bet $5, Get $200</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="fanduel" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">FanDuel</div><div class="sb-book-bonus">$200 Bonus Bets</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="betmgm" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">BetMGM</div><div class="sb-book-bonus">Up to $1,500 Back</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+        <a class="sb-book" href="#" data-aff="caesars" rel="noopener sponsored" target="_blank">
+          <div><div class="sb-book-name">Caesars</div><div class="sb-book-bonus">$1,000 First Bet</div></div>
+          <div class="sb-book-arrow">↗</div>
+        </a>
+      </div>
+      <div class="sb-disclaimer">21+ · T&amp;Cs apply</div>
+    </div>
+  </div>
+
+>>>>>>> Stashed changes
   <!-- ── BETTING INTELLIGENCE ───────────────────── -->
   <section class="betting-section rv">
     <div class="sec-header">
@@ -3203,6 +3257,54 @@ function buildMatchCard(m) {
 })();
 
 /* ═══════════════════════════════════════════════════
+<<<<<<< Updated upstream
+=======
+   TODAY'S RESULTS SCOREBOARD
+════════════════════════════════════════════════════ */
+var SCB_ABBR = {
+  'Mexico':'MEX','South Africa':'RSA','South Korea':'KOR','Czechia':'CZE',
+  'Canada':'CAN','Bosnia':'BIH','USA':'USA','Paraguay':'PAR','Qatar':'QAT',
+  'Switzerland':'SUI','Germany':'GER','Curaçao':'CUW','Brazil':'BRA',
+  'Morocco':'MAR','Haiti':'HAI','Scotland':'SCO'
+};
+function scbAb(name) { return SCB_ABBR[name] || name.slice(0, 3).toUpperCase(); }
+var SCOREBOARD = [
+  { home:'Mexico',      home_iso:'mx', score:'2–0', away:'South Africa', away_iso:'za',     status:'FT', group:'A' },
+  { home:'South Korea', home_iso:'kr', score:'2–1', away:'Czechia',      away_iso:'cz',     status:'FT', group:'A' },
+  { home:'Canada',      home_iso:'ca', score:'1–1', away:'Bosnia',       away_iso:'ba',     status:'FT', group:'B' },
+  { home:'USA',         home_iso:'us', score:'4–1', away:'Paraguay',     away_iso:'py',     status:'FT', group:'D' },
+  { home:'Qatar',       home_iso:'qa', score:'1–1', away:'Switzerland',  away_iso:'ch',     status:'FT', group:'B' },
+  { home:'Brazil',      home_iso:'br', score:'1–1', away:'Morocco',      away_iso:'ma',     status:'FT', group:'C' },
+  { home:'Haiti',       home_iso:'ht', score:'0–1', away:'Scotland',     away_iso:'gb-sct', status:'FT', group:'C' },
+  { home:'Australia',   home_iso:'au', score:'2–0', away:'Türkiye',      away_iso:'tr',     status:'FT', group:'D' },
+  { home:'Germany',     home_iso:'de', score:'',    away:'Curaçao',      away_iso:'cw',     status:'1PM PT', group:'E' },
+  { home:'Netherlands', home_iso:'nl', score:'',    away:'Japan',        away_iso:'jp',     status:'4PM PT', group:'F' },
+  { home:'Ivory Coast', home_iso:'ci', score:'',    away:'Ecuador',      away_iso:'ec',     status:'7PM PT', group:'G' },
+  { home:'Sweden',      home_iso:'se', score:'',    away:'Tunisia',      away_iso:'tn',     status:'10PM PT', group:'H' }
+];
+(function initScoreboard() {
+  var el = document.getElementById('scbInner');
+  if (!el) return;
+  el.innerHTML = SCOREBOARD.map(function(g) {
+    var st = g.status === 'FT'
+      ? '<span class="scb-st s-ft">FT</span>'
+      : g.status === 'LIVE'
+        ? '<span class="scb-st s-live"><span class="d"></span>' + (g.time || 'LIVE') + '</span>'
+        : '<span class="scb-st s-up">' + g.status + '</span>';
+    var mid = g.score
+      ? '<span class="scb-mid">' + g.score + '</span>'
+      : '<span class="scb-mid" style="color:rgba(255,255,255,.4)">–</span>';
+    var cls = g.status === 'FT' ? 'scb-pill ft' : 'scb-pill';
+    return '<div class="' + cls + '">' +
+      '<span class="scb-side"><img src="https://flagcdn.com/w40/' + g.home_iso + '.png" alt="' + g.home + '">' + scbAb(g.home) + '</span>' +
+      mid +
+      '<span class="scb-side">' + scbAb(g.away) + '<img src="https://flagcdn.com/w40/' + g.away_iso + '.png" alt="' + g.away + '"></span>' +
+      st + '</div>';
+  }).join('');
+})();
+
+/* ═══════════════════════════════════════════════════
+>>>>>>> Stashed changes
    GROUP STANDINGS WIDGET
 ════════════════════════════════════════════════════ */
 var STANDINGS = {
@@ -3213,22 +3315,22 @@ var STANDINGS = {
     { iso:'za', name:'South Africa', p:1, w:0, d:0, l:1, gd:'-2', pts:0 }
   ],
   B: [
-    { iso:'ca', name:'Canada',      p:1, w:0, d:1, l:0, gd:'0', pts:1 },
-    { iso:'ba', name:'Bosnia',      p:1, w:0, d:1, l:0, gd:'0', pts:1 },
-    { iso:'ch', name:'Switzerland', p:1, w:0, d:0, l:0, gd:'–', pts:0, note:'Playing' },
-    { iso:'qa', name:'Qatar',       p:1, w:0, d:0, l:0, gd:'–', pts:0, note:'Playing' }
+    { iso:'ca', name:'Canada',      p:1, w:0, d:1, l:0, gd:'0',  pts:1 },
+    { iso:'ba', name:'Bosnia',      p:1, w:0, d:1, l:0, gd:'0',  pts:1 },
+    { iso:'ch', name:'Switzerland', p:1, w:0, d:1, l:0, gd:'0',  pts:1 },
+    { iso:'qa', name:'Qatar',       p:1, w:0, d:1, l:0, gd:'0',  pts:1 }
   ],
   C: [
-    { iso:'br', name:'Brazil',      p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'6PM today' },
-    { iso:'ma', name:'Morocco',     p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'6PM today' },
-    { iso:'ht', name:'Haiti',       p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'9PM today' },
-    { iso:'gb-sct', name:'Scotland',p:0, w:0, d:0, l:0, gd:'–', pts:0, note:'9PM today' }
+    { iso:'gb-sct', name:'Scotland', p:1, w:1, d:0, l:0, gd:'+1', pts:3 },
+    { iso:'br', name:'Brazil',       p:1, w:0, d:1, l:0, gd:'0',  pts:1 },
+    { iso:'ma', name:'Morocco',      p:1, w:0, d:1, l:0, gd:'0',  pts:1 },
+    { iso:'ht', name:'Haiti',        p:1, w:0, d:0, l:1, gd:'-1', pts:0 }
   ],
   D: [
-    { iso:'us', name:'USA',      p:1, w:1, d:0, l:0, gd:'+3', pts:3 },
-    { iso:'py', name:'Paraguay', p:1, w:0, d:0, l:1, gd:'-3', pts:0 },
-    { iso:'au', name:'Australia',p:0, w:0, d:0, l:0, gd:'–', pts:0 },
-    { iso:'tr', name:'Türkiye',  p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+    { iso:'us', name:'USA',       p:1, w:1, d:0, l:0, gd:'+3', pts:3 },
+    { iso:'au', name:'Australia', p:1, w:1, d:0, l:0, gd:'+2', pts:3 },
+    { iso:'tr', name:'Türkiye',   p:1, w:0, d:0, l:1, gd:'-2', pts:0 },
+    { iso:'py', name:'Paraguay',  p:1, w:0, d:0, l:1, gd:'-3', pts:0 }
   ]
 };
 (function initStandings() {
@@ -3764,10 +3866,14 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     var grid = document.getElementById('newsGrid');
     if (!grid) return;
     grid.innerHTML =
-      '<a class="news-card featured news-live-card" href="/brazil-morocco">' +
+      '<a class="news-card featured news-live-card" href="/brazil-morocco-result.html">' +
       '<div class="nc-img"><div class="nc-img-inner brazil" style="font-size:48px;display:flex;align-items:center;justify-content:center;">🇧🇷</div><div class="nc-cat">Preview</div></div>' +
       '<div class="nc-body"><div class="nc-headline">Brazil vs Morocco Preview — AI Pick, Odds &amp; Fantasy Picks</div>' +
       '<div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Group C · Today</span></div></div></a>' +
+      '<a class="news-card news-live-card" href="/mexico-southafrica-result.html">' +
+      '<div class="nc-img"><div class="nc-img-inner betting" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🇲🇽</div><div class="nc-cat">Result</div></div>' +
+      '<div class="nc-body"><div class="nc-headline">Mexico vs South Africa — Final Score &amp; AI Pick Result</div>' +
+      '<div class="nc-meta"><span class="by">PitchIQ AI</span><span class="nc-meta-dot">·</span><span>Group A · Final</span></div></div></a>' +
       '<a class="news-card news-live-card" href="/germany-curacao">' +
       '<div class="nc-img"><div class="nc-img-inner betting" style="font-size:36px;display:flex;align-items:center;justify-content:center;">🇩🇪</div><div class="nc-cat">Preview</div></div>' +
       '<div class="nc-body"><div class="nc-headline">Germany vs Curaçao Preview — Win to Nil &amp; Best Bets</div>' +

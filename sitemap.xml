@@ -77,4 +77,22 @@
   <url><loc>https://getpitchiq.net/usa-australia</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://getpitchiq.net/usa-paraguay</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://getpitchiq.net/uzbekistan-colombia</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+
+  <!-- Group standings + qualification scenario pages -->
+  <url><loc>https://getpitchiq.net/group-a</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-b</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-c</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-d</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-e</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-f</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-g</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-h</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-i</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-j</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-k</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://getpitchiq.net/group-l</loc><changefreq>daily</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+
+  <!-- Post-match result pages -->
+  <url><loc>https://getpitchiq.net/mexico-southafrica-result</loc><changefreq>never</changefreq><priority>0.6</priority><lastmod>2026-06-11</lastmod></url>
+  <url><loc>https://getpitchiq.net/korea-czechia-result</loc><changefreq>never</changefreq><priority>0.6</priority><lastmod>2026-06-11</lastmod></url>
 </urlset>
