@@ -1,0 +1,37 @@
+name: Update Live Odds
+
+on:
+  schedule:
+    # Runs every 30 minutes during World Cup hours (06:00–23:00 UTC)
+    - cron: '0,30 6-23 * * *'
+  workflow_dispatch:   # allow manual trigger from GitHub Actions tab
+
+jobs:
+  update-odds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run odds updater
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 update_odds.py
+
+      - name: Commit updated pages
+        run: |
+          git config user.name  "PitchIQ Bot"
+          git config user.email "admin@getpitchiq.net"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No odds changes — nothing to commit."
+          else
+            git commit -m "chore: update live odds [skip ci]"
+            git push
+          fi
