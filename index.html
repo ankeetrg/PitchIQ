@@ -2093,7 +2093,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Fixture date filter tabs ───────────────────── */
-.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:nowrap; justify-content:flex-start; position:relative; }
+.fix-tabs { display:flex; gap:8px; margin:14px 14px 12px; flex-wrap:wrap; justify-content:flex-start; position:relative; }
+.fix-tab { flex:0 0 auto; max-width:100%; }
 .fix-tab { font-family:var(--cond); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:20px; border:1.5px solid var(--b2); background:transparent; color:var(--t2); cursor:pointer; transition:all .15s; white-space:nowrap; }
 /* today / tomorrow buttons are white */
 .fix-tab-day { background:#fff; border-color:var(--b2); color:#0b1f17; }
@@ -2104,6 +2105,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .fix-cal-btn svg { width:15px; height:15px; display:block; }
 .fix-cal-btn.active { background:var(--grn); border-color:var(--grn); color:#fff; }
 .fix-cal-label { margin-left:6px; font-family:var(--cond); font-weight:700; letter-spacing:.08em; }
+.fix-cal-clear { margin-left:8px; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,.25); color:#fff; font-size:13px; line-height:1; cursor:pointer; transition:background .15s; }
+.fix-cal-clear:hover { background:rgba(255,255,255,.45); }
 /* calendar popover */
 .fix-cal-pop { position:absolute; top:42px; right:0; z-index:60; width:248px; background:var(--bg2); border:1px solid var(--b2); border-radius:14px; box-shadow:0 12px 32px rgba(15,25,35,.18); padding:12px; display:none; }
 .fix-cal-pop.open { display:block; }
@@ -3694,13 +3697,23 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
     calBtn.setAttribute('aria-label', 'Pick a date');
   }
   function expandCal(iso) {
-    calBtn.innerHTML = CAL_ICON + '<span class="fix-cal-label">' + tabLabel(iso) + '</span>';
+    calBtn.innerHTML = CAL_ICON + '<span class="fix-cal-label">' + tabLabel(iso) + '</span>' +
+      '<span class="fix-cal-clear" role="button" aria-label="Clear date, show All">&times;</span>';
     calBtn.setAttribute('aria-label', 'Showing ' + tabLabel(iso) + ' — pick another date');
   }
   function closeCal() { pop.classList.remove('open'); calBtn.setAttribute('aria-expanded', 'false'); }
   function openCal() { pop.classList.add('open'); calBtn.setAttribute('aria-expanded', 'true'); }
+  var allTab = tabsWrap.querySelector('.fix-tab[data-filter="all"]');
   calBtn.addEventListener('click', function(e) {
     e.stopPropagation();
+    // Clicking the × clears the date and reverts to All picks
+    if (e.target.closest('.fix-cal-clear')) {
+      closeCal();
+      collapseCal();
+      setActive(allTab);
+      applyFilter('all');
+      return;
+    }
     pop.classList.contains('open') ? closeCal() : openCal();
   });
   pop.addEventListener('click', function(e) {
