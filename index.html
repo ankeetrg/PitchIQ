@@ -404,7 +404,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   grid-template-columns: 1fr 320px;
   gap: 16px;
   margin-bottom: 20px;
-  align-items: start;
+  align-items: stretch;
+}
+/* Desktop: let each hero column's last card grow so Group Standings and
+   Best Bets Today share the same bottom edge (only the bottoms change) */
+@media (min-width: 901px) {
+  .hero-grid > div:first-child { display: flex; flex-direction: column; }
+  .standings-section { display: flex; flex-direction: column; flex: 1 1 auto; }
+  .standings-section .st-card { flex: 1 1 auto; }
+  .side-col > .widget:last-child { flex: 1 1 auto; }
 }
 
 /* ─────────────────── FEATURED MATCH CARD ────────── */
@@ -2226,13 +2234,21 @@ html, body { scroll-behavior: smooth; }
 
 /* ── GROUP STANDINGS WIDGET ──────────────────────── */
 .st-card { background: var(--surf); border-radius: var(--r2); border: 1px solid var(--b1); overflow: hidden; box-shadow: var(--sh); }
-.st-tabs { display: flex; gap: 0; background: var(--bg2); border-bottom: 1px solid var(--b1); overflow-x: auto; }
+.st-tabs { display: flex; gap: 0; background: var(--bg2); border-bottom: 1px solid var(--b1); overflow-x: auto; flex-wrap: nowrap; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+.st-tabs::-webkit-scrollbar { display: none; }
 .st-tab { flex: 0 0 auto; font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 11px 18px; color: var(--t3); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color .15s, border-color .15s; }
 .st-tab:hover { color: var(--t1); }
 .st-tab.active { color: var(--grn); border-bottom-color: var(--grn); }
-.st-table { width: 100%; border-collapse: collapse; }
+.st-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .st-table th { font-family: var(--cond); font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); padding: 9px 10px; text-align: center; border-bottom: 2px solid var(--b1); background: var(--bg2); }
 .st-table th:first-child, .st-table td:first-child { text-align: left; }
+/* Team column takes a fixed slice; the 6 stat columns (P W D L GD Pts) evenly
+   divide the remaining width so they spread out and stay identical across every
+   group, with Pts anchored at the right end */
+.st-table th:first-child, .st-table td:first-child { width: 30%; }
+.st-table th:not(:first-child), .st-table td:not(:first-child) { width: auto; padding-left: 4px; padding-right: 4px; }
+.st-table td:first-child, .st-table th:first-child { overflow: hidden; text-overflow: ellipsis; }
+.st-team-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .st-table td { padding: 10px; font-size: 13px; color: var(--t1); text-align: center; font-variant-numeric: tabular-nums; border-bottom: 1px solid var(--b1); }
 .st-table tr:last-child td { border-bottom: none; }
 .st-team { display: flex; align-items: center; gap: 9px; }
@@ -2352,17 +2368,19 @@ html, body { scroll-behavior: smooth; }
   transition-delay: .14s;
 }
 .news-hover-section:hover .news-expand-body {
-  max-height: 1000px;
+  max-height: 1600px;
   opacity: 1;
   transition-delay: 0s;
 }
-.news-expand-body .news-grid {
+.news-expand-body .news-grid,
+.news-expand-body .bet-grid {
   padding: 16px;
 }
+.news-expand-body > .fp-card { margin: 16px; }
 /* Always show on touch devices that have no hover */
 @media (hover: none) {
   .news-expand-body {
-    max-height: 1000px !important;
+    max-height: 1600px !important;
     opacity: 1 !important;
     transition: none;
   }
@@ -2524,12 +2542,7 @@ html, body { scroll-behavior: smooth; }
           <a class="btn-view-all" href="/standings">All Groups →</a>
         </div>
         <div class="st-card">
-          <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group">
-            <button class="st-tab active" data-group="A" role="tab" aria-selected="true">Group A</button>
-            <button class="st-tab" data-group="B" role="tab" aria-selected="false">Group B</button>
-            <button class="st-tab" data-group="C" role="tab" aria-selected="false">Group C</button>
-            <button class="st-tab" data-group="D" role="tab" aria-selected="false">Group D</button>
-          </div>
+          <div class="st-tabs" id="stTabs" role="tablist" aria-label="Select group"><!-- tabs A–L injected by JS --></div>
           <table class="st-table">
             <thead>
               <tr>
@@ -2600,14 +2613,19 @@ html, body { scroll-behavior: smooth; }
   <!-- divider -->
   <div class="sec-divider"></div>
 
-  <!-- ── FANTASY PICKS ──────────────────────────── -->
-  <section class="fantasy-section rv">
-    <div class="sec-header">
-      <div class="sec-title">Fantasy Picks<span class="sec-sub">World Cup 2026 · Matchday 2 · Jun 13–14</span></div>
-      <div class="sec-right">
-        <a class="btn-view-all" href="#" data-cs="Fantasy Player Rankings">View All 250+ Players →</a>
+  <!-- ── FANTASY PICKS (collapsible hover bar) ──────────────────── -->
+  <div class="news-hover-section rv">
+    <div class="news-hover-bar">
+      <div class="news-bar-left">
+        <span class="news-bar-title"><span class="news-bar-accent"></span>Fantasy Picks</span>
+        <span class="news-bar-hint">Hover to view top players</span>
+      </div>
+      <div class="news-bar-right">
+        <a class="news-bar-btn" href="#" data-cs="Fantasy Player Rankings">View All 250+ Players →</a>
+        <span class="news-bar-chevron">▾</span>
       </div>
     </div>
+    <div class="news-expand-body">
 
     <div class="fp-card">
       <div class="fp-toolbar">
@@ -2808,15 +2826,23 @@ html, body { scroll-behavior: smooth; }
         <div class="fp-footer-note">Projections powered by PitchIQ AI · Updated every 15 minutes during matches</div>
         <a class="btn-view-all" href="#" data-cs="Fantasy Player Rankings">View Full Rankings →</a>
       </div>
-    </div>
-  </section>
+    </div><!-- /fp-card -->
+    </div><!-- /news-expand-body -->
+  </div><!-- /fantasy hover section -->
 
-  <!-- ── BETTING INTELLIGENCE ───────────────────── -->
-  <section class="betting-section rv">
-    <div class="sec-header">
-      <div class="sec-title">Betting Intelligence<span class="sec-sub">AI-identified value across all markets</span></div>
-      <a class="btn-secondary" href="#" data-cs="Betting Intelligence">All Picks →</a>
+  <!-- ── BETTING INTELLIGENCE (collapsible hover bar) ─────────── -->
+  <div class="news-hover-section rv">
+    <div class="news-hover-bar">
+      <div class="news-bar-left">
+        <span class="news-bar-title"><span class="news-bar-accent"></span>Betting Intelligence</span>
+        <span class="news-bar-hint">Hover to view value picks</span>
+      </div>
+      <div class="news-bar-right">
+        <a class="news-bar-btn" href="#" data-cs="Betting Intelligence">All Picks →</a>
+        <span class="news-bar-chevron">▾</span>
+      </div>
     </div>
+    <div class="news-expand-body">
 
     <div class="bet-grid">
 
@@ -2909,8 +2935,9 @@ html, body { scroll-behavior: smooth; }
         </div>
       </div>
 
-    </div>
-  </section>
+    </div><!-- /bet-grid -->
+    </div><!-- /news-expand-body -->
+  </div><!-- /betting hover section -->
 
   <!-- ── SPORTSBOOK BONUS BANNER ───────────────── -->
   <div class="sb-banner rv">
@@ -3217,6 +3244,14 @@ function buildMatchCard(m) {
 /* ═══════════════════════════════════════════════════
    GROUP STANDINGS WIDGET
 ════════════════════════════════════════════════════ */
+/* Placeholder data for all 12 World Cup 2026 groups (A–L), keyed by group.
+   Groups A–D reflect matchday-1 results; E–L kick off later so show 0/–.
+   ─────────────────────────────────────────────────────────────────────
+   GOING LIVE: replace loadStandings() below with a fetch that resolves to
+   this same shape, e.g.
+     function loadStandings(){ return fetch('/api/standings').then(r=>r.json()); }
+   The render layer is fully data-driven — tabs and tables rebuild from
+   whatever groups the data contains, so no markup changes are needed. */
 var STANDINGS = {
   A: [
     { iso:'mx', name:'Mexico',       p:1, w:1, d:0, l:0, gd:'+2', pts:3 },
@@ -3241,13 +3276,63 @@ var STANDINGS = {
     { iso:'au', name:'Australia', p:1, w:1, d:0, l:0, gd:'+2', pts:3 },
     { iso:'tr', name:'Türkiye',   p:1, w:0, d:0, l:1, gd:'-2', pts:0 },
     { iso:'py', name:'Paraguay',  p:1, w:0, d:0, l:1, gd:'-3', pts:0 }
+  ],
+  E: [
+    { iso:'de', name:'Germany',     p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'cw', name:'Curaçao',     p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'ci', name:'Ivory Coast', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'ec', name:'Ecuador',     p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  F: [
+    { iso:'nl', name:'Netherlands', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'jp', name:'Japan',       p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'se', name:'Sweden',      p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'tn', name:'Tunisia',     p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  G: [
+    { iso:'be', name:'Belgium',     p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'eg', name:'Egypt',       p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'ir', name:'Iran',        p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'nz', name:'New Zealand', p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  H: [
+    { iso:'es', name:'Spain',        p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'cv', name:'Cape Verde',   p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'sa', name:'Saudi Arabia', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'uy', name:'Uruguay',      p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  I: [
+    { iso:'fr', name:'France',  p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'sn', name:'Senegal', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'iq', name:'Iraq',    p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'no', name:'Norway',  p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  J: [
+    { iso:'ar', name:'Argentina', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'dz', name:'Algeria',   p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'at', name:'Austria',   p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'jo', name:'Jordan',    p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  K: [
+    { iso:'pt', name:'Portugal',   p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'cd', name:'DR Congo',   p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'uz', name:'Uzbekistan', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'co', name:'Colombia',   p:0, w:0, d:0, l:0, gd:'–', pts:0 }
+  ],
+  L: [
+    { iso:'gb-eng', name:'England', p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'hr', name:'Croatia',     p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'gh', name:'Ghana',       p:0, w:0, d:0, l:0, gd:'–', pts:0 },
+    { iso:'pa', name:'Panama',      p:0, w:0, d:0, l:0, gd:'–', pts:0 }
   ]
 };
 (function initStandings() {
+  var tabsWrap = document.getElementById('stTabs');
   var body = document.getElementById('stBody');
-  if (!body) return;
-  function render(group) {
-    var rows = STANDINGS[group] || [];
+  if (!tabsWrap || !body) return;
+
+  function renderTable(group) {
+    var rows = (STANDINGS[group] || []);
     body.innerHTML = rows.map(function(t, i) {
       var note = t.note ? '<span class="st-note">' + t.note + '</span>' : '';
       return '<tr' + (i === 0 ? ' class="st-row-leader"' : '') + '>' +
@@ -3257,16 +3342,33 @@ var STANDINGS = {
         '<td><span class="st-pts">' + t.pts + '</span></td></tr>';
     }).join('');
   }
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.st-tab'));
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      render(tab.dataset.group);
+
+  function selectTab(tab) {
+    tabsWrap.querySelectorAll('.st-tab').forEach(function(t) {
+      t.classList.remove('active'); t.setAttribute('aria-selected', 'false');
     });
-  });
-  render('A');
+    tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+    renderTable(tab.dataset.group);
+    // keep the chosen group centred in the scroll strip (no page jump)
+    tabsWrap.scrollTo({ left: tab.offsetLeft - (tabsWrap.clientWidth - tab.offsetWidth) / 2, behavior: 'smooth' });
+  }
+
+  function renderStandings(data) {
+    var groups = Object.keys(data);
+    tabsWrap.innerHTML = groups.map(function(g, i) {
+      return '<button class="st-tab' + (i === 0 ? ' active' : '') + '" data-group="' + g +
+             '" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '">Group ' + g + '</button>';
+    }).join('');
+    tabsWrap.querySelectorAll('.st-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() { selectTab(tab); });
+    });
+    if (groups.length) renderTable(groups[0]);
+  }
+
+  // Static placeholder source — swap for a live API later (see note above).
+  function loadStandings() { return Promise.resolve(STANDINGS); }
+
+  loadStandings().then(function(data) { STANDINGS = data; renderStandings(STANDINGS); });
 })();
 
 /* ═══════════════════════════════════════════════════
