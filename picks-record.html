@@ -97,9 +97,9 @@
     .filter-tab.active { background: var(--grn); border-color: var(--grn); color: #fff; }
 
     /* PICKS TABLE */
-    .table-wrap { overflow-x: auto; border-radius: var(--r2); border: 1px solid var(--b1); box-shadow: var(--sh); background: var(--surf); }
+    .table-wrap { overflow: auto; max-height: 70vh; border-radius: var(--r2); border: 1px solid var(--b1); box-shadow: var(--sh); background: var(--surf); }
     table { width: 100%; border-collapse: collapse; min-width: 700px; }
-    thead th { background: var(--nav); color: rgba(255,255,255,.7); font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 12px 14px; text-align: left; position: sticky; top: 56px; z-index: 10; white-space: nowrap; }
+    thead th { background: var(--nav); color: rgba(255,255,255,.7); font-family: var(--cond); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 12px 14px; text-align: left; position: sticky; top: 0; z-index: 10; white-space: nowrap; }
     thead th:first-child { border-radius: var(--r2) 0 0 0; }
     thead th:last-child { border-radius: 0 var(--r2) 0 0; }
     tbody tr { transition: background .12s; }
@@ -193,12 +193,20 @@
   <div class="nav-inner">
     <a class="nav-logo" href="/">Pitch<span>IQ</span></a>
     <div class="nav-links">
+      <a class="nav-link" href="#" data-cs="Live Scores">Scores</a>
+      <a class="nav-link" href="/">World Cup</a>
       <a class="nav-link" href="/predictions">Picks</a>
       <a class="nav-link" href="/standings">Standings</a>
       <a class="nav-link" href="/fantasy">Fantasy</a>
       <a class="nav-link active" href="/picks-record" aria-current="page">Record</a>
+      <a class="nav-link" href="#" data-cs="Betting Intelligence">Betting</a>
+      <a class="nav-link" href="#" data-cs="Match Analysis">Analysis</a>
+      <a class="nav-link" href="#" data-cs="News &amp; Previews">News</a>
     </div>
-    <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+      <a href="#" data-cs="Sign In" style="font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:7px 12px;white-space:nowrap;">Sign In</a>
+      <a class="btn-pro" href="#" data-cs="Pro Membership">Go Pro ↗</a>
+    </div>
   </div>
 </nav>
 

@@ -46,22 +46,14 @@ def load_dotenv():
 
 load_dotenv()
 
-# ── API config ────────────────────────────────────────────────────────────────
+# ── API config — loaded from config.py (one place to change when migrating) ───
+from config import active_provider, api_key as _get_api_key
 
-API_KEY = os.environ.get('ODDS_API_KEY', '')
-
-# The Odds API sport key for FIFA World Cup
-# Verify available sport keys at: https://api.the-odds-api.com/v4/sports/?apiKey=KEY
-SPORT_KEYS = [
-    'soccer_fifa_world_cup_2026',
-    'soccer_world_cup',
-    'soccer_fifa_world_cup',
-]
-
-ODDS_BASE = 'https://api.the-odds-api.com/v4/sports/{sport}/odds'
-
-# Bookmakers to prefer (in order) when choosing a representative line
-PREFERRED_BOOKS = ['draftkings', 'fanduel', 'betmgm', 'caesars', 'betonlineag']
+_cfg = active_provider()
+API_KEY       = _get_api_key()
+SPORT_KEYS    = _cfg.get('sport_keys', ['soccer_fifa_world_cup_2026'])
+ODDS_BASE     = _cfg['base_url'] + '/sports/{sport}/odds'
+PREFERRED_BOOKS = _cfg.get('preferred_books', ['draftkings', 'fanduel', 'betmgm'])
 
 # ── Name normalization ────────────────────────────────────────────────────────
 

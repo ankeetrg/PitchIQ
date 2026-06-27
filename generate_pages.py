@@ -344,6 +344,24 @@ def generate_page(m):
     # Canonical + OG URL (both use same value in template)
     h = h.replace('https://getpitchiq.net/brazil-morocco', f'https://getpitchiq.net/{m["slug"]}')
 
+    # pitchiq:* meta tags — read by pitchiq-live.js to identify the page context
+    pitchiq_meta = (
+        f'  <meta name="pitchiq:page"  content="match"/>\n'
+        f'  <meta name="pitchiq:slug"  content="{m["slug"]}"/>\n'
+        f'  <meta name="pitchiq:home"  content="{m["home"]}"/>\n'
+        f'  <meta name="pitchiq:away"  content="{m["away"]}"/>\n'
+    )
+    if 'pitchiq:slug' not in h:
+        h = h.replace('</head>', pitchiq_meta + '</head>', 1)
+
+    # Live JS (idempotent — skip if already present)
+    live_scripts = (
+        '  <script src="/js/pitchiq-config.js"></script>\n'
+        '  <script src="/js/pitchiq-live.js"></script>\n'
+    )
+    if 'pitchiq-live.js' not in h:
+        h = h.replace('</body>', live_scripts + '</body>', 1)
+
     # OG title
     h = re.sub(
         r'<meta property="og:title" content="[^"]*"/>',
