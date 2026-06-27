@@ -19,10 +19,18 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run odds updater
+      - name: Patch match pages with pitchiq meta tags (idempotent)
+        run: python3 patch_match_pages.py
+
+      - name: Run odds updater (patches individual HTML pages)
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python3 update_odds.py
+
+      - name: Generate live.json (feeds client-side JS updater)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 generate_live_data.py
 
       - name: Commit updated pages
         run: |
