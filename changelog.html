@@ -66,14 +66,173 @@
 
 <header>
   <h1>PitchIQ Changelog</h1>
-  <span class="badge">36 entries</span>
+  <span class="badge">40 entries</span>
   <span class="repo">ankeetrg/PitchIQ · getpitchiq.net</span>
 </header>
 
 <div class="container">
 
   <!-- ─────────────────────────────────────────── -->
-  <div class="section-label">Changelog &amp; Tooling (Most Recent)</div>
+  <div class="section-label">Nav, Standings &amp; Picks Record (Most Recent)</div>
+
+  <!-- new 1 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">c9c232e</span>
+      <span class="commit-msg">Unify top nav across all 87 fixture &amp; result pages</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;div class="nav-links"&gt;</span>
+<span class="del">  &lt;a href="/predictions"&gt;Picks&lt;/a&gt;</span>
+<span class="del">  &lt;a href="/standings"&gt;Standings&lt;/a&gt;</span>
+<span class="del">  &lt;a href="/fantasy"&gt;Fantasy&lt;/a&gt;</span>
+<span class="del">  &lt;a href="/picks-record"&gt;Record&lt;/a&gt;</span>
+<span class="del">&lt;/div&gt;</span>
+<span class="del">&lt;a class="btn-pro" href="#"&gt;Go Pro ↗&lt;/a&gt;</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;div class="nav-links"&gt;</span>
+<span class="add">  &lt;a data-cs="Live Scores"&gt;Scores&lt;/a&gt;</span>
+<span class="add">  &lt;a href="/"&gt;World Cup&lt;/a&gt;</span>
+<span class="add">  &lt;a href="/predictions"&gt;Picks&lt;/a&gt;</span>
+<span class="add">  &lt;a href="/standings"&gt;Standings&lt;/a&gt;</span>
+<span class="add">  &lt;a href="/fantasy"&gt;Fantasy&lt;/a&gt;</span>
+<span class="add">  &lt;a href="/picks-record"&gt;Record&lt;/a&gt;</span>
+<span class="add">  &lt;a data-cs="Betting Intelligence"&gt;Betting&lt;/a&gt;</span>
+<span class="add">  &lt;a data-cs="Match Analysis"&gt;Analysis&lt;/a&gt;</span>
+<span class="add">  &lt;a data-cs="News &amp;amp; Previews"&gt;News&lt;/a&gt;</span>
+<span class="add">&lt;/div&gt;</span>
+<span class="add">&lt;a data-cs="Sign In"&gt;Sign In&lt;/a&gt;</span>
+<span class="add">&lt;a class="btn-pro" href="#"&gt;Go Pro ↗&lt;/a&gt;</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        All 87 fixture and result pages had a minimal 4-link nav (Picks, Standings, Fantasy, Record) with no Sign In button. Result pages also lacked the coming-soon modal, so placeholder nav links were broken.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Every page now uses the canonical 9-link nav (Scores, World Cup, Picks, Standings, Fantasy, Record, Betting, Analysis, News) plus Sign In and Go Pro — matching the main pages. Result pages also gained the coming-soon modal so placeholder links work correctly.
+      </div>
+    </div>
+  </div>
+
+  <!-- new 2 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">591ac61</span>
+      <span class="commit-msg">picks-record: fix sticky table header overlapping rows</span>
+      <span class="tag tag-fix">fix</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">.table-wrap { overflow-x: auto; ... }</span>
+<span class="del">thead th { position: sticky; top: 56px; z-index: 10; }</span>
+<span class="del">/* Header stuck 56px below viewport top — overlapped rows */</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">.table-wrap { overflow: auto; max-height: 70vh; ... }</span>
+<span class="add">thead th { position: sticky; top: 0; z-index: 10; }</span>
+<span class="add">/* Header sticks to top of scrollable container — no overlap */</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The sticky table header on the Picks Record page used <code>top: 56px</code> (the nav height), causing it to overlap data rows when scrolling inside the table.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Table wrapper now has <code>max-height: 70vh</code> and scrolls independently. Header sticks to <code>top: 0</code> of its own scroll container — no more row overlap.
+      </div>
+    </div>
+  </div>
+
+  <!-- new 3 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">568ef14</span>
+      <span class="commit-msg">Standings A–L + collapsible Fantasy/Betting sections</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;!-- Tabs A–D hard-coded in HTML --&gt;</span>
+<span class="del">&lt;button class="st-tab active" data-group="A"&gt;Group A&lt;/button&gt;</span>
+<span class="del">&lt;button class="st-tab" data-group="B"&gt;Group B&lt;/button&gt;</span>
+<span class="del">&lt;button class="st-tab" data-group="C"&gt;Group C&lt;/button&gt;</span>
+<span class="del">&lt;button class="st-tab" data-group="D"&gt;Group D&lt;/button&gt;</span>
+<span class="del">.st-tabs { overflow-x: auto; }</span>
+<span class="del">.hero-grid { align-items: start; }</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;!-- Tabs A–L injected by JS --&gt;</span>
+<span class="add">&lt;div class="st-tabs" id="stTabs"&gt;&lt;/div&gt;</span>
+<span class="add">.st-tabs { flex-wrap: nowrap; scroll-behavior: smooth;</span>
+<span class="add">  scrollbar-width: none; }</span>
+<span class="add">.st-table { table-layout: fixed; }</span>
+<span class="add">.st-table th:first-child { width: 30%; }</span>
+<span class="add">.hero-grid { align-items: stretch; }</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Group Standings widget only showed Groups A–D (hard-coded tabs). Column widths were uneven and the hero grid columns didn't share a bottom edge.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All 12 groups (A–L) now appear as JS-injected scrollable tabs. Table layout is fixed with the team column at 30% so stat columns spread evenly. Hero grid columns stretch to equal height. Fantasy and Betting sections are collapsible.
+      </div>
+    </div>
+  </div>
+
+  <!-- new 4 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">0b29c34</span>
+      <span class="commit-msg">changelog: add 1 new commit (fc622c7)</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">Jun 26 2026</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Changelog did not include the fc622c7 "Add before/after changelog" commit itself.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Changelog updated to document its own creation commit (fc622c7), bringing the entry count to 36.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">Changelog &amp; Tooling</div>
 
   <!-- 1 -->
   <div class="commit-block">
@@ -913,4 +1072,27 @@
     <div class="commit-header">
       <span class="commit-hash">de83eff</span>
       <span class="commit-msg">Update domain to getpitchiq.net</span>
-   
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Site references used a development/placeholder domain.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>All canonical URLs, meta tags, and social links updated to <strong>getpitchiq.net</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">ed63214</span>
+      <span class="commit-msg">V6 production launch</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Previous version (V5) in production.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>V6 shipped — full redesign with dark theme, live match ribbon, structured betting section, and WC2026 branding.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
