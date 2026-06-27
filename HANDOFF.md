@@ -99,6 +99,44 @@ ODDS_API_KEY=...   # get free key at the-odds-api.com (500 req/mo free)
 
 ---
 
+### Claude (Pitch) — 2026-06-27 (v2 live scores wired)
+
+**Task: Connect real ESPN scores to the v2 Next.js app (`v2/`).**
+
+The v2 app had a working ESPN client (`v2/lib/espn.ts`) but it was never called from the frontend. `LiveMatchProvider` was running a hardcoded France vs Uruguay simulation with scripted goals. Fixed in three files:
+
+**Files changed:**
+
+- **`v2/app/api/live-scores/route.ts`** _(new)_ — 5-line Next.js route that calls `getLiveScores()` and returns JSON. No API key needed — uses ESPN's free public scoreboard endpoint.
+- **`v2/components/pitchiq/LiveMatchProvider.tsx`** — Replaced the fake simulation entirely. Now polls `/api/live-scores` on mount and every 30 seconds. Features the first live/halftime match, falls back to first upcoming match. Odds drift animation kept for feel.
+- **`v2/components/pitchiq/FixturesWidget.tsx`** — Removed hardcoded `SCHEDULE`. Now reads all matches from context. Shows live scores in green, formats kickoff times from ISO timestamps.
+
+**How it works:**
+
+```
+ESPN scoreboard API (free, no key)
+  → GET /api/live-scores (Next.js route, revalidates every 30s server-side)
+    → LiveMatchProvider polls every 30s client-side
+      → match (featured) + matches (all) exposed via context
+        → FeaturedMatch, LiveTicker, FixturesWidget all read from context
+```
+
+**To run locally:**
+
+```bash
+cd /Users/samsonwinz/Claude/Projects/PitchIQ/v2
+npm run dev
+# open http://localhost:3000
+```
+
+**If ESPN returns no matches** (tournament off-season, etc.), it falls back to hardcoded `SCOREBOARD` from `pitchiq-data.ts` so the UI never breaks.
+
+**Next steps for this coworker:**
+
+The v2 app loads and scores are live, but the **visual design doesn't match the static site or the prototype** (`design-handoff/PitchIQ.html`). That's the main open item. When you pick up v2 next, start by opening `design-handoff/PitchIQ.html` in a browser alongside `http://localhost:3000` and diff the two visually. The design tokens and CSS are all in `design-handoff/pitchiq.css` — the v2 components need to pull from those same tokens.
+
+---
+
 ### Claude (Pitch) — 2026-06-23 (v2 SEO layer + workspace recovery)
 
 **Workspace move recovery.** The `Claude` folder was moved from `~/Downloads/Claude` to

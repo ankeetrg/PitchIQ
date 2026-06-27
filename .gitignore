@@ -12,3 +12,12 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Next.js (v2/)
+v2/.next/
+v2/node_modules/
+v2/*.tsbuildinfo
+
+# Claude agent internals
+.claude/
+design-handoff/.claude/
