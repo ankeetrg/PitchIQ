@@ -101,7 +101,9 @@
     .cal-btn-x { display: none; align-items: center; justify-content: center; width: 16px; height: 16px; margin-left: 2px; border-radius: 50%; font-size: 9px; line-height: 1; letter-spacing: 0; text-indent: 0; font-family: var(--sans); background: rgba(255,255,255,.32); color: rgba(255,255,255,.92); transition: background .12s; }
     .cal-btn.has-date .cal-btn-x { display: inline-flex; }
     .cal-btn-x:hover { background: rgba(255,255,255,.5); }
-    .cal-pop { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 60; width: 272px; background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh-md); padding: 14px; }
+    .cal-pop { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 60; width: 272px; max-height: 420px; overflow-y: auto; background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh-md); padding: 14px; }
+    .cal-month-label { grid-column: 1 / -1; font-family: var(--cond); font-size: 13px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t2); text-align: center; margin: 10px 0 4px; }
+    .cal-month-label:first-child { margin-top: 0; }
     .cal-pop[hidden] { display: none; }
     .cal-head { font-family: var(--cond); font-size: 15px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t1); text-align: center; margin-bottom: 10px; }
     .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
@@ -1266,27 +1268,29 @@ deriveCardData();
 
 function applyFilters(){
   var q = state.q.trim().toLowerCase();
-  var shown = 0;
+  /* When a date is chosen (Today / Tomorrow / calendar), it spans every stage —
+     knockout fixtures live in r32..final, not in "group". When no date is set,
+     browse by the selected stage tab instead. */
+  var dateActive = state.day !== 'all';
+  var shown = 0, scopeTotal = 0;
   predCards.forEach(function(card){
-    var dayOk = state.day === 'all'
-             || (state.day === 'today'    && card.dataset.daykey === todayKey)
-             || (state.day === 'tomorrow' && card.dataset.daykey === tomorrowKey)
-             || card.dataset.daykey === state.day; /* exact date from calendar, e.g. "Jun-25" */
-    var ok = dayOk
-          && card.dataset.stage === state.stage
+    var dayMatch = (state.day === 'today'    && card.dataset.daykey === todayKey)
+                || (state.day === 'tomorrow' && card.dataset.daykey === tomorrowKey)
+                || card.dataset.daykey === state.day; /* exact date from calendar, e.g. "Jul-3" */
+    var inScope = dateActive ? dayMatch : (card.dataset.stage === state.stage);
+    if (inScope) scopeTotal++;
+    var ok = inScope
           && (state.group === 'all' || card.dataset.group === state.group)
           && (q === '' || card.dataset.teams.indexOf(q) !== -1);
     card.style.display = ok ? '' : 'none';
     if (ok) shown++;
   });
-  var stageTotal = 0;
-  predCards.forEach(function(card){ if (card.dataset.stage === state.stage) stageTotal++; });
   predEmpty.hidden = shown !== 0;
   if (predGrid) predGrid.style.display = shown === 0 ? 'none' : '';
   var noun = function(n){ return n === 1 ? 'fixture' : 'fixtures'; };
-  predCount.textContent = shown === stageTotal
+  predCount.textContent = shown === scopeTotal
     ? 'Showing all ' + shown + ' ' + noun(shown)
-    : 'Showing ' + shown + ' of ' + stageTotal + ' ' + noun(stageTotal);
+    : 'Showing ' + shown + ' of ' + scopeTotal + ' ' + noun(scopeTotal);
   var filtered = state.stage !== 'group' || state.day !== 'all' || state.group !== 'all' || q !== '';
   predClear.hidden = !filtered;
 }
@@ -1324,41 +1328,70 @@ stageTabs.forEach(function(tab){
   });
 });
 
-/* ---- Calendar picker (June 2026, fixture days hard-coded) ---- */
+/* ---- Calendar picker — data-driven from the real fixture schedule ---- */
 var calBtn  = document.getElementById('calBtn');
 var calPop  = document.getElementById('calPop');
 var calGrid = document.getElementById('calGrid');
+var calHead = document.getElementById('calHead');
 var calBtnLabel = document.getElementById('calBtnLabel');
-var CAL_YEAR = 2026, CAL_MONTH = 5; /* June (0-indexed) */
-var CAL_MON_ABBR = SHORT_MONTHS[CAL_MONTH];
-var FIXTURE_DAYS = [11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27];
+var CAL_YEAR = 2026;
 
+/* The set of dates that actually have fixtures, read from every rendered card
+   (hard-coded group cards + knockout cards loaded from data/knockout.json &
+   data/live.json). Re-read whenever the calendar is (re)built. */
+function fixtureDayKeySet(){
+  var set = {};
+  predCards.forEach(function(c){ if (c.dataset.daykey) set[c.dataset.daykey] = true; });
+  return set;
+}
+
+/* Render one month block per month that contains at least one fixture.
+   Days with a fixture are green/clickable; the rest are disabled. */
 function buildCalendar(){
-  ['S','M','T','W','T','F','S'].forEach(function(d){
-    var h = document.createElement('div');
-    h.className = 'cal-dow'; h.textContent = d; calGrid.appendChild(h);
+  while (calGrid.firstChild) calGrid.removeChild(calGrid.firstChild);
+  var has = fixtureDayKeySet();
+  var monthSet = {};
+  Object.keys(has).forEach(function(k){
+    var mi = SHORT_MONTHS.indexOf(k.split('-')[0]);
+    if (mi !== -1) monthSet[mi] = true;
   });
-  var first = new Date(CAL_YEAR, CAL_MONTH, 1).getDay();
-  var daysInMonth = new Date(CAL_YEAR, CAL_MONTH + 1, 0).getDate();
-  for (var i = 0; i < first; i++){
-    var pad = document.createElement('div');
-    pad.className = 'cal-day empty'; calGrid.appendChild(pad);
-  }
-  for (var day = 1; day <= daysInMonth; day++){
-    var cell = document.createElement(FIXTURE_DAYS.indexOf(day) !== -1 ? 'button' : 'div');
-    cell.textContent = day;
-    if (FIXTURE_DAYS.indexOf(day) !== -1){
-      cell.className = 'cal-day has';
-      cell.type = 'button';
-      cell.dataset.daykey = CAL_MON_ABBR + '-' + day;
-      cell.setAttribute('aria-label', CAL_MON_ABBR + ' ' + day + ' — view fixtures');
-      cell.addEventListener('click', onCalDayClick);
-    } else {
-      cell.className = 'cal-day none';
-      cell.setAttribute('aria-disabled', 'true');
+  var months = Object.keys(monthSet).map(Number).sort(function(a, b){ return a - b; });
+  if (!months.length) months = [now.getMonth()];
+
+  months.forEach(function(mi){
+    var label = document.createElement('div');
+    label.className = 'cal-month-label';
+    label.textContent = LONG_MONTHS[mi] + ' ' + CAL_YEAR;
+    calGrid.appendChild(label);
+    ['S','M','T','W','T','F','S'].forEach(function(d){
+      var h = document.createElement('div'); h.className = 'cal-dow'; h.textContent = d; calGrid.appendChild(h);
+    });
+    var abbr = SHORT_MONTHS[mi];
+    var first = new Date(CAL_YEAR, mi, 1).getDay();
+    var dim = new Date(CAL_YEAR, mi + 1, 0).getDate();
+    for (var i = 0; i < first; i++){
+      var pad = document.createElement('div'); pad.className = 'cal-day empty'; calGrid.appendChild(pad);
     }
-    calGrid.appendChild(cell);
-  }
+    for (var day = 1; day <= dim; day++){
+      var key = abbr + '-' + day;
+      var hasFix = has[key] === true;
+      var cell = document.createElement(hasFix ? 'button' : 'div');
+      cell.textContent = day;
+      if (hasFix){
+        cell.className = 'cal-day has';
+        cell.type = 'button';
+        cell.dataset.daykey = key;
+        cell.dataset.label = LONG_MONTHS[mi] + ' ' + day;
+        cell.setAttribute('aria-label', abbr + ' ' + day + ' — view fixtures');
+        cell.addEventListener('click', onCalDayClick);
+      } else {
+        cell.className = 'cal-day none';
+        cell.setAttribute('aria-disabled', 'true');
+      }
+      calGrid.appendChild(cell);
+    }
+  });
+  if (calHead) calHead.textContent = 'Select a fixture date';
 }
 buildCalendar();
 
@@ -1382,7 +1415,7 @@ function onCalDayClick(){
   clearCalSel();
   this.classList.add('sel');
   calBtn.classList.add('active', 'has-date');
-  calBtnLabel.textContent = LONG_MONTHS[CAL_MONTH] + ' ' + this.textContent;
+  calBtnLabel.textContent = this.dataset.label;
   closeCal();
   applyFilters();
 }
@@ -1516,6 +1549,10 @@ function koCardHTML(m, live){
 
   var cta = '<div class="pred-cta' + (prob || determined ? '' : ' pred-cta-tbd') + '">Full Preview &amp; Picks &#x2192;</div>';
   var cls = 'pred-card pred-card-ko' + (prob || determined ? '' : ' pred-card-tbd');
+  var pageSlug = live.page_slug || '';
+  if (pageSlug) {
+    return '<a href="/' + koEsc(pageSlug) + '" class="' + cls + '" data-stage="' + koEsc(m.stage) + '" data-group="" data-ko="1">' + head + teams + body + cta + '</a>';
+  }
   return '<div class="' + cls + '" data-stage="' + koEsc(m.stage) + '" data-group="" data-ko="1">' + head + teams + body + cta + '</div>';
 }
 
@@ -1530,6 +1567,7 @@ function koCardHTML(m, live){
     predGrid.insertAdjacentHTML('beforeend', html);
     predCards = document.querySelectorAll('.pred-card');
     deriveCardData();
+    buildCalendar();   /* now includes knockout dates (e.g. July) */
     applyFilters();
   });
 })();

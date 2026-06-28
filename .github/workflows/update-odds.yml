@@ -42,6 +42,10 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python3 sync_knockout.py
 
+      - name: Generate knockout match pages
+        continue-on-error: true
+        run: python3 generate_knockout_pages.py
+
       - name: Commit updated pages
         run: |
           git config user.name  "PitchIQ Bot"

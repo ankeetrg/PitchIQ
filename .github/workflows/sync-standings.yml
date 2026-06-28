@@ -42,6 +42,10 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: python3 sync_knockout.py --no-odds
 
+      - name: Generate knockout match pages
+        continue-on-error: true
+        run: python3 generate_knockout_pages.py
+
       - name: Commit updated standings
         run: |
           git config user.name  "PitchIQ Bot"

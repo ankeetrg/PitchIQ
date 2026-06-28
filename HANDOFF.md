@@ -15,7 +15,47 @@ Use the **Outstanding Tasks** section as a shared checklist — check things off
 
 ## Outstanding Tasks
 
-### 🔴 Urgent
+### 🔴 Urgent — PICK UP HERE NEXT SESSION
+
+- [ ] **Finish R32 knockout page generation** — All code is written and committed. One blocker remains: `data/live.json` has an unresolved git merge conflict. Steps to finish:
+
+  **1. Fix the conflict:**
+  ```powershell
+  cd C:\Users\mroads\Documents\GitHub\PitchIQ
+  git checkout --theirs data/live.json
+  git add data/live.json
+  # if in a rebase: git rebase --continue
+  ```
+
+  **2. Test the generator:**
+  ```powershell
+  python generate_knockout_pages.py --dry
+  ```
+  Should print 16 slugs. If 0 pages, team names in live.json don't match `_TEAM_DATA`. Debug:
+  ```powershell
+  python -c "import json; d=json.load(open('data/live.json')); [print(v.get('home',{}).get('name'), '|', v.get('away',{}).get('name')) for k,v in d.get('knockout',{}).items() if v.get('home',{}).get('code')]"
+  ```
+  Known possible mismatches: `DR Congo` → needs `Congo DR`; `USA` → needs `United States`; `Bosnia` → needs `Bosnia-Herzegovina`; `Cape Verde` → needs `Cape Verde Islands`. Fix by adding the alias key in `_TEAM_DATA` inside `generate_knockout_pages.py`.
+
+  **3. Generate pages:**
+  ```powershell
+  python generate_knockout_pages.py
+  ```
+
+  **4. Commit and push (DO NOT stage `data/live.json`, `standings.html`, `test_api.py`, `data/results.json`):**
+  ```powershell
+  git add predictions.html generate_knockout_pages.py HANDOFF.md
+  git add .github/workflows/sync-standings.yml .github/workflows/update-odds.yml
+  # Stage generated pages (check names with: git status --short):
+  git add southafrica-canada.html brazil-japan.html germany-paraguay.html netherlands-morocco.html
+  git add ivorycoast-norway.html france-sweden.html mexico-ecuador.html england-congodr.html
+  git add belgium-senegal.html unitedstates-bosniaherzegovina.html spain-austria.html portugal-croatia.html
+  git add switzerland-algeria.html australia-egypt.html argentina-capeverdeislands.html colombia-ghana.html
+  git commit -m "feat: R32 knockout match pages + auto-generator for R16-Final [skip ci]"
+  git push
+  ```
+
+  **5. Verify live:** Go to https://getpitchiq.net/predictions → click Round of 32 → cards with real teams should now be clickable links.
 
 - [ ] **Fix GA4 ID on 77 match pages** — 77 pages still have placeholder `GA_MEASUREMENT_ID` instead of `G-N9PX9ZKHLR`. Run this from the project root:
   ```bash
@@ -96,6 +136,28 @@ ODDS_API_KEY=...   # get free key at the-odds-api.com (500 req/mo free)
 ---
 
 ## Progress Log
+
+---
+
+### Claude — 2026-06-29 (R32 knockout match pages)
+
+**Task: Build HTML match pages for all 16 Round of 32 cards so "Full Preview & Picks →" button links to a real page (same as group stage cards).**
+
+**Files written/changed:**
+
+- **`generate_knockout_pages.py`** _(new)_ — Full knockout page generator. Reads `data/knockout.json` + `data/live.json`, generates one HTML page per knockout slot with real teams using `brazil-morocco.html` as template. Contains `_TEAM_DATA` (all 32 R32 teams with analysis/stats/players), `_H2H` (head-to-head context per match), `_SUPPORTING_PICKS` (2 supporting bets per match). Writes `page_slug` back to `live.json` so predictions.html can wire up the link. Safe to re-run (skips unchanged pages). Imports helpers from `generate_pages.py`. Run: `python generate_knockout_pages.py`
+
+- **`predictions.html`** (line ~1517) — `koCardHTML()` updated to output `<a href="/{page_slug}">` instead of a `<div>` when `live.page_slug` is set. R16/QF/SF/Final cards remain `<div>` until those pages are generated.
+
+- **`.github/workflows/sync-standings.yml`** — Added `python3 generate_knockout_pages.py` step after `sync_knockout.py` (with `continue-on-error: true`).
+
+- **`.github/workflows/update-odds.yml`** — Same addition.
+
+**How it auto-scales to later rounds:** When football-data.org starts reporting R16 teams (after R32 completes ~Jul 9), `sync_knockout.py` populates those slots in `live.json`, the generator runs on the next workflow trigger, and R16 pages are committed by the bot automatically. No manual work needed.
+
+**Blocker — not yet committed:** `data/live.json` has an unresolved merge conflict from a bot push during this session. See Outstanding Tasks above for the exact fix commands.
+
+**Next steps:** See the 🔴 Urgent section in Outstanding Tasks above — fix the conflict, run the generator, commit, and push.
 
 ---
 
