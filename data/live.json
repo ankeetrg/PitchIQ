@@ -1,92 +1,740 @@
 {
   "_meta": {
-    "generated_at": "2026-06-27T00:00:00Z",
-    "source": "mock",
-    "schema_version": "1",
-    "note": "Seed file — replaced by generate_live_data.py on every GitHub Actions run"
+    "generated_at": "2026-06-28T08:59:34.893239+00:00",
+    "source": "football-data.org + espn",
+    "schema_version": "2"
   },
   "matches": {
     "mexico-southafrica": {
-      "home": "Mexico", "away": "South Africa",
-      "home_emoji": "🇲🇽", "away_emoji": "🇿🇦",
-      "date_short": "Jun 11", "time_str": "5:00 PM ET", "venue_short": "Estadio Azteca",
-      "home_ml": "-165", "draw_ml": "+280", "away_ml": "+490",
-      "ou_line": "2.5", "ou_over": "+105", "ou_under": "-130",
-      "home_prob": 62, "draw_prob": 22, "away_prob": 16,
-      "status": "ft", "score_home": 2, "score_away": 0, "clock": null
+      "home": "Mexico",
+      "away": "South Africa",
+      "home_emoji": "🇲🇽",
+      "away_emoji": "🇿🇦",
+      "date_short": "Jun 11",
+      "time_str": "5:00 PM ET",
+      "venue_short": "Estadio Azteca",
+      "home_ml": "-165",
+      "draw_ml": "+280",
+      "away_ml": "+490",
+      "ou_line": "2.5",
+      "ou_over": "+105",
+      "ou_under": "-130",
+      "home_prob": 62,
+      "draw_prob": 22,
+      "away_prob": 16,
+      "status": "ft",
+      "score_home": 2,
+      "score_away": 0,
+      "clock": null
     },
     "korea-czechia": {
-      "home": "Korea Republic", "away": "Czechia",
-      "home_emoji": "🇰🇷", "away_emoji": "🇨🇿",
-      "date_short": "Jun 11", "time_str": "8:00 PM ET", "venue_short": "SoFi Stadium",
-      "home_ml": "-125", "draw_ml": "+280", "away_ml": "+350",
-      "ou_line": "2.5", "ou_over": "+115", "ou_under": "-140",
-      "home_prob": 48, "draw_prob": 26, "away_prob": 26,
-      "status": "ft", "score_home": 2, "score_away": 1, "clock": null
+      "home": "Korea Republic",
+      "away": "Czechia",
+      "home_emoji": "🇰🇷",
+      "away_emoji": "🇨🇿",
+      "date_short": "Jun 11",
+      "time_str": "8:00 PM ET",
+      "venue_short": "SoFi Stadium",
+      "home_ml": "-125",
+      "draw_ml": "+280",
+      "away_ml": "+350",
+      "ou_line": "2.5",
+      "ou_over": "+115",
+      "ou_under": "-140",
+      "home_prob": 48,
+      "draw_prob": 26,
+      "away_prob": 26,
+      "status": "ft",
+      "score_home": 2,
+      "score_away": 1,
+      "clock": null
     },
     "brazil-morocco": {
-      "home": "Brazil", "away": "Morocco",
-      "home_emoji": "🇧🇷", "away_emoji": "🇲🇦",
-      "date_short": "Jun 13", "time_str": "6:00 PM ET", "venue_short": "MetLife Stadium",
-      "home_ml": "-138", "draw_ml": "+290", "away_ml": "+500",
-      "ou_line": "2.5", "ou_over": "-110", "ou_under": "-120",
-      "home_prob": 58, "draw_prob": 23, "away_prob": 19,
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "Brazil",
+      "away": "Morocco",
+      "home_emoji": "🇧🇷",
+      "away_emoji": "🇲🇦",
+      "date_short": "Jun 13",
+      "time_str": "6:00 PM ET",
+      "venue_short": "MetLife Stadium",
+      "home_ml": "-138",
+      "draw_ml": "+290",
+      "away_ml": "+500",
+      "ou_line": "2.5",
+      "ou_over": "-110",
+      "ou_under": "-120",
+      "home_prob": 58,
+      "draw_prob": 23,
+      "away_prob": 19,
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     },
     "usa-paraguay": {
-      "home": "USA", "away": "Paraguay",
-      "home_emoji": "🇺🇸", "away_emoji": "🇵🇾",
-      "date_short": "Jun 12", "time_str": "3:00 PM ET", "venue_short": "MetLife Stadium",
-      "home_ml": "-180", "draw_ml": "+310", "away_ml": "+560",
-      "ou_line": "2.5", "ou_over": "-115", "ou_under": "-105",
-      "home_prob": 64, "draw_prob": 20, "away_prob": 16,
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "USA",
+      "away": "Paraguay",
+      "home_emoji": "🇺🇸",
+      "away_emoji": "🇵🇾",
+      "date_short": "Jun 12",
+      "time_str": "3:00 PM ET",
+      "venue_short": "MetLife Stadium",
+      "home_ml": "-180",
+      "draw_ml": "+310",
+      "away_ml": "+560",
+      "ou_line": "2.5",
+      "ou_over": "-115",
+      "ou_under": "-105",
+      "home_prob": 64,
+      "draw_prob": 20,
+      "away_prob": 16,
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     },
     "germany-curacao": {
-      "home": "Germany", "away": "Curaçao",
-      "home_emoji": "🇩🇪", "away_emoji": "🇨🇼",
-      "date_short": "Jun 13", "time_str": "3:00 PM ET", "venue_short": "AT&T Stadium",
-      "home_ml": "-700", "draw_ml": "+650", "away_ml": "+1200",
-      "ou_line": "3.5", "ou_over": "-130", "ou_under": "+100",
-      "home_prob": 83, "draw_prob": 10, "away_prob": 7,
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "Germany",
+      "away": "Curaçao",
+      "home_emoji": "🇩🇪",
+      "away_emoji": "🇨🇼",
+      "date_short": "Jun 13",
+      "time_str": "3:00 PM ET",
+      "venue_short": "AT&T Stadium",
+      "home_ml": "-700",
+      "draw_ml": "+650",
+      "away_ml": "+1200",
+      "ou_line": "3.5",
+      "ou_over": "-130",
+      "ou_under": "+100",
+      "home_prob": 83,
+      "draw_prob": 10,
+      "away_prob": 7,
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     }
   },
   "ticker": [
     {
       "slug": "mexico-southafrica",
-      "home": "Mexico", "away": "South Africa",
-      "home_emoji": "🇲🇽", "away_emoji": "🇿🇦",
-      "date_short": "Jun 11", "time_str": "5:00 PM ET",
-      "status": "ft", "score_home": 2, "score_away": 0, "clock": null
+      "home": "Mexico",
+      "away": "South Africa",
+      "home_emoji": "🇲🇽",
+      "away_emoji": "🇿🇦",
+      "date_short": "Jun 11",
+      "time_str": "5:00 PM ET",
+      "status": "ft",
+      "score_home": 2,
+      "score_away": 0,
+      "clock": null
     },
     {
       "slug": "korea-czechia",
-      "home": "Korea Republic", "away": "Czechia",
-      "home_emoji": "🇰🇷", "away_emoji": "🇨🇿",
-      "date_short": "Jun 11", "time_str": "8:00 PM ET",
-      "status": "ft", "score_home": 2, "score_away": 1, "clock": null
+      "home": "Korea Republic",
+      "away": "Czechia",
+      "home_emoji": "🇰🇷",
+      "away_emoji": "🇨🇿",
+      "date_short": "Jun 11",
+      "time_str": "8:00 PM ET",
+      "status": "ft",
+      "score_home": 2,
+      "score_away": 1,
+      "clock": null
     },
     {
       "slug": "brazil-morocco",
-      "home": "Brazil", "away": "Morocco",
-      "home_emoji": "🇧🇷", "away_emoji": "🇲🇦",
-      "date_short": "Jun 13", "time_str": "6:00 PM ET",
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "Brazil",
+      "away": "Morocco",
+      "home_emoji": "🇧🇷",
+      "away_emoji": "🇲🇦",
+      "date_short": "Jun 13",
+      "time_str": "6:00 PM ET",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     },
     {
       "slug": "usa-paraguay",
-      "home": "USA", "away": "Paraguay",
-      "home_emoji": "🇺🇸", "away_emoji": "🇵🇾",
-      "date_short": "Jun 12", "time_str": "3:00 PM ET",
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "USA",
+      "away": "Paraguay",
+      "home_emoji": "🇺🇸",
+      "away_emoji": "🇵🇾",
+      "date_short": "Jun 12",
+      "time_str": "3:00 PM ET",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     },
     {
       "slug": "germany-curacao",
-      "home": "Germany", "away": "Curaçao",
-      "home_emoji": "🇩🇪", "away_emoji": "🇨🇼",
-      "date_short": "Jun 13", "time_str": "3:00 PM ET",
-      "status": "upcoming", "score_home": null, "score_away": null, "clock": null
+      "home": "Germany",
+      "away": "Curaçao",
+      "home_emoji": "🇩🇪",
+      "away_emoji": "🇨🇼",
+      "date_short": "Jun 13",
+      "time_str": "3:00 PM ET",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
     }
-  ]
+  ],
+  "standings": {
+    "A": [
+      {
+        "team": "Mexico",
+        "played": 3,
+        "won": 3,
+        "draw": 0,
+        "lost": 0,
+        "gf": 6,
+        "ga": 0,
+        "gd": 6,
+        "pts": 9
+      },
+      {
+        "team": "South Africa",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "pts": 4
+      },
+      {
+        "team": "Korea Republic",
+        "played": 3,
+        "won": 1,
+        "draw": 0,
+        "lost": 2,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "pts": 3
+      },
+      {
+        "team": "Czechia",
+        "played": 3,
+        "won": 0,
+        "draw": 1,
+        "lost": 2,
+        "gf": 2,
+        "ga": 6,
+        "gd": -4,
+        "pts": 1
+      }
+    ],
+    "B": [
+      {
+        "team": "Switzerland",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 7
+      },
+      {
+        "team": "Canada",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 8,
+        "ga": 3,
+        "gd": 5,
+        "pts": 4
+      },
+      {
+        "team": "Bosnia-H.",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 5,
+        "ga": 6,
+        "gd": -1,
+        "pts": 4
+      },
+      {
+        "team": "Qatar",
+        "played": 3,
+        "won": 0,
+        "draw": 1,
+        "lost": 2,
+        "gf": 2,
+        "ga": 10,
+        "gd": -8,
+        "pts": 1
+      }
+    ],
+    "C": [
+      {
+        "team": "Brazil",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 7,
+        "ga": 1,
+        "gd": 6,
+        "pts": 7
+      },
+      {
+        "team": "Morocco",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 6,
+        "ga": 3,
+        "gd": 3,
+        "pts": 7
+      },
+      {
+        "team": "Scotland",
+        "played": 3,
+        "won": 1,
+        "draw": 0,
+        "lost": 2,
+        "gf": 1,
+        "ga": 4,
+        "gd": -3,
+        "pts": 3
+      },
+      {
+        "team": "Haiti",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 8,
+        "gd": -6,
+        "pts": 0
+      }
+    ],
+    "D": [
+      {
+        "team": "USA",
+        "played": 3,
+        "won": 2,
+        "draw": 0,
+        "lost": 1,
+        "gf": 8,
+        "ga": 4,
+        "gd": 4,
+        "pts": 6
+      },
+      {
+        "team": "Australia",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "team": "Paraguay",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
+        "pts": 4
+      },
+      {
+        "team": "Turkey",
+        "played": 3,
+        "won": 1,
+        "draw": 0,
+        "lost": 2,
+        "gf": 3,
+        "ga": 5,
+        "gd": -2,
+        "pts": 3
+      }
+    ],
+    "E": [
+      {
+        "team": "Germany",
+        "played": 3,
+        "won": 2,
+        "draw": 0,
+        "lost": 1,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
+        "pts": 6
+      },
+      {
+        "team": "Ivory Coast",
+        "played": 3,
+        "won": 2,
+        "draw": 0,
+        "lost": 1,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "pts": 6
+      },
+      {
+        "team": "Ecuador",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "team": "Curaçao",
+        "played": 3,
+        "won": 0,
+        "draw": 1,
+        "lost": 2,
+        "gf": 1,
+        "ga": 9,
+        "gd": -8,
+        "pts": 1
+      }
+    ],
+    "F": [
+      {
+        "team": "Netherlands",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
+        "pts": 7
+      },
+      {
+        "team": "Japan",
+        "played": 3,
+        "won": 1,
+        "draw": 2,
+        "lost": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "pts": 5
+      },
+      {
+        "team": "Sweden",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 7,
+        "ga": 7,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "team": "Tunisia",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 12,
+        "gd": -10,
+        "pts": 0
+      }
+    ],
+    "G": [
+      {
+        "team": "Belgium",
+        "played": 3,
+        "won": 1,
+        "draw": 2,
+        "lost": 0,
+        "gf": 6,
+        "ga": 2,
+        "gd": 4,
+        "pts": 5
+      },
+      {
+        "team": "Egypt",
+        "played": 3,
+        "won": 1,
+        "draw": 2,
+        "lost": 0,
+        "gf": 5,
+        "ga": 3,
+        "gd": 2,
+        "pts": 5
+      },
+      {
+        "team": "Iran",
+        "played": 3,
+        "won": 0,
+        "draw": 3,
+        "lost": 0,
+        "gf": 3,
+        "ga": 3,
+        "gd": 0,
+        "pts": 3
+      },
+      {
+        "team": "New Zealand",
+        "played": 3,
+        "won": 0,
+        "draw": 1,
+        "lost": 2,
+        "gf": 4,
+        "ga": 10,
+        "gd": -6,
+        "pts": 1
+      }
+    ],
+    "H": [
+      {
+        "team": "Spain",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 5,
+        "ga": 0,
+        "gd": 5,
+        "pts": 7
+      },
+      {
+        "team": "Cape Verde",
+        "played": 3,
+        "won": 0,
+        "draw": 3,
+        "lost": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 3
+      },
+      {
+        "team": "Uruguay",
+        "played": 3,
+        "won": 0,
+        "draw": 2,
+        "lost": 1,
+        "gf": 3,
+        "ga": 4,
+        "gd": -1,
+        "pts": 2
+      },
+      {
+        "team": "Saudi Arabia",
+        "played": 3,
+        "won": 0,
+        "draw": 2,
+        "lost": 1,
+        "gf": 1,
+        "ga": 5,
+        "gd": -4,
+        "pts": 2
+      }
+    ],
+    "I": [
+      {
+        "team": "France",
+        "played": 3,
+        "won": 3,
+        "draw": 0,
+        "lost": 0,
+        "gf": 10,
+        "ga": 2,
+        "gd": 8,
+        "pts": 9
+      },
+      {
+        "team": "Norway",
+        "played": 3,
+        "won": 2,
+        "draw": 0,
+        "lost": 1,
+        "gf": 8,
+        "ga": 7,
+        "gd": 1,
+        "pts": 6
+      },
+      {
+        "team": "Senegal",
+        "played": 3,
+        "won": 1,
+        "draw": 0,
+        "lost": 2,
+        "gf": 8,
+        "ga": 6,
+        "gd": 2,
+        "pts": 3
+      },
+      {
+        "team": "Iraq",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 1,
+        "ga": 12,
+        "gd": -11,
+        "pts": 0
+      }
+    ],
+    "J": [
+      {
+        "team": "Argentina",
+        "played": 3,
+        "won": 3,
+        "draw": 0,
+        "lost": 0,
+        "gf": 8,
+        "ga": 1,
+        "gd": 7,
+        "pts": 9
+      },
+      {
+        "team": "Austria",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 6,
+        "ga": 6,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "team": "Algeria",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 5,
+        "ga": 7,
+        "gd": -2,
+        "pts": 4
+      },
+      {
+        "team": "Jordan",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 3,
+        "ga": 8,
+        "gd": -5,
+        "pts": 0
+      }
+    ],
+    "K": [
+      {
+        "team": "Colombia",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 4,
+        "ga": 1,
+        "gd": 3,
+        "pts": 7
+      },
+      {
+        "team": "Portugal",
+        "played": 3,
+        "won": 1,
+        "draw": 2,
+        "lost": 0,
+        "gf": 6,
+        "ga": 1,
+        "gd": 5,
+        "pts": 5
+      },
+      {
+        "team": "Congo DR",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 4,
+        "ga": 3,
+        "gd": 1,
+        "pts": 4
+      },
+      {
+        "team": "Uzbekistan",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 2,
+        "ga": 11,
+        "gd": -9,
+        "pts": 0
+      }
+    ],
+    "L": [
+      {
+        "team": "England",
+        "played": 3,
+        "won": 2,
+        "draw": 1,
+        "lost": 0,
+        "gf": 6,
+        "ga": 2,
+        "gd": 4,
+        "pts": 7
+      },
+      {
+        "team": "Croatia",
+        "played": 3,
+        "won": 2,
+        "draw": 0,
+        "lost": 1,
+        "gf": 5,
+        "ga": 5,
+        "gd": 0,
+        "pts": 6
+      },
+      {
+        "team": "Ghana",
+        "played": 3,
+        "won": 1,
+        "draw": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "pts": 4
+      },
+      {
+        "team": "Panama",
+        "played": 3,
+        "won": 0,
+        "draw": 0,
+        "lost": 3,
+        "gf": 0,
+        "ga": 4,
+        "gd": -4,
+        "pts": 0
+      }
+    ]
+  }
 }

@@ -249,6 +249,57 @@ def update_html(grid_html, generated_at):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def build_live_json_standings(standings_by_gid):
+    """Convert standings to the format expected by live.json."""
+    standings = {}
+    for gid in 'ABCDEFGHIJKL':
+        st = standings_by_gid.get(gid, {})
+        table = st.get('table', [])
+        standings[gid] = [
+            {
+                'team': t['team'].get('shortName', t['team'].get('name', 'Unknown')),
+                'played': t['playedGames'],
+                'won': t['won'],
+                'draw': t['draw'],
+                'lost': t['lost'],
+                'gf': t['goalsFor'],
+                'ga': t['goalsAgainst'],
+                'gd': t['goalDifference'],
+                'pts': t['points'],
+            }
+            for t in table
+        ]
+    return standings
+
+
+def update_live_json(standings_data, generated_at):
+    """Merge standings into live.json, preserving existing odds/scores/ticker data."""
+    live_json_path = os.path.join(PROJ, 'data', 'live.json')
+
+    # Load existing live.json if it exists
+    existing = {}
+    if os.path.exists(live_json_path):
+        try:
+            with open(live_json_path, encoding='utf-8') as f:
+                existing = json.load(f)
+        except Exception:
+            pass
+
+    # Update or create the structure
+    existing['_meta'] = {
+        'generated_at': generated_at.isoformat(),
+        'source': 'football-data.org + espn',
+        'schema_version': '2',
+    }
+    existing['standings'] = standings_data
+
+    os.makedirs(os.path.dirname(live_json_path), exist_ok=True)
+    with open(live_json_path, 'w', encoding='utf-8') as f:
+        json.dump(existing, f, indent=2, ensure_ascii=False)
+
+    return live_json_path
+
+
 def main():
     print(f'\nPitchIQ standings sync — {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC}\n')
 
@@ -266,6 +317,11 @@ def main():
     grid_html = render_grid(standings_by_gid)
     new_html = update_html(grid_html, generated_at)
     print(f'  ✓ Grid rendered\n')
+
+    print('Step 3: Update live.json for home page + client-side sync...')
+    standings_data = build_live_json_standings(standings_by_gid)
+    live_path = update_live_json(standings_data, generated_at)
+    print(f'  ✓ {live_path}\n')
 
     if DRY:
         print(grid_html[:2000])

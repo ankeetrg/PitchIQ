@@ -3366,8 +3366,16 @@ var STANDINGS = {
     if (groups.length) renderTable(groups[0]);
   }
 
-  // Static placeholder source — swap for a live API later (see note above).
-  function loadStandings() { return Promise.resolve(STANDINGS); }
+  // Load standings from live.json (synced every 20 min from football-data.org)
+  function loadStandings() {
+    return fetch('/data/live.json?_=' + Date.now())
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('Failed to load standings')); })
+      .then(function(data) { return data.standings || STANDINGS; })
+      .catch(function(err) {
+        console.warn('Live standings unavailable, using fallback:', err);
+        return STANDINGS;
+      });
+  }
 
   loadStandings().then(function(data) { STANDINGS = data; renderStandings(STANDINGS); });
 })();
