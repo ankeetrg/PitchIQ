@@ -32,6 +32,13 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python3 generate_live_data.py
 
+      - name: Sync knockout bracket (teams, flags, scores + live odds)
+        continue-on-error: true   # never block the odds commit if knockout sync hiccups
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 sync_knockout.py
+
       - name: Commit updated pages
         run: |
           git config user.name  "PitchIQ Bot"

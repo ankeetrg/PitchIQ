@@ -36,11 +36,17 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: python3 sync_standings.py
 
+      - name: Sync knockout bracket (teams, flags, scores — free, no odds)
+        continue-on-error: true   # never block the standings commit if knockout sync hiccups
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: python3 sync_knockout.py --no-odds
+
       - name: Commit updated standings
         run: |
           git config user.name  "PitchIQ Bot"
           git config user.email "admin@getpitchiq.net"
-          git add standings.html data/results.json
+          git add standings.html data/results.json data/live.json
           if git diff --cached --quiet; then
             echo "No standings changes — nothing to commit."
           else

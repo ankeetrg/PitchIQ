@@ -89,6 +89,8 @@
     .pred-tbd-note { font-size: 12px; color: var(--t3); background: var(--bg); border: 1px dashed var(--b1); border-radius: var(--r); padding: 10px 12px; text-align: center; line-height: 1.4; margin-bottom: 14px; }
     .pred-cta-tbd { color: var(--t3); }
     .pred-card-tbd:hover { transform: none; border-color: var(--b2); box-shadow: var(--sh); }
+    .pred-ko-score { font-family: var(--cond); font-weight: 900; color: var(--t1); }
+    .pred-ko-score.live { color: var(--red); }
 
     /* CALENDAR PICKER */
     .cal-wrap { position: relative; display: inline-flex; }
@@ -1445,35 +1447,75 @@ applyFilters();
 /* ---- Knockout bracket: render from /data/knockout.json, overlay /data/live.json ---- */
 function koEsc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+function koFlagImg(code){ return (code && code !== 'xx') ? 'https://flagcdn.com/w40/' + code + '.png' : ''; }
+
+/* Build the flag emoji from the ASCII ISO-2 code (e.g. "za" -> 🇿🇦). Computing it
+   client-side avoids any chance of mojibake from emoji bytes stored in live.json.
+   Non-ISO-2 codes (gb-sct, gb-eng) have no regional-indicator emoji — the flag
+   image carries them instead. */
+function koFlagEmoji(code){
+  if (!code || code.length !== 2 || code === 'xx') return '';
+  var base = 0x1F1E6, A = 65; // 'A'
+  var cc = code.toUpperCase();
+  return String.fromCodePoint(base + cc.charCodeAt(0) - A) + String.fromCodePoint(base + cc.charCodeAt(1) - A);
+}
+
 function koTeamSlot(t){
   t = t || {};
-  if (t.flag || t.img){
-    var img = t.img ? '<img src="' + koEsc(t.img) + '" alt="' + koEsc(t.name) + '" class="pred-flag-img" loading="lazy">' : '';
-    return '<div class="pred-team">' + img + '<span class="pred-flag">' + (t.flag || '') + '</span><span class="pred-name">' + koEsc(t.name) + '</span></div>';
+  var img = t.img || koFlagImg(t.code);
+  var emoji = koFlagEmoji(t.code);   // derived from ASCII code — never from raw emoji bytes
+  if (img || emoji){
+    var imgTag = img ? '<img src="' + koEsc(img) + '" alt="' + koEsc(t.name) + '" class="pred-flag-img" loading="lazy">' : '';
+    var flagSpan = emoji ? '<span class="pred-flag">' + emoji + '</span>' : '';
+    return '<div class="pred-team">' + imgTag + flagSpan + '<span class="pred-name">' + koEsc(t.name) + '</span></div>';
   }
   return '<div class="pred-team"><span class="pred-flag pred-flag-tbd" aria-hidden="true">?</span><span class="pred-name pred-name-tbd">' + koEsc(t.name || 'TBD') + '</span></div>';
 }
 
 function koCardHTML(m, live){
-  var home = m.home || {}, away = m.away || {}, prob = m.prob, pick = m.pick, odds = m.odds;
-  /* Overlay live.json by slug — real teams/odds appear automatically once a round is decided */
-  if (live){
-    if (live.home) home = { name: live.home, flag: live.home_emoji || home.flag, img: home.img };
-    if (live.away) away = { name: live.away, flag: live.away_emoji || away.flag, img: away.img };
-    if (live.home_prob != null) prob = { home: live.home_prob, draw: live.draw_prob, away: live.away_prob };
-    if (live.home_ml && !odds) odds = live.home_ml;
+  /* Base bracket data from knockout.json; overlay live.json.knockout[slug]
+     (real teams + flags + scores + odds from football-data.org / The Odds API). */
+  live = live || {};
+  var home = live.home || m.home || {};
+  var away = live.away || m.away || {};
+  /* "determined" = real qualified teams (have flag data), not bracket placeholders like "Winner Match 73" */
+  function koReal(t){ return !!(t && (t.code || t.emoji || t.img)); }
+  var determined = koReal(home) && koReal(away);
+  var prob = m.prob;
+  if (live.home_prob != null) prob = { home: live.home_prob, draw: live.draw_prob, away: live.away_prob };
+  var status = live.status || 'upcoming';
+
+  var chip = '';
+  if (status === 'ft' && live.score_home != null) {
+    chip = ' <span class="pred-ko-score">FT ' + koEsc(live.score_home) + '–' + koEsc(live.score_away) + '</span>';
+  } else if (status === 'live') {
+    chip = ' <span class="pred-ko-score live">' + (live.score_home != null ? koEsc(live.score_home) + '–' + koEsc(live.score_away) : 'LIVE') + (live.clock ? ' ' + koEsc(live.clock) : '') + '</span>';
   }
-  var head = '<div class="pred-header"><span class="pred-group">' + koEsc(String(m.round || '').toUpperCase()) + ' · ' + koEsc(m.date_short) + ' ' + koEsc(m.time_str) + '</span><span class="pred-venue">' + koEsc(m.venue_short) + (m.city ? ' · ' + koEsc(m.city) : '') + '</span></div>';
+  var head = '<div class="pred-header"><span class="pred-group">' + koEsc(String(m.round || '').toUpperCase()) + ' · ' + koEsc(m.date_short) + ' ' + koEsc(m.time_str) + chip + '</span><span class="pred-venue">' + koEsc(m.venue_short) + (m.city ? ' · ' + koEsc(m.city) : '') + '</span></div>';
   var teams = '<div class="pred-teams">' + koTeamSlot(home) + '<div class="pred-vs">VS</div>' + koTeamSlot(away) + '</div>';
+
   var body;
   if (prob){
     body = '<div class="pred-bar-wrap"><div class="pred-bar-home" style="width:' + prob.home + '%">' + prob.home + '%</div><div class="pred-bar-draw" style="width:' + prob.draw + '%">' + prob.draw + '%</div><div class="pred-bar-away" style="width:' + prob.away + '%">' + prob.away + '%</div></div>';
-    body += '<div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> ' + koEsc(pick || 'Pick to follow') + (odds ? ' &nbsp;·&nbsp; <strong>' + koEsc(odds) + '</strong>' : '') + '</div>';
+  } else if (status === 'ft') {
+    body = '<div class="pred-tbd-note">Full time — see result above</div>';
+  } else if (determined) {
+    body = '<div class="pred-tbd-note">Matchup set · odds to follow</div>';
   } else {
-    body = '<div class="pred-tbd-note">Teams set after the group stage · prediction &amp; odds to follow</div>';
+    body = '<div class="pred-tbd-note">Teams set after this round · prediction &amp; odds to follow</div>';
   }
+  if (m.pick){
+    body += '<div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> ' + koEsc(m.pick) + (m.odds ? ' &nbsp;·&nbsp; <strong>' + koEsc(m.odds) + '</strong>' : '') + '</div>';
+  } else if (live.home_ml){
+    var hn = parseInt(String(live.home_ml).replace('+', ''), 10);
+    var an = (live.away_ml != null) ? parseInt(String(live.away_ml).replace('+', ''), 10) : 1e9;
+    var favName = (hn <= an) ? (home.name || 'Home') : (away.name || 'Away');
+    var favMl   = (hn <= an) ? live.home_ml : live.away_ml;
+    body += '<div class="pred-pick"><span class="pred-pick-badge badge-value">ODDS</span> ' + koEsc(favName) + ' to win &nbsp;·&nbsp; <strong>' + koEsc(favMl) + '</strong></div>';
+  }
+
   var cta = '<div class="pred-cta pred-cta-tbd">Bracket · Match ' + koEsc(m.match_no) + '</div>';
-  var cls = 'pred-card pred-card-ko' + (prob ? '' : ' pred-card-tbd');
+  var cls = 'pred-card pred-card-ko' + ((prob || determined) ? '' : ' pred-card-tbd');
   return '<div class="' + cls + '" data-stage="' + koEsc(m.stage) + '" data-group="" data-ko="1">' + head + teams + body + cta + '</div>';
 }
 
@@ -1483,8 +1525,8 @@ function koCardHTML(m, live){
   Promise.all([ getJSON('/data/knockout.json'), getJSON('/data/live.json?_=' + Date.now()) ]).then(function(res){
     var ko = res[0];
     if (!ko || !ko.matches || !ko.matches.length) return;
-    var liveMatches = (res[1] && res[1].matches) || {};
-    var html = ko.matches.map(function(m){ return koCardHTML(m, liveMatches[m.slug]); }).join('');
+    var liveKO = (res[1] && res[1].knockout) || {};
+    var html = ko.matches.map(function(m){ return koCardHTML(m, liveKO[m.slug]); }).join('');
     predGrid.insertAdjacentHTML('beforeend', html);
     predCards = document.querySelectorAll('.pred-card');
     deriveCardData();
