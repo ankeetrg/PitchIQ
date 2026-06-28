@@ -76,6 +76,20 @@
     .filter-tab.active { background: var(--grn); border-color: var(--grn); color: #fff; }
     .filter-tab:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
 
+    /* STAGE FILTERS (tournament phase) */
+    .stage-filters { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 22px 0 6px; }
+    .stage-tab { font-family: var(--cond); font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--t2); background: var(--surf); border: 1px solid var(--b1); border-radius: 20px; padding: 8px 16px; cursor: pointer; transition: all .15s; }
+    .stage-tab:hover { border-color: var(--nav); color: var(--nav); }
+    .stage-tab.active { background: var(--nav); border-color: var(--nav); color: #fff; }
+    .stage-tab:focus-visible { outline: 2px solid var(--nav); outline-offset: 2px; }
+
+    /* KNOCKOUT (bracket-placeholder / TBD) CARDS */
+    .pred-flag-tbd { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin: 0 auto 6px; border-radius: 50%; background: var(--bg); border: 1px dashed var(--b2); color: var(--t3); font-family: var(--cond); font-size: 16px; font-weight: 900; }
+    .pred-name-tbd { color: var(--t2); }
+    .pred-tbd-note { font-size: 12px; color: var(--t3); background: var(--bg); border: 1px dashed var(--b1); border-radius: var(--r); padding: 10px 12px; text-align: center; line-height: 1.4; margin-bottom: 14px; }
+    .pred-cta-tbd { color: var(--t3); }
+    .pred-card-tbd:hover { transform: none; border-color: var(--b2); box-shadow: var(--sh); }
+
     /* CALENDAR PICKER */
     .cal-wrap { position: relative; display: inline-flex; }
     .cal-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 14px; line-height: 1; }
@@ -265,6 +279,17 @@
     </div>
   </div>
 
+  <!-- Stage Tabs (tournament phase) -->
+  <div class="stage-filters" role="tablist" aria-label="Filter predictions by tournament stage">
+    <button class="stage-tab active" role="tab" aria-selected="true" data-stage="group">Group Stage</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="r32">Round of 32</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="r16">Round of 16</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="qf">Quarter-finals</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="sf">Semi-finals</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="tp">Third Place Play-off</button>
+    <button class="stage-tab" role="tab" aria-selected="false" data-stage="final">Final</button>
+  </div>
+
   <!-- Search + Group filters -->
   <div class="pred-controls">
     <div class="pred-search">
@@ -300,7 +325,7 @@
 
   <!-- Predictions Grid -->
   <div class="pred-grid">
-    <a href="/mexico-southafrica" class="pred-card" data-date="md1">
+    <a href="/mexico-southafrica" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 11 5:00 PM</span><span class="pred-venue">Estadio Azteca</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/mx.png" alt="Mexico" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇲🇽</span><span class="pred-name">Mexico</span></div>
@@ -311,7 +336,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Mexico Win & Under 2.5 &nbsp;·&nbsp; <strong>-125</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/korea-czechia" class="pred-card" data-date="md1">
+    <a href="/korea-czechia" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 11 8:00 PM</span><span class="pred-venue">SoFi Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/kr.png" alt="Korea Republic" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇰🇷</span><span class="pred-name">Korea Republic</span></div>
@@ -322,7 +347,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Korea Republic Win &nbsp;·&nbsp; <strong>-125</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/mexico-korea" class="pred-card" data-date="md2">
+    <a href="/mexico-korea" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 18 12:00 PM</span><span class="pred-venue">Estadio BBVA</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/mx.png" alt="Mexico" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇲🇽</span><span class="pred-name">Mexico</span></div>
@@ -333,7 +358,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Mexico Win & Under 2.5 &nbsp;·&nbsp; <strong>-120</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/czechia-southafrica" class="pred-card" data-date="md2">
+    <a href="/czechia-southafrica" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 18 3:00 PM</span><span class="pred-venue">Levi's Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/cz.png" alt="Czechia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇿</span><span class="pred-name">Czechia</span></div>
@@ -344,7 +369,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Czechia Win &nbsp;·&nbsp; <strong>-175</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/czechia-mexico" class="pred-card" data-date="md3">
+    <a href="/czechia-mexico" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 25 4:00 PM</span><span class="pred-venue">Estadio Azteca</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/cz.png" alt="Czechia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇿</span><span class="pred-name">Czechia</span></div>
@@ -355,7 +380,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Draw &nbsp;·&nbsp; <strong>+240</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/southafrica-korea" class="pred-card" data-date="md3">
+    <a href="/southafrica-korea" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP A · Jun 25 4:00 PM</span><span class="pred-venue">SoFi Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/za.png" alt="South Africa" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇿🇦</span><span class="pred-name">South Africa</span></div>
@@ -366,7 +391,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Korea Republic Win & Under 2.5 &nbsp;·&nbsp; <strong>-145</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/canada-bosnia" class="pred-card" data-date="md1">
+    <a href="/canada-bosnia" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 12 3:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ca.png" alt="Canada" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇦</span><span class="pred-name">Canada</span></div>
@@ -377,7 +402,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Canada Win &nbsp;·&nbsp; <strong>-145</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/qatar-switzerland" class="pred-card" data-date="md1">
+    <a href="/qatar-switzerland" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 12 6:00 PM</span><span class="pred-venue">Arrowhead Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/qa.png" alt="Qatar" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇶🇦</span><span class="pred-name">Qatar</span></div>
@@ -388,7 +413,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Switzerland Win to Nil &nbsp;·&nbsp; <strong>-130</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/canada-qatar" class="pred-card" data-date="md2">
+    <a href="/canada-qatar" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 18 6:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ca.png" alt="Canada" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇦</span><span class="pred-name">Canada</span></div>
@@ -399,7 +424,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Canada Win & Over 2.5 &nbsp;·&nbsp; <strong>-110</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/switzerland-bosnia" class="pred-card" data-date="md2">
+    <a href="/switzerland-bosnia" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 18 9:00 PM</span><span class="pred-venue">Hard Rock Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ch.png" alt="Switzerland" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇭</span><span class="pred-name">Switzerland</span></div>
@@ -410,7 +435,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Switzerland Win & Under 2.5 &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/switzerland-canada" class="pred-card" data-date="md3">
+    <a href="/switzerland-canada" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 25 4:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ch.png" alt="Switzerland" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇭</span><span class="pred-name">Switzerland</span></div>
@@ -421,7 +446,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Draw &nbsp;·&nbsp; <strong>+270</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/bosnia-qatar" class="pred-card" data-date="md3">
+    <a href="/bosnia-qatar" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP B · Jun 25 4:00 PM</span><span class="pred-venue">Lumen Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ba.png" alt="Bosnia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇦</span><span class="pred-name">Bosnia</span></div>
@@ -432,7 +457,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Bosnia Win &nbsp;·&nbsp; <strong>-185</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/brazil-morocco" class="pred-card" data-date="md1">
+    <a href="/brazil-morocco" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 13 6:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇷</span><span class="pred-name">Brazil</span></div>
@@ -443,7 +468,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Brazil to Win & Over 1.5 Goals &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/haiti-scotland" class="pred-card" data-date="md1">
+    <a href="/haiti-scotland" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 13 9:00 PM</span><span class="pred-venue">Gillette Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ht.png" alt="Haiti" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇭🇹</span><span class="pred-name">Haiti</span></div>
@@ -454,7 +479,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Scotland Win &nbsp;·&nbsp; <strong>-310</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/scotland-morocco" class="pred-card" data-date="md2">
+    <a href="/scotland-morocco" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 19 6:00 PM</span><span class="pred-venue">SoFi Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/gb-sct.png" alt="Scotland" class="pred-flag-img" loading="lazy"><span class="pred-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="pred-name">Scotland</span></div>
@@ -465,7 +490,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Morocco Win & Under 2.5 &nbsp;·&nbsp; <strong>-130</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/brazil-haiti" class="pred-card" data-date="md2">
+    <a href="/brazil-haiti" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 19 9:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇷</span><span class="pred-name">Brazil</span></div>
@@ -476,7 +501,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Brazil Win & Over 3.5 Goals &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/scotland-brazil" class="pred-card" data-date="md3">
+    <a href="/scotland-brazil" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 26 4:00 PM</span><span class="pred-venue">SoFi Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/gb-sct.png" alt="Scotland" class="pred-flag-img" loading="lazy"><span class="pred-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="pred-name">Scotland</span></div>
@@ -487,7 +512,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Brazil Win &nbsp;·&nbsp; <strong>-240</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/morocco-haiti" class="pred-card" data-date="md3">
+    <a href="/morocco-haiti" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP C · Jun 26 4:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ma.png" alt="Morocco" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇲🇦</span><span class="pred-name">Morocco</span></div>
@@ -498,7 +523,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Morocco Win to Nil &nbsp;·&nbsp; <strong>-145</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/usa-paraguay" class="pred-card" data-date="md1">
+    <a href="/usa-paraguay" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 12 9:00 PM</span><span class="pred-venue">Los Angeles Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/us.png" alt="United States" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇸</span><span class="pred-name">United States</span></div>
@@ -509,7 +534,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> USA Win &nbsp;·&nbsp; <strong>-165</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/australia-turkey" class="pred-card" data-date="md1">
+    <a href="/australia-turkey" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 13 12:00 AM</span><span class="pred-venue">BC Place</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/au.png" alt="Australia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇺</span><span class="pred-name">Australia</span></div>
@@ -520,7 +545,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Türkiye Win &nbsp;·&nbsp; <strong>+210</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/usa-australia" class="pred-card" data-date="md2">
+    <a href="/usa-australia" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 19 3:00 PM</span><span class="pred-venue">Lumen Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/us.png" alt="United States" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇸</span><span class="pred-name">United States</span></div>
@@ -531,7 +556,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> USA Win &nbsp;·&nbsp; <strong>-130</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/turkey-paraguay" class="pred-card" data-date="md2">
+    <a href="/turkey-paraguay" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 19 11:00 PM</span><span class="pred-venue">Levi's Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/tr.png" alt="Türkiye" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇹🇷</span><span class="pred-name">Türkiye</span></div>
@@ -542,7 +567,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Türkiye Win &nbsp;·&nbsp; <strong>-145</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/turkey-usa" class="pred-card" data-date="md3">
+    <a href="/turkey-usa" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 25 10:00 PM</span><span class="pred-venue">Los Angeles Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/tr.png" alt="Türkiye" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇹🇷</span><span class="pred-name">Türkiye</span></div>
@@ -553,7 +578,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> USA Win or Draw &nbsp;·&nbsp; <strong>+240</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/paraguay-australia" class="pred-card" data-date="md3">
+    <a href="/paraguay-australia" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP D · Jun 25 10:00 PM</span><span class="pred-venue">Levi's Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/py.png" alt="Paraguay" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇾</span><span class="pred-name">Paraguay</span></div>
@@ -564,7 +589,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Australia Win &nbsp;·&nbsp; <strong>+310</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/germany-curacao" class="pred-card" data-date="md1">
+    <a href="/germany-curacao" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 13 3:00 PM</span><span class="pred-venue">Mercedes-Benz Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/de.png" alt="Germany" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇩🇪</span><span class="pred-name">Germany</span></div>
@@ -575,7 +600,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Germany Win & Over 4.5 Goals &nbsp;·&nbsp; <strong>-135</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/ivorycoast-ecuador" class="pred-card" data-date="md1">
+    <a href="/ivorycoast-ecuador" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 14 7:00 PM</span><span class="pred-venue">Lincoln Financial Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ci.png" alt="Ivory Coast" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇮</span><span class="pred-name">Ivory Coast</span></div>
@@ -586,7 +611,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Ivory Coast Win &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/germany-ivorycoast" class="pred-card" data-date="md2">
+    <a href="/germany-ivorycoast" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 20 4:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/de.png" alt="Germany" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇩🇪</span><span class="pred-name">Germany</span></div>
@@ -597,7 +622,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Germany Win &nbsp;·&nbsp; <strong>-150</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/ecuador-curacao" class="pred-card" data-date="md2">
+    <a href="/ecuador-curacao" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 20 8:00 PM</span><span class="pred-venue">Arrowhead Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇨</span><span class="pred-name">Ecuador</span></div>
@@ -608,7 +633,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Ecuador Win &nbsp;·&nbsp; <strong>-280</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/curacao-ivorycoast" class="pred-card" data-date="md3">
+    <a href="/curacao-ivorycoast" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 25 4:00 PM</span><span class="pred-venue">Lincoln Financial Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/cw.png" alt="Curaçao" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇼</span><span class="pred-name">Curaçao</span></div>
@@ -619,7 +644,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Ivory Coast Win &nbsp;·&nbsp; <strong>-210</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/ecuador-germany" class="pred-card" data-date="md3">
+    <a href="/ecuador-germany" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP E · Jun 25 4:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇨</span><span class="pred-name">Ecuador</span></div>
@@ -630,7 +655,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Germany Win &nbsp;·&nbsp; <strong>-125</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/netherlands-japan" class="pred-card" data-date="md1">
+    <a href="/netherlands-japan" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 14 12:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇱</span><span class="pred-name">Netherlands</span></div>
@@ -641,7 +666,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Netherlands Win & Under 2.5 &nbsp;·&nbsp; <strong>-120</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/sweden-tunisia" class="pred-card" data-date="md1">
+    <a href="/sweden-tunisia" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 14 10:00 PM</span><span class="pred-venue">Estadio BBVA</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/se.png" alt="Sweden" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇪</span><span class="pred-name">Sweden</span></div>
@@ -652,7 +677,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Sweden Win or Draw &nbsp;·&nbsp; <strong>-120</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/netherlands-sweden" class="pred-card" data-date="md2">
+    <a href="/netherlands-sweden" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 20 1:00 PM</span><span class="pred-venue">NRG Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇱</span><span class="pred-name">Netherlands</span></div>
@@ -663,7 +688,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Netherlands Win &nbsp;·&nbsp; <strong>-175</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/tunisia-japan" class="pred-card" data-date="md2">
+    <a href="/tunisia-japan" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 20 12:00 AM</span><span class="pred-venue">Estadio BBVA</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/tn.png" alt="Tunisia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇹🇳</span><span class="pred-name">Tunisia</span></div>
@@ -674,7 +699,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Japan Win &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/japan-sweden" class="pred-card" data-date="md3">
+    <a href="/japan-sweden" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 25 7:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇯🇵</span><span class="pred-name">Japan</span></div>
@@ -685,7 +710,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Japan Win or Draw &nbsp;·&nbsp; <strong>+110</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/tunisia-netherlands" class="pred-card" data-date="md3">
+    <a href="/tunisia-netherlands" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP F · Jun 25 7:00 PM</span><span class="pred-venue">Arrowhead Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/tn.png" alt="Tunisia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇹🇳</span><span class="pred-name">Tunisia</span></div>
@@ -696,7 +721,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Netherlands Win &nbsp;·&nbsp; <strong>-195</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/belgium-egypt" class="pred-card" data-date="md1">
+    <a href="/belgium-egypt" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 15 3:00 PM</span><span class="pred-venue">Lumen Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/be.png" alt="Belgium" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇪</span><span class="pred-name">Belgium</span></div>
@@ -707,7 +732,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Belgium Win &nbsp;·&nbsp; <strong>-220</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/iran-newzealand" class="pred-card" data-date="md1">
+    <a href="/iran-newzealand" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 15 9:00 PM</span><span class="pred-venue">Los Angeles Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ir.png" alt="Iran" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇮🇷</span><span class="pred-name">Iran</span></div>
@@ -718,7 +743,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Iran Win &nbsp;·&nbsp; <strong>-240</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/belgium-iran" class="pred-card" data-date="md2">
+    <a href="/belgium-iran" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 21 3:00 PM</span><span class="pred-venue">Los Angeles Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/be.png" alt="Belgium" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇪</span><span class="pred-name">Belgium</span></div>
@@ -729,7 +754,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Belgium Win &nbsp;·&nbsp; <strong>-195</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/newzealand-egypt" class="pred-card" data-date="md2">
+    <a href="/newzealand-egypt" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 21 9:00 PM</span><span class="pred-venue">BC Place</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/nz.png" alt="New Zealand" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇿</span><span class="pred-name">New Zealand</span></div>
@@ -740,7 +765,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Egypt Win &nbsp;·&nbsp; <strong>-120</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/belgium-newzealand" class="pred-card" data-date="md3">
+    <a href="/belgium-newzealand" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 26 11:00 PM</span><span class="pred-venue">Mercedes-Benz Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/be.png" alt="Belgium" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇧🇪</span><span class="pred-name">Belgium</span></div>
@@ -751,7 +776,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Belgium Win &nbsp;·&nbsp; <strong>-420</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/egypt-iran" class="pred-card" data-date="md3">
+    <a href="/egypt-iran" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP G · Jun 26 11:00 PM</span><span class="pred-venue">Lumen Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/eg.png" alt="Egypt" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇬</span><span class="pred-name">Egypt</span></div>
@@ -762,7 +787,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Iran Win or Draw &nbsp;·&nbsp; <strong>+240</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/spain-capeverde" class="pred-card" data-date="md1">
+    <a href="/spain-capeverde" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 14 6:00 PM</span><span class="pred-venue">Hard Rock Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/es.png" alt="Spain" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇸</span><span class="pred-name">Spain</span></div>
@@ -773,7 +798,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Spain Win & Over 4.5 &nbsp;·&nbsp; <strong>-120</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/saudiarabia-uruguay" class="pred-card" data-date="md1">
+    <a href="/saudiarabia-uruguay" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 15 6:00 PM</span><span class="pred-venue">Hard Rock Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇦</span><span class="pred-name">Saudi Arabia</span></div>
@@ -784,7 +809,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Uruguay Win &nbsp;·&nbsp; <strong>-140</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/spain-saudiarabia" class="pred-card" data-date="md2">
+    <a href="/spain-saudiarabia" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 21 12:00 PM</span><span class="pred-venue">Mercedes-Benz Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/es.png" alt="Spain" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇪🇸</span><span class="pred-name">Spain</span></div>
@@ -795,7 +820,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Spain Win & Over 2.5 &nbsp;·&nbsp; <strong>-360</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/uruguay-capeverde" class="pred-card" data-date="md2">
+    <a href="/uruguay-capeverde" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 21 6:00 PM</span><span class="pred-venue">Hard Rock Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇾</span><span class="pred-name">Uruguay</span></div>
@@ -806,7 +831,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Uruguay Win &nbsp;·&nbsp; <strong>-260</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/capeverde-saudiarabia" class="pred-card" data-date="md3">
+    <a href="/capeverde-saudiarabia" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 26 8:00 PM</span><span class="pred-venue">NRG Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/cv.png" alt="Cape Verde" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇻</span><span class="pred-name">Cape Verde</span></div>
@@ -817,7 +842,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Saudi Arabia Win or Draw &nbsp;·&nbsp; <strong>+260</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/uruguay-spain" class="pred-card" data-date="md3">
+    <a href="/uruguay-spain" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP H · Jun 26 8:00 PM</span><span class="pred-venue">Estadio Akron</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇾</span><span class="pred-name">Uruguay</span></div>
@@ -828,7 +853,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Spain Win &nbsp;·&nbsp; <strong>-155</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/france-senegal" class="pred-card" data-date="md1">
+    <a href="/france-senegal" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 16 3:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/fr.png" alt="France" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇫🇷</span><span class="pred-name">France</span></div>
@@ -839,7 +864,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> France Win &nbsp;·&nbsp; <strong>-210</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/iraq-norway" class="pred-card" data-date="md1">
+    <a href="/iraq-norway" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 16 6:00 PM</span><span class="pred-venue">Gillette Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/iq.png" alt="Iraq" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇮🇶</span><span class="pred-name">Iraq</span></div>
@@ -850,7 +875,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Norway Win &nbsp;·&nbsp; <strong>-190</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/france-iraq" class="pred-card" data-date="md2">
+    <a href="/france-iraq" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 22 5:00 PM</span><span class="pred-venue">Lincoln Financial Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/fr.png" alt="France" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇫🇷</span><span class="pred-name">France</span></div>
@@ -861,7 +886,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> France Win & Over 2.5 &nbsp;·&nbsp; <strong>-400</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/norway-senegal" class="pred-card" data-date="md2">
+    <a href="/norway-senegal" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 22 8:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/no.png" alt="Norway" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇴</span><span class="pred-name">Norway</span></div>
@@ -872,7 +897,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Norway Win or Draw &nbsp;·&nbsp; <strong>-105</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/norway-france" class="pred-card" data-date="md3">
+    <a href="/norway-france" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 26 3:00 PM</span><span class="pred-venue">Gillette Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/no.png" alt="Norway" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇳🇴</span><span class="pred-name">Norway</span></div>
@@ -883,7 +908,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> France Win &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/senegal-iraq" class="pred-card" data-date="md3">
+    <a href="/senegal-iraq" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP I · Jun 26 3:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/sn.png" alt="Senegal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇸🇳</span><span class="pred-name">Senegal</span></div>
@@ -894,7 +919,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Senegal Win &nbsp;·&nbsp; <strong>-215</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/argentina-algeria" class="pred-card" data-date="md1">
+    <a href="/argentina-algeria" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 16 9:00 PM</span><span class="pred-venue">Arrowhead Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇷</span><span class="pred-name">Argentina</span></div>
@@ -905,7 +930,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Argentina Win &nbsp;·&nbsp; <strong>-230</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/austria-jordan" class="pred-card" data-date="md1">
+    <a href="/austria-jordan" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 17 12:00 AM</span><span class="pred-venue">Levi's Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/at.png" alt="Austria" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇹</span><span class="pred-name">Austria</span></div>
@@ -916,7 +941,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Austria Win &nbsp;·&nbsp; <strong>-210</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/argentina-austria" class="pred-card" data-date="md2">
+    <a href="/argentina-austria" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 22 1:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇦🇷</span><span class="pred-name">Argentina</span></div>
@@ -927,7 +952,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Argentina Win &nbsp;·&nbsp; <strong>-185</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/jordan-algeria" class="pred-card" data-date="md2">
+    <a href="/jordan-algeria" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 22 11:00 PM</span><span class="pred-venue">Levi's Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/jo.png" alt="Jordan" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇯🇴</span><span class="pred-name">Jordan</span></div>
@@ -938,7 +963,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Algeria Win &nbsp;·&nbsp; <strong>-110</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/jordan-argentina" class="pred-card" data-date="md3">
+    <a href="/jordan-argentina" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 27 10:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/jo.png" alt="Jordan" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇯🇴</span><span class="pred-name">Jordan</span></div>
@@ -949,7 +974,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Argentina Win &nbsp;·&nbsp; <strong>-310</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/algeria-austria" class="pred-card" data-date="md3">
+    <a href="/algeria-austria" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP J · Jun 27 10:00 PM</span><span class="pred-venue">Arrowhead Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/dz.png" alt="Algeria" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇩🇿</span><span class="pred-name">Algeria</span></div>
@@ -960,7 +985,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Austria Win or Draw &nbsp;·&nbsp; <strong>+220</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/portugal-drc" class="pred-card" data-date="md1">
+    <a href="/portugal-drc" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 17 1:00 PM</span><span class="pred-venue">NRG Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇹</span><span class="pred-name">Portugal</span></div>
@@ -971,7 +996,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Portugal Win &nbsp;·&nbsp; <strong>-245</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/uzbekistan-colombia" class="pred-card" data-date="md1">
+    <a href="/uzbekistan-colombia" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 17 10:00 PM</span><span class="pred-venue">Estadio Azteca</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/uz.png" alt="Uzbekistan" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇺🇿</span><span class="pred-name">Uzbekistan</span></div>
@@ -982,7 +1007,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Colombia Win &nbsp;·&nbsp; <strong>-215</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/portugal-uzbekistan" class="pred-card" data-date="md2">
+    <a href="/portugal-uzbekistan" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 23 1:00 PM</span><span class="pred-venue">NRG Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇹</span><span class="pred-name">Portugal</span></div>
@@ -993,7 +1018,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Portugal Win & Over 2.5 &nbsp;·&nbsp; <strong>-390</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/colombia-drc" class="pred-card" data-date="md2">
+    <a href="/colombia-drc" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 23 10:00 PM</span><span class="pred-venue">Estadio Akron</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇴</span><span class="pred-name">Colombia</span></div>
@@ -1004,7 +1029,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Colombia Win &nbsp;·&nbsp; <strong>-185</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/colombia-portugal" class="pred-card" data-date="md3">
+    <a href="/colombia-portugal" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 27 7:30 PM</span><span class="pred-venue">Hard Rock Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇴</span><span class="pred-name">Colombia</span></div>
@@ -1015,7 +1040,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Portugal Win &nbsp;·&nbsp; <strong>+230</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/drc-uzbekistan" class="pred-card" data-date="md3">
+    <a href="/drc-uzbekistan" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP K · Jun 27 7:30 PM</span><span class="pred-venue">Mercedes-Benz Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/cd.png" alt="DR Congo" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇨🇩</span><span class="pred-name">DR Congo</span></div>
@@ -1026,7 +1051,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> DR Congo Win or Draw &nbsp;·&nbsp; <strong>-115</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/england-croatia" class="pred-card" data-date="md1">
+    <a href="/england-croatia" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 17 4:00 PM</span><span class="pred-venue">AT&T Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" class="pred-flag-img" loading="lazy"><span class="pred-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="pred-name">England</span></div>
@@ -1037,7 +1062,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> England Win &nbsp;·&nbsp; <strong>-160</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/ghana-panama" class="pred-card" data-date="md1">
+    <a href="/ghana-panama" class="pred-card" data-stage="group" data-date="md1">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 17 7:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/gh.png" alt="Ghana" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇬🇭</span><span class="pred-name">Ghana</span></div>
@@ -1048,7 +1073,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Ghana Win or Draw &nbsp;·&nbsp; <strong>-110</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/england-ghana" class="pred-card" data-date="md2">
+    <a href="/england-ghana" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 23 4:00 PM</span><span class="pred-venue">Gillette Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" class="pred-flag-img" loading="lazy"><span class="pred-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="pred-name">England</span></div>
@@ -1059,7 +1084,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> England Win &nbsp;·&nbsp; <strong>-225</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/panama-croatia" class="pred-card" data-date="md2">
+    <a href="/panama-croatia" class="pred-card" data-stage="group" data-date="md2">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 23 7:00 PM</span><span class="pred-venue">BMO Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/pa.png" alt="Panama" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇦</span><span class="pred-name">Panama</span></div>
@@ -1070,7 +1095,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> Croatia Win &nbsp;·&nbsp; <strong>-200</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/panama-england" class="pred-card" data-date="md3">
+    <a href="/panama-england" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 27 5:00 PM</span><span class="pred-venue">MetLife Stadium</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/pa.png" alt="Panama" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇵🇦</span><span class="pred-name">Panama</span></div>
@@ -1081,7 +1106,7 @@
       <div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> England Win &nbsp;·&nbsp; <strong>-295</strong></div>
       <div class="pred-cta">Full Preview &amp; Picks &#x2192;</div>
     </a>
-    <a href="/croatia-ghana" class="pred-card" data-date="md3">
+    <a href="/croatia-ghana" class="pred-card" data-stage="group" data-date="md3">
       <div class="pred-header"><span class="pred-group">GROUP L · Jun 27 5:00 PM</span><span class="pred-venue">Lincoln Financial Field</span></div>
       <div class="pred-teams">
         <div class="pred-team"><img src="https://flagcdn.com/w40/hr.png" alt="Croatia" class="pred-flag-img" loading="lazy"><span class="pred-flag">🇭🇷</span><span class="pred-name">Croatia</span></div>
@@ -1199,7 +1224,8 @@ var predClear  = document.getElementById('predClear');
 var predEmpty  = document.getElementById('predEmpty');
 var predGrid   = document.querySelector('.pred-grid');
 
-var state = { day: 'all', group: 'all', q: '' };
+var stageTabs  = document.querySelectorAll('.stage-tab');
+var state = { stage: 'group', day: 'all', group: 'all', q: '' };
 
 /* Real-time date keys for Today / Tomorrow, matched against each card's date. */
 var SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1217,18 +1243,24 @@ var tabTomorrow = document.getElementById('tabTomorrow');
 if (tabToday)    tabToday.textContent    = LONG_MONTHS[now.getMonth()] + ' ' + now.getDate();
 if (tabTomorrow) tabTomorrow.textContent = LONG_MONTHS[tom.getMonth()] + ' ' + tom.getDate();
 
-/* Derive date key + group letter + searchable team text from existing markup, once. */
-predCards.forEach(function(card){
-  var grpText = (card.querySelector('.pred-group') || {}).textContent || '';
-  var g = grpText.match(/GROUP\s+([A-L])/i);
-  card.dataset.group = g ? g[1].toUpperCase() : '';
-  var d = grpText.match(/([A-Za-z]{3})\s+(\d{1,2})/);
-  card.dataset.daykey = d ? dayKey(d[1], d[2]) : '';
-  var names = card.querySelectorAll('.pred-name');
-  var teams = [];
-  names.forEach(function(n){ teams.push(n.textContent.toLowerCase()); });
-  card.dataset.teams = teams.join(' ');
-});
+/* Derive date key + group letter + searchable team text from markup.
+   Re-run after knockout cards are appended. Skips cards already derived. */
+function deriveCardData(){
+  predCards.forEach(function(card){
+    if (card.dataset.derived === '1') return;
+    var grpText = (card.querySelector('.pred-group') || {}).textContent || '';
+    var g = grpText.match(/GROUP\s+([A-L])/i);
+    if (!card.dataset.group) card.dataset.group = g ? g[1].toUpperCase() : '';
+    var d = grpText.match(/([A-Za-z]{3})\s+(\d{1,2})/);
+    card.dataset.daykey = d ? dayKey(d[1], d[2]) : '';
+    var names = card.querySelectorAll('.pred-name');
+    var teams = [];
+    names.forEach(function(n){ teams.push(n.textContent.toLowerCase()); });
+    card.dataset.teams = teams.join(' ');
+    card.dataset.derived = '1';
+  });
+}
+deriveCardData();
 
 function applyFilters(){
   var q = state.q.trim().toLowerCase();
@@ -1239,17 +1271,21 @@ function applyFilters(){
              || (state.day === 'tomorrow' && card.dataset.daykey === tomorrowKey)
              || card.dataset.daykey === state.day; /* exact date from calendar, e.g. "Jun-25" */
     var ok = dayOk
+          && card.dataset.stage === state.stage
           && (state.group === 'all' || card.dataset.group === state.group)
           && (q === '' || card.dataset.teams.indexOf(q) !== -1);
     card.style.display = ok ? '' : 'none';
     if (ok) shown++;
   });
+  var stageTotal = 0;
+  predCards.forEach(function(card){ if (card.dataset.stage === state.stage) stageTotal++; });
   predEmpty.hidden = shown !== 0;
   if (predGrid) predGrid.style.display = shown === 0 ? 'none' : '';
-  predCount.textContent = shown === predCards.length
-    ? 'Showing all ' + shown + ' fixtures'
-    : 'Showing ' + shown + ' of ' + predCards.length + ' fixtures';
-  var filtered = state.day !== 'all' || state.group !== 'all' || q !== '';
+  var noun = function(n){ return n === 1 ? 'fixture' : 'fixtures'; };
+  predCount.textContent = shown === stageTotal
+    ? 'Showing all ' + shown + ' ' + noun(shown)
+    : 'Showing ' + shown + ' of ' + stageTotal + ' ' + noun(stageTotal);
+  var filtered = state.stage !== 'group' || state.day !== 'all' || state.group !== 'all' || q !== '';
   predClear.hidden = !filtered;
 }
 
@@ -1270,6 +1306,18 @@ groupTabs.forEach(function(tab){
   tab.addEventListener('click', function(){
     state.group = tab.dataset.group;
     groupTabs.forEach(function(t){ t.classList.toggle('active', t === tab); });
+    applyFilters();
+  });
+});
+
+stageTabs.forEach(function(tab){
+  tab.addEventListener('click', function(){
+    state.stage = tab.dataset.stage;
+    stageTabs.forEach(function(t){
+      var on = (t === tab);
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
     applyFilters();
   });
 });
@@ -1375,10 +1423,15 @@ searchInput.addEventListener('input', function(){
 });
 
 predClear.addEventListener('click', function(){
-  state.day = 'all'; state.group = 'all'; state.q = '';
+  state.stage = 'group'; state.day = 'all'; state.group = 'all'; state.q = '';
   searchInput.value = '';
   filterTabs.forEach(function(t){
     var on = t.dataset.filter === 'all';
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  stageTabs.forEach(function(t){
+    var on = t.dataset.stage === 'group';
     t.classList.toggle('active', on);
     t.setAttribute('aria-selected', on ? 'true' : 'false');
   });
@@ -1388,6 +1441,56 @@ predClear.addEventListener('click', function(){
 });
 
 applyFilters();
+
+/* ---- Knockout bracket: render from /data/knockout.json, overlay /data/live.json ---- */
+function koEsc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function koTeamSlot(t){
+  t = t || {};
+  if (t.flag || t.img){
+    var img = t.img ? '<img src="' + koEsc(t.img) + '" alt="' + koEsc(t.name) + '" class="pred-flag-img" loading="lazy">' : '';
+    return '<div class="pred-team">' + img + '<span class="pred-flag">' + (t.flag || '') + '</span><span class="pred-name">' + koEsc(t.name) + '</span></div>';
+  }
+  return '<div class="pred-team"><span class="pred-flag pred-flag-tbd" aria-hidden="true">?</span><span class="pred-name pred-name-tbd">' + koEsc(t.name || 'TBD') + '</span></div>';
+}
+
+function koCardHTML(m, live){
+  var home = m.home || {}, away = m.away || {}, prob = m.prob, pick = m.pick, odds = m.odds;
+  /* Overlay live.json by slug — real teams/odds appear automatically once a round is decided */
+  if (live){
+    if (live.home) home = { name: live.home, flag: live.home_emoji || home.flag, img: home.img };
+    if (live.away) away = { name: live.away, flag: live.away_emoji || away.flag, img: away.img };
+    if (live.home_prob != null) prob = { home: live.home_prob, draw: live.draw_prob, away: live.away_prob };
+    if (live.home_ml && !odds) odds = live.home_ml;
+  }
+  var head = '<div class="pred-header"><span class="pred-group">' + koEsc(String(m.round || '').toUpperCase()) + ' · ' + koEsc(m.date_short) + ' ' + koEsc(m.time_str) + '</span><span class="pred-venue">' + koEsc(m.venue_short) + (m.city ? ' · ' + koEsc(m.city) : '') + '</span></div>';
+  var teams = '<div class="pred-teams">' + koTeamSlot(home) + '<div class="pred-vs">VS</div>' + koTeamSlot(away) + '</div>';
+  var body;
+  if (prob){
+    body = '<div class="pred-bar-wrap"><div class="pred-bar-home" style="width:' + prob.home + '%">' + prob.home + '%</div><div class="pred-bar-draw" style="width:' + prob.draw + '%">' + prob.draw + '%</div><div class="pred-bar-away" style="width:' + prob.away + '%">' + prob.away + '%</div></div>';
+    body += '<div class="pred-pick"><span class="pred-pick-badge badge-aipick">AI PICK</span> ' + koEsc(pick || 'Pick to follow') + (odds ? ' &nbsp;·&nbsp; <strong>' + koEsc(odds) + '</strong>' : '') + '</div>';
+  } else {
+    body = '<div class="pred-tbd-note">Teams set after the group stage · prediction &amp; odds to follow</div>';
+  }
+  var cta = '<div class="pred-cta pred-cta-tbd">Bracket · Match ' + koEsc(m.match_no) + '</div>';
+  var cls = 'pred-card pred-card-ko' + (prob ? '' : ' pred-card-tbd');
+  return '<div class="' + cls + '" data-stage="' + koEsc(m.stage) + '" data-group="" data-ko="1">' + head + teams + body + cta + '</div>';
+}
+
+(function loadKnockout(){
+  if (!predGrid) return;
+  function getJSON(u){ return fetch(u).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
+  Promise.all([ getJSON('/data/knockout.json'), getJSON('/data/live.json?_=' + Date.now()) ]).then(function(res){
+    var ko = res[0];
+    if (!ko || !ko.matches || !ko.matches.length) return;
+    var liveMatches = (res[1] && res[1].matches) || {};
+    var html = ko.matches.map(function(m){ return koCardHTML(m, liveMatches[m.slug]); }).join('');
+    predGrid.insertAdjacentHTML('beforeend', html);
+    predCards = document.querySelectorAll('.pred-card');
+    deriveCardData();
+    applyFilters();
+  });
+})();
 
 /* ---- Coming Soon modal ---- */
 var overlay    = document.getElementById('csOverlay');
