@@ -1,8 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-06-28T09:05:23.068749+00:00",
+    "generated_at": "2026-06-28T18:50:59.693374+00:00",
     "source": "football-data.org + espn",
-    "schema_version": "2"
+    "schema_version": "2",
+    "knockout_generated_at": "2026-06-28T18:51:00.856001+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -784,5 +785,391 @@
         "pts": 0
       }
     ]
+  },
+  "knockout": {
+    "wc2026-m73": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "South Africa",
+        "code": "za",
+        "emoji": "🇿🇦"
+      },
+      "away": {
+        "name": "Canada",
+        "code": "ca",
+        "emoji": "🇨🇦"
+      }
+    },
+    "wc2026-m76": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Brazil",
+        "code": "br",
+        "emoji": "🇧🇷"
+      },
+      "away": {
+        "name": "Japan",
+        "code": "jp",
+        "emoji": "🇯🇵"
+      }
+    },
+    "wc2026-m74": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Germany",
+        "code": "de",
+        "emoji": "🇩🇪"
+      },
+      "away": {
+        "name": "Paraguay",
+        "code": "py",
+        "emoji": "🇵🇾"
+      }
+    },
+    "wc2026-m75": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Netherlands",
+        "code": "nl",
+        "emoji": "🇳🇱"
+      },
+      "away": {
+        "name": "Morocco",
+        "code": "ma",
+        "emoji": "🇲🇦"
+      }
+    },
+    "wc2026-m78": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Ivory Coast",
+        "code": "ci",
+        "emoji": "🇨🇮"
+      },
+      "away": {
+        "name": "Norway",
+        "code": "no",
+        "emoji": "🇳🇴"
+      }
+    },
+    "wc2026-m77": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "France",
+        "code": "fr",
+        "emoji": "🇫🇷"
+      },
+      "away": {
+        "name": "Sweden",
+        "code": "se",
+        "emoji": "🇸🇪"
+      }
+    },
+    "wc2026-m79": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Mexico",
+        "code": "mx",
+        "emoji": "🇲🇽"
+      },
+      "away": {
+        "name": "Ecuador",
+        "code": "ec",
+        "emoji": "🇪🇨"
+      }
+    },
+    "wc2026-m80": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "England",
+        "code": "gb-eng",
+        "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      },
+      "away": {
+        "name": "Congo DR",
+        "code": "cd",
+        "emoji": "🇨🇩"
+      }
+    },
+    "wc2026-m82": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Belgium",
+        "code": "be",
+        "emoji": "🇧🇪"
+      },
+      "away": {
+        "name": "Senegal",
+        "code": "sn",
+        "emoji": "🇸🇳"
+      }
+    },
+    "wc2026-m81": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "United States",
+        "code": "us",
+        "emoji": "🇺🇸"
+      },
+      "away": {
+        "name": "Bosnia-Herzegovina",
+        "code": "ba",
+        "emoji": "🇧🇦"
+      }
+    },
+    "wc2026-m84": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Spain",
+        "code": "es",
+        "emoji": "🇪🇸"
+      },
+      "away": {
+        "name": "Austria",
+        "code": "at",
+        "emoji": "🇦🇹"
+      }
+    },
+    "wc2026-m83": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Portugal",
+        "code": "pt",
+        "emoji": "🇵🇹"
+      },
+      "away": {
+        "name": "Croatia",
+        "code": "hr",
+        "emoji": "🇭🇷"
+      }
+    },
+    "wc2026-m85": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Switzerland",
+        "code": "ch",
+        "emoji": "🇨🇭"
+      },
+      "away": {
+        "name": "Algeria",
+        "code": "dz",
+        "emoji": "🇩🇿"
+      }
+    },
+    "wc2026-m88": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Australia",
+        "code": "au",
+        "emoji": "🇦🇺"
+      },
+      "away": {
+        "name": "Egypt",
+        "code": "eg",
+        "emoji": "🇪🇬"
+      }
+    },
+    "wc2026-m86": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Argentina",
+        "code": "ar",
+        "emoji": "🇦🇷"
+      },
+      "away": {
+        "name": "Cape Verde Islands",
+        "code": "cv",
+        "emoji": "🇨🇻"
+      }
+    },
+    "wc2026-m87": {
+      "stage": "r32",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null,
+      "home": {
+        "name": "Colombia",
+        "code": "co",
+        "emoji": "🇨🇴"
+      },
+      "away": {
+        "name": "Ghana",
+        "code": "gh",
+        "emoji": "🇬🇭"
+      }
+    },
+    "wc2026-m90": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m89": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m91": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m92": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m93": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m94": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m95": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m96": {
+      "stage": "r16",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m97": {
+      "stage": "qf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m98": {
+      "stage": "qf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m99": {
+      "stage": "qf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m100": {
+      "stage": "qf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m101": {
+      "stage": "sf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m102": {
+      "stage": "sf",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m103": {
+      "stage": "tp",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    },
+    "wc2026-m104": {
+      "stage": "final",
+      "status": "upcoming",
+      "score_home": null,
+      "score_away": null,
+      "clock": null
+    }
   }
 }
