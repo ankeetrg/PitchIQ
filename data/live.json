@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-06-28T18:56:12.365056+00:00",
+    "generated_at": "2026-06-28T19:39:00.346598+00:00",
     "source": "odds-api",
     "schema_version": "1",
-    "knockout_generated_at": "2026-06-28T18:56:13.281276+00:00"
+    "knockout_generated_at": "2026-06-28T19:39:02.267401+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2532,9 +2532,9 @@
   "knockout": {
     "wc2026-m73": {
       "stage": "r32",
-      "status": "upcoming",
-      "score_home": null,
-      "score_away": null,
+      "status": "live",
+      "score_home": 0,
+      "score_away": 0,
       "clock": null,
       "home": {
         "name": "South Africa",
