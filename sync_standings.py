@@ -250,18 +250,19 @@ def update_html(grid_html, generated_at):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def build_live_json_standings(standings_by_gid):
-    """Convert standings to the format expected by live.json."""
+    """Convert standings to the format expected by live.json (matches index.html renderTable)."""
     standings = {}
     for gid in 'ABCDEFGHIJKL':
         st = standings_by_gid.get(gid, {})
         table = st.get('table', [])
         standings[gid] = [
             {
-                'team': t['team'].get('shortName', t['team'].get('name', 'Unknown')),
-                'played': t['playedGames'],
-                'won': t['won'],
-                'draw': t['draw'],
-                'lost': t['lost'],
+                'name': t['team'].get('shortName', t['team'].get('name', 'Unknown')),
+                'iso': _team_code(t['team'].get('shortName', t['team'].get('name', 'Unknown'))),
+                'p': t['playedGames'],
+                'w': t['won'],
+                'd': t['draw'],
+                'l': t['lost'],
                 'gf': t['goalsFor'],
                 'ga': t['goalsAgainst'],
                 'gd': t['goalDifference'],
