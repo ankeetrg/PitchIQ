@@ -1311,6 +1311,7 @@ filterTabs.forEach(function(tab){
       t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
     deactivateCalendar();
+    if (state.day !== 'all') syncStageToDay(state.day);
     applyFilters();
   });
 });
@@ -1434,8 +1435,34 @@ function deactivateCalendar(){
 function openCal(){ calPop.hidden = false; calBtn.setAttribute('aria-expanded','true'); }
 function closeCal(){ calPop.hidden = true; calBtn.setAttribute('aria-expanded','false'); }
 
+/* Return the actual daykey string, resolving 'today'/'tomorrow' shortcuts. */
+function resolveDay(day){
+  return day === 'today' ? todayKey : day === 'tomorrow' ? tomorrowKey : day;
+}
+/* Find the stage shared by fixtures on a given day (first card wins). */
+function stageForDay(day){
+  var key = resolveDay(day);
+  for (var i = 0; i < predCards.length; i++){
+    if (predCards[i].dataset.daykey === key && predCards[i].dataset.stage)
+      return predCards[i].dataset.stage;
+  }
+  return null;
+}
+/* Visually activate the stage tab that matches the selected date. */
+function syncStageToDay(day){
+  var stage = stageForDay(day);
+  if (!stage) return;
+  state.stage = stage;
+  stageTabs.forEach(function(t){
+    var on = t.dataset.stage === stage;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+}
+
 function onCalDayClick(){
   state.day = this.dataset.daykey;          /* e.g. "Jun-25" */
+  syncStageToDay(state.day);
   filterTabs.forEach(function(t){
     t.classList.remove('active');
     t.setAttribute('aria-selected','false');
@@ -1452,8 +1479,14 @@ var calBtnX = document.getElementById('calBtnX');
 
 function clearCalDate(){
   state.day = 'all';
+  state.stage = 'group';
   filterTabs.forEach(function(t){
     var on = t.dataset.filter === 'all';
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  stageTabs.forEach(function(t){
+    var on = t.dataset.stage === 'group';
     t.classList.toggle('active', on);
     t.setAttribute('aria-selected', on ? 'true' : 'false');
   });
