@@ -17,7 +17,9 @@ Use the **Outstanding Tasks** section as a shared checklist — check things off
 
 ### 🔴 Urgent — PICK UP HERE NEXT SESSION
 
-- [ ] **Finish R32 knockout page generation** — All code is written and committed. One blocker remains: `data/live.json` has an unresolved git merge conflict. Steps to finish:
+- [x] **Finish R32 knockout page generation** ✅ DONE (commit fd90a14, 2026-06-29) — 16 pages generated and live. R16/QF/SF/Final pages auto-generate via GitHub Actions once teams are confirmed.
+
+  ~~One blocker remains: `data/live.json` has an unresolved git merge conflict. Steps to finish:~~
 
   **1. Fix the conflict:**
   ```powershell
