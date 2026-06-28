@@ -65,6 +65,120 @@ Use the **Outstanding Tasks** section as a shared checklist — check things off
   ```
   Then push to Vercel and verify in GA4 Real-Time.
 
+---
+
+## 📅 Date-Triggered Manual Tasks (knockout rounds)
+
+> **How to use this section:** On each date below, open the live site first.
+> If the pages already exist (GitHub Actions did it automatically), skip the whole block — you're done.
+> Only run the commands if the pages are missing.
+
+---
+
+### 🗓️ July 9 — Round of 16 pages (check after last R32 match)
+
+**First: check if GitHub Actions already built them automatically.**
+Go to https://getpitchiq.net/predictions → click **Round of 16** — if the 8 cards are clickable links, you're done. Skip this block entirely.
+
+**If cards are NOT clickable (pages missing), run manually:**
+
+```powershell
+cd C:\Users\mroads\Documents\GitHub\PitchIQ
+git pull
+
+# Step 1 — See what team names live.json has for R16
+python -c "import json; d=json.load(open('data/live.json',encoding='utf-8')); [print(k,'|',v.get('home',{}).get('name'),'vs',v.get('away',{}).get('name')) for k,v in d.get('knockout',{}).items() if v.get('home',{}).get('code') and 'r16' in str(v.get('stage',''))]"
+
+# Step 2 — Dry run (see what pages would be generated)
+python generate_knockout_pages.py --dry
+```
+
+If Step 2 prints 0 pages, a team name from the API doesn't match `_TEAM_DATA` in `generate_knockout_pages.py`.
+Open `generate_knockout_pages.py`, find `_TEAM_DATA = {`, and add the missing name as a new key pointing to the same data. Common mismatches: `DR Congo` vs `Congo DR`, `USA` vs `United States`, `Bosnia` vs `Bosnia-Herzegovina`, `Côte d'Ivoire` vs `Ivory Coast`.
+
+```powershell
+# Step 3 — Generate for real
+python generate_knockout_pages.py
+
+# Step 4 — Commit generated pages (NOT live.json or standings.html)
+git status --short   # identify new .html files
+# Stage only the new .html files shown:
+git add <list the new .html filenames here>
+git commit -m "feat: R16 knockout match pages [skip ci]"
+git push
+```
+
+- [ ] R16 pages verified live on July 9
+
+---
+
+### 🗓️ July 12 — Quarter-Final pages (check after last R16 match)
+
+**First: check if GitHub Actions already built them.**
+Go to https://getpitchiq.net/predictions → click **Quarter-Finals** — if 4 cards are clickable, skip this block.
+
+**If pages missing, run manually:**
+
+```powershell
+cd C:\Users\mroads\Documents\GitHub\PitchIQ
+git pull
+python generate_knockout_pages.py --dry
+# If 0 pages: debug team names (see July 9 steps above), fix alias in _TEAM_DATA, then:
+python generate_knockout_pages.py
+git status --short
+git add <new .html filenames>
+git commit -m "feat: QF knockout match pages [skip ci]"
+git push
+```
+
+- [ ] QF pages verified live on July 12
+
+---
+
+### 🗓️ July 15 — Semi-Final pages (check after last QF match)
+
+**First: check if GitHub Actions already built them.**
+Go to https://getpitchiq.net/predictions → click **Semi-Finals** — if 2 cards are clickable, skip this block.
+
+**If pages missing, run manually:**
+
+```powershell
+cd C:\Users\mroads\Documents\GitHub\PitchIQ
+git pull
+python generate_knockout_pages.py --dry
+python generate_knockout_pages.py
+git status --short
+git add <new .html filenames>
+git commit -m "feat: SF knockout match pages [skip ci]"
+git push
+```
+
+- [ ] SF pages verified live on July 15
+
+---
+
+### 🗓️ July 18 — Final + Third Place pages (check after last SF match)
+
+**First: check if GitHub Actions already built them.**
+Go to https://getpitchiq.net/predictions → click **Final** — if the card is a clickable link, skip this block.
+
+**If pages missing, run manually:**
+
+```powershell
+cd C:\Users\mroads\Documents\GitHub\PitchIQ
+git pull
+python generate_knockout_pages.py --dry
+python generate_knockout_pages.py
+git status --short
+git add <new .html filenames>
+git commit -m "feat: Final + 3rd place knockout pages [skip ci]"
+git push
+```
+
+- [ ] Final + 3rd place pages verified live on July 18
+
+---
+
 ### 🟡 This Week
 
 - [ ] **Run updaters after each match day** — See Automation section below. Samson has scheduled tasks set up in Cowork but someone should confirm they're running correctly after the next match day.
