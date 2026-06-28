@@ -101,11 +101,14 @@
     .cal-btn-x { display: none; align-items: center; justify-content: center; width: 16px; height: 16px; margin-left: 2px; border-radius: 50%; font-size: 9px; line-height: 1; letter-spacing: 0; text-indent: 0; font-family: var(--sans); background: rgba(255,255,255,.32); color: rgba(255,255,255,.92); transition: background .12s; }
     .cal-btn.has-date .cal-btn-x { display: inline-flex; }
     .cal-btn-x:hover { background: rgba(255,255,255,.5); }
-    .cal-pop { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 60; width: 272px; max-height: 420px; overflow-y: auto; background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh-md); padding: 14px; }
-    .cal-month-label { grid-column: 1 / -1; font-family: var(--cond); font-size: 13px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t2); text-align: center; margin: 10px 0 4px; }
-    .cal-month-label:first-child { margin-top: 0; }
+    .cal-pop { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 60; width: 272px; background: var(--surf); border: 1px solid var(--b1); border-radius: var(--r2); box-shadow: var(--sh-md); padding: 14px; }
     .cal-pop[hidden] { display: none; }
-    .cal-head { font-family: var(--cond); font-size: 15px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t1); text-align: center; margin-bottom: 10px; }
+    .cal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+    .cal-title { flex: 1; font-family: var(--cond); font-size: 15px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: var(--t1); text-align: center; }
+    .cal-nav { width: 26px; height: 26px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b1); border-radius: 50%; color: var(--t1); font-size: 16px; line-height: 1; cursor: pointer; transition: all .12s; }
+    .cal-nav:hover:not(:disabled) { background: var(--nav); border-color: var(--nav); color: #fff; }
+    .cal-nav:disabled { opacity: .35; cursor: default; }
+    .cal-nav:focus-visible { outline: 2px solid var(--grn); outline-offset: 2px; }
     .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
     .cal-dow { font-size: 10px; font-weight: 700; color: var(--t3); text-align: center; text-transform: uppercase; padding-bottom: 2px; }
     .cal-day { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; border-radius: 6px; border: 1px solid var(--b1); background: #fff; color: var(--t1); }
@@ -273,7 +276,11 @@
         <span class="cal-btn-x" id="calBtnX" role="button" tabindex="0" aria-label="Clear date and show all picks">✕</span>
       </button>
       <div class="cal-pop" id="calPop" role="dialog" aria-label="Pick a fixture date" hidden>
-        <div class="cal-head" id="calHead">June 2026</div>
+        <div class="cal-head">
+          <button class="cal-nav" id="calPrev" type="button" aria-label="Previous month">&#x2039;</button>
+          <span class="cal-title" id="calHead">June 2026</span>
+          <button class="cal-nav" id="calNext" type="button" aria-label="Next month">&#x203A;</button>
+        </div>
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
           <span class="cal-legend-item"><span class="cal-legend-dot has"></span> Fixtures</span>
@@ -1333,8 +1340,12 @@ var calBtn  = document.getElementById('calBtn');
 var calPop  = document.getElementById('calPop');
 var calGrid = document.getElementById('calGrid');
 var calHead = document.getElementById('calHead');
+var calPrev = document.getElementById('calPrev');
+var calNext = document.getElementById('calNext');
 var calBtnLabel = document.getElementById('calBtnLabel');
 var CAL_YEAR = 2026;
+var calMonths = [];   /* month indices (0-based) that contain fixtures, sorted */
+var calCurIdx = 0;    /* pointer into calMonths — the month currently shown */
 
 /* The set of dates that actually have fixtures, read from every rendered card
    (hard-coded group cards + knockout cards loaded from data/knockout.json &
@@ -1345,55 +1356,72 @@ function fixtureDayKeySet(){
   return set;
 }
 
-/* Render one month block per month that contains at least one fixture.
-   Days with a fixture are green/clickable; the rest are disabled. */
-function buildCalendar(){
-  while (calGrid.firstChild) calGrid.removeChild(calGrid.firstChild);
-  var has = fixtureDayKeySet();
-  var monthSet = {};
+function fixtureMonths(){
+  var has = fixtureDayKeySet(), ms = {};
   Object.keys(has).forEach(function(k){
     var mi = SHORT_MONTHS.indexOf(k.split('-')[0]);
-    if (mi !== -1) monthSet[mi] = true;
+    if (mi !== -1) ms[mi] = true;
   });
-  var months = Object.keys(monthSet).map(Number).sort(function(a, b){ return a - b; });
-  if (!months.length) months = [now.getMonth()];
+  var arr = Object.keys(ms).map(Number).sort(function(a, b){ return a - b; });
+  return arr.length ? arr : [now.getMonth()];
+}
 
-  months.forEach(function(mi){
-    var label = document.createElement('div');
-    label.className = 'cal-month-label';
-    label.textContent = LONG_MONTHS[mi] + ' ' + CAL_YEAR;
-    calGrid.appendChild(label);
-    ['S','M','T','W','T','F','S'].forEach(function(d){
-      var h = document.createElement('div'); h.className = 'cal-dow'; h.textContent = d; calGrid.appendChild(h);
-    });
-    var abbr = SHORT_MONTHS[mi];
-    var first = new Date(CAL_YEAR, mi, 1).getDay();
-    var dim = new Date(CAL_YEAR, mi + 1, 0).getDate();
-    for (var i = 0; i < first; i++){
-      var pad = document.createElement('div'); pad.className = 'cal-day empty'; calGrid.appendChild(pad);
-    }
-    for (var day = 1; day <= dim; day++){
-      var key = abbr + '-' + day;
-      var hasFix = has[key] === true;
-      var cell = document.createElement(hasFix ? 'button' : 'div');
-      cell.textContent = day;
-      if (hasFix){
-        cell.className = 'cal-day has';
-        cell.type = 'button';
-        cell.dataset.daykey = key;
-        cell.dataset.label = LONG_MONTHS[mi] + ' ' + day;
-        cell.setAttribute('aria-label', abbr + ' ' + day + ' — view fixtures');
-        cell.addEventListener('click', onCalDayClick);
-      } else {
-        cell.className = 'cal-day none';
-        cell.setAttribute('aria-disabled', 'true');
-      }
-      calGrid.appendChild(cell);
-    }
+/* Render a single month (calMonths[calCurIdx]); prev/next move between the
+   months that have fixtures. Fixture days are green/clickable, rest disabled. */
+function renderMonth(){
+  while (calGrid.firstChild) calGrid.removeChild(calGrid.firstChild);
+  var has = fixtureDayKeySet();
+  var mi = calMonths[calCurIdx];
+  if (calHead) calHead.textContent = LONG_MONTHS[mi] + ' ' + CAL_YEAR;
+  if (calPrev) calPrev.disabled = (calCurIdx <= 0);
+  if (calNext) calNext.disabled = (calCurIdx >= calMonths.length - 1);
+
+  ['S','M','T','W','T','F','S'].forEach(function(d){
+    var h = document.createElement('div'); h.className = 'cal-dow'; h.textContent = d; calGrid.appendChild(h);
   });
-  if (calHead) calHead.textContent = 'Select a fixture date';
+  var abbr = SHORT_MONTHS[mi];
+  var first = new Date(CAL_YEAR, mi, 1).getDay();
+  var dim = new Date(CAL_YEAR, mi + 1, 0).getDate();
+  for (var i = 0; i < first; i++){
+    var pad = document.createElement('div'); pad.className = 'cal-day empty'; calGrid.appendChild(pad);
+  }
+  for (var day = 1; day <= dim; day++){
+    var key = abbr + '-' + day;
+    var hasFix = has[key] === true;
+    var cell = document.createElement(hasFix ? 'button' : 'div');
+    cell.textContent = day;
+    if (hasFix){
+      cell.className = 'cal-day has' + (state.day === key ? ' sel' : '');
+      cell.type = 'button';
+      cell.dataset.daykey = key;
+      cell.dataset.label = LONG_MONTHS[mi] + ' ' + day;
+      cell.setAttribute('aria-label', abbr + ' ' + day + ' — view fixtures');
+      cell.addEventListener('click', onCalDayClick);
+    } else {
+      cell.className = 'cal-day none';
+      cell.setAttribute('aria-disabled', 'true');
+    }
+    calGrid.appendChild(cell);
+  }
+}
+
+/* Recompute available months (after group/knockout cards change) and redraw,
+   keeping the current view if still valid. */
+function buildCalendar(){
+  calMonths = fixtureMonths();
+  if (calCurIdx >= calMonths.length) calCurIdx = 0;
+  renderMonth();
 }
 buildCalendar();
+
+if (calPrev) calPrev.addEventListener('click', function(e){
+  e.stopPropagation();
+  if (calCurIdx > 0){ calCurIdx--; renderMonth(); }
+});
+if (calNext) calNext.addEventListener('click', function(e){
+  e.stopPropagation();
+  if (calCurIdx < calMonths.length - 1){ calCurIdx++; renderMonth(); }
+});
 
 function clearCalSel(){
   calGrid.querySelectorAll('.cal-day.sel').forEach(function(c){ c.classList.remove('sel'); });
