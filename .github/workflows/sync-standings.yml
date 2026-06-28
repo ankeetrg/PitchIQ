@@ -1,0 +1,51 @@
+name: Sync Live Standings
+
+# Pulls live/final scores from ESPN (free, no API key) and rewrites the group
+# tables in standings.html. Runs around the clock so late-night (UTC) kickoffs
+# in North America are picked up. Independent of the odds workflow so it never
+# touches the paid Odds-API quota.
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # every 20 minutes, 24/7
+  workflow_dispatch:          # manual trigger from the Actions tab
+
+# Avoid overlapping runs racing on the same push.
+concurrency:
+  group: sync-standings
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync-standings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync group standings from football-data.org
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: python3 sync_standings.py
+
+      - name: Commit updated standings
+        run: |
+          git config user.name  "PitchIQ Bot"
+          git config user.email "admin@getpitchiq.net"
+          git add standings.html data/results.json
+          if git diff --cached --quiet; then
+            echo "No standings changes — nothing to commit."
+          else
+            git commit -m "chore: sync live standings [skip ci]"
+            # Rebase on any concurrent push (e.g. the odds workflow) before pushing.
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            git push
+          fi
