@@ -66,14 +66,141 @@
 
 <header>
   <h1>PitchIQ Changelog</h1>
-  <span class="badge">40 entries</span>
+  <span class="badge">44 entries</span>
   <span class="repo">ankeetrg/PitchIQ · getpitchiq.net</span>
 </header>
 
 <div class="container">
 
   <!-- ─────────────────────────────────────────── -->
-  <div class="section-label">Nav, Standings &amp; Picks Record (Most Recent)</div>
+  <div class="section-label">Live Data Architecture &amp; v2 Build (Most Recent)</div>
+
+  <!-- new: 6256d2d -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">6256d2d</span>
+      <span class="commit-msg">Merge branch 'main' of https://github.com/ankeetrg/PitchIQ</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The live-data architecture (config.py, live.json, pitchiq-live.js) and the v2 Next.js build existed on separate branches — neither was fully reflected in the main branch.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Merge brings together 102 changed files: the unified live-data pipeline, the complete v2 Next.js scaffold, updated nav across all match pages, result page refreshes, and the updated changelog — all reconciled into main.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 1b8ee1e -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">1b8ee1e</span>
+      <span class="commit-msg">feat: wire live scores in v2; update gitignore for Next.js</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">// v2/ directory: no live-score integration</span>
+<span class="del">// Components existed but pulled only static data</span>
+<span class="del">// No HANDOFF.md documenting the v2 structure</span>
+<span class="del">// .gitignore: missing Next.js / node_modules rules</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">// v2/app/api/live-scores/route.ts — live scores API route</span>
+<span class="add">// v2/components/pitchiq/LiveMatchProvider.tsx — context provider</span>
+<span class="add">// v2/lib/espn.ts, odds.ts, statsapi.ts — data connectors</span>
+<span class="add">// 53 files added (9 571 insertions) incl. full Next.js scaffold</span>
+<span class="add">// HANDOFF.md added; .gitignore updated for Next.js + node_modules</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The v2 Next.js app had static components but no live data wiring. No handoff documentation. The root .gitignore didn't exclude Next.js build artifacts.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        v2 is fully scaffolded with live-score API routes, a <code>LiveMatchProvider</code> context, and connectors for ESPN, odds, and stats APIs. A <code>HANDOFF.md</code> documents the architecture. .gitignore updated to keep build artifacts out of git.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: a300250 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">a300250</span>
+      <span class="commit-msg">feat: unified live-data architecture — config.py + live.json + pitchiq-live.js</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;div class="bet-odds-pill"&gt;-115&lt;/div&gt;</span>
+<span class="del">&lt;div class="bet-odds-pill"&gt;+130&lt;/div&gt;</span>
+<span class="del">&lt;!-- Odds hard-coded; no live update mechanism --&gt;</span>
+<span class="del">&lt;!-- No pitchiq-config.js or pitchiq-live.js --&gt;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;meta name="pitchiq:page" content="home"/&gt;</span>
+<span class="add">&lt;div class="bet-odds-pill"</span>
+<span class="add">  data-live="matches.brazil-morocco.home_ml"&gt;-115&lt;/div&gt;</span>
+<span class="add">&lt;div class="bet-odds-pill"</span>
+<span class="add">  data-live="matches.germany-curacao.ou_over"&gt;+130&lt;/div&gt;</span>
+<span class="add">&lt;script src="/js/pitchiq-config.js"&gt;&lt;/script&gt;</span>
+<span class="add">&lt;script src="/js/pitchiq-live.js"&gt;&lt;/script&gt;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Odds pills on the homepage were static hard-coded numbers. No client-side script consumed live data, so values never refreshed between deploys.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        New <code>data-live</code> attributes on odds pills reference keys in <code>data/live.json</code>. <code>pitchiq-config.js</code> maps match IDs; <code>pitchiq-live.js</code> fetches the JSON on load and patches matching elements — odds update without re-deploying HTML.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 23da544 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">23da544</span>
+      <span class="commit-msg">changelog: add 4 new commits (c9c232e, 591ac61, 568ef14, 0b29c34)</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">Jun 27 2026</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Changelog did not include the four Jun 27 commits: nav unification across 87 pages, picks-record sticky-header fix, Standings A–L expansion, or the previous changelog update.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All four commits documented with before/after diffs and plain-English summaries. Badge updated to 40 entries.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">Nav, Standings &amp; Picks Record</div>
 
   <!-- new 1 -->
   <div class="commit-block">
@@ -959,140 +1086,4 @@
       <span class="commit-hash">271af4e</span>
       <span class="commit-msg">Overnight build: 8 new pages — standings, predictions hub, fantasy builder, 5 match previews, interactive homepage</span>
       <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Single-page site — only the homepage existed.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>8 new pages added in one build: Group Standings, Predictions Hub, Fantasy Builder, 5 match preview pages, and a fully interactive homepage with live data sections.</div>
-    </div>
-  </div>
-
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">d26246f</span>
-      <span class="commit-msg">Add @getpitchiq Twitter links to footer and meta tags</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="diff-table">
-      <div class="diff-col">
-        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
-        <div class="diff-content diff-code">
-<span class="del">&lt;meta name="twitter:site" content="@pitchiq"/&gt;</span>
-<span class="del">&lt;a class="ft-social" href="#"&gt;𝕏&lt;/a&gt;  &lt;!-- dead link --&gt;</span>
-        </div>
-      </div>
-      <div class="diff-col">
-        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
-        <div class="diff-content after-content diff-code">
-<span class="add">&lt;meta name="twitter:site" content="@getpitchiq"/&gt;</span>
-<span class="add">&lt;a class="ft-social" href="https://twitter.com/getpitchiq"</span>
-<span class="add">   target="_blank" rel="noopener"&gt;𝕏&lt;/a&gt;</span>
-        </div>
-      </div>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell">
-        <div class="summary-label">Before</div>
-        Twitter meta tag used wrong handle <code>@pitchiq</code>; footer X icon was a dead <code>#</code> link.
-      </div>
-      <div class="summary-cell after-cell">
-        <div class="summary-label">After</div>
-        Meta tag corrected to <code>@getpitchiq</code>; footer X icon now links to <code>twitter.com/getpitchiq</code>.
-      </div>
-    </div>
-  </div>
-
-  <!-- 26 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">c0b95d9</span>
-      <span class="commit-msg">Add match preview page, GA4, AdSense, affiliate slots</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>No match detail pages; no GA4; no monetisation.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>First match preview page live; GA4 wired; AdSense units placed; affiliate sportsbook CTA slots added.</div>
-    </div>
-  </div>
-
-  <!-- 27 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">b843b03</span>
-      <span class="commit-msg">Real WC2026 data — live scores, fixtures, odds, news headlines</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>All data was placeholder / Lorem-style content.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>Real WC2026 match data, live scores, upcoming fixtures, betting odds, and news headlines populated across the site.</div>
-    </div>
-  </div>
-
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">1c84074</span>
-      <span class="commit-msg">Add affiliate link slots — sportsbook banner, odds strip, bet CTAs</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="diff-table">
-      <div class="diff-col">
-        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
-        <div class="diff-content diff-code">
-<span class="del">/* No sportsbook banner */</span>
-<span class="del">&lt;div class="mh-odd"&gt;  &lt;!-- plain div, not clickable --&gt;</span>
-<span class="del">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings&lt;/div&gt;</span>
-<span class="del">&lt;/div&gt;</span>
-        </div>
-      </div>
-      <div class="diff-col">
-        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
-        <div class="diff-content after-content diff-code">
-<span class="add">.sb-banner { background:var(--nav); border-radius:var(--r2); }</span>
-<span class="add">.sb-book:hover { border-color:var(--grn); }</span>
-<span class="add">&lt;a class="mh-odd" href="#" data-aff="draftkings"</span>
-<span class="add">   rel="noopener sponsored" target="_blank"&gt;</span>
-<span class="add">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings ↗&lt;/div&gt;</span>
-<span class="add">&lt;/a&gt;</span>
-        </div>
-      </div>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell">
-        <div class="summary-label">Before</div>
-        Odds strip items were plain non-clickable divs. No sportsbook bonus banner. No affiliate tracking attributes.
-      </div>
-      <div class="summary-cell after-cell">
-        <div class="summary-label">After</div>
-        Odds strip converted to affiliate <code>&lt;a&gt;</code> tags with <code>data-aff</code> tracking. Sportsbook bonus banner added (DraftKings, FanDuel) with hover effects and <code>rel="sponsored"</code>.
-      </div>
-    </div>
-  </div>
-
-  <!-- 28 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">de83eff</span>
-      <span class="commit-msg">Update domain to getpitchiq.net</span>
-      <span class="tag tag-chore">chore</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Site references used a development/placeholder domain.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>All canonical URLs, meta tags, and social links updated to <strong>getpitchiq.net</strong>.</div>
-    </div>
-  </div>
-
-  <!-- 29 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">ed63214</span>
-      <span class="commit-msg">V6 production launch</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Previous version (V5) in production.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>V6 shipped — full redesign with dark theme, live match ribbon, structured betting section, and WC2026 branding.</div>
-    </div>
-  </div>
-
-</div>
-</body>
-</html>
+    
