@@ -1514,8 +1514,8 @@ function koCardHTML(m, live){
     body += '<div class="pred-pick"><span class="pred-pick-badge badge-value">ODDS</span> ' + koEsc(favName) + ' to win &nbsp;·&nbsp; <strong>' + koEsc(favMl) + '</strong></div>';
   }
 
-  var cta = '<div class="pred-cta pred-cta-tbd">Bracket · Match ' + koEsc(m.match_no) + '</div>';
-  var cls = 'pred-card pred-card-ko' + ((prob || determined) ? '' : ' pred-card-tbd');
+  var cta = '<div class="pred-cta' + (prob || determined ? '' : ' pred-cta-tbd') + '">Full Preview &amp; Picks &#x2192;</div>';
+  var cls = 'pred-card pred-card-ko' + (prob || determined ? '' : ' pred-card-tbd');
   return '<div class="' + cls + '" data-stage="' + koEsc(m.stage) + '" data-group="" data-ko="1">' + head + teams + body + cta + '</div>';
 }
 
