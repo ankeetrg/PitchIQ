@@ -2193,6 +2193,7 @@ html, body { scroll-behavior: smooth; }
 }
 .mc-team { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 .mc-team img { width: 50px; height: auto; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+.mc-flag-img { width: 56px; height: auto; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
 .mc-emoji { font-size: 46px; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,.45)); }
 .mc-emoji-tbd { width: 50px; height: 50px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px dashed rgba(255,255,255,.4); color: rgba(255,255,255,.65); font-family: var(--cond); font-size: 26px; font-weight: 900; }
 .mc-livescore { font-family: var(--cond); font-size: 34px; font-weight: 900; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -3167,11 +3168,22 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
   var track = document.getElementById('tickerTrack');
   if (!vp && !track) return;
 
-  var MON3 = { Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12' };
-  function isoOf(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-  function isoFromShort(s){ if(!s) return null; var p=String(s).trim().split(/\s+/); var m=MON3[p[0]]; if(!m||!p[1]) return null; return '2026-'+m+'-'+String(parseInt(p[1],10)).padStart(2,'0'); }
+  // "Today" matching mirrors the /predictions page: compare a month-day key
+  // ("Jun-29") with NO year, recomputed on every refresh so the cards roll
+  // over automatically at midnight / on any date change.
+  var SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function dayKey(monAbbr, day){ return monAbbr + '-' + parseInt(day, 10); }
+  function todayKey(){ var n = new Date(); return dayKey(SHORT_MONTHS[n.getMonth()], n.getDate()); }
+  function dayKeyFromShort(s){ if(!s) return ''; var p = String(s).trim().split(/\s+/); if(!p[1]) return ''; return dayKey(p[0], p[1]); }
+  // Reverse a 2-letter flag emoji (regional indicators) back to its ISO code
+  // so we can render flagcdn images like the predictions page does.
+  function isoFromEmoji(em){
+    if(!em) return null;
+    var cps = Array.from(em).map(function(c){ return c.codePointAt(0); }).filter(function(cp){ return cp >= 0x1F1E6 && cp <= 0x1F1FF; });
+    if(cps.length !== 2) return null;
+    return String.fromCharCode(cps[0]-0x1F1E6+97, cps[1]-0x1F1E6+97);
+  }
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  var TODAY = isoOf(new Date());
   var POLL = (window.PITCHIQ_CONFIG && window.PITCHIQ_CONFIG.pollInterval) || (5 * 60 * 1000);
 
   // ── normalise group + knockout into one card/ticker shape ──
@@ -3194,6 +3206,7 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
       href:'/'+slug, tag:'Group Stage',
       badge:'Group Stage' + (g.venue_short?' · '+g.venue_short:''),
       home:g.home, away:g.away, homeEmoji:g.home_emoji, awayEmoji:g.away_emoji,
+      homeIso:isoFromEmoji(g.home_emoji), awayIso:isoFromEmoji(g.away_emoji),
       status:g.status, scoreHome:g.score_home, scoreAway:g.score_away, clock:g.clock,
       time:(g.time_str||'').replace(' ET',''), pick:fp.pick, conf:fp.conf, odds:odds
     };
@@ -3210,6 +3223,7 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
       href: lv.page_slug ? '/'+lv.page_slug : '/predictions', tag:(m.round||'Knockout'),
       badge:(m.round||'Knockout') + (m.venue_short?' · '+m.venue_short:''),
       home:H?H.name:null, away:A?A.name:null, homeEmoji:H?H.emoji:null, awayEmoji:A?A.emoji:null,
+      homeIso:H?(H.code||isoFromEmoji(H.emoji)):null, awayIso:A?(A.code||isoFromEmoji(A.emoji)):null,
       homeTBD:!H, awayTBD:!A,
       status:st, scoreHome:lv.score_home, scoreAway:lv.score_away, clock:lv.clock,
       time:(m.time_str||'').replace(' ET',''),
@@ -3218,12 +3232,13 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
   }
   function todayList(live, ko){
     var out = [];
+    var TK = todayKey();   // recomputed every call so the set follows the date
     if (live && live.matches) Object.keys(live.matches).forEach(function(slug){
       var g = live.matches[slug];
-      if (isoFromShort(g.date_short) === TODAY) out.push(normGroup(slug, g));
+      if (dayKeyFromShort(g.date_short) === TK) out.push(normGroup(slug, g));
     });
     if (ko && ko.matches) ko.matches.forEach(function(m){
-      if (isoFromShort(m.date_short) === TODAY) out.push(normKO(m, (live && live.knockout && live.knockout[m.slug])));
+      if (dayKeyFromShort(m.date_short) === TK) out.push(normKO(m, (live && live.knockout && live.knockout[m.slug])));
     });
     // live first, then upcoming, then finished
     var rank = { live:0, upcoming:1, ft:2 };
@@ -3232,9 +3247,12 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
   }
 
   // ── hero carousel ──
-  function teamSide(name, emoji, tbd){
+  function teamSide(name, iso, emoji, tbd){
     if (tbd || !name) return '<div class="mc-team"><div class="mc-emoji-tbd">?</div><div class="mc-team-name">TBD</div></div>';
-    return '<div class="mc-team"><div class="mc-emoji">'+(emoji||'🏳️')+'</div><div class="mc-team-name">'+esc(name)+'</div></div>';
+    var flag = iso
+      ? '<img class="mc-flag-img" src="https://flagcdn.com/w80/'+esc(iso)+'.png" alt="'+esc(name)+'" loading="lazy">'
+      : '<div class="mc-emoji">'+(emoji||'🏳️')+'</div>';
+    return '<div class="mc-team">'+flag+'<div class="mc-team-name">'+esc(name)+'</div></div>';
   }
   function buildMatchCard(m){
     var isLive = m.status === 'live', isFt = m.status === 'ft';
@@ -3260,9 +3278,9 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     return '<article class="mc-card" role="group" aria-roledescription="slide" aria-label="'+esc((m.home||'TBD')+' versus '+(m.away||'TBD'))+'">' +
       '<div class="mc-head"><div class="mc-badge">'+esc(m.badge||'')+'</div>'+statusHtml+'</div>' +
       '<div class="mc-teams" style="background-image:linear-gradient(rgba(7,29,54,.86),rgba(7,29,54,.94)),url(\''+HERO_BG+'\')">' +
-        teamSide(m.home, m.homeEmoji, m.homeTBD) +
+        teamSide(m.home, m.homeIso, m.homeEmoji, m.homeTBD) +
         '<div class="mc-mid">'+mid+'</div>' +
-        teamSide(m.away, m.awayEmoji, m.awayTBD) +
+        teamSide(m.away, m.awayIso, m.awayEmoji, m.awayTBD) +
       '</div>' + oddsHtml +
       '<div class="mc-cta-row"><a class="mc-cta" href="'+(m.href||'#')+'">Full Preview →</a>' +
         '<span class="mc-venue">Odds subject to change · 21+</span></div>' +
