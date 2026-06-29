@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-06-29T05:03:17.172259+00:00",
+    "generated_at": "2026-06-29T10:01:22.322254+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-06-29T05:03:17.846209+00:00"
+    "knockout_generated_at": "2026-06-29T10:01:23.178173+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2823,7 +2823,12 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Canada",
+        "code": "ca",
+        "emoji": "🇨🇦"
+      }
     },
     "wc2026-m89": {
       "stage": "r16",
