@@ -2193,6 +2193,13 @@ html, body { scroll-behavior: smooth; }
 }
 .mc-team { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 .mc-team img { width: 50px; height: auto; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+.mc-emoji { font-size: 46px; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,.45)); }
+.mc-emoji-tbd { width: 50px; height: 50px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px dashed rgba(255,255,255,.4); color: rgba(255,255,255,.65); font-family: var(--cond); font-size: 26px; font-weight: 900; }
+.mc-livescore { font-family: var(--cond); font-size: 34px; font-weight: 900; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
+.mc-odd-pick { flex: 1; }
+.mc-empty { display: flex; align-items: center; justify-content: center; transform: none !important; }
+.mc-empty-msg { font-family: var(--cond); font-size: 17px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.85); text-align: center; padding: 24px; }
+.mc-empty-msg span { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; letter-spacing: .03em; text-transform: none; color: rgba(255,255,255,.45); }
 .mc-team-name { font-family: var(--cond); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; color: #fff; line-height: 1.05; }
 .mc-mid { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .mc-vs { font-family: var(--cond); font-size: 12px; font-weight: 800; letter-spacing: .12em; color: rgba(255,255,255,.32); }
@@ -3148,104 +3155,195 @@ html, body { scroll-behavior: smooth; }
 ════════════════════════════════════════════════════ */
 var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&q=80&fit=crop&auto=format';
 
-var TODAY_MATCHES = [
-  { slug:'qatar-switzerland', home:'Qatar', home_iso:'qa', home_ml:'+340',
-    away:'Switzerland', away_iso:'ch', away_ml:'-145', draw_ml:'+280',
-    group:'B', time:'12PM PT', venue:'BMO Field, Toronto',
-    ai_pick:'Switzerland Win', ai_conf:74, status:'live', elapsed:85 },
-  { slug:'germany-curacao', home:'Germany', home_iso:'de', home_ml:'-360',
-    away:'Curaçao', away_iso:'cw', away_ml:'+900', draw_ml:'+500',
-    group:'E', time:'3PM PT', venue:'Mercedes-Benz Stadium, Atlanta',
-    ai_pick:'Germany Win to Nil', ai_conf:81, status:'upcoming' },
-  { slug:'brazil-morocco', home:'Brazil', home_iso:'br', home_ml:'-138',
-    away:'Morocco', away_iso:'ma', away_ml:'+500', draw_ml:'+290',
-    group:'C', time:'6PM PT', venue:'MetLife Stadium, NJ',
-    ai_pick:'Brazil Win', ai_conf:68, status:'upcoming' },
-  { slug:'haiti-scotland', home:'Haiti', home_iso:'ht', home_ml:'+380',
-    away:'Scotland', away_iso:'gb-sct', away_ml:'-125', draw_ml:'+310',
-    group:'C', time:'9PM PT', venue:'Gillette Stadium, MA',
-    ai_pick:'Under 2.5 Goals', ai_conf:62, status:'upcoming' }
-];
-
-function mcFlag(iso, name) {
-  return '<img src="https://flagcdn.com/w80/' + iso + '.png" alt="' + name + '" loading="lazy">';
-}
-function mcProbs(m) {
-  function p(ml) { ml = parseInt(ml, 10); return ml < 0 ? (-ml) / (-ml + 100) : 100 / (ml + 100); }
-  return [p(m.home_ml), p(m.draw_ml), p(m.away_ml)];
-}
-function buildMatchCard(m) {
-  var probs = mcProbs(m);
-  var favIdx = probs.indexOf(Math.max(probs[0], probs[1], probs[2]));
-  function odd(label, val, idx, book) {
-    return '<a class="mc-odd" href="#" data-aff="' + book + '" rel="noopener sponsored" target="_blank">' +
-           '<span class="mc-odd-lbl">' + label + '</span>' +
-           '<span class="mc-odd-val' + (idx === favIdx ? ' fav' : '') + '">' + val + '</span></a>';
-  }
-  var isLive = m.status === 'live';
-  var statusHtml = isLive
-    ? '<div class="mc-status live"><span class="dot"></span>LIVE</div>'
-    : '<div class="mc-status up">' + m.time + '</div>';
-  var mid = isLive
-    ? '<div class="mc-time" style="color:#fff">LIVE</div><div class="mc-min">' + m.elapsed + '&rsquo;</div>' +
-      '<span class="mc-ai">✦ ' + m.ai_pick + ' · ' + m.ai_conf + '%</span>'
-    : '<div class="mc-vs">VS</div><div class="mc-time">' + m.time + '</div>' +
-      '<span class="mc-ai">✦ ' + m.ai_pick + ' · ' + m.ai_conf + '%</span>';
-  return '<article class="mc-card" role="group" aria-roledescription="slide" aria-label="' + m.home + ' versus ' + m.away + '">' +
-    '<div class="mc-head"><div class="mc-badge">Group ' + m.group + ' · <span>' + m.venue + '</span></div>' + statusHtml + '</div>' +
-    '<div class="mc-teams" style="background-image:linear-gradient(rgba(7,29,54,.86),rgba(7,29,54,.94)),url(\'' + HERO_BG + '\')">' +
-      '<div class="mc-team">' + mcFlag(m.home_iso, m.home) + '<div class="mc-team-name">' + m.home + '</div></div>' +
-      '<div class="mc-mid">' + mid + '</div>' +
-      '<div class="mc-team">' + mcFlag(m.away_iso, m.away) + '<div class="mc-team-name">' + m.away + '</div></div>' +
-    '</div>' +
-    '<div class="mc-odds">' +
-      odd(m.home + ' Win', m.home_ml, 0, 'draftkings') +
-      odd('Draw', m.draw_ml, 1, 'fanduel') +
-      odd(m.away + ' Win', m.away_ml, 2, 'betmgm') +
-    '</div>' +
-    '<div class="mc-cta-row"><a class="mc-cta" href="/' + m.slug + '">Full Preview →</a>' +
-      '<span class="mc-venue">Odds subject to change · 21+</span></div>' +
-  '</article>';
-}
-(function initCarousel() {
+/* ═══════════════════════════════════════════════════
+   LIVE "TODAY" MODULE — drives BOTH the hero carousel and the
+   top ticker from /data/live.json (+ /data/knockout.json).
+   Shows only today's matches (group + knockout) with live scores;
+   knockout sides that aren't decided render as TBD. Re-polls on the
+   PITCHIQ_CONFIG interval. Falls back gracefully if the JSON is missing.
+════════════════════════════════════════════════════ */
+(function liveToday() {
   var vp = document.getElementById('mcViewport');
-  if (!vp) return;
-  vp.innerHTML = TODAY_MATCHES.map(buildMatchCard).join('');
-  var cards = Array.prototype.slice.call(vp.querySelectorAll('.mc-card'));
-  var dotsWrap = document.getElementById('mcDots');
-  dotsWrap.innerHTML = cards.map(function(_, i) {
-    return '<button class="mc-dot' + (i === 0 ? ' active' : '') + '" role="tab" aria-label="Match ' + (i + 1) + '"></button>';
-  }).join('');
-  var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.mc-dot'));
-  var cur = 0, timer = null;
-  function place() {
-    cards.forEach(function(c, i) { c.style.transform = 'translateX(' + ((i - cur) * 100) + '%)'; });
-    dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+  var track = document.getElementById('tickerTrack');
+  if (!vp && !track) return;
+
+  var MON3 = { Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12' };
+  function isoOf(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function isoFromShort(s){ if(!s) return null; var p=String(s).trim().split(/\s+/); var m=MON3[p[0]]; if(!m||!p[1]) return null; return '2026-'+m+'-'+String(parseInt(p[1],10)).padStart(2,'0'); }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var TODAY = isoOf(new Date());
+  var POLL = (window.PITCHIQ_CONFIG && window.PITCHIQ_CONFIG.pollInterval) || (5 * 60 * 1000);
+
+  // ── normalise group + knockout into one card/ticker shape ──
+  function favPick(g){
+    var hp=+g.home_prob||0, dp=+g.draw_prob||0, ap=+g.away_prob||0, mx=Math.max(hp,dp,ap);
+    if(mx<=0) return null;
+    return { pick:(mx===hp?g.home+' Win':mx===ap?g.away+' Win':'Draw'), conf:mx };
   }
-  function go(n) { cur = (n + cards.length) % cards.length; place(); }
-  function next() { go(cur + 1); }
-  function prev() { go(cur - 1); }
-  // staggered entrance: card i fades in 60ms after the previous
-  cards.forEach(function(c, i) {
-    c.style.opacity = '0';
-    c.style.transform = 'translateX(' + ((i - cur) * 100) + '%)';
-    setTimeout(function() {
-      c.style.transitionDelay = (i * 60) + 'ms';
-      c.style.opacity = '1';
-      setTimeout(function() { c.style.transitionDelay = '0ms'; }, 600 + i * 60);
-    }, 20);
-  });
-  place();
-  function start() { stop(); timer = setInterval(next, 6000); }
-  function stop() { if (timer) { clearInterval(timer); timer = null; } }
-  var nextBtn = document.getElementById('mcNext');
-  var prevBtn = document.getElementById('mcPrev');
-  if (nextBtn) nextBtn.addEventListener('click', function() { next(); start(); });
-  if (prevBtn) prevBtn.addEventListener('click', function() { prev(); start(); });
-  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); start(); }); });
-  vp.addEventListener('mouseenter', stop);
-  vp.addEventListener('mouseleave', start);
-  start();
+  function mlNum(v){ var n=parseInt(v,10); return isNaN(n)?9999:n; }
+  function normGroup(slug, g){
+    var fp = favPick(g) || {};
+    var mls = [mlNum(g.home_ml), mlNum(g.draw_ml), mlNum(g.away_ml)];
+    var favIdx = mls.indexOf(Math.min(mls[0],mls[1],mls[2]));
+    var odds = (g.home_ml||g.away_ml) ? [
+      [g.home+' Win', g.home_ml, favIdx===0],
+      ['Draw', g.draw_ml, favIdx===1],
+      [g.away+' Win', g.away_ml, favIdx===2]
+    ] : null;
+    return {
+      href:'/'+slug, tag:'Group Stage',
+      badge:'Group Stage' + (g.venue_short?' · '+g.venue_short:''),
+      home:g.home, away:g.away, homeEmoji:g.home_emoji, awayEmoji:g.away_emoji,
+      status:g.status, scoreHome:g.score_home, scoreAway:g.score_away, clock:g.clock,
+      time:(g.time_str||'').replace(' ET',''), pick:fp.pick, conf:fp.conf, odds:odds
+    };
+  }
+  function normKO(m, lv){
+    lv = lv || {};
+    var H = (lv.home && lv.home.code) ? lv.home : null;
+    var A = (lv.away && lv.away.code) ? lv.away : null;
+    var st = lv.status || m.status || 'upcoming';
+    if (st === 'inprogress') st = 'live';
+    if (st === 'tbd') st = 'upcoming';
+    var conf = m.prob ? Math.max(+m.prob.home||0,+m.prob.draw||0,+m.prob.away||0) : null;
+    return {
+      href: lv.page_slug ? '/'+lv.page_slug : '/predictions', tag:(m.round||'Knockout'),
+      badge:(m.round||'Knockout') + (m.venue_short?' · '+m.venue_short:''),
+      home:H?H.name:null, away:A?A.name:null, homeEmoji:H?H.emoji:null, awayEmoji:A?A.emoji:null,
+      homeTBD:!H, awayTBD:!A,
+      status:st, scoreHome:lv.score_home, scoreAway:lv.score_away, clock:lv.clock,
+      time:(m.time_str||'').replace(' ET',''),
+      pick:(H&&A)?m.pick:null, conf:(H&&A)?conf:null, odds:null, oddsSingle:(H&&A)?m.odds:null
+    };
+  }
+  function todayList(live, ko){
+    var out = [];
+    if (live && live.matches) Object.keys(live.matches).forEach(function(slug){
+      var g = live.matches[slug];
+      if (isoFromShort(g.date_short) === TODAY) out.push(normGroup(slug, g));
+    });
+    if (ko && ko.matches) ko.matches.forEach(function(m){
+      if (isoFromShort(m.date_short) === TODAY) out.push(normKO(m, (live && live.knockout && live.knockout[m.slug])));
+    });
+    // live first, then upcoming, then finished
+    var rank = { live:0, upcoming:1, ft:2 };
+    out.sort(function(a,b){ return (rank[a.status]==null?1:rank[a.status]) - (rank[b.status]==null?1:rank[b.status]); });
+    return out;
+  }
+
+  // ── hero carousel ──
+  function teamSide(name, emoji, tbd){
+    if (tbd || !name) return '<div class="mc-team"><div class="mc-emoji-tbd">?</div><div class="mc-team-name">TBD</div></div>';
+    return '<div class="mc-team"><div class="mc-emoji">'+(emoji||'🏳️')+'</div><div class="mc-team-name">'+esc(name)+'</div></div>';
+  }
+  function buildMatchCard(m){
+    var isLive = m.status === 'live', isFt = m.status === 'ft';
+    var hasScore = (m.scoreHome != null && m.scoreAway != null);
+    var statusHtml = isLive ? '<div class="mc-status live"><span class="dot"></span>LIVE</div>'
+      : isFt ? '<div class="mc-status up">FT</div>'
+      : '<div class="mc-status up">'+esc(m.time||'TBD')+'</div>';
+    var ai = m.pick ? '<span class="mc-ai">✦ '+esc(m.pick)+(m.conf?' · '+m.conf+'%':'')+'</span>' : '';
+    var mid = hasScore
+      ? '<div class="mc-livescore">'+m.scoreHome+' – '+m.scoreAway+'</div>'+
+        (isLive ? '<div class="mc-min">'+esc(m.clock||'LIVE')+'</div>' : '<div class="mc-vs">FULL TIME</div>')+ai
+      : '<div class="mc-vs">VS</div><div class="mc-time">'+esc(m.time||'')+'</div>'+ai;
+    var oddsHtml = '';
+    if (m.odds && m.odds.length) {
+      oddsHtml = '<div class="mc-odds">'+ m.odds.map(function(o){
+        return '<a class="mc-odd" href="'+(m.href||'#')+'"><span class="mc-odd-lbl">'+esc(o[0])+'</span>'+
+               '<span class="mc-odd-val'+(o[2]?' fav':'')+'">'+esc(o[1]||'—')+'</span></a>';
+      }).join('') +'</div>';
+    } else if (m.pick) {
+      oddsHtml = '<div class="mc-odds"><a class="mc-odd mc-odd-pick" href="'+(m.href||'#')+'">'+
+        '<span class="mc-odd-lbl">AI Pick</span><span class="mc-odd-val fav">'+esc(m.pick)+(m.oddsSingle?' · '+esc(m.oddsSingle):'')+'</span></a></div>';
+    }
+    return '<article class="mc-card" role="group" aria-roledescription="slide" aria-label="'+esc((m.home||'TBD')+' versus '+(m.away||'TBD'))+'">' +
+      '<div class="mc-head"><div class="mc-badge">'+esc(m.badge||'')+'</div>'+statusHtml+'</div>' +
+      '<div class="mc-teams" style="background-image:linear-gradient(rgba(7,29,54,.86),rgba(7,29,54,.94)),url(\''+HERO_BG+'\')">' +
+        teamSide(m.home, m.homeEmoji, m.homeTBD) +
+        '<div class="mc-mid">'+mid+'</div>' +
+        teamSide(m.away, m.awayEmoji, m.awayTBD) +
+      '</div>' + oddsHtml +
+      '<div class="mc-cta-row"><a class="mc-cta" href="'+(m.href||'#')+'">Full Preview →</a>' +
+        '<span class="mc-venue">Odds subject to change · 21+</span></div>' +
+    '</article>';
+  }
+
+  var mcTimer = null;
+  function renderCarousel(list){
+    if (!vp) return;
+    if (mcTimer) { clearInterval(mcTimer); mcTimer = null; }
+    var dotsWrap = document.getElementById('mcDots');
+    if (!list || !list.length){
+      vp.innerHTML = '<article class="mc-card mc-empty"><div class="mc-empty-msg">No matches scheduled today<span>Check the calendar in Fixtures &amp; Previews for upcoming dates</span></div></article>';
+      if (dotsWrap) dotsWrap.innerHTML = '';
+      return;
+    }
+    vp.innerHTML = list.map(buildMatchCard).join('');
+    var cards = Array.prototype.slice.call(vp.querySelectorAll('.mc-card'));
+    if (dotsWrap) dotsWrap.innerHTML = cards.map(function(_, i){
+      return '<button class="mc-dot'+(i===0?' active':'')+'" role="tab" aria-label="Match '+(i+1)+'"></button>';
+    }).join('');
+    var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll('.mc-dot')) : [];
+    var cur = 0;
+    function place(){ cards.forEach(function(c,i){ c.style.transform='translateX('+((i-cur)*100)+'%)'; }); dots.forEach(function(d,i){ d.classList.toggle('active', i===cur); }); }
+    function go(n){ cur=(n+cards.length)%cards.length; place(); }
+    function next(){ go(cur+1); }
+    function prev(){ go(cur-1); }
+    place();
+    function start(){ stop(); if (cards.length>1) mcTimer=setInterval(next,6000); }
+    function stop(){ if(mcTimer){ clearInterval(mcTimer); mcTimer=null; } }
+    var nextBtn=document.getElementById('mcNext'), prevBtn=document.getElementById('mcPrev');
+    if (nextBtn) nextBtn.onclick=function(){ next(); start(); };
+    if (prevBtn) prevBtn.onclick=function(){ prev(); start(); };
+    dots.forEach(function(d,i){ d.onclick=function(){ go(i); start(); }; });
+    vp.onmouseenter=stop; vp.onmouseleave=start;
+    start();
+  }
+
+  // ── top ticker ──
+  function tickerItem(m){
+    var isLive = m.status==='live';
+    var hasScore = (m.scoreHome!=null && m.scoreAway!=null);
+    var statusCls = isLive ? 'live' : (m.status==='ft' ? 'ft' : 'ko');
+    var statusLbl = isLive ? 'LIVE' : (m.status==='ft' ? 'FT' : (m.time||'TODAY'));
+    var homeN = m.homeTBD ? 'TBD' : esc(m.home);
+    var awayN = m.awayTBD ? 'TBD' : esc(m.away);
+    var mid = hasScore
+      ? '<span class="score">'+m.scoreHome+'–'+m.scoreAway+'</span>'+(isLive&&m.clock?' '+esc(m.clock):'')
+      : '<span class="tick-vs">vs</span>';
+    return '<div class="tick-item"><span class="tick-status '+statusCls+'">'+esc(statusLbl)+'</span> '+
+      (m.homeEmoji||'')+' '+homeN+' '+mid+' '+awayN+' '+(m.awayEmoji||'')+
+      ' <em>'+esc(m.tag||'')+'</em></div>';
+  }
+  function renderTicker(list){
+    if (!track) return;
+    if (!list || !list.length){
+      track.innerHTML = '<div class="tick-item"><span class="tick-status ko">TODAY</span> No matches scheduled today <em>WC 2026</em></div>';
+      return;
+    }
+    var single = list.map(tickerItem).join('');
+    track.innerHTML = single + single; // duplicate for seamless marquee
+  }
+
+  // ── data fetch + refresh loop ──
+  function getJSON(u){ return fetch(u + (u.indexOf('?')<0?'?_=':'&_=') + Date.now()).then(function(r){ return r.ok?r.json():null; }).catch(function(){ return null; }); }
+  function refresh(){
+    return Promise.all([ getJSON('/data/live.json'), getJSON('/data/knockout.json') ]).then(function(res){
+      var live = res[0], ko = res[1];
+      if (!live && !ko) { return false; }            // offline/local — keep whatever is shown
+      var list = todayList(live, ko);
+      renderCarousel(list);
+      renderTicker(list);
+      return true;
+    });
+  }
+
+  // initial state before first fetch resolves
+  renderCarousel([]);
+  renderTicker([]);
+  refresh();
+  if (POLL > 0) setInterval(refresh, POLL);
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -3714,42 +3812,8 @@ document.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
   var tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
   var todayIso = isoOf(now), tomorrowIso = isoOf(tomorrow);
 
-  // ── LIVE TICKER — show ONLY today's fixtures, sourced from FIXTURES ──
-  // The top ribbon is driven by the same hard-coded dataset, filtered to
-  // the current calendar date so it always reflects "today's" matches.
-  (function buildTicker() {
-    var track = document.getElementById('tickerTrack');
-    if (!track) return;
-
-    function flagEmoji(code) {
-      if (!code || code.length !== 2) return '🏴';
-      return String.fromCodePoint.apply(null, code.toUpperCase().split('').map(function(c) {
-        return 0x1F1E6 + c.charCodeAt(0) - 65;
-      }));
-    }
-
-    var today = FIXTURES.filter(function(f) { return f[2] === todayIso; });
-
-    if (!today.length) {
-      track.innerHTML = '<div class="tick-item"><span class="tick-status ko">' +
-        badge(todayIso) + '</span> No matches scheduled today <em>WC 2026 · Group Stage</em></div>';
-      return;
-    }
-
-    function itemHtml(f) {
-      var parts = f[0].split('-');
-      var home = TEAMS[parts[0]], away = TEAMS[parts[1]];
-      if (!home || !away) return '';
-      return '<div class="tick-item"><span class="tick-status ko">' +
-        badge(f[2]) + ' · ' + f[3] + '</span> ' +
-        flagEmoji(home[1]) + ' ' + home[0] + ' vs ' + away[0] + ' ' + flagEmoji(away[1]) +
-        ' <em>Group ' + f[1] + '</em></div>';
-    }
-
-    var single = today.map(itemHtml).join('');
-    // Duplicate the set so the seamless CSS scroll loop has no visible gap.
-    track.innerHTML = single + single;
-  })();
+  // NOTE: the LIVE TICKER is now driven by the live-data module near the top
+  // of this script (today's matches + live scores from /data/live.json).
 
   var CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>';
 
