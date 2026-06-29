@@ -3216,9 +3216,10 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     lv = lv || {};
     var H = (lv.home && lv.home.code) ? lv.home : null;
     var A = (lv.away && lv.away.code) ? lv.away : null;
-    var st = lv.status || m.status || 'upcoming';
-    if (st === 'inprogress') st = 'live';
-    if (st === 'tbd') st = 'upcoming';
+    var st = (lv.status || m.status || 'upcoming').toLowerCase();
+    if (st === 'inprogress' || st === 'in_play' || st === 'playing' || st === 'paused' || st === 'ht') st = 'live';
+    if (st === 'finished' || st === 'fulltime' || st === 'full_time' || st === 'aet' || st === 'pen') st = 'ft';
+    if (st === 'tbd' || st === 'scheduled' || st === 'timed') st = 'upcoming';
     var conf = m.prob ? Math.max(+m.prob.home||0,+m.prob.draw||0,+m.prob.away||0) : null;
     return {
       kind:'ko',
@@ -3257,8 +3258,11 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     return '<div class="mc-team">'+flag+'<div class="mc-team-name">'+esc(name)+'</div></div>';
   }
   function buildMatchCard(m){
-    var isLive = m.status === 'live', isFt = m.status === 'ft';
+    var isFt = m.status === 'ft';
     var hasScore = (m.scoreHome != null && m.scoreAway != null);
+    // A match counts as LIVE (red indicator, replaces kickoff time) once it has
+    // started: an in-play status, or a score showing while it isn't full-time.
+    var isLive = (m.status === 'live') || (hasScore && !isFt);
     var statusHtml = isLive ? '<div class="mc-status live"><span class="dot"></span>LIVE</div>'
       : isFt ? '<div class="mc-status up">FT</div>'
       : '<div class="mc-status up">'+esc(m.time||'TBD')+'</div>';
