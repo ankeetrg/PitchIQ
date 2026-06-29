@@ -3203,6 +3203,7 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
       [g.away+' Win', g.away_ml, favIdx===2]
     ] : null;
     return {
+      kind:'group',
       href:'/'+slug, tag:'Group Stage',
       badge:'Group Stage' + (g.venue_short?' · '+g.venue_short:''),
       home:g.home, away:g.away, homeEmoji:g.home_emoji, awayEmoji:g.away_emoji,
@@ -3220,6 +3221,7 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     if (st === 'tbd') st = 'upcoming';
     var conf = m.prob ? Math.max(+m.prob.home||0,+m.prob.draw||0,+m.prob.away||0) : null;
     return {
+      kind:'ko',
       href: lv.page_slug ? '/'+lv.page_slug : '/predictions', tag:(m.round||'Knockout'),
       badge:(m.round||'Knockout') + (m.venue_short?' · '+m.venue_short:''),
       home:H?H.name:null, away:A?A.name:null, homeEmoji:H?H.emoji:null, awayEmoji:A?A.emoji:null,
@@ -3350,7 +3352,9 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     return Promise.all([ getJSON('/data/live.json'), getJSON('/data/knockout.json') ]).then(function(res){
       var live = res[0], ko = res[1];
       if (!live && !ko) { return false; }            // offline/local — keep whatever is shown
-      var list = todayList(live, ko);
+      // Knockout phase: show only current (knockout) matches — drop any
+      // lingering group-stage fixtures that share today's date in the data.
+      var list = todayList(live, ko).filter(function(m){ return m.kind === 'ko'; });
       renderCarousel(list);
       renderTicker(list);
       return true;
