@@ -66,11 +66,986 @@
 
 <header>
   <h1>PitchIQ Changelog</h1>
-  <span class="badge">44 entries</span>
+  <span class="badge">72 entries</span>
   <span class="repo">ankeetrg/PitchIQ · getpitchiq.net</span>
 </header>
 
 <div class="container">
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">World Cup Knockout Phase &amp; Live Data (June 28–29, 2026)</div>
+
+  <!-- new: 1f3cb0f -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">1f3cb0f</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — previous standings snapshot</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — refreshed with latest group standings data</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated bot sync of live standings from football-data.org. Previous snapshot in data/live.json.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        data/live.json updated with current group standings data; standings.html regenerated to reflect latest match results.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: d521e9f -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">d521e9f</span>
+      <span class="commit-msg">chore: update live odds [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — previous odds snapshot</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json — refreshed with latest betting odds</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated bot update of live match odds in data/live.json.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        data/live.json updated with current betting odds for all active matches.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: ff26130 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">ff26130</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json + standings.html — stale standings</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — updated standings</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated scheduled sync of group standings.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Latest standings data pushed to live.json and standings.html regenerated.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 3502309 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">3502309</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json + standings.html — previous sync</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — latest group standings data</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated bot sync of group standings (Sun Jun 28).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Group standings refreshed with latest match results from football-data.org.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: a0a5789 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">a0a5789</span>
+      <span class="commit-msg">chore: update live odds [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — previous odds data</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json — refreshed betting odds</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated scheduled odds update (Sun Jun 28).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        data/live.json updated with current match odds.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: e3df5b9 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">e3df5b9</span>
+      <span class="commit-msg">Add Phase 2 handoff doc for World Cup homepage (ticker + carousel live scores)</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">No Phase 2 handoff doc existed</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">HANDOFF_WORLDCUP_PHASE2.md added — 110-line brief covering data shapes, file anchors, SOP, and acceptance criteria</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        No documented handoff for Phase 2 (live ticker + carousel on homepage). Next session would need to rediscover context.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Self-contained handoff doc added with copy-paste pickup prompt, so any new session can immediately continue work on the live scores ticker and match carousel.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 472eb28 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">472eb28</span>
+      <span class="commit-msg">Homepage fixtures: predictions-style calendar + R32–Final knockout (Phase 1)</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">-  // Hard-coded to the tournament month (June 2026). Days WITH fixtures</span>
+          <span class="del">-  // are green + clickable; days WITHOUT fixtures are white + disabled.</span>
+          <span class="del">-  var CAL_Y = 2026, CAL_M = 5; // June (0-based)</span>
+          <span class="del">-  var DOW = ['S','M','T','W','T','F','S'];</span>
+          <span class="del">-  var firstDow = new Date(CAL_Y, CAL_M, 1).getDay();</span>
+          <span class="del">-  var daysInMonth = new Date(CAL_Y, CAL_M + 1, 0).getDate();</span>
+          <span class="del">-  pop.innerHTML = '&lt;div class="fix-cal-head"&gt;June 2026&lt;/div&gt;...';</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">+  // Calendar popover (predictions-style: month title + prev/next arrows)</span>
+          <span class="add">+  // Spans group-stage months + knockout months (added after the JSON loads).</span>
+          <span class="add">+  var curY = 2026, curM = 5; // open on June 2026</span>
+          <span class="add">+  function renderCal() { ... prev/next nav buttons + dynamic month grid ... }</span>
+          <span class="add">+  renderCal();</span>
+          <span class="add">+  .fix-cal-nav { /* prev/next arrow buttons */ }</span>
+          <span class="add">+  var curFilter = 'all'; // track active filter across calendar navigations</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The homepage fixture calendar was hard-coded to June 2026 only. No month navigation — users couldn't browse knockout-stage fixture dates in July.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Calendar now supports month-by-month navigation with prev/next arrow buttons. Spans all tournament months (June + knockout months). Graceful fallback if JSON fetch fails. Knockout ISO dates derived from date_short for cross-stage filtering.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 9962af8 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">9962af8</span>
+      <span class="commit-msg">docs: add date-triggered R16/QF/SF/Final manual fallback tasks to HANDOFF</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">HANDOFF.md lacked manual fallback tasks for R16, QF, SF, Final stages</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">HANDOFF.md extended with 114 lines of date-triggered fallback task instructions for each knockout round</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        HANDOFF.md covered R32 page generation but didn't document what to do when R16/QF/SF/Final match dates arrive.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Each knockout round now has explicit manual fallback tasks with date triggers, so the right pages and data are ready before each stage begins.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 8989348 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">8989348</span>
+      <span class="commit-msg">chore: mark R32 pages task done in HANDOFF</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">HANDOFF.md showed R32 page task as pending</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">HANDOFF.md updated — R32 pages task marked complete</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        R32 match preview page generation was listed as an open task in HANDOFF.md.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Task marked done — all 16 R32 match preview pages have been generated and committed.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: fd90a14 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">fd90a14</span>
+      <span class="commit-msg">feat: add 16 R32 knockout match preview pages</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">No individual match preview pages for R32 knockout fixtures</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">16 new HTML pages added (germany-paraguay.html, spain-austria.html, etc.) — 769 lines each, 12,304 total lines</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Predictions page showed knockout bracket cards but had no dedicated match preview pages for R32 matchups.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All 16 Round of 32 matchups now have dedicated preview pages with stats, odds, and AI picks — covering matches like Germany vs Paraguay, Spain vs Austria, USA vs Bosnia-Herzegovina, and more.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: d6c6745 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">d6c6745</span>
+      <span class="commit-msg">predictions: link stage tabs (Group/R32..Final) to calendar date selection</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">Selecting a date from the calendar did not auto-switch the stage tab</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">predictions.html +33 lines — calendar date selection auto-activates the correct stage tab (Group/R32/QF/SF/Final)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Selecting a July knockout date from the calendar left the Group Stage tab highlighted, creating a confusing mismatch between the selected date and the visible fixtures.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Selecting any date automatically activates the tournament-stage tab that owns that day's fixtures. Clearing the date (× badge) resets the stage tab back to Group Stage.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: a61b8cf -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">a61b8cf</span>
+      <span class="commit-msg">predictions: data-driven calendar synced to full fixture schedule</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">Calendar was static, showing only June 2026 with no month navigation</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">predictions.html refactored — calendar covers full tournament (June + July), prev/next navigation between months with fixtures</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The predictions page calendar only showed June 2026 fixtures. Users had no way to browse July knockout fixtures from the date picker.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Calendar dynamically spans all tournament months. Shows one month at a time with prev/next arrows; July appears after async knockout data loads. Fixture days are green/clickable, others disabled.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 0ef032d -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">0ef032d</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json + standings.html — previous snapshot</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — refreshed standings (640 line diff)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated bot sync of group standings (Sun Jun 28 21:32 UTC).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Group standings fully refreshed with match completion data from football-data.org.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 29d0390 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">29d0390</span>
+      <span class="commit-msg">feat: R32 knockout match pages + auto-generator for R16-Final</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">No automated page generator for knockout rounds beyond R32</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">generate_knockout_pages.py added (998 lines) — auto-generates R16/QF/SF/Final pages; workflows + predictions.html updated</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Knockout pages would need to be created manually for each round. predictions.html had basic bracket cards. GitHub Actions workflows lacked proper permissions.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Python generator script can produce R16 through Final match preview pages automatically. HANDOFF.md documents the full pickup protocol. Sync-standings and update-odds workflows now have correct permissions.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 6fd6969 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">6fd6969</span>
+      <span class="commit-msg">chore: update live odds [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — previous odds</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json — updated with latest match odds</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated odds update bot (Sun Jun 28 21:09 UTC).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Current betting odds written to data/live.json for all active fixtures.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: dad08d0 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">dad08d0</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json + standings.html — stale data</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — synced standings (Sun Jun 28 20:15 UTC)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated standings sync (Jun 28 20:15 UTC).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Group standings refreshed from football-data.org API.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: dc43b36 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">dc43b36</span>
+      <span class="commit-msg">chore: update live odds [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — odds for 5 matches</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json — odds refreshed (5 insertions, 5 deletions)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated odds update (Jun 28 19:39 UTC).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Updated betting odds for active fixtures written to data/live.json.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 78e17f8 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">78e17f8</span>
+      <span class="commit-msg">feat: AI picks + Full Preview button for knockout cards</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">Knockout cards showed generic "Bracket · Match X" CTA button</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">predictions.html + data/knockout.json — CTA changed to "Full Preview &amp; Picks →" matching group-stage cards; green for determined/odds cards, gray for TBD-only</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Knockout bracket cards on the predictions page had a "Bracket · Match X" label that didn't match the group-stage card style. AI pick data was inconsistent across all 16 R32 matches.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All 16 R32 knockout cards now show "Full Preview &amp; Picks →" button — green when teams/odds are determined, gray when still TBD. Consistent visual language across group and knockout stages.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 7ad0934 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">7ad0934</span>
+      <span class="commit-msg">chore: update live odds [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">73+ match HTML pages — stale odds data in page</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">73 files updated — latest betting odds injected across all match preview pages (2,858 insertions, 683 deletions)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Match preview pages had outdated odds data embedded at build time.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All 73 match HTML pages updated with current betting odds across all fixtures. Largest single odds refresh in the repo.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 077a978 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">077a978</span>
+      <span class="commit-msg">fix: add contents:write permission to update-odds workflow</span>
+      <span class="tag tag-fix">fix</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">.github/workflows/update-odds.yml — missing contents:write permission</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">update-odds.yml + 3 lines — contents:write permission added to workflow</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The automated odds update GitHub Actions workflow lacked the contents:write permission, causing it to fail when trying to commit updated odds data back to the repo.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Workflow now has the correct permissions to commit and push odds updates automatically on schedule.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: b93f479 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">b93f479</span>
+      <span class="commit-msg">chore: sync live standings [skip ci]</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json + standings.html — stale standings</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json + standings.html — refreshed (391 line diff, Jun 28 18:51 UTC)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Automated standings sync bot (Jun 28 18:51 UTC).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Group standings updated from football-data.org API.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 276c00f -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">276c00f</span>
+      <span class="commit-msg">fix: remove data/results.json from standings workflow git add</span>
+      <span class="tag tag-fix">fix</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">.github/workflows/sync-standings.yml — git add included data/results.json (file never in repo)</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">sync-standings.yml — data/results.json removed from git add command</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The standings sync workflow tried to git-add data/results.json which doesn't exist in the repo, causing workflow warnings/errors on every run.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Workflow cleaned up — only files that actually exist in the repo are staged during automated commits.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 282753c -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">282753c</span>
+      <span class="commit-msg">feat: live knockout pipeline (teams/flags/odds) + flag mojibake fix</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">No sync_knockout.py; flag emojis sourced from JSON bytes (prone to PowerShell UTF-8 corruption)</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">sync_knockout.py added (268 lines); flags derived from ASCII ISO-2 codes via String.fromCodePoint — corruption-proof</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Knockout cards had no live data pipeline — teams, flags, and odds were static. Flag emoji bytes in JSON were susceptible to PowerShell UTF-8 corruption (mojibake).
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        sync_knockout.py syncs live team pairings, flag codes, and odds for all knockout rounds. Flags now derived from ISO-2 country codes at render time, permanently eliminating encoding corruption.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 6355f0c -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">6355f0c</span>
+      <span class="commit-msg">predictions: add tournament-stage selector + data-driven knockout cards</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">predictions.html — no stage selector; knockout cards were hard-coded</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/knockout.json added (47 lines); predictions.html refactored (+240 lines) — stage tabs (Group/R32/QF/SF/Final) + cards rendered from JSON</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Predictions page only showed group stage fixtures with no way to navigate to knockout rounds. Knockout bracket cards, if present, were hard-coded with static team names.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Predictions page now has stage tabs (Group Stage, R32, QF, SF, Final). Knockout cards are rendered dynamically from knockout.json and overlaid with live data from live.json — real teams and odds appear automatically as rounds resolve.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 5f96d96 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">5f96d96</span>
+      <span class="commit-msg">chore: regenerate standings.html with corrected live data structure</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">standings.html — generated with old/incorrect live.json data structure</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">standings.html — regenerated after live.json structure fix; correctly shows team names, flags, P/W/D/L/GD/Pts</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        standings.html was built against the old live.json schema where property names didn't match what renderTable expected — standings showed blank/broken data.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        standings.html regenerated after the live.json property name fix. Live standings now correctly display team names, flags, and all stats (P/W/D/L/GD/PTS).
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 842e6be -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">842e6be</span>
+      <span class="commit-msg">fix: correct live.json standings structure for home page widget</span>
+      <span class="tag tag-fix">fix</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">data/live.json — standings objects used wrong property names (team, played, won, draw, lost)</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">data/live.json — corrected to: name, p, w, d, l + iso country codes for flags</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        The home page GROUP STANDINGS widget was broken — live.json used property names (team, played, won, draw, lost) that didn't match what renderTable expected, so team names, flags, and stats all displayed as blank.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Property names corrected to match renderTable expectations (name, p, w, d, l). ISO country codes added for flag rendering. Home page standings widget now shows correct team names, flags, and all stats.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: e6362fd -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">e6362fd</span>
+      <span class="commit-msg">feat: unified standings sync across all pages (standings.html + home page)</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">-  // Static placeholder source — swap for a live API later (see note above).</span>
+          <span class="del">-  function loadStandings() &#123; return Promise.resolve(STANDINGS); &#125;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">+  // Load standings from live.json (synced every 20 min from football-data.org)</span>
+          <span class="add">+  function loadStandings() &#123;</span>
+          <span class="add">+    return fetch('/data/live.json?_=' + Date.now())</span>
+          <span class="add">+      .then(function(r) &#123; return r.ok ? r.json() : Promise.reject(...); &#125;)</span>
+          <span class="add">+      .then(function(data) &#123; return data.standings || STANDINGS; &#125;)</span>
+          <span class="add">+      .catch(function(err) &#123; console.warn('...'); return STANDINGS; &#125;);</span>
+          <span class="add">+  &#125;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        index.html used a static STANDINGS object as a placeholder — the home page group standings widget never showed live data, even after the sync pipeline was live.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        loadStandings() now fetches /data/live.json (refreshed every 20 minutes via GitHub Actions). Falls back to the static STANDINGS object if the fetch fails. Both getpitchiq.net/ and /standings now show identical live group standings.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: c556d00 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">c556d00</span>
+      <span class="commit-msg">feat: live group standings sync from football-data.org</span>
+      <span class="tag tag-feat">feature</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">standings.html — hard-coded MD1 data; no automated sync pipeline; sync_standings.py did not exist</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">sync_standings.py added (282 lines); .github/workflows/sync-standings.yml added (51 lines); standings.html rewritten to show live W/D/L/GF/GA/GD/Pts</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Group standings were hard-coded from Matchday 1 results and never updated. No pipeline to pull live data. standings.html showed stale stats regardless of match outcomes.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Full live standings pipeline established: sync_standings.py pulls data from football-data.org, GitHub Actions workflow runs every 20 minutes, standings.html now shows real-time W/D/L/GF/GA/GD/Pts for all groups. Requires FOOTBALL_DATA_API_KEY secret.
+      </div>
+    </div>
+  </div>
+
 
   <!-- ─────────────────────────────────────────── -->
   <div class="section-label">Live Data Architecture &amp; v2 Build (Most Recent)</div>
@@ -1086,4 +2061,140 @@
       <span class="commit-hash">271af4e</span>
       <span class="commit-msg">Overnight build: 8 new pages — standings, predictions hub, fantasy builder, 5 match previews, interactive homepage</span>
       <span class="tag tag-feat">feature</span>
-    
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Single-page site — only the homepage existed.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>8 new pages added in one build: Group Standings, Predictions Hub, Fantasy Builder, 5 match preview pages, and a fully interactive homepage with live data sections.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">d26246f</span>
+      <span class="commit-msg">Add @getpitchiq Twitter links to footer and meta tags</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;meta name="twitter:site" content="@pitchiq"/&gt;</span>
+<span class="del">&lt;a class="ft-social" href="#"&gt;𝕏&lt;/a&gt;  &lt;!-- dead link --&gt;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;meta name="twitter:site" content="@getpitchiq"/&gt;</span>
+<span class="add">&lt;a class="ft-social" href="https://twitter.com/getpitchiq"</span>
+<span class="add">   target="_blank" rel="noopener"&gt;𝕏&lt;/a&gt;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Twitter meta tag used wrong handle <code>@pitchiq</code>; footer X icon was a dead <code>#</code> link.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Meta tag corrected to <code>@getpitchiq</code>; footer X icon now links to <code>twitter.com/getpitchiq</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">c0b95d9</span>
+      <span class="commit-msg">Add match preview page, GA4, AdSense, affiliate slots</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>No match detail pages; no GA4; no monetisation.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>First match preview page live; GA4 wired; AdSense units placed; affiliate sportsbook CTA slots added.</div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">b843b03</span>
+      <span class="commit-msg">Real WC2026 data — live scores, fixtures, odds, news headlines</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>All data was placeholder / Lorem-style content.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Real WC2026 match data, live scores, upcoming fixtures, betting odds, and news headlines populated across the site.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">1c84074</span>
+      <span class="commit-msg">Add affiliate link slots — sportsbook banner, odds strip, bet CTAs</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">/* No sportsbook banner */</span>
+<span class="del">&lt;div class="mh-odd"&gt;  &lt;!-- plain div, not clickable --&gt;</span>
+<span class="del">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings&lt;/div&gt;</span>
+<span class="del">&lt;/div&gt;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">.sb-banner { background:var(--nav); border-radius:var(--r2); }</span>
+<span class="add">.sb-book:hover { border-color:var(--grn); }</span>
+<span class="add">&lt;a class="mh-odd" href="#" data-aff="draftkings"</span>
+<span class="add">   rel="noopener sponsored" target="_blank"&gt;</span>
+<span class="add">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings ↗&lt;/div&gt;</span>
+<span class="add">&lt;/a&gt;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Odds strip items were plain non-clickable divs. No sportsbook bonus banner. No affiliate tracking attributes.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Odds strip converted to affiliate <code>&lt;a&gt;</code> tags with <code>data-aff</code> tracking. Sportsbook bonus banner added (DraftKings, FanDuel) with hover effects and <code>rel="sponsored"</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">de83eff</span>
+      <span class="commit-msg">Update domain to getpitchiq.net</span>
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Site references used a development/placeholder domain.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>All canonical URLs, meta tags, and social links updated to <strong>getpitchiq.net</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">ed63214</span>
+      <span class="commit-msg">V6 production launch</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Previous version (V5) in production.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>V6 shipped — full redesign with dark theme, live match ribbon, structured betting section, and WC2026 branding.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
