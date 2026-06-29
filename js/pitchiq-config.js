@@ -23,7 +23,9 @@ window.PITCHIQ_CONFIG = {
 
   // Feature flags — disable any section to skip its DOM updates.
   features: {
-    ticker:      true,   // scrolling live scores bar on homepage
+    ticker:      false,  // homepage ticker is owned by the liveToday module in
+                         // index.html (today-only, group+knockout, live scores);
+                         // pitchiq-live.js must NOT also write #tickerTrack.
     matchOdds:   true,   // odds strip on match preview pages
     probBars:    true,   // home/draw/away probability bars
     standings:   true,   // group standings tables

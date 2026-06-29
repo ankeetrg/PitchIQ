@@ -3348,8 +3348,20 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
       (m.homeEmoji || '') + ' ' + homeN + ' <span class="tick-vs">vs</span> ' + awayN + ' ' + (m.awayEmoji || '') +
       ' <em>' + esc(m.tag || '') + scoreTxt + '</em></div>';
   }
+  function setTickerRight(list){
+    var el = document.querySelector('.ticker-right');
+    if (!el) return;
+    var stage = '';
+    if (list && list.length){
+      var tags = list.map(function(m){ return m.tag; });
+      var uniq = tags.filter(function(t,i){ return tags.indexOf(t) === i; });
+      stage = (uniq.length === 1) ? uniq[0] : 'Matchday';   // e.g. "Round of 32" or mixed → "Matchday"
+    }
+    el.textContent = 'WC 2026' + (stage ? ' · ' + stage : '');
+  }
   function renderTicker(list){
     if (!track) return;
+    setTickerRight(list);   // dynamic stage label (Group Stage / Round of 32 / … / Final)
     if (!list || !list.length){
       track.innerHTML = '<div class="tick-item"><span class="tick-status ko">TODAY</span> No matches scheduled today <em>WC 2026</em></div>';
       return;
@@ -3364,11 +3376,13 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
     return Promise.all([ getJSON('/data/live.json'), getJSON('/data/knockout.json') ]).then(function(res){
       var live = res[0], ko = res[1];
       if (!live && !ko) { return false; }            // offline/local — keep whatever is shown
-      // Knockout phase: show only current (knockout) matches — drop any
-      // lingering group-stage fixtures that share today's date in the data.
-      var list = todayList(live, ko).filter(function(m){ return m.kind === 'ko'; });
-      renderCarousel(list);
-      renderTicker(list);
+      var all = todayList(live, ko);                  // today's matches, every stage (synced with /predictions)
+      // Carousel: featured current-stage matches — knockout once it begins,
+      // otherwise today's group games.
+      var koToday = all.filter(function(m){ return m.kind === 'ko'; });
+      renderCarousel(koToday.length ? koToday : all);
+      // Ticker: ALL of today's matches across stages, like the predictions page.
+      renderTicker(all);
       return true;
     });
   }
