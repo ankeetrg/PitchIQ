@@ -239,7 +239,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 2px 5px;
   border-radius: 3px;
 }
-.tick-status.live  { background:var(--red); color:#fff; }
+.tick-status.live  { background:var(--red); color:#fff; display:inline-flex; align-items:center; gap:4px; }
+.tick-status.live .tick-dot { width:5px; height:5px; background:#fff; border-radius:50%; animation:pulse 1.2s ease-in-out infinite; }
+.tick-score { font-weight:800; color:#fff; }
 .tick-status.ft    { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); }
 .tick-status.ko    { background:rgba(0,150,63,0.5); color:#a7f3c6; }
 .ticker-right {
@@ -3326,19 +3328,25 @@ var HERO_BG = 'https://images.unsplash.com/photo-1556816214-6d16c62fbbf6?w=1600&
   }
 
   // ── top ticker ──
+  // Format (today's matches only):
+  //   upcoming →  "4:30 PM 🇩🇪 Germany vs Paraguay 🇵🇾 Round of 32"
+  //   live     →  "LIVE 🇩🇪 Germany vs Paraguay 🇵🇾 Round of 32 (0-0)"
+  //   finished →  "FT 🇩🇪 Germany vs Paraguay 🇵🇾 Round of 32 (2-1)"
+  // The score in parentheses comes straight from live.json (score_home/away),
+  // so wiring a live-scores API later needs no change here.
   function tickerItem(m){
-    var isLive = m.status==='live';
-    var hasScore = (m.scoreHome!=null && m.scoreAway!=null);
-    var statusCls = isLive ? 'live' : (m.status==='ft' ? 'ft' : 'ko');
-    var statusLbl = isLive ? 'LIVE' : (m.status==='ft' ? 'FT' : (m.time||'TODAY'));
+    var isFt = m.status === 'ft';
+    var hasScore = (m.scoreHome != null && m.scoreAway != null);
+    var isLive = (m.status === 'live') || (hasScore && !isFt);   // same rule as the carousel
+    var statusCls = isLive ? 'live' : (isFt ? 'ft' : 'ko');
+    var statusLbl = isLive ? '<span class="tick-dot"></span>LIVE' : (isFt ? 'FT' : esc(m.time || 'TBD'));
     var homeN = m.homeTBD ? 'TBD' : esc(m.home);
     var awayN = m.awayTBD ? 'TBD' : esc(m.away);
-    var mid = hasScore
-      ? '<span class="score">'+m.scoreHome+'–'+m.scoreAway+'</span>'+(isLive&&m.clock?' '+esc(m.clock):'')
-      : '<span class="tick-vs">vs</span>';
-    return '<div class="tick-item"><span class="tick-status '+statusCls+'">'+esc(statusLbl)+'</span> '+
-      (m.homeEmoji||'')+' '+homeN+' '+mid+' '+awayN+' '+(m.awayEmoji||'')+
-      ' <em>'+esc(m.tag||'')+'</em></div>';
+    var scoreTxt = ((isLive || isFt) && hasScore)
+      ? ' <span class="tick-score">(' + m.scoreHome + '-' + m.scoreAway + ')</span>' : '';
+    return '<div class="tick-item"><span class="tick-status ' + statusCls + '">' + statusLbl + '</span> ' +
+      (m.homeEmoji || '') + ' ' + homeN + ' <span class="tick-vs">vs</span> ' + awayN + ' ' + (m.awayEmoji || '') +
+      ' <em>' + esc(m.tag || '') + scoreTxt + '</em></div>';
   }
   function renderTicker(list){
     if (!track) return;
