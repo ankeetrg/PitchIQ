@@ -132,6 +132,8 @@ _TEAM_META = {
     'Canada': ('ca', '🇨🇦'),
     'Bosnia': ('ba', '🇧🇦'),
     'Bosnia and Herzegovina': ('ba', '🇧🇦'),
+    'Bosnia-Herzegovina': ('ba', '🇧🇦'),
+    'Bosnia-H.': ('ba', '🇧🇦'),
     'Qatar': ('qa', '🇶🇦'),
     'Switzerland': ('ch', '🇨🇭'),
     'Brazil': ('br', '🇧🇷'),
@@ -257,8 +259,8 @@ def build_live_json_standings(standings_by_gid):
         table = st.get('table', [])
         standings[gid] = [
             {
-                'name': t['team'].get('shortName', t['team'].get('name', 'Unknown')),
-                'iso': _team_code(t['team'].get('shortName', t['team'].get('name', 'Unknown'))),
+                'name': _normalize_team_name(t['team'].get('name', 'Unknown')),
+                'iso': _team_code(_normalize_team_name(t['team'].get('name', 'Unknown'))),
                 'p': t['playedGames'],
                 'w': t['won'],
                 'd': t['draw'],
@@ -271,6 +273,14 @@ def build_live_json_standings(standings_by_gid):
             for t in table
         ]
     return standings
+
+
+def _normalize_team_name(name):
+    """Normalize team names for display (e.g. 'Bosnia-Herzegovina' → 'Bosnia')."""
+    return {
+        'Bosnia-Herzegovina': 'Bosnia',
+        'South Korea': 'Korea Republic',
+    }.get(name, name)
 
 
 def update_live_json(standings_data, generated_at):

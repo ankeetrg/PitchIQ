@@ -1,9 +1,15 @@
 {
   "_meta": {
+<<<<<<< HEAD
     "generated_at": "2026-06-30T19:12:55.365885+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
     "knockout_generated_at": "2026-06-30T19:12:56.458811+00:00"
+=======
+    "generated_at": "2026-06-30T19:12:41.944693+00:00",
+    "source": "football-data.org + espn",
+    "schema_version": "2"
+>>>>>>> c891c80 (fix: normalize Bosnia-Herzegovina label to display as Bosnia)
   },
   "matches": {
     "mexico-southafrica": {
@@ -3029,8 +3035,13 @@
         "pts": 4
       },
       {
+<<<<<<< HEAD
         "name": "Bosnia-H.",
         "iso": "xx",
+=======
+        "name": "Bosnia",
+        "iso": "ba",
+>>>>>>> c891c80 (fix: normalize Bosnia-Herzegovina label to display as Bosnia)
         "p": 3,
         "w": 1,
         "d": 1,
@@ -3105,8 +3116,13 @@
     ],
     "D": [
       {
+<<<<<<< HEAD
         "name": "USA",
         "iso": "us",
+=======
+        "name": "United States",
+        "iso": "xx",
+>>>>>>> c891c80 (fix: normalize Bosnia-Herzegovina label to display as Bosnia)
         "p": 3,
         "w": 2,
         "d": 0,
@@ -3317,8 +3333,13 @@
         "pts": 7
       },
       {
+<<<<<<< HEAD
         "name": "Cape Verde",
         "iso": "cv",
+=======
+        "name": "Cape Verde Islands",
+        "iso": "xx",
+>>>>>>> c891c80 (fix: normalize Bosnia-Herzegovina label to display as Bosnia)
         "p": 3,
         "w": 0,
         "d": 3,
