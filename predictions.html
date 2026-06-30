@@ -1332,6 +1332,16 @@ stageTabs.forEach(function(tab){
       t.classList.toggle('active', on);
       t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+    /* Browsing by stage clears any active date so applyFilters() filters by the
+       chosen stage instead of staying locked on a previously-picked day —
+       otherwise clicking R16/QF/SF/Final while a date is active does nothing. */
+    state.day = 'all';
+    filterTabs.forEach(function(t){
+      var on = t.dataset.filter === 'all';
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    deactivateCalendar();
     applyFilters();
   });
 });
