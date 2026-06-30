@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-06-30T15:17:27.688900+00:00",
+    "generated_at": "2026-06-30T17:19:26.881665+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-06-30T15:17:28.779343+00:00"
+    "knockout_generated_at": "2026-06-30T17:19:27.566473+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2604,9 +2604,9 @@
     },
     "wc2026-m78": {
       "stage": "r32",
-      "status": "upcoming",
-      "score_home": null,
-      "score_away": null,
+      "status": "live",
+      "score_home": 0,
+      "score_away": 0,
       "clock": null,
       "home": {
         "name": "Ivory Coast",
