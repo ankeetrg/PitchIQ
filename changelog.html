@@ -66,11 +66,79 @@
 
 <header>
   <h1>PitchIQ Changelog</h1>
-  <span class="badge">72 entries</span>
+  <span class="badge">74 entries</span>
   <span class="repo">ankeetrg/PitchIQ · getpitchiq.net</span>
 </header>
 
 <div class="container">
+
+  <!-- new: ed95d00 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">ed95d00</span>
+      <span class="commit-msg">changelog: add 28 new commits</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 29, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">changelog.html — 44 entries, missing all World Cup knockout phase commits</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">changelog.html — 72 entries (+1,113 lines); all knockout phase commits documented (standings sync, live odds, R32 pages, predictions calendar)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Changelog had 44 entries and didn't cover the World Cup knockout phase work — 28 commits from June 28–29 were undocumented.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        All 28 knockout-phase commits added with before/after diffs and plain-English summaries, bringing the total to 72 entries. Covers standings sync pipeline, live odds updates, R32 match preview pages, and predictions calendar improvements.
+      </div>
+    </div>
+  </div>
+
+  <!-- new: 032d761 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">032d761</span>
+      <span class="commit-msg">changelog: add 4 new commits (23da544, a300250, 1b8ee1e, 6256d2d)</span>
+      <span class="tag tag-chore">chore</span>
+      <span class="commit-date">June 28, 2026</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+          <span class="del">changelog.html — 40 entries; Jun 27 live-data architecture commits undocumented</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+          <span class="add">changelog.html — 44 entries (+130 lines); 4 Jun 27 commits added (changelog update, live-data arch, v2 wiring, main branch merge)</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Changelog at 40 entries — missing the Jun 27 commits covering the unified live-data architecture, v2 live score wiring, and the main branch merge.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Four commits documented: the prior changelog update (23da544), unified live-data architecture with config.py/live.json/pitchiq-live.js (a300250), v2 live scores wiring (1b8ee1e), and the main branch merge (6256d2d). Total 44 entries.
+      </div>
+    </div>
+  </div>
 
   <!-- ─────────────────────────────────────────── -->
   <div class="section-label">World Cup Knockout Phase &amp; Live Data (June 28–29, 2026)</div>
@@ -2125,76 +2193,4 @@
     </div>
     <div class="summary-grid">
       <div class="summary-cell before-cell"><div class="summary-label">Before</div>All data was placeholder / Lorem-style content.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>Real WC2026 match data, live scores, upcoming fixtures, betting odds, and news headlines populated across the site.</div>
-    </div>
-  </div>
-
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">1c84074</span>
-      <span class="commit-msg">Add affiliate link slots — sportsbook banner, odds strip, bet CTAs</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="diff-table">
-      <div class="diff-col">
-        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
-        <div class="diff-content diff-code">
-<span class="del">/* No sportsbook banner */</span>
-<span class="del">&lt;div class="mh-odd"&gt;  &lt;!-- plain div, not clickable --&gt;</span>
-<span class="del">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings&lt;/div&gt;</span>
-<span class="del">&lt;/div&gt;</span>
-        </div>
-      </div>
-      <div class="diff-col">
-        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
-        <div class="diff-content after-content diff-code">
-<span class="add">.sb-banner { background:var(--nav); border-radius:var(--r2); }</span>
-<span class="add">.sb-book:hover { border-color:var(--grn); }</span>
-<span class="add">&lt;a class="mh-odd" href="#" data-aff="draftkings"</span>
-<span class="add">   rel="noopener sponsored" target="_blank"&gt;</span>
-<span class="add">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings ↗&lt;/div&gt;</span>
-<span class="add">&lt;/a&gt;</span>
-        </div>
-      </div>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell">
-        <div class="summary-label">Before</div>
-        Odds strip items were plain non-clickable divs. No sportsbook bonus banner. No affiliate tracking attributes.
-      </div>
-      <div class="summary-cell after-cell">
-        <div class="summary-label">After</div>
-        Odds strip converted to affiliate <code>&lt;a&gt;</code> tags with <code>data-aff</code> tracking. Sportsbook bonus banner added (DraftKings, FanDuel) with hover effects and <code>rel="sponsored"</code>.
-      </div>
-    </div>
-  </div>
-
-  <!-- 28 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">de83eff</span>
-      <span class="commit-msg">Update domain to getpitchiq.net</span>
-      <span class="tag tag-chore">chore</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Site references used a development/placeholder domain.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>All canonical URLs, meta tags, and social links updated to <strong>getpitchiq.net</strong>.</div>
-    </div>
-  </div>
-
-  <!-- 29 -->
-  <div class="commit-block">
-    <div class="commit-header">
-      <span class="commit-hash">ed63214</span>
-      <span class="commit-msg">V6 production launch</span>
-      <span class="tag tag-feat">feature</span>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Previous version (V5) in production.</div>
-      <div class="summary-cell after-cell"><div class="summary-label">After</div>V6 shipped — full redesign with dark theme, live match ribbon, structured betting section, and WC2026 branding.</div>
-    </div>
-  </div>
-
-</div>
-</body>
-</html>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Real WC2
