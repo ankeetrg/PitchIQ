@@ -3518,11 +3518,38 @@ var STANDINGS = {
     if (groups.length) renderTable(groups[0]);
   }
 
-  // Load standings from live.json (synced every 20 min from football-data.org)
+  // Load standings by reading the live /standings page (rewritten every ~20 min
+  // by sync_standings.py from football-data.org). Parsing that same source means
+  // the homepage widget always matches the full Standings page exactly.
   function loadStandings() {
-    return fetch('/data/live.json?_=' + Date.now())
-      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('Failed to load standings')); })
-      .then(function(data) { return data.standings || STANDINGS; })
+    return fetch('/standings.html?_=' + Date.now())
+      .then(function(r) { return r.ok ? r.text() : Promise.reject(new Error('standings fetch failed')); })
+      .then(function(html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var cards = doc.querySelectorAll('.group-card');
+        if (!cards.length) return STANDINGS;
+        var out = {};
+        cards.forEach(function(card) {
+          var lbl = (card.querySelector('.group-label') || {}).textContent || '';
+          var gm = lbl.match(/GROUP\s+([A-L])/i);
+          if (!gm) return;
+          var rows = [];
+          card.querySelectorAll('tbody tr').forEach(function(tr) {
+            var td = tr.querySelectorAll('td');
+            if (td.length < 9) return;                 // Team,GP,W,D,L,GF,GA,GD,Pts
+            var cell0 = td[0].cloneNode(true);
+            var img = cell0.querySelector('img');
+            var iso = '';
+            if (img) { var mm = (img.getAttribute('src') || '').match(/\/(?:w\d+\/)?([a-z-]+)\.png/i); iso = mm ? mm[1] : ''; }
+            ['img', '.team-flag'].forEach(function(sel){ var e = cell0.querySelector(sel); if (e) e.remove(); });
+            var name = (cell0.textContent || '').trim();
+            var txt = function(c){ return (c.textContent || '').trim(); };
+            rows.push({ iso:iso, name:name, p:txt(td[1]), w:txt(td[2]), d:txt(td[3]), l:txt(td[4]), gd:txt(td[7]), pts:txt(td[8]) });
+          });
+          if (rows.length) out[gm[1].toUpperCase()] = rows;
+        });
+        return Object.keys(out).length ? out : STANDINGS;
+      })
       .catch(function(err) {
         console.warn('Live standings unavailable, using fallback:', err);
         return STANDINGS;
