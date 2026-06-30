@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-06-30T01:49:42.059137+00:00",
+    "generated_at": "2026-06-30T06:14:45.122755+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-06-30T01:49:43.132818+00:00"
+    "knockout_generated_at": "2026-06-30T06:14:46.263481+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2586,9 +2586,9 @@
     },
     "wc2026-m75": {
       "stage": "r32",
-      "status": "live",
-      "score_home": 0,
-      "score_away": 0,
+      "status": "ft",
+      "score_home": 3,
+      "score_away": 4,
       "clock": null,
       "home": {
         "name": "Netherlands",
@@ -2828,21 +2828,37 @@
         "name": "Canada",
         "code": "ca",
         "emoji": "🇨🇦"
-      }
+      },
+      "away": {
+        "name": "Morocco",
+        "code": "ma",
+        "emoji": "🇲🇦"
+      },
+      "page_slug": "canada-morocco"
     },
     "wc2026-m89": {
       "stage": "r16",
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Paraguay",
+        "code": "py",
+        "emoji": "🇵🇾"
+      }
     },
     "wc2026-m91": {
       "stage": "r16",
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Brazil",
+        "code": "br",
+        "emoji": "🇧🇷"
+      }
     },
     "wc2026-m92": {
       "stage": "r16",
