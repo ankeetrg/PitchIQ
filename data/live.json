@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-01T04:56:58.117977+00:00",
+    "generated_at": "2026-07-01T08:52:29.980335+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-01T04:56:58.874743+00:00"
+    "knockout_generated_at": "2026-07-01T08:52:30.830222+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2846,7 +2846,13 @@
         "name": "Paraguay",
         "code": "py",
         "emoji": "🇵🇾"
-      }
+      },
+      "away": {
+        "name": "France",
+        "code": "fr",
+        "emoji": "🇫🇷"
+      },
+      "page_slug": "paraguay-france"
     },
     "wc2026-m91": {
       "stage": "r16",
@@ -2858,7 +2864,13 @@
         "name": "Brazil",
         "code": "br",
         "emoji": "🇧🇷"
-      }
+      },
+      "away": {
+        "name": "Norway",
+        "code": "no",
+        "emoji": "🇳🇴"
+      },
+      "page_slug": "brazil-norway"
     },
     "wc2026-m92": {
       "stage": "r16",
