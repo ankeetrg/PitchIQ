@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-02T21:48:07.944392+00:00",
+    "generated_at": "2026-07-02T23:10:01.528314+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-02T21:48:08.646518+00:00"
+    "knockout_generated_at": "2026-07-02T23:10:04.619566+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2730,9 +2730,9 @@
     },
     "wc2026-m83": {
       "stage": "r32",
-      "status": "upcoming",
-      "score_home": null,
-      "score_away": null,
+      "status": "live",
+      "score_home": 0,
+      "score_away": 0,
       "clock": null,
       "home": {
         "name": "Portugal",
