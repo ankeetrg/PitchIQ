@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-02T04:33:56.271045+00:00",
+    "generated_at": "2026-07-02T07:54:37.609352+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-02T04:33:56.929561+00:00"
+    "knockout_generated_at": "2026-07-02T07:54:38.681958+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2877,7 +2877,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Mexico",
+        "code": "mx",
+        "emoji": "🇲🇽"
+      },
+      "away": {
+        "name": "England",
+        "code": "gb-eng",
+        "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      },
+      "page_slug": "mexico-england"
     },
     "wc2026-m93": {
       "stage": "r16",
@@ -2891,7 +2902,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "United States",
+        "code": "us",
+        "emoji": "🇺🇸"
+      },
+      "away": {
+        "name": "Belgium",
+        "code": "be",
+        "emoji": "🇧🇪"
+      },
+      "page_slug": "unitedstates-belgium"
     },
     "wc2026-m95": {
       "stage": "r16",
