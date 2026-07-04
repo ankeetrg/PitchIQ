@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-04T22:38:15.380325+00:00",
+    "generated_at": "2026-07-04T23:43:12.059197+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-04T22:38:16.324229+00:00"
+    "knockout_generated_at": "2026-07-04T23:43:13.123672+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2838,9 +2838,9 @@
     },
     "wc2026-m89": {
       "stage": "r16",
-      "status": "live",
+      "status": "ft",
       "score_home": 0,
-      "score_away": 0,
+      "score_away": 1,
       "clock": null,
       "home": {
         "name": "Paraguay",
