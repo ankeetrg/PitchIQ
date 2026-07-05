@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-05T03:37:35.694866+00:00",
+    "generated_at": "2026-07-05T06:56:42.471612+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-05T03:37:36.379709+00:00"
+    "knockout_generated_at": "2026-07-05T06:56:43.559701+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2967,7 +2967,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "France",
+        "code": "fr",
+        "emoji": "🇫🇷"
+      },
+      "away": {
+        "name": "Morocco",
+        "code": "ma",
+        "emoji": "🇲🇦"
+      },
+      "page_slug": "france-morocco"
     },
     "wc2026-m98": {
       "stage": "qf",
