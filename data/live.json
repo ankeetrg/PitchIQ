@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-05T12:52:02.271182+00:00",
+    "generated_at": "2026-07-05T14:45:01.579398+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-05T12:52:03.122994+00:00"
+    "knockout_generated_at": "2026-07-05T14:45:02.583584+00:00"
   },
   "matches": {
     "mexico-southafrica": {
