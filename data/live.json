@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-06T03:45:21.173658+00:00",
+    "generated_at": "2026-07-06T08:22:43.974412+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-06T03:45:22.179727+00:00"
+    "knockout_generated_at": "2026-07-06T08:22:44.985703+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2992,7 +2992,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Norway",
+        "code": "no",
+        "emoji": "🇳🇴"
+      },
+      "away": {
+        "name": "England",
+        "code": "gb-eng",
+        "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      },
+      "page_slug": "norway-england"
     },
     "wc2026-m100": {
       "stage": "qf",
