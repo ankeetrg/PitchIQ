@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-07T01:21:30.560677+00:00",
+    "generated_at": "2026-07-07T05:49:52.228989+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-07T01:21:31.243846+00:00"
+    "knockout_generated_at": "2026-07-07T05:49:52.882079+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2910,9 +2910,9 @@
     },
     "wc2026-m94": {
       "stage": "r16",
-      "status": "live",
+      "status": "ft",
       "score_home": 1,
-      "score_away": 2,
+      "score_away": 4,
       "clock": null,
       "home": {
         "name": "United States",
