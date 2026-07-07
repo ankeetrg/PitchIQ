@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-07T05:49:52.228989+00:00",
+    "generated_at": "2026-07-07T09:46:01.737342+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-07T05:49:52.882079+00:00"
+    "knockout_generated_at": "2026-07-07T09:46:02.517930+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2985,7 +2985,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Spain",
+        "code": "es",
+        "emoji": "🇪🇸"
+      },
+      "away": {
+        "name": "Belgium",
+        "code": "be",
+        "emoji": "🇧🇪"
+      },
+      "page_slug": "spain-belgium"
     },
     "wc2026-m99": {
       "stage": "qf",
