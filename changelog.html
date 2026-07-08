@@ -66,7 +66,7 @@
 
 <header>
   <h1>PitchIQ Changelog</h1>
-  <span class="badge">242 entries</span>
+  <span class="badge">263 entries</span>
   <span class="repo">ankeetrg/PitchIQ · getpitchiq.net</span>
 </header>
 
@@ -4631,4 +4631,497 @@
         <div class="summary-label">Before</div>
         Ticker showed a fixed set of hand-written match entries (including past dates) that never updated.
       </div>
-      <div 
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Ticker automatically filters the FIXTURES data array to today's matches, so it stays current without any manual edits.
+      </div>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">4a92820</span>
+      <span class="commit-msg">Fixtures tabs: add calendar date-picker popover</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">Tabs: All | Jun 13 | Jun 14 | Jun 15</span>
+<span class="del">/* No calendar UI — only the pre-set tabs */</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">Tabs: All | Today | Tomorrow | 📅</span>
+<span class="add">.fix-cal-btn  { /* calendar icon tab */ }</span>
+<span class="add">.fix-cal-pop  { position:absolute; border-radius:14px;</span>
+<span class="add">  box-shadow:0 12px 32px rgba(…); }</span>
+<span class="add">.cal-day.cal-has { background:var(--grn); cursor:pointer; }</span>
+<span class="add">.cal-day.cal-none { cursor:not-allowed; }</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Only static date tabs (Jun 13 / 14 / 15) — no way to jump to any other date.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        A calendar icon tab opens a popover month-view. Days with fixtures are highlighted green and clickable; others are greyed out.
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">c142594</span>
+      <span class="commit-msg">Fixtures tabs: only All + today + tomorrow, dynamic dates</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">// Build a tab for every unique date in FIXTURES</span>
+<span class="del">// → many tabs once all 32 matchdays are in data</span>
+<span class="del">.fix-tab { flex-wrap:wrap; }</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">// Always exactly 3 tabs: All · Today · Tomorrow</span>
+<span class="add">// Dates computed from JS Date() — roll forward daily</span>
+<span class="add">.fix-tab { white-space:nowrap; flex-wrap:nowrap; }</span>
+<span class="add">.fix-tab-day { background:#fff; color:#0b1f17; }</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        A tab generated for every date in the FIXTURES array — the tab bar would grow to 30+ tabs during the tournament.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Always three tabs only. "Today" and "Tomorrow" labels update automatically based on the current calendar date.
+      </div>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">851921b</span>
+      <span class="commit-msg">Fixtures pane: hard-code date→fixture link from full schedule</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Fixture rows were static HTML elements with no links — clicking a match did nothing.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Each fixture row links to its dedicated match preview page, and the full 104-match WC2026 schedule is embedded as the <code>FIXTURES</code> JS dataset powering tabs and ticker.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">Homepage Restructure V1 &amp; V1.1</div>
+
+  <!-- 18 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">d864a7e</span>
+      <span class="commit-msg">Home page restructure V1.1: fixtures spacing, date filter, betting layout</span>
+      <span class="tag tag-ui">UI</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">.fix-tabs { margin:0 14px 10px; }  /* too tight */</span>
+<span class="del">.betting-section { padding: 32px 0; }  /* excess padding */</span>
+<span class="del">.bet-card  { /* no flex column — CTA floated randomly */ }</span>
+<span class="del">&lt;!-- Sportsbook bonus banner: DraftKings, FanDuel hard-coded --&gt;</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">.fix-tabs { margin:14px 14px 12px; }  /* proper breathing room */</span>
+<span class="add">.betting-section { padding:0; }  /* no excess vertical space */</span>
+<span class="add">.bet-card  { display:flex; flex-direction:column; }</span>
+<span class="add">.bc-cta    { margin-top:auto; }  /* CTA always at card bottom */</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Fixture tabs had cramped top margin; betting section had 32px excess padding; bet card CTAs misaligned vertically.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Consistent spacing throughout; bet cards use flexbox so the CTA button is always pinned to the card's bottom edge regardless of content height.
+      </div>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">8008ac9</span>
+      <span class="commit-msg">Home page restructure V1</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;!-- World Cup News: full card list always visible --&gt;</span>
+<span class="del">&lt;!-- Group Standings: separate section below hero --&gt;</span>
+<span class="del">&lt;!-- Two ticker ribbons (one at top, one inline) --&gt;</span>
+<span class="del">&lt;!-- Empty ad slot with visible white background --&gt;</span>
+</div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;!-- World Cup News: hover-expand bar (collapsed by default) --&gt;</span>
+<span class="add">.news-hover-section { border-radius:var(--r2); overflow:hidden; }</span>
+<span class="add">.news-hover-bar { height:50px; cursor:default; }</span>
+<span class="add">&lt;!-- Group Standings: moved into hero grid beside Best Bets --&gt;</span>
+<span class="add">&lt;!-- Single ticker ribbon only --&gt;</span>
+<span class="add">&lt;!-- Ad slot removed --&gt;</span>
+</div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        World Cup News was an always-expanded section; Group Standings was a separate full-width section; two ticker ribbons ran simultaneously; empty ad slot left a white strip.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        News converted to a collapsible hover-expand bar. Standings moved into the hero grid alongside Best Bets. Duplicate ticker removed. Empty ad slot eliminated. Overall page height reduced significantly.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">Homepage Restructure — Merge &amp; Pre-Restructure Checkpoint</div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">a430265</span>
+      <span class="commit-msg">Merge pull request #2 from ankeetrg/Homepage-restructure-V1</span>
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Homepage-restructure-V1 branch changes were unmerged — not yet in main/production.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        PR #2 merged into main. All V1 restructure changes (news hover bar, standings in hero, single ticker, ad slot removal) now live in the main branch.
+      </div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">086fc5f</span>
+      <span class="commit-msg">pitchiq-homepage-changes</span>
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Homepage at pre-restructure state.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Intermediate homepage changes committed ahead of the V1 restructure PR — layout and content groundwork staged.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────── -->
+  <div class="section-label">Earlier Builds — Analytics, Match Pages &amp; Design Polish</div>
+
+  <!-- 20 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">b22cb80</span>
+      <span class="commit-msg">Fix carousel pagination dots shadow on live matches card</span>
+      <span class="tag tag-fix">fix</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Pagination dots on the live matches carousel had an incorrect drop-shadow that made them hard to see on dark backgrounds.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Shadow corrected — dots render cleanly on all card backgrounds.</div>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">68a9395</span>
+      <span class="commit-msg">Add GA4 tracking G-N9PX9ZKHLR</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>No analytics on homepage — no visibility into traffic or user behaviour.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Google Analytics 4 tag (G-N9PX9ZKHLR) added to homepage <code>&lt;head&gt;</code>.</div>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">9e30cbc</span>
+      <span class="commit-msg">Design polish: match carousel, scoreboard, standings widget, scroll rhythm</span>
+      <span class="tag tag-ui">UI</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Match carousel, live scoreboard, and standings widget had inconsistent card sizing, rough transitions, and uneven vertical rhythm.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Uniform card heights, smooth CSS transitions, and consistent section spacing across carousel, scoreboard, and standings widget.</div>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">b130010</span>
+      <span class="commit-msg">Emergency fix: correct schedule, real match pages, picks-record updated</span>
+      <span class="tag tag-fix">fix</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Schedule data had errors; match preview pages linked to placeholder content; Picks Record page showed dummy data.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Schedule corrected with verified WC2026 fixtures; real match preview pages linked; Picks Record updated with actual prediction history.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">50dabaf</span>
+      <span class="commit-msg">checkpoint before v3 build</span>
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        v2 build state in production — live news feed and Twitter embeds on match pages.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Snapshot commit taken before beginning the v3 build. No functional changes — serves as a clean rollback point.
+      </div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">a65665c</span>
+      <span class="commit-msg">Live news feed, Twitter embeds on all 14 match pages, v2 build</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Match pages had static content only — no live news or social context.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Live news feed widget and curated Twitter/X analyst embeds added to all 14 match preview pages.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">1263bfa</span>
+      <span class="commit-msg">Add live news feed + Twitter analyst embeds</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">background: linear-gradient(160deg, #0B2E50 0%, #071D36 100%);</span>
+<span class="del">/* Plain solid gradient hero — no background image */</span>
+<span class="del">/* No skeleton loader */</span>
+<span class="del">/* Fixture rows: text-only team names, no flags */</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">background-image: linear-gradient(rgb<span class="add">background-image: linear-gradient(rgba(7,29,54,0.82),…),</span>
+<span class="add">  url('unsplash photo — stadium'); background-size:cover;</span>
+<span class="add">.news-live-card { display:block; text-decoration:none; }</span>
+<span class="add">.live-dot { color:var(--red); animation:pulse 1.2s infinite; }</span>
+<span class="add">.skel-img / .skel-line { shimmer animation skeleton loader }</span>
+<span class="add">/* Fixture rows: inline flag images from flagcdn.com */</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Hero had a plain dark gradient. News cards had no images. Fixture rows showed text-only team names. No loading skeleton.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Hero gains a stadium photo background. Live news cards show real images with a shimmer skeleton loader. Fixture rows get inline flag images from flagcdn.com next to each team name.
+      </div>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">271af4e</span>
+      <span class="commit-msg">Overnight build: 8 new pages — standings, predictions hub, fantasy builder, 5 match previews, interactive homepage</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Single-page site — only the homepage existed.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>8 new pages added in one build: Group Standings, Predictions Hub, Fantasy Builder, 5 match preview pages, and a fully interactive homepage with live data sections.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">d26246f</span>
+      <span class="commit-msg">Add @getpitchiq Twitter links to footer and meta tags</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">&lt;meta name="twitter:site" content="@pitchiq"/&gt;</span>
+<span class="del">&lt;a class="ft-social" href="#"&gt;𝕏&lt;/a&gt;  &lt;!-- dead link --&gt;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">&lt;meta name="twitter:site" content="@getpitchiq"/&gt;</span>
+<span class="add">&lt;a class="ft-social" href="https://twitter.com/getpitchiq"</span>
+<span class="add">   target="_blank" rel="noopener"&gt;𝕏&lt;/a&gt;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Twitter meta tag used wrong handle <code>@pitchiq</code>; footer X icon was a dead <code>#</code> link.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Meta tag corrected to <code>@getpitchiq</code>; footer X icon now links to <code>twitter.com/getpitchiq</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">c0b95d9</span>
+      <span class="commit-msg">Add match preview page, GA4, AdSense, affiliate slots</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>No match detail pages; no GA4; no monetisation.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>First match preview page live; GA4 wired; AdSense units placed; affiliate sportsbook CTA slots added.</div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">b843b03</span>
+      <span class="commit-msg">Real WC2026 data — live scores, fixtures, odds, news headlines</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>All data was placeholder / Lorem-style content.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>Real WC2026 match data, live scores, upcoming fixtures, betting odds, and news headlines populated across the site.</div>
+    </div>
+  </div>
+
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">1c84074</span>
+      <span class="commit-msg">Add affiliate link slots — sportsbook banner, odds strip, bet CTAs</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="diff-table">
+      <div class="diff-col">
+        <div class="diff-col-header before-header"><span class="dot"></span>Before</div>
+        <div class="diff-content diff-code">
+<span class="del">/* No sportsbook banner */</span>
+<span class="del">&lt;div class="mh-odd"&gt;  &lt;!-- plain div, not clickable --&gt;</span>
+<span class="del">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings&lt;/div&gt;</span>
+<span class="del">&lt;/div&gt;</span>
+        </div>
+      </div>
+      <div class="diff-col">
+        <div class="diff-col-header after-header"><span class="dot"></span>After</div>
+        <div class="diff-content after-content diff-code">
+<span class="add">.sb-banner { background:var(--nav); border-radius:var(--r2); }</span>
+<span class="add">.sb-book:hover { border-color:var(--grn); }</span>
+<span class="add">&lt;a class="mh-odd" href="#" data-aff="draftkings"</span>
+<span class="add">   rel="noopener sponsored" target="_blank"&gt;</span>
+<span class="add">  &lt;div class="mh-odd-sportsbook"&gt;DraftKings ↗&lt;/div&gt;</span>
+<span class="add">&lt;/a&gt;</span>
+        </div>
+      </div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell">
+        <div class="summary-label">Before</div>
+        Odds strip items were plain non-clickable divs. No sportsbook bonus banner. No affiliate tracking attributes.
+      </div>
+      <div class="summary-cell after-cell">
+        <div class="summary-label">After</div>
+        Odds strip converted to affiliate <code>&lt;a&gt;</code> tags with <code>data-aff</code> tracking. Sportsbook bonus banner added (DraftKings, FanDuel) with hover effects and <code>rel="sponsored"</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">de83eff</span>
+      <span class="commit-msg">Update domain to getpitchiq.net</span>
+      <span class="tag tag-chore">chore</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Site references used a development/placeholder domain.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>All canonical URLs, meta tags, and social links updated to <strong>getpitchiq.net</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="commit-block">
+    <div class="commit-header">
+      <span class="commit-hash">ed63214</span>
+      <span class="commit-msg">V6 production launch</span>
+      <span class="tag tag-feat">feature</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-cell before-cell"><div class="summary-label">Before</div>Previous version (V5) in production.</div>
+      <div class="summary-cell after-cell"><div class="summary-label">After</div>V6 shipped — full redesign with dark theme, live match ribbon, structured betting section, and WC2026 branding.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
