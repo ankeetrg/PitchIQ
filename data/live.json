@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-08T04:35:59.977336+00:00",
+    "generated_at": "2026-07-08T07:13:31.783340+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-08T04:36:00.696989+00:00"
+    "knockout_generated_at": "2026-07-08T07:13:32.597251+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -3021,7 +3021,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Argentina",
+        "code": "ar",
+        "emoji": "🇦🇷"
+      },
+      "away": {
+        "name": "Switzerland",
+        "code": "ch",
+        "emoji": "🇨🇭"
+      },
+      "page_slug": "argentina-switzerland"
     },
     "wc2026-m101": {
       "stage": "sf",
