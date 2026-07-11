@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-11T03:47:04.298295+00:00",
+    "generated_at": "2026-07-11T06:15:24.916430+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-11T03:47:05.028355+00:00"
+    "knockout_generated_at": "2026-07-11T06:15:25.878880+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -3044,7 +3044,13 @@
         "name": "France",
         "code": "fr",
         "emoji": "🇫🇷"
-      }
+      },
+      "away": {
+        "name": "Spain",
+        "code": "es",
+        "emoji": "🇪🇸"
+      },
+      "page_slug": "france-spain"
     },
     "wc2026-m102": {
       "stage": "sf",
