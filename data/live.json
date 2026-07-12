@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-12T03:37:40.928543+00:00",
+    "generated_at": "2026-07-12T06:19:36.485005+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-12T03:37:41.809952+00:00"
+    "knockout_generated_at": "2026-07-12T06:19:37.522334+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -2874,7 +2874,7 @@
     },
     "wc2026-m92": {
       "stage": "r16",
-      "status": "upcoming",
+      "status": "ft",
       "score_home": 2,
       "score_away": 3,
       "clock": null,
@@ -3018,8 +3018,8 @@
     },
     "wc2026-m100": {
       "stage": "qf",
-      "status": "live",
-      "score_home": 1,
+      "status": "ft",
+      "score_home": 3,
       "score_away": 1,
       "clock": null,
       "home": {
@@ -3057,7 +3057,18 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "England",
+        "code": "gb-eng",
+        "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      },
+      "away": {
+        "name": "Argentina",
+        "code": "ar",
+        "emoji": "🇦🇷"
+      },
+      "page_slug": "england-argentina"
     },
     "wc2026-m103": {
       "stage": "tp",
