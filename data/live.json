@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "generated_at": "2026-07-15T03:40:32.498873+00:00",
+    "generated_at": "2026-07-15T06:16:47.600553+00:00",
     "source": "football-data.org + espn",
     "schema_version": "2",
-    "knockout_generated_at": "2026-07-15T03:40:33.453468+00:00"
+    "knockout_generated_at": "2026-07-15T06:16:48.654004+00:00"
   },
   "matches": {
     "mexico-southafrica": {
@@ -3075,14 +3075,24 @@
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "France",
+        "code": "fr",
+        "emoji": "🇫🇷"
+      }
     },
     "wc2026-m104": {
       "stage": "final",
       "status": "upcoming",
       "score_home": null,
       "score_away": null,
-      "clock": null
+      "clock": null,
+      "home": {
+        "name": "Spain",
+        "code": "es",
+        "emoji": "🇪🇸"
+      }
     }
   },
   "standings": {
